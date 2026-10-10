@@ -1,6 +1,6 @@
 # Referência da API
 
-Esta referência é gerada a partir do [arquivo OpenAPI 3.1](/openapi.json) da API. Há também uma versão interativa em [{{API}}/docs]({{API}}/docs).
+Esta referência é gerada a partir do [arquivo OpenAPI 3.1](/openapi.json) da API (também em `{{API}}/v1/openapi.json`). Cada endpoint traz exemplos em curl, Node.js e Python, as respostas por status e um painel **Testar agora**, que chama a API de verdade com a sua chave de teste. Aperte `/` para buscar.
 
 ## URL base
 
@@ -27,7 +27,8 @@ Use uma chave de API ou um token de acesso OAuth. Veja [Autenticação](/authent
 ## Endpoints
 
 ::: cards
-- [Conta e uso](/reference/account) — `GET /v1/me`, saldo, uso e vozes.
+- [Conta e uso](/reference/account) — `GET /v1/me`, saldo e uso.
+- [Vozes](/reference/voices) — Vozes que você pode usar; criar e clonar {soon}.
 - [Salas](/reference/rooms) — Criar, listar, ler, encerrar e gerar links de convidado.
 - [Reuniões e agendamento](/reference/calendar) — Reuniões, links de agendamento, horários livres e agendamentos.
 - [Agente de IA na sala](/reference/agents) — Entrar, falar, ouvir e sair {soon}.

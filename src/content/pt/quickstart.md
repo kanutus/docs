@@ -1,6 +1,6 @@
 # Começar em 5 minutos
 
-Do zero até a sua primeira chamada à API em uns cinco minutos.
+Do zero até a sua primeira chamada à API em uns cinco minutos. Não existe uma conta separada para desenvolvedores: você usa a sua própria conta Kanutus.
 
 ## 1. Crie sua conta e escolha um plano
 

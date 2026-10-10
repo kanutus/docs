@@ -75,7 +75,7 @@ def verify_kanutus(raw_body: bytes, header: str, secret: str, tolerance_s: int =
 - Anything else is retried with exponential backoff: **1 min, 5 min, 30 min, 2 h, 6 h, 12 h, 24 h, 24 h** (about 3 days).
 - An endpoint that keeps failing for 3 days is disabled, and the owner gets an email.
 - Order is not guaranteed and the same event can arrive twice: use `id` to deduplicate.
-- Missed something? `GET /v1/events` lists the last 30 days of events. In the app you can see each delivery and resend it.
+- Missed something? `GET /v1/events` lists the last 30 days of events. In the app you can see each delivery and send it again.
 - Rotate the secret with `POST /v1/webhook-endpoints/{id}/rotate-secret`; send a signed test with `POST /v1/webhook-endpoints/{id}/test`.
 
 ## Event types

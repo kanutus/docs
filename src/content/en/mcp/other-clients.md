@@ -52,7 +52,7 @@ Until the local package is published {soon}, you can bridge the remote server wi
 
 ## Your own agent
 
-If you are writing your own agent (LangGraph, OpenAI Agents SDK, Vercel AI SDK, LiveKit Agents, Pipecat…), you have two options:
+If you are writing your own agent, in whatever framework you use (LangGraph, the OpenAI Agents SDK or your own code), you have two options:
 
 - Use the MCP server with an OAuth token, like the clients above; or
 - Call the [REST API](/reference) directly with an API key. It is simpler for a backend and gives you [webhooks](/webhooks).

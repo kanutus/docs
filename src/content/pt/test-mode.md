@@ -1,6 +1,6 @@
 # Modo de teste
 
-Chaves que começam com `kt_test_` rodam tudo num **simulador**. Nada gasta minutos, nenhum telefone toca e nenhuma GPU é usada. Mesmo assim, permissões, limites de gasto, webhooks e erros funcionam como em produção. Use o modo de teste para desenvolver e para rodar os seus testes.
+Chaves que começam com `kt_test_` rodam tudo num **simulador**. Nada é cobrado nem processado de verdade, e nenhum telefone toca. Mesmo assim, permissões, limites de gasto, webhooks e erros funcionam como em produção. Use o modo de teste para desenvolver e para rodar os seus testes.
 
 ## Como criar uma chave de teste
 

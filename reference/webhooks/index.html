@@ -25,14 +25,15 @@
 <div class="top-right">
 <nav class="lang" aria-label="Language"><a href="/reference/webhooks" hreflang="en" lang="en" aria-current="true">EN</a><a href="/pt/reference/webhooks" hreflang="pt-BR" lang="pt-BR">PT</a></nav>
 <a class="top-link" href="https://kanutus.com">kanutus.com</a>
-<a class="btn" href="https://app.kanutus.com">Open the app</a>
+<a class="btn" href="https://app.kanutus.com/developers"><span class="long">Sign in / Create account</span><span class="short">Sign in</span></a>
 </div>
 </header>
 <div class="shell">
-<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Get started</p><ul><li><a href="/">Kanutus for developers</a></li><li><a href="/quickstart">Quickstart</a></li><li><a href="/authentication">Authentication</a></li><li><a href="/test-mode">Test mode</a></li></ul></div><div class="nav-group"><p>Connect AI assistants (MCP)</p><ul><li><a href="/mcp">Kanutus MCP server</a></li><li><a href="/mcp/connect-claude">Connect Claude</a></li><li><a href="/mcp/connect-chatgpt">Connect ChatGPT</a></li><li><a href="/mcp/other-clients">Cursor, VS Code and other clients</a></li><li><a href="/mcp/tools">The 23 MCP tools</a></li></ul></div><div class="nav-group"><p>Guides</p><ul><li><a href="/guides/agent-in-room">AI agent in a room</a></li><li><a href="/guides/schedule-meeting">Schedule a meeting</a></li><li><a href="/guides/translated-call">Translated phone call</a></li><li><a href="/guides/transcripts">Receive transcripts</a></li></ul></div><div class="nav-group"><p>Build</p><ul><li><a href="/webhooks">Webhooks</a></li><li><a href="/errors">Limits and errors</a></li><li><a href="/responsible-use">Responsible use</a></li></ul></div><div class="nav-group"><p>API reference</p><ul><li><a href="/reference">API reference</a></li><li><a href="/reference/account" class="sub">Account and usage</a></li><li><a href="/reference/rooms" class="sub">Rooms</a></li><li><a href="/reference/calendar" class="sub">Meetings and booking</a></li><li><a href="/reference/agents" class="sub">AI agent in a room</a></li><li><a href="/reference/transcripts" class="sub">Transcripts</a></li><li><a href="/reference/calls" class="sub">Phone calls</a></li><li><a href="/reference/webhooks" aria-current="page" class="sub">Webhooks and events</a></li></ul></div></aside>
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Get started</p><ul><li><a href="/">Kanutus for developers</a></li><li><a href="/quickstart">Quickstart</a></li><li><a href="/authentication">Authentication</a></li><li><a href="/test-mode">Test mode</a></li></ul></div><div class="nav-group"><p>Connect AI assistants (MCP)</p><ul><li><a href="/mcp">Kanutus MCP server</a></li><li><a href="/mcp/connect-claude">Connect Claude</a></li><li><a href="/mcp/connect-chatgpt">Connect ChatGPT</a></li><li><a href="/mcp/other-clients">Cursor, VS Code and other clients</a></li><li><a href="/mcp/tools">The 23 MCP tools</a></li></ul></div><div class="nav-group"><p>Guides</p><ul><li><a href="/guides/agent-in-room">AI agent in a room</a></li><li><a href="/guides/schedule-meeting">Schedule a meeting</a></li><li><a href="/guides/translated-call">Translated phone call</a></li><li><a href="/guides/transcripts">Receive transcripts</a></li></ul></div><div class="nav-group"><p>Build</p><ul><li><a href="/webhooks">Webhooks</a></li><li><a href="/errors">Limits and errors</a></li><li><a href="/responsible-use">Responsible use</a></li></ul></div><div class="nav-group"><p>API reference</p><ul><li><a href="/reference">API reference</a></li><li><a href="/reference/account" class="sub">Account and usage</a></li><li><a href="/reference/voices" class="sub">Voices</a></li><li><a href="/reference/rooms" class="sub">Rooms</a></li><li><a href="/reference/calendar" class="sub">Meetings and booking</a></li><li><a href="/reference/agents" class="sub">AI agent in a room</a></li><li><a href="/reference/transcripts" class="sub">Transcripts</a></li><li><a href="/reference/calls" class="sub">Phone calls</a></li><li><a href="/reference/webhooks" aria-current="page" class="sub">Webhooks and events</a></li></ul></div></aside>
 <main id="content" class="content">
 <article class="prose">
 <h1>Webhooks and events</h1>
+<div class="ref-search" data-ref-search data-empty="No endpoint found"><input type="search" placeholder="Search endpoints (rooms, meetings, webhook…)" aria-label="Search endpoints (rooms, meetings, webhook…)" autocomplete="off"><ul hidden></ul><script type="application/json">[{"m":"GET","p":"/v1/me","s":"Who am I: organization, permissions and limits of this credential","g":"Account and usage","u":"/reference/account#get-v1-me"},{"m":"GET","p":"/v1/balance","s":"Minutes left (organization pool/quota or personal plan)","g":"Account and usage","u":"/reference/account#get-v1-balance"},{"m":"GET","p":"/v1/usage","s":"API usage by day or by credential","g":"Account and usage","u":"/reference/account#get-v1-usage"},{"m":"GET","p":"/v1/voices","s":"List voices (your clones and your chosen generic voices)","g":"Voices","u":"/reference/voices#get-v1-voices"},{"m":"GET","p":"/v1/rooms","s":"List rooms","g":"Rooms","u":"/reference/rooms#get-v1-rooms"},{"m":"POST","p":"/v1/rooms","s":"Create an instant room","g":"Rooms","u":"/reference/rooms#post-v1-rooms"},{"m":"GET","p":"/v1/rooms/{id}","s":"Get a room","g":"Rooms","u":"/reference/rooms#get-v1-rooms-id"},{"m":"DELETE","p":"/v1/rooms/{id}","s":"End a room for everyone","g":"Rooms","u":"/reference/rooms#delete-v1-rooms-id"},{"m":"POST","p":"/v1/rooms/{id}/join-links","s":"Create a guest join link (name and language prefilled)","g":"Rooms","u":"/reference/rooms#post-v1-rooms-id-join-links"},{"m":"GET","p":"/v1/meetings","s":"List scheduled meetings","g":"Meetings and booking","u":"/reference/calendar#get-v1-meetings"},{"m":"POST","p":"/v1/meetings","s":"Schedule a meeting (room with date, invitees and languages)","g":"Meetings and booking","u":"/reference/calendar#post-v1-meetings"},{"m":"DELETE","p":"/v1/meetings/{id}","s":"Cancel a scheduled meeting","g":"Meetings and booking","u":"/reference/calendar#delete-v1-meetings-id"},{"m":"GET","p":"/v1/event-types","s":"List your booking links (event types)","g":"Meetings and booking","u":"/reference/calendar#get-v1-event-types"},{"m":"GET","p":"/v1/event-types/{id}/slots","s":"Free times of a booking link","g":"Meetings and booking","u":"/reference/calendar#get-v1-event-types-id-slots"},{"m":"POST","p":"/v1/bookings","s":"Book a time on a booking link (yours or someone else's)","g":"Meetings and booking","u":"/reference/calendar#post-v1-bookings"},{"m":"POST","p":"/v1/rooms/{id}/agent-sessions","s":"Join a room as an AI agent (text in, translated voice out)","g":"AI agent in a room","u":"/reference/agents#post-v1-rooms-id-agent-sessions"},{"m":"GET","p":"/v1/sessions/{id}","s":"Get an agent session","g":"AI agent in a room","u":"/reference/agents#get-v1-sessions-id"},{"m":"POST","p":"/v1/sessions/{id}/say","s":"Speak: text is translated for each listener and spoken with the chosen voice","g":"AI agent in a room","u":"/reference/agents#post-v1-sessions-id-say"},{"m":"GET","p":"/v1/sessions/{id}/events","s":"Listen: new phrases since cursor (long-poll up to `wait` seconds)","g":"AI agent in a room","u":"/reference/agents#get-v1-sessions-id-events"},{"m":"POST","p":"/v1/sessions/{id}/leave","s":"Leave the room","g":"AI agent in a room","u":"/reference/agents#post-v1-sessions-id-leave"},{"m":"GET","p":"/v1/transcripts","s":"Transcripts this credential can read","g":"Transcripts","u":"/reference/transcripts#get-v1-transcripts"},{"m":"GET","p":"/v1/transcripts/{id}","s":"Read a transcript","g":"Transcripts","u":"/reference/transcripts#get-v1-transcripts-id"},{"m":"GET","p":"/v1/calls/quote","s":"Quote a destination and check the call purpose for that country","g":"Phone calls","u":"/reference/calls#get-v1-calls-quote"},{"m":"POST","p":"/v1/calls","s":"Place a translated call as an AI agent (always announces it is an AI)","g":"Phone calls","u":"/reference/calls#post-v1-calls"},{"m":"GET","p":"/v1/calls","s":"Calls placed by this credential","g":"Phone calls","u":"/reference/calls#get-v1-calls"},{"m":"GET","p":"/v1/calls/{id}","s":"Get a call","g":"Phone calls","u":"/reference/calls#get-v1-calls-id"},{"m":"GET","p":"/v1/webhook-endpoints","s":"List webhook endpoints","g":"Webhooks and events","u":"/reference/webhooks#get-v1-webhook-endpoints"},{"m":"POST","p":"/v1/webhook-endpoints","s":"Create a webhook endpoint (the signing secret is returned once)","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints"},{"m":"DELETE","p":"/v1/webhook-endpoints/{id}","s":"Delete a webhook endpoint","g":"Webhooks and events","u":"/reference/webhooks#delete-v1-webhook-endpoints-id"},{"m":"POST","p":"/v1/webhook-endpoints/{id}/rotate-secret","s":"Rotate the signing secret (both secrets sign for 24 h)","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints-id-rotate-secret"},{"m":"POST","p":"/v1/webhook-endpoints/{id}/test","s":"Send a signed test event now","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints-id-test"},{"m":"GET","p":"/v1/events","s":"Recent events (to reconcile what a webhook missed; 30 days)","g":"Webhooks and events","u":"/reference/webhooks#get-v1-events"}]</script></div>
 <section class="op" id="get-v1-webhook-endpoints">
 <h2><span class="method method-get">GET</span><code class="path">/v1/webhook-endpoints</code><a class="anchor" href="#get-v1-webhook-endpoints" aria-hidden="true">#</a></h2>
 <p class="op-summary">List webhook endpoints</p>
@@ -43,9 +44,34 @@
 <h3>Response <code>200</code></h3>
 <div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>data</code> <span class="req">required</span></td><td><code class="type">object[]</code></td><td></td></tr><tr><td><code>data[].id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].url</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].events</code> <span class="req">required</span></td><td><code class="type">string[]</code></td><td></td></tr><tr><td><code>data[].status</code> <span class="req">required</span></td><td><code class="type">&quot;active&quot; | &quot;disabled&quot;</code></td><td></td></tr><tr><td><code>data[].livemode</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr><tr><td><code>data[].created_at</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr></tbody></table></div>
 <h3>Example</h3>
-<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/webhook-endpoints&quot; \
-  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
-<div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="get-v1-webhook-endpoints-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-webhook-endpoints-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-webhook-endpoints-p">Python</button></div><div class="tab-panel" data-panel="get-v1-webhook-endpoints-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/webhook-endpoints&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div></div><div class="tab-panel" data-panel="get-v1-webhook-endpoints-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/webhook-endpoints&quot;, {
+  method: &quot;GET&quot;,
+  headers: {
+    Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
+  },
+});
+console.log(res.status, await res.json());</code></pre></div></div><div class="tab-panel" data-panel="get-v1-webhook-endpoints-p" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import os, uuid, requests
+
+r = requests.request(
+    &quot;GET&quot;,
+    &quot;https://api.kanutus.com/v1/webhook-endpoints&quot;,
+    headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;},
+)
+print(r.status_code, r.json())</code></pre></div></div></div>
+<details class="try" data-try data-method="GET" data-path="/v1/webhook-endpoints" data-api="https://api.kanutus.com">
+<summary>Try it</summary>
+<div class="try-body">
+<p class="try-note">Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.</p>
+<label><span>API key</span><input data-key type="password" autocomplete="off" placeholder="kt_test_..."></label>
+
+
+<div class="try-actions"><button type="button" class="btn" data-send>Send request</button><code class="try-url">GET /v1/webhook-endpoints</code></div>
+<div class="try-out" hidden><div class="code"><div class="code-head"><span data-status></span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code data-out></code></pre></div></div>
+</div>
+</details>
+<h3>Responses by status</h3>
+<div class="statuses"><details class="status"><summary><code class="st st-2">200</code> Endpoints of this environment</summary><div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
   &quot;data&quot;: [
     {
       &quot;id&quot;: &quot;string&quot;,
@@ -58,8 +84,35 @@
       &quot;created_at&quot;: &quot;string&quot;
     }
   ]
-}</code></pre></div>
-<p class="op-errors">Errors: <a href="/errors"><code>400</code></a> <a href="/errors"><code>401</code></a> <a href="/errors"><code>403</code></a> <a href="/errors"><code>429</code></a></p>
+}</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 400,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">401</code> Missing, invalid, expired or revoked credential</summary><div class="code"><div class="code-head"><span>401 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 401,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">403</code> Missing permission, blocked or not allowed</summary><div class="code"><div class="code-head"><span>403 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 403,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">429</code> Rate limit exceeded (see RateLimit-* and Retry-After headers)</summary><div class="code"><div class="code-head"><span>429 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 429,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details></div>
 </section>
 <section class="op" id="post-v1-webhook-endpoints">
 <h2><span class="method method-post">POST</span><code class="path">/v1/webhook-endpoints</code><a class="anchor" href="#post-v1-webhook-endpoints" aria-hidden="true">#</a></h2>
@@ -71,11 +124,45 @@
 <h3>Response <code>201</code></h3>
 <div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>url</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>events</code> <span class="req">required</span></td><td><code class="type">string[]</code></td><td></td></tr><tr><td><code>status</code> <span class="req">required</span></td><td><code class="type">&quot;active&quot; | &quot;disabled&quot;</code></td><td></td></tr><tr><td><code>livemode</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr><tr><td><code>created_at</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>secret</code> <span class="req">required</span></td><td><code class="type">string</code></td><td>whsec_… shown only now</td></tr></tbody></table></div>
 <h3>Example</h3>
-<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl -X POST &quot;https://api.kanutus.com/v1/webhook-endpoints&quot; \
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="post-v1-webhook-endpoints-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="post-v1-webhook-endpoints-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="post-v1-webhook-endpoints-p">Python</button></div><div class="tab-panel" data-panel="post-v1-webhook-endpoints-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl -X POST &quot;https://api.kanutus.com/v1/webhook-endpoints&quot; \
   -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot; \
   -H &quot;Content-Type: application/json&quot; \
-  -d '{&quot;url&quot;:&quot;https://example.com&quot;,&quot;events&quot;:[&quot;room.started&quot;],&quot;description&quot;:&quot;string&quot;}'</code></pre></div>
-<div class="code"><div class="code-head"><span>201</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  -d '{&quot;url&quot;:&quot;https://example.com&quot;,&quot;events&quot;:[&quot;room.started&quot;],&quot;description&quot;:&quot;string&quot;}'</code></pre></div></div><div class="tab-panel" data-panel="post-v1-webhook-endpoints-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/webhook-endpoints&quot;, {
+  method: &quot;POST&quot;,
+  headers: {
+    Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
+    &quot;Content-Type&quot;: &quot;application/json&quot;,
+  },
+  body: JSON.stringify({&quot;url&quot;:&quot;https://example.com&quot;,&quot;events&quot;:[&quot;room.started&quot;],&quot;description&quot;:&quot;string&quot;}),
+});
+console.log(res.status, await res.json());</code></pre></div></div><div class="tab-panel" data-panel="post-v1-webhook-endpoints-p" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import os, uuid, requests
+
+r = requests.request(
+    &quot;POST&quot;,
+    &quot;https://api.kanutus.com/v1/webhook-endpoints&quot;,
+    headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;},
+    json={&quot;url&quot;:&quot;https://example.com&quot;,&quot;events&quot;:[&quot;room.started&quot;],&quot;description&quot;:&quot;string&quot;},
+)
+print(r.status_code, r.json())</code></pre></div></div></div>
+<details class="try" data-try data-method="POST" data-path="/v1/webhook-endpoints" data-api="https://api.kanutus.com">
+<summary>Try it</summary>
+<div class="try-body">
+<p class="try-note">Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.</p>
+<label><span>API key</span><input data-key type="password" autocomplete="off" placeholder="kt_test_..."></label>
+
+<label class="try-json"><span>Request body (JSON)</span><textarea data-body rows="8" spellcheck="false">{
+  &quot;url&quot;: &quot;https://example.com&quot;,
+  &quot;events&quot;: [
+    &quot;room.started&quot;
+  ],
+  &quot;description&quot;: &quot;string&quot;
+}</textarea></label>
+<div class="try-actions"><button type="button" class="btn" data-send>Send request</button><code class="try-url">POST /v1/webhook-endpoints</code></div>
+<div class="try-out" hidden><div class="code"><div class="code-head"><span data-status></span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code data-out></code></pre></div></div>
+</div>
+</details>
+<h3>Responses by status</h3>
+<div class="statuses"><details class="status"><summary><code class="st st-2">201</code> Created</summary><div class="code"><div class="code-head"><span>201</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
   &quot;id&quot;: &quot;string&quot;,
   &quot;url&quot;: &quot;string&quot;,
   &quot;events&quot;: [
@@ -85,8 +172,35 @@
   &quot;livemode&quot;: true,
   &quot;created_at&quot;: &quot;string&quot;,
   &quot;secret&quot;: &quot;string&quot;
-}</code></pre></div>
-<p class="op-errors">Errors: <a href="/errors"><code>400</code></a> <a href="/errors"><code>401</code></a> <a href="/errors"><code>403</code></a> <a href="/errors"><code>429</code></a></p>
+}</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 400,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">401</code> Missing, invalid, expired or revoked credential</summary><div class="code"><div class="code-head"><span>401 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 401,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">403</code> Missing permission, blocked or not allowed</summary><div class="code"><div class="code-head"><span>403 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 403,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">429</code> Rate limit exceeded (see RateLimit-* and Retry-After headers)</summary><div class="code"><div class="code-head"><span>429 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 429,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details></div>
 </section>
 <section class="op" id="delete-v1-webhook-endpoints-id">
 <h2><span class="method method-delete">DELETE</span><code class="path">/v1/webhook-endpoints/{id}</code><a class="anchor" href="#delete-v1-webhook-endpoints-id" aria-hidden="true">#</a></h2>
@@ -98,13 +212,72 @@
 <h3>Response <code>200</code></h3>
 <div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>deleted</code> <span class="req">required</span></td><td><code class="type">true</code></td><td></td></tr></tbody></table></div>
 <h3>Example</h3>
-<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl -X DELETE &quot;https://api.kanutus.com/v1/webhook-endpoints/8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10&quot; \
-  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
-<div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="delete-v1-webhook-endpoints-id-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="delete-v1-webhook-endpoints-id-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="delete-v1-webhook-endpoints-id-p">Python</button></div><div class="tab-panel" data-panel="delete-v1-webhook-endpoints-id-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl -X DELETE &quot;https://api.kanutus.com/v1/webhook-endpoints/8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div></div><div class="tab-panel" data-panel="delete-v1-webhook-endpoints-id-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/webhook-endpoints/8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10&quot;, {
+  method: &quot;DELETE&quot;,
+  headers: {
+    Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
+  },
+});
+console.log(res.status, await res.json());</code></pre></div></div><div class="tab-panel" data-panel="delete-v1-webhook-endpoints-id-p" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import os, uuid, requests
+
+r = requests.request(
+    &quot;DELETE&quot;,
+    &quot;https://api.kanutus.com/v1/webhook-endpoints/8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10&quot;,
+    headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;},
+)
+print(r.status_code, r.json())</code></pre></div></div></div>
+<details class="try" data-try data-method="DELETE" data-path="/v1/webhook-endpoints/{id}" data-api="https://api.kanutus.com">
+<summary>Try it</summary>
+<div class="try-body">
+<p class="try-note">Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.</p>
+<label><span>API key</span><input data-key type="password" autocomplete="off" placeholder="kt_test_..."></label>
+<label><span><code>id</code> <small>path</small> <span class="req">required</span></span><input data-param="id" data-in="path" placeholder="8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10" required></label>
+
+<div class="try-actions"><button type="button" class="btn" data-send>Send request</button><code class="try-url">DELETE /v1/webhook-endpoints/{id}</code></div>
+<div class="try-out" hidden><div class="code"><div class="code-head"><span data-status></span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code data-out></code></pre></div></div>
+</div>
+</details>
+<h3>Responses by status</h3>
+<div class="statuses"><details class="status"><summary><code class="st st-2">200</code> Deleted</summary><div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
   &quot;id&quot;: &quot;string&quot;,
   &quot;deleted&quot;: true
-}</code></pre></div>
-<p class="op-errors">Errors: <a href="/errors"><code>400</code></a> <a href="/errors"><code>401</code></a> <a href="/errors"><code>403</code></a> <a href="/errors"><code>404</code></a> <a href="/errors"><code>429</code></a></p>
+}</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 400,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">401</code> Missing, invalid, expired or revoked credential</summary><div class="code"><div class="code-head"><span>401 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 401,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">403</code> Missing permission, blocked or not allowed</summary><div class="code"><div class="code-head"><span>403 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 403,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">404</code> Not found</summary><div class="code"><div class="code-head"><span>404 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 404,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">429</code> Rate limit exceeded (see RateLimit-* and Retry-After headers)</summary><div class="code"><div class="code-head"><span>429 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 429,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details></div>
 </section>
 <section class="op" id="post-v1-webhook-endpoints-id-rotate-secret">
 <h2><span class="method method-post">POST</span><code class="path">/v1/webhook-endpoints/{id}/rotate-secret</code><a class="anchor" href="#post-v1-webhook-endpoints-id-rotate-secret" aria-hidden="true">#</a></h2>
@@ -116,13 +289,72 @@
 <h3>Response <code>200</code></h3>
 <div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>secret</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr></tbody></table></div>
 <h3>Example</h3>
-<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl -X POST &quot;https://api.kanutus.com/v1/webhook-endpoints/8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10/rotate-secret&quot; \
-  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
-<div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="post-v1-webhook-endpoints-id-rotate-secret-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="post-v1-webhook-endpoints-id-rotate-secret-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="post-v1-webhook-endpoints-id-rotate-secret-p">Python</button></div><div class="tab-panel" data-panel="post-v1-webhook-endpoints-id-rotate-secret-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl -X POST &quot;https://api.kanutus.com/v1/webhook-endpoints/8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10/rotate-secret&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div></div><div class="tab-panel" data-panel="post-v1-webhook-endpoints-id-rotate-secret-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/webhook-endpoints/8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10/rotate-secret&quot;, {
+  method: &quot;POST&quot;,
+  headers: {
+    Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
+  },
+});
+console.log(res.status, await res.json());</code></pre></div></div><div class="tab-panel" data-panel="post-v1-webhook-endpoints-id-rotate-secret-p" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import os, uuid, requests
+
+r = requests.request(
+    &quot;POST&quot;,
+    &quot;https://api.kanutus.com/v1/webhook-endpoints/8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10/rotate-secret&quot;,
+    headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;},
+)
+print(r.status_code, r.json())</code></pre></div></div></div>
+<details class="try" data-try data-method="POST" data-path="/v1/webhook-endpoints/{id}/rotate-secret" data-api="https://api.kanutus.com">
+<summary>Try it</summary>
+<div class="try-body">
+<p class="try-note">Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.</p>
+<label><span>API key</span><input data-key type="password" autocomplete="off" placeholder="kt_test_..."></label>
+<label><span><code>id</code> <small>path</small> <span class="req">required</span></span><input data-param="id" data-in="path" placeholder="8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10" required></label>
+
+<div class="try-actions"><button type="button" class="btn" data-send>Send request</button><code class="try-url">POST /v1/webhook-endpoints/{id}/rotate-secret</code></div>
+<div class="try-out" hidden><div class="code"><div class="code-head"><span data-status></span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code data-out></code></pre></div></div>
+</div>
+</details>
+<h3>Responses by status</h3>
+<div class="statuses"><details class="status"><summary><code class="st st-2">200</code> New secret, shown once</summary><div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
   &quot;id&quot;: &quot;string&quot;,
   &quot;secret&quot;: &quot;string&quot;
-}</code></pre></div>
-<p class="op-errors">Errors: <a href="/errors"><code>400</code></a> <a href="/errors"><code>401</code></a> <a href="/errors"><code>403</code></a> <a href="/errors"><code>404</code></a> <a href="/errors"><code>429</code></a></p>
+}</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 400,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">401</code> Missing, invalid, expired or revoked credential</summary><div class="code"><div class="code-head"><span>401 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 401,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">403</code> Missing permission, blocked or not allowed</summary><div class="code"><div class="code-head"><span>403 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 403,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">404</code> Not found</summary><div class="code"><div class="code-head"><span>404 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 404,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">429</code> Rate limit exceeded (see RateLimit-* and Retry-After headers)</summary><div class="code"><div class="code-head"><span>429 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 429,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details></div>
 </section>
 <section class="op" id="post-v1-webhook-endpoints-id-test">
 <h2><span class="method method-post">POST</span><code class="path">/v1/webhook-endpoints/{id}/test</code><a class="anchor" href="#post-v1-webhook-endpoints-id-test" aria-hidden="true">#</a></h2>
@@ -134,18 +366,82 @@
 <h3>Response <code>200</code></h3>
 <div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>ok</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr><tr><td><code>status</code> <span class="req">required</span></td><td><code class="type">number | null</code></td><td></td></tr><tr><td><code>latency_ms</code> <span class="req">required</span></td><td><code class="type">number</code></td><td></td></tr><tr><td><code>delivery_id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>error</code> <span class="req">required</span></td><td><code class="type">string | null</code></td><td></td></tr></tbody></table></div>
 <h3>Example</h3>
-<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl -X POST &quot;https://api.kanutus.com/v1/webhook-endpoints/8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10/test&quot; \
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="post-v1-webhook-endpoints-id-test-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="post-v1-webhook-endpoints-id-test-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="post-v1-webhook-endpoints-id-test-p">Python</button></div><div class="tab-panel" data-panel="post-v1-webhook-endpoints-id-test-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl -X POST &quot;https://api.kanutus.com/v1/webhook-endpoints/8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10/test&quot; \
   -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot; \
   -H &quot;Content-Type: application/json&quot; \
-  -d '{&quot;type&quot;:&quot;meeting.created&quot;}'</code></pre></div>
-<div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  -d '{&quot;type&quot;:&quot;meeting.created&quot;}'</code></pre></div></div><div class="tab-panel" data-panel="post-v1-webhook-endpoints-id-test-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/webhook-endpoints/8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10/test&quot;, {
+  method: &quot;POST&quot;,
+  headers: {
+    Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
+    &quot;Content-Type&quot;: &quot;application/json&quot;,
+  },
+  body: JSON.stringify({&quot;type&quot;:&quot;meeting.created&quot;}),
+});
+console.log(res.status, await res.json());</code></pre></div></div><div class="tab-panel" data-panel="post-v1-webhook-endpoints-id-test-p" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import os, uuid, requests
+
+r = requests.request(
+    &quot;POST&quot;,
+    &quot;https://api.kanutus.com/v1/webhook-endpoints/8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10/test&quot;,
+    headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;},
+    json={&quot;type&quot;:&quot;meeting.created&quot;},
+)
+print(r.status_code, r.json())</code></pre></div></div></div>
+<details class="try" data-try data-method="POST" data-path="/v1/webhook-endpoints/{id}/test" data-api="https://api.kanutus.com">
+<summary>Try it</summary>
+<div class="try-body">
+<p class="try-note">Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.</p>
+<label><span>API key</span><input data-key type="password" autocomplete="off" placeholder="kt_test_..."></label>
+<label><span><code>id</code> <small>path</small> <span class="req">required</span></span><input data-param="id" data-in="path" placeholder="8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10" required></label>
+<label class="try-json"><span>Request body (JSON)</span><textarea data-body rows="4" spellcheck="false">{
+  &quot;type&quot;: &quot;meeting.created&quot;
+}</textarea></label>
+<div class="try-actions"><button type="button" class="btn" data-send>Send request</button><code class="try-url">POST /v1/webhook-endpoints/{id}/test</code></div>
+<div class="try-out" hidden><div class="code"><div class="code-head"><span data-status></span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code data-out></code></pre></div></div>
+</div>
+</details>
+<h3>Responses by status</h3>
+<div class="statuses"><details class="status"><summary><code class="st st-2">200</code> Delivery result</summary><div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
   &quot;ok&quot;: true,
   &quot;status&quot;: 0,
   &quot;latency_ms&quot;: 0,
   &quot;delivery_id&quot;: &quot;string&quot;,
   &quot;error&quot;: &quot;string&quot;
-}</code></pre></div>
-<p class="op-errors">Errors: <a href="/errors"><code>400</code></a> <a href="/errors"><code>401</code></a> <a href="/errors"><code>403</code></a> <a href="/errors"><code>404</code></a> <a href="/errors"><code>429</code></a></p>
+}</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 400,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">401</code> Missing, invalid, expired or revoked credential</summary><div class="code"><div class="code-head"><span>401 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 401,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">403</code> Missing permission, blocked or not allowed</summary><div class="code"><div class="code-head"><span>403 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 403,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">404</code> Not found</summary><div class="code"><div class="code-head"><span>404 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 404,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">429</code> Rate limit exceeded (see RateLimit-* and Retry-After headers)</summary><div class="code"><div class="code-head"><span>429 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 429,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details></div>
 </section>
 <section class="op" id="get-v1-events">
 <h2><span class="method method-get">GET</span><code class="path">/v1/events</code><a class="anchor" href="#get-v1-events" aria-hidden="true">#</a></h2>
@@ -157,9 +453,36 @@
 <h3>Response <code>200</code></h3>
 <div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>data</code> <span class="req">required</span></td><td><code class="type">object[]</code></td><td></td></tr><tr><td><code>data[].id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].type</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].created</code> <span class="req">required</span></td><td><code class="type">integer</code></td><td></td></tr><tr><td><code>data[].livemode</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr><tr><td><code>data[].data</code> <span class="req">required</span></td><td><code class="type">object</code></td><td></td></tr><tr><td><code>data[].data.object</code> <span class="req">required</span></td><td><code class="type">object</code></td><td></td></tr></tbody></table></div>
 <h3>Example</h3>
-<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/events&quot; \
-  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
-<div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="get-v1-events-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-events-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-events-p">Python</button></div><div class="tab-panel" data-panel="get-v1-events-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/events&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div></div><div class="tab-panel" data-panel="get-v1-events-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/events&quot;, {
+  method: &quot;GET&quot;,
+  headers: {
+    Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
+  },
+});
+console.log(res.status, await res.json());</code></pre></div></div><div class="tab-panel" data-panel="get-v1-events-p" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import os, uuid, requests
+
+r = requests.request(
+    &quot;GET&quot;,
+    &quot;https://api.kanutus.com/v1/events&quot;,
+    headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;},
+)
+print(r.status_code, r.json())</code></pre></div></div></div>
+<details class="try" data-try data-method="GET" data-path="/v1/events" data-api="https://api.kanutus.com">
+<summary>Try it</summary>
+<div class="try-body">
+<p class="try-note">Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.</p>
+<label><span>API key</span><input data-key type="password" autocomplete="off" placeholder="kt_test_..."></label>
+<label><span><code>type</code> <small>query</small></span><input data-param="type" data-in="query" placeholder="string"></label>
+<label><span><code>since</code> <small>query</small></span><input data-param="since" data-in="query" placeholder="2026-10-12T13:00:00Z"></label>
+<label><span><code>limit</code> <small>query</small></span><input data-param="limit" data-in="query" placeholder="50"></label>
+
+<div class="try-actions"><button type="button" class="btn" data-send>Send request</button><code class="try-url">GET /v1/events</code></div>
+<div class="try-out" hidden><div class="code"><div class="code-head"><span data-status></span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code data-out></code></pre></div></div>
+</div>
+</details>
+<h3>Responses by status</h3>
+<div class="statuses"><details class="status"><summary><code class="st st-2">200</code> Events, newest first</summary><div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
   &quot;data&quot;: [
     {
       &quot;id&quot;: &quot;string&quot;,
@@ -171,8 +494,35 @@
       }
     }
   ]
-}</code></pre></div>
-<p class="op-errors">Errors: <a href="/errors"><code>400</code></a> <a href="/errors"><code>401</code></a> <a href="/errors"><code>403</code></a> <a href="/errors"><code>429</code></a></p>
+}</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 400,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">401</code> Missing, invalid, expired or revoked credential</summary><div class="code"><div class="code-head"><span>401 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 401,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">403</code> Missing permission, blocked or not allowed</summary><div class="code"><div class="code-head"><span>403 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 403,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">429</code> Rate limit exceeded (see RateLimit-* and Retry-After headers)</summary><div class="code"><div class="code-head"><span>429 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 429,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details></div>
 </section>
 </article>
 <nav class="pager"><a class="prev" href="/reference/calls"><span>Previous</span><strong>Phone calls</strong></a></nav>

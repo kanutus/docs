@@ -1,6 +1,6 @@
 # Quickstart
 
-From zero to your first API call in about five minutes.
+From zero to your first API call in about five minutes. There is no separate developer account: you use your own Kanutus account.
 
 ## 1. Create your account and choose a plan
 

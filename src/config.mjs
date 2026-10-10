@@ -29,6 +29,7 @@ export const NAV = [
 /** OpenAPI tag -> page slug under /reference, in sidebar order. */
 export const TAGS = [
   { tag: "Account", slug: "account", en: "Account and usage", pt: "Conta e uso" },
+  { tag: "Voices", slug: "voices", en: "Voices", pt: "Vozes" },
   { tag: "Rooms", slug: "rooms", en: "Rooms", pt: "Salas" },
   { tag: "Calendar", slug: "calendar", en: "Meetings and booking", pt: "Reuniões e agendamento" },
   { tag: "Agents", slug: "agents", en: "AI agent in a room", pt: "Agente de IA na sala" },

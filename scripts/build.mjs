@@ -18,7 +18,7 @@ const UI = {
     body: "Request body", response: "Response", errors: "Errors", example: "Example", name: "Name", in: "In", type: "Type", required: "Required",
     description: "Description", yes: "yes", soonOp: "Live mode answers 501 coming soon. Try it now with a kt_test_ key (simulator).",
     edit: "Something wrong or missing? Write to", notFound: "Page not found", notFoundBody: "This page does not exist (or moved).", backHome: "Go to the docs home",
-    langLabel: "Language", spec: "OpenAPI 3.1 file", skip: "Skip to content", fields: "Fields",
+    langLabel: "Language", spec: "OpenAPI 3.1 file", skip: "Skip to content", fields: "Fields", searchPh: "Search endpoints (rooms, meetings, webhook…)", noResults: "No endpoint found", tryIt: "Try it", tryNote: "Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.", tryKey: "API key", trySend: "Send request", responses: "Responses by status", errorCodes: "See all error codes", signIn: "Sign in / Create account", signInShort: "Sign in",
   },
   pt: {
     docs: "Docs", openApp: "Abrir o app", site: "kanutus.com", menu: "Menu", onThisPage: "Nesta página", copy: "Copiar", copied: "Copiado",
@@ -26,7 +26,7 @@ const UI = {
     body: "Corpo da requisição", response: "Resposta", errors: "Erros", example: "Exemplo", name: "Nome", in: "Onde", type: "Tipo", required: "Obrigatório",
     description: "Descrição", yes: "sim", soonOp: "Em produção responde 501 (em breve). Já dá para testar com uma chave kt_test_ (simulador).",
     edit: "Achou algo errado ou faltando? Escreva para", notFound: "Página não encontrada", notFoundBody: "Esta página não existe (ou mudou de lugar).", backHome: "Ir para o início da documentação",
-    langLabel: "Idioma", spec: "Arquivo OpenAPI 3.1", skip: "Pular para o conteúdo", fields: "Campos",
+    langLabel: "Idioma", spec: "Arquivo OpenAPI 3.1", skip: "Pular para o conteúdo", fields: "Campos", searchPh: "Buscar endpoints (salas, reuniões, webhook…)", noResults: "Nenhum endpoint encontrado", tryIt: "Testar agora", tryNote: "Roda no seu navegador contra a API de verdade. Use uma chave kt_test_: nada é cobrado. A chave fica só nesta aba.", tryKey: "Chave de API", trySend: "Enviar requisição", responses: "Respostas por status", errorCodes: "Ver todos os códigos de erro", signIn: "Entrar / Criar conta", signInShort: "Entrar",
   },
 };
 
@@ -260,7 +260,7 @@ function fieldTable(rows, L) {
     .join("")}</tbody></table></div>`;
 }
 function curlFor(method, path, op) {
-  const p = path.replace(/{id}/g, path.includes("/sessions/") || path.includes("/transcripts/") ? "ses_4fQ2xWm9Lr7Tb1Kc8Zp3Vd5N" : path.includes("/calls/") ? "call_7Hn2Qd9Wk4Lp6Rt1Xb8Mc3Zf" : path.includes("event-types") || path.includes("webhook") ? "8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10" : "kqz-mbdt-wpa");
+  const p = sampleIds(path);
   const q = (op.parameters || []).filter((x) => x.in === "query" && x.required).map((x) => `${x.name}=${encodeURIComponent(example(x.schema))}`);
   const lines = [`curl${method === "GET" ? "" : ` -X ${method}`} "${API_URL}${p}${q.length ? "?" + q.join("&") : ""}" \\`, `  -H "Authorization: Bearer $KANUTUS_API_KEY"`];
   if ((op.parameters || []).some((x) => x.in === "header" && x.name === "idempotency-key")) lines[lines.length - 1] += " \\", lines.push(`  -H "Idempotency-Key: $(uuidgen)"`);
@@ -277,10 +277,66 @@ function opsByTag(tag) {
   return ops;
 }
 const opId = (method, path) => slugify(`${method} ${path}`);
+function sampleId(path, name) {
+  const segs = path.split("/");
+  const i = segs.indexOf("{" + name + "}");
+  const col = i > 0 ? segs[i - 1] : "";
+  return col === "sessions" || col === "transcripts" ? "ses_4fQ2xWm9Lr7Tb1Kc8Zp3Vd5N" : col === "calls" ? "call_7Hn2Qd9Wk4Lp6Rt1Xb8Mc3Zf" : col === "event-types" || col === "webhook-endpoints" ? "8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10" : "kqz-mbdt-wpa";
+}
+const sampleIds = (path) => path.replace(/\{(\w+)\}/g, (_, n) => sampleId(path, n));
+function jsFor(method, path, op) {
+  const body = op.requestBody?.content?.["application/json"]?.schema;
+  const idem = (op.parameters || []).some((x) => x.in === "header" && x.name === "idempotency-key");
+  const h = ["Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`"];
+  if (idem) h.push('"Idempotency-Key": crypto.randomUUID()');
+  if (body) h.push('"Content-Type": "application/json"');
+  return `const res = await fetch("${API_URL}${sampleIds(path)}", {\n  method: "${method}",\n  headers: {\n    ${h.join(",\n    ")},\n  },${body ? `\n  body: JSON.stringify(${JSON.stringify(example(body))}),` : ""}\n});\nconsole.log(res.status, await res.json());`;
+}
+function pyFor(method, path, op) {
+  const body = op.requestBody?.content?.["application/json"]?.schema;
+  const idem = (op.parameters || []).some((x) => x.in === "header" && x.name === "idempotency-key");
+  const h = [`"Authorization": f"Bearer {os.environ['KANUTUS_API_KEY']}"`];
+  if (idem) h.push('"Idempotency-Key": str(uuid.uuid4())');
+  const py = (v) => JSON.stringify(v).replace(/\btrue\b/g, "True").replace(/\bfalse\b/g, "False").replace(/\bnull\b/g, "None");
+  return `import os, uuid, requests\n\nr = requests.request(\n    "${method}",\n    "${API_URL}${sampleIds(path)}",\n    headers={${h.join(", ")}},${body ? `\n    json=${py(example(body))},` : ""}\n)\nprint(r.status_code, r.json())`;
+}
+/** Every operation, for the endpoint search on the reference pages. */
+function searchIndex(L) {
+  const out = [];
+  for (const T of TAGS) for (const { method, path, op } of opsByTag(T.tag)) {
+    const key = `${method} ${path}`;
+    out.push({ m: method, p: path, s: L.code === "pt" ? SUMMARY_PT[key] || op.summary : op.summary, g: T[L.code], u: `${L.prefix}/reference/${T.slug}#${opId(method, path)}` });
+  }
+  return out;
+}
+function searchBox(L) {
+  const t = UI[L.code];
+  return `<div class="ref-search" data-ref-search data-empty="${esc(t.noResults)}"><input type="search" placeholder="${esc(t.searchPh)}" aria-label="${esc(t.searchPh)}" autocomplete="off"><ul hidden></ul><script type="application/json">${JSON.stringify(searchIndex(L)).replace(/</g, "\\u003c")}</script></div>`;
+}
+function tryIt(method, path, op, L) {
+  const t = UI[L.code];
+  const params = (op.parameters || []).filter((p) => p.in === "path" || p.in === "query");
+  const body = op.requestBody?.content?.["application/json"]?.schema;
+  const idem = (op.parameters || []).some((x) => x.in === "header" && x.name === "idempotency-key");
+  const ph = (p) => (p.in === "path" ? sampleId(path, p.name) : String(example(p.schema) ?? ""));
+  const field = (p) => `<label><span><code>${esc(p.name)}</code> <small>${p.in}</small>${p.required ? ` <span class="req">${esc(t.required.toLowerCase())}</span>` : ""}</span><input data-param="${esc(p.name)}" data-in="${p.in}" placeholder="${esc(ph(p))}"${p.required ? " required" : ""}></label>`;
+  const ex = body ? JSON.stringify(example(body), null, 2) : "";
+  return `<details class="try" data-try data-method="${method}" data-path="${esc(path)}" data-api="${esc(API_URL)}"${idem ? " data-idem" : ""}>
+<summary>${esc(t.tryIt)}</summary>
+<div class="try-body">
+<p class="try-note">${esc(t.tryNote)}</p>
+<label><span>${esc(t.tryKey)}</span><input data-key type="password" autocomplete="off" placeholder="kt_test_..."></label>
+${params.map(field).join("\n")}
+${body ? `<label class="try-json"><span>${esc(t.body)} (JSON)</span><textarea data-body rows="${Math.min(14, ex.split("\n").length + 1)}" spellcheck="false">${esc(ex)}</textarea></label>` : ""}
+<div class="try-actions"><button type="button" class="btn" data-send>${esc(t.trySend)}</button><code class="try-url">${method} ${esc(path)}</code></div>
+<div class="try-out" hidden><div class="code"><div class="code-head"><span data-status></span><button type="button" class="copy" data-copy data-copied="${esc(t.copied)}">${esc(t.copy)}</button></div><pre><code data-out></code></pre></div></div>
+</div>
+</details>`;
+}
 function referencePage(T, L) {
   const t = UI[L.code];
   const toc = [];
-  const parts = [`<h1>${esc(T[L.code])}</h1>`];
+  const parts = [`<h1>${esc(T[L.code])}</h1>`, searchBox(L)];
   for (const { method, path, op } of opsByTag(T.tag)) {
     const key = `${method} ${path}`;
     const meta = ROUTES[key] || {};
@@ -289,10 +345,17 @@ function referencePage(T, L) {
     toc.push({ id, text: `${method} ${path}` });
     const params = (op.parameters || []).map((p) => ({ name: p.name, type: `${p.in} · ${typeOf(p.schema)}`, required: !!p.required, desc: p.description || deref(p.schema).description || "" }));
     const body = op.requestBody?.content?.["application/json"]?.schema;
-    const okCode = Object.keys(op.responses).find((c) => /^2/.test(c));
+    const codes = Object.keys(op.responses);
+    const okCode = codes.find((c) => /^2/.test(c));
     const ok = op.responses[okCode];
     const okSchema = ok?.content?.["application/json"]?.schema;
-    const errs = Object.keys(op.responses).filter((c) => !/^2/.test(c));
+    const statusRows = codes.map((c) => {
+      const r = op.responses[c];
+      const inner = /^2/.test(c)
+        ? okSchema ? codeBlock("json", c, JSON.stringify(example(okSchema), null, 2), L) : ""
+        : codeBlock("json", `${c} application/problem+json`, JSON.stringify({ type: "https://docs.kanutus.com/errors", title: "<code>", status: Number(c), code: "<code>", message: "…", request_id: "req_…" }, null, 2), L) + `<p class="op-meta"><a href="${L.prefix}/errors">${esc(t.errorCodes)}</a></p>`;
+      return `<details class="status"><summary><code class="st st-${c[0]}">${c}</code> ${inline(r.description || "", L)}</summary>${inner}</details>`;
+    });
     parts.push(`<section class="op" id="${id}">
 <h2><span class="method method-${method.toLowerCase()}">${method}</span><code class="path">${esc(path)}</code><a class="anchor" href="#${id}" aria-hidden="true">#</a></h2>
 <p class="op-summary">${inline(summary, L)}${meta.soon ? " " + badge(L) : ""}</p>
@@ -303,9 +366,10 @@ ${body ? `<h3>${t.body}</h3>${fieldTable(fields(body), L)}` : ""}
 <h3>${t.response} <code>${okCode}</code></h3>
 ${okSchema ? fieldTable(fields(okSchema), L) : `<p>${esc(ok?.description || "")}</p>`}
 <h3>${t.example}</h3>
-${codeBlock("bash", "curl", curlFor(method, path, op), L)}
-${okSchema ? codeBlock("json", `${okCode}`, JSON.stringify(example(okSchema), null, 2), L) : ""}
-<p class="op-errors">${t.errors}: ${errs.map((c) => `<a href="${L.prefix}/errors"><code>${c}</code></a>`).join(" ")}</p>
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="${id}-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="${id}-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="${id}-p">Python</button></div><div class="tab-panel" data-panel="${id}-c">${codeBlock("bash", "curl", curlFor(method, path, op), L)}</div><div class="tab-panel" data-panel="${id}-j" hidden>${codeBlock("js", "Node.js", jsFor(method, path, op), L)}</div><div class="tab-panel" data-panel="${id}-p" hidden>${codeBlock("python", "Python", pyFor(method, path, op), L)}</div></div>
+${tryIt(method, path, op, L)}
+<h3>${t.responses}</h3>
+<div class="statuses">${statusRows.join("")}</div>
 </section>`);
   }
   return { title: T[L.code], toc, html: parts.join("\n") };
@@ -357,14 +421,14 @@ ${alt}
 <div class="top-right">
 <nav class="lang" aria-label="${t.langLabel}">${LANGS.map((A) => `<a href="${pageUrl(A, slug === "404" ? "index" : slug)}" hreflang="${A.html}" lang="${A.html}"${A.code === L.code ? ' aria-current="true"' : ""}>${A.code.toUpperCase()}</a>`).join("")}</nav>
 <a class="top-link" href="${SITE_URL}${L.code === "pt" ? "/pt" : ""}">${t.site}</a>
-<a class="btn" href="${APP_URL}">${t.openApp}</a>
+<a class="btn" href="${APP_URL}/developers"><span class="long">${t.signIn}</span><span class="short">${t.signInShort}</span></a>
 </div>
 </header>
 <div class="shell">
 <aside class="sidebar" id="sidebar">${navHtml(L, slug)}</aside>
 <main id="content" class="content">
 <article class="prose">
-${page.html}
+${slug === "reference" ? page.html.replace("</h1>", "</h1>\n" + searchBox(L)) : page.html}
 </article>
 <nav class="pager">${prev ? `<a class="prev" href="${pageUrl(L, prev)}"><span>${t.prev}</span><strong>${inline(titleOf(prev), L)}</strong></a>` : "<span></span>"}${next ? `<a class="next" href="${pageUrl(L, next)}"><span>${t.next}</span><strong>${inline(titleOf(next), L)}</strong></a>` : ""}</nav>
 <footer class="foot"><p>${t.edit} <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">${t.spec}</a> · © 2026 Kanutus</p></footer>
@@ -383,6 +447,11 @@ const write = (rel, content) => {
   writeFileSync(f, content);
 };
 const pages = [];
+// every OpenAPI tag needs a page and every route a permission entry (otherwise the reference would hide or mislabel it)
+for (const [path, item] of Object.entries(spec.paths)) for (const [m, op] of Object.entries(item)) {
+  for (const tag of op.tags || []) if (!TAGS.some((T) => T.tag === tag)) throw new Error(`OpenAPI tag "${tag}" has no entry in TAGS (src/config.mjs)`);
+  if (!(`${m.toUpperCase()} ${path}` in ROUTES)) throw new Error(`${m.toUpperCase()} ${path} has no entry in ROUTES (src/config.mjs)`);
+}
 for (const L of LANGS) {
   for (const slug of order) {
     if (slug.startsWith("reference/")) continue;

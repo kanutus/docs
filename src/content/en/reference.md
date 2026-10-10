@@ -1,6 +1,6 @@
 # API reference
 
-Generated from the [OpenAPI 3.1 file](/openapi.json) of the API. Also available interactively at [{{API}}/docs]({{API}}/docs).
+Generated from the API's [OpenAPI 3.1 file](/openapi.json) (also at `{{API}}/v1/openapi.json`). Every endpoint has examples in curl, Node.js and Python, responses by status and a **Try it** panel that calls the real API with your test key. Press `/` to search.
 
 ## Base URL
 
@@ -27,7 +27,8 @@ An API key or an OAuth access token. See [Authentication](/authentication).
 ## Endpoints
 
 ::: cards
-- [Account and usage](/reference/account) — `GET /v1/me`, balance, usage, voices.
+- [Account and usage](/reference/account) — `GET /v1/me`, balance and usage.
+- [Voices](/reference/voices) — Voices you can use; creating and cloning {soon}.
 - [Rooms](/reference/rooms) — Create, list, read, end, guest links.
 - [Meetings and booking](/reference/calendar) — Meetings, booking links, free times, bookings.
 - [AI agent in a room](/reference/agents) — Join, say, listen, leave {soon}.

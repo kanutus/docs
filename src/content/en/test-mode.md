@@ -1,6 +1,6 @@
 # Test mode
 
-Keys that start with `kt_test_` run everything on a **simulator**. Nothing uses minutes, no phone rings and no GPU is used, but permissions, spending limits, webhooks and errors behave like production. Use it to build and to run your tests.
+Keys that start with `kt_test_` run everything on a **simulator**. Nothing is charged, nothing is really processed and no phone rings, but permissions, spending limits, webhooks and errors behave like production. Use it to build and to run your tests.
 
 ## How to get a test key
 

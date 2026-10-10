@@ -25,14 +25,15 @@
 <div class="top-right">
 <nav class="lang" aria-label="Language"><a href="/reference/calls" hreflang="en" lang="en" aria-current="true">EN</a><a href="/pt/reference/calls" hreflang="pt-BR" lang="pt-BR">PT</a></nav>
 <a class="top-link" href="https://kanutus.com">kanutus.com</a>
-<a class="btn" href="https://app.kanutus.com">Open the app</a>
+<a class="btn" href="https://app.kanutus.com/developers"><span class="long">Sign in / Create account</span><span class="short">Sign in</span></a>
 </div>
 </header>
 <div class="shell">
-<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Get started</p><ul><li><a href="/">Kanutus for developers</a></li><li><a href="/quickstart">Quickstart</a></li><li><a href="/authentication">Authentication</a></li><li><a href="/test-mode">Test mode</a></li></ul></div><div class="nav-group"><p>Connect AI assistants (MCP)</p><ul><li><a href="/mcp">Kanutus MCP server</a></li><li><a href="/mcp/connect-claude">Connect Claude</a></li><li><a href="/mcp/connect-chatgpt">Connect ChatGPT</a></li><li><a href="/mcp/other-clients">Cursor, VS Code and other clients</a></li><li><a href="/mcp/tools">The 23 MCP tools</a></li></ul></div><div class="nav-group"><p>Guides</p><ul><li><a href="/guides/agent-in-room">AI agent in a room</a></li><li><a href="/guides/schedule-meeting">Schedule a meeting</a></li><li><a href="/guides/translated-call">Translated phone call</a></li><li><a href="/guides/transcripts">Receive transcripts</a></li></ul></div><div class="nav-group"><p>Build</p><ul><li><a href="/webhooks">Webhooks</a></li><li><a href="/errors">Limits and errors</a></li><li><a href="/responsible-use">Responsible use</a></li></ul></div><div class="nav-group"><p>API reference</p><ul><li><a href="/reference">API reference</a></li><li><a href="/reference/account" class="sub">Account and usage</a></li><li><a href="/reference/rooms" class="sub">Rooms</a></li><li><a href="/reference/calendar" class="sub">Meetings and booking</a></li><li><a href="/reference/agents" class="sub">AI agent in a room</a></li><li><a href="/reference/transcripts" class="sub">Transcripts</a></li><li><a href="/reference/calls" aria-current="page" class="sub">Phone calls</a></li><li><a href="/reference/webhooks" class="sub">Webhooks and events</a></li></ul></div></aside>
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Get started</p><ul><li><a href="/">Kanutus for developers</a></li><li><a href="/quickstart">Quickstart</a></li><li><a href="/authentication">Authentication</a></li><li><a href="/test-mode">Test mode</a></li></ul></div><div class="nav-group"><p>Connect AI assistants (MCP)</p><ul><li><a href="/mcp">Kanutus MCP server</a></li><li><a href="/mcp/connect-claude">Connect Claude</a></li><li><a href="/mcp/connect-chatgpt">Connect ChatGPT</a></li><li><a href="/mcp/other-clients">Cursor, VS Code and other clients</a></li><li><a href="/mcp/tools">The 23 MCP tools</a></li></ul></div><div class="nav-group"><p>Guides</p><ul><li><a href="/guides/agent-in-room">AI agent in a room</a></li><li><a href="/guides/schedule-meeting">Schedule a meeting</a></li><li><a href="/guides/translated-call">Translated phone call</a></li><li><a href="/guides/transcripts">Receive transcripts</a></li></ul></div><div class="nav-group"><p>Build</p><ul><li><a href="/webhooks">Webhooks</a></li><li><a href="/errors">Limits and errors</a></li><li><a href="/responsible-use">Responsible use</a></li></ul></div><div class="nav-group"><p>API reference</p><ul><li><a href="/reference">API reference</a></li><li><a href="/reference/account" class="sub">Account and usage</a></li><li><a href="/reference/voices" class="sub">Voices</a></li><li><a href="/reference/rooms" class="sub">Rooms</a></li><li><a href="/reference/calendar" class="sub">Meetings and booking</a></li><li><a href="/reference/agents" class="sub">AI agent in a room</a></li><li><a href="/reference/transcripts" class="sub">Transcripts</a></li><li><a href="/reference/calls" aria-current="page" class="sub">Phone calls</a></li><li><a href="/reference/webhooks" class="sub">Webhooks and events</a></li></ul></div></aside>
 <main id="content" class="content">
 <article class="prose">
 <h1>Phone calls</h1>
+<div class="ref-search" data-ref-search data-empty="No endpoint found"><input type="search" placeholder="Search endpoints (rooms, meetings, webhook…)" aria-label="Search endpoints (rooms, meetings, webhook…)" autocomplete="off"><ul hidden></ul><script type="application/json">[{"m":"GET","p":"/v1/me","s":"Who am I: organization, permissions and limits of this credential","g":"Account and usage","u":"/reference/account#get-v1-me"},{"m":"GET","p":"/v1/balance","s":"Minutes left (organization pool/quota or personal plan)","g":"Account and usage","u":"/reference/account#get-v1-balance"},{"m":"GET","p":"/v1/usage","s":"API usage by day or by credential","g":"Account and usage","u":"/reference/account#get-v1-usage"},{"m":"GET","p":"/v1/voices","s":"List voices (your clones and your chosen generic voices)","g":"Voices","u":"/reference/voices#get-v1-voices"},{"m":"GET","p":"/v1/rooms","s":"List rooms","g":"Rooms","u":"/reference/rooms#get-v1-rooms"},{"m":"POST","p":"/v1/rooms","s":"Create an instant room","g":"Rooms","u":"/reference/rooms#post-v1-rooms"},{"m":"GET","p":"/v1/rooms/{id}","s":"Get a room","g":"Rooms","u":"/reference/rooms#get-v1-rooms-id"},{"m":"DELETE","p":"/v1/rooms/{id}","s":"End a room for everyone","g":"Rooms","u":"/reference/rooms#delete-v1-rooms-id"},{"m":"POST","p":"/v1/rooms/{id}/join-links","s":"Create a guest join link (name and language prefilled)","g":"Rooms","u":"/reference/rooms#post-v1-rooms-id-join-links"},{"m":"GET","p":"/v1/meetings","s":"List scheduled meetings","g":"Meetings and booking","u":"/reference/calendar#get-v1-meetings"},{"m":"POST","p":"/v1/meetings","s":"Schedule a meeting (room with date, invitees and languages)","g":"Meetings and booking","u":"/reference/calendar#post-v1-meetings"},{"m":"DELETE","p":"/v1/meetings/{id}","s":"Cancel a scheduled meeting","g":"Meetings and booking","u":"/reference/calendar#delete-v1-meetings-id"},{"m":"GET","p":"/v1/event-types","s":"List your booking links (event types)","g":"Meetings and booking","u":"/reference/calendar#get-v1-event-types"},{"m":"GET","p":"/v1/event-types/{id}/slots","s":"Free times of a booking link","g":"Meetings and booking","u":"/reference/calendar#get-v1-event-types-id-slots"},{"m":"POST","p":"/v1/bookings","s":"Book a time on a booking link (yours or someone else's)","g":"Meetings and booking","u":"/reference/calendar#post-v1-bookings"},{"m":"POST","p":"/v1/rooms/{id}/agent-sessions","s":"Join a room as an AI agent (text in, translated voice out)","g":"AI agent in a room","u":"/reference/agents#post-v1-rooms-id-agent-sessions"},{"m":"GET","p":"/v1/sessions/{id}","s":"Get an agent session","g":"AI agent in a room","u":"/reference/agents#get-v1-sessions-id"},{"m":"POST","p":"/v1/sessions/{id}/say","s":"Speak: text is translated for each listener and spoken with the chosen voice","g":"AI agent in a room","u":"/reference/agents#post-v1-sessions-id-say"},{"m":"GET","p":"/v1/sessions/{id}/events","s":"Listen: new phrases since cursor (long-poll up to `wait` seconds)","g":"AI agent in a room","u":"/reference/agents#get-v1-sessions-id-events"},{"m":"POST","p":"/v1/sessions/{id}/leave","s":"Leave the room","g":"AI agent in a room","u":"/reference/agents#post-v1-sessions-id-leave"},{"m":"GET","p":"/v1/transcripts","s":"Transcripts this credential can read","g":"Transcripts","u":"/reference/transcripts#get-v1-transcripts"},{"m":"GET","p":"/v1/transcripts/{id}","s":"Read a transcript","g":"Transcripts","u":"/reference/transcripts#get-v1-transcripts-id"},{"m":"GET","p":"/v1/calls/quote","s":"Quote a destination and check the call purpose for that country","g":"Phone calls","u":"/reference/calls#get-v1-calls-quote"},{"m":"POST","p":"/v1/calls","s":"Place a translated call as an AI agent (always announces it is an AI)","g":"Phone calls","u":"/reference/calls#post-v1-calls"},{"m":"GET","p":"/v1/calls","s":"Calls placed by this credential","g":"Phone calls","u":"/reference/calls#get-v1-calls"},{"m":"GET","p":"/v1/calls/{id}","s":"Get a call","g":"Phone calls","u":"/reference/calls#get-v1-calls-id"},{"m":"GET","p":"/v1/webhook-endpoints","s":"List webhook endpoints","g":"Webhooks and events","u":"/reference/webhooks#get-v1-webhook-endpoints"},{"m":"POST","p":"/v1/webhook-endpoints","s":"Create a webhook endpoint (the signing secret is returned once)","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints"},{"m":"DELETE","p":"/v1/webhook-endpoints/{id}","s":"Delete a webhook endpoint","g":"Webhooks and events","u":"/reference/webhooks#delete-v1-webhook-endpoints-id"},{"m":"POST","p":"/v1/webhook-endpoints/{id}/rotate-secret","s":"Rotate the signing secret (both secrets sign for 24 h)","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints-id-rotate-secret"},{"m":"POST","p":"/v1/webhook-endpoints/{id}/test","s":"Send a signed test event now","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints-id-test"},{"m":"GET","p":"/v1/events","s":"Recent events (to reconcile what a webhook missed; 30 days)","g":"Webhooks and events","u":"/reference/webhooks#get-v1-events"}]</script></div>
 <section class="op" id="get-v1-calls-quote">
 <h2><span class="method method-get">GET</span><code class="path">/v1/calls/quote</code><a class="anchor" href="#get-v1-calls-quote" aria-hidden="true">#</a></h2>
 <p class="op-summary">Quote a destination and check the call purpose for that country</p>
@@ -43,9 +44,37 @@
 <h3>Response <code>200</code></h3>
 <div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>to</code> <span class="req">required</span></td><td><code class="type">string</code></td><td>Masked number</td></tr><tr><td><code>country</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>kind</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>allowed</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr><tr><td><code>minute_factor</code> <span class="req">required</span></td><td><code class="type">number</code></td><td></td></tr><tr><td><code>reason</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>purpose</code> <span class="req">required</span></td><td><code class="type">object | null</code></td><td></td></tr><tr><td><code>purpose.purpose</code> <span class="req">required</span></td><td><code class="type">&quot;transactional&quot; | &quot;scheduling&quot; | &quot;support&quot; | &quot;marketing&quot;</code></td><td></td></tr><tr><td><code>purpose.allowed</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr><tr><td><code>purpose.code</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>purpose.message</code> <span class="req">required</span></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>purpose.requires</code> <span class="req">required</span></td><td><code class="type">string[]</code></td><td></td></tr><tr><td><code>purpose.legal_reviewed</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr><tr><td><code>simulator</code> <span class="req">required</span></td><td><code class="type">string | null</code></td><td></td></tr></tbody></table></div>
 <h3>Example</h3>
-<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/calls/quote?to=string&quot; \
-  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
-<div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="get-v1-calls-quote-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-calls-quote-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-calls-quote-p">Python</button></div><div class="tab-panel" data-panel="get-v1-calls-quote-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/calls/quote?to=string&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div></div><div class="tab-panel" data-panel="get-v1-calls-quote-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/calls/quote&quot;, {
+  method: &quot;GET&quot;,
+  headers: {
+    Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
+  },
+});
+console.log(res.status, await res.json());</code></pre></div></div><div class="tab-panel" data-panel="get-v1-calls-quote-p" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import os, uuid, requests
+
+r = requests.request(
+    &quot;GET&quot;,
+    &quot;https://api.kanutus.com/v1/calls/quote&quot;,
+    headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;},
+)
+print(r.status_code, r.json())</code></pre></div></div></div>
+<details class="try" data-try data-method="GET" data-path="/v1/calls/quote" data-api="https://api.kanutus.com">
+<summary>Try it</summary>
+<div class="try-body">
+<p class="try-note">Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.</p>
+<label><span>API key</span><input data-key type="password" autocomplete="off" placeholder="kt_test_..."></label>
+<label><span><code>to</code> <small>query</small> <span class="req">required</span></span><input data-param="to" data-in="query" placeholder="string" required></label>
+<label><span><code>purpose</code> <small>query</small></span><input data-param="purpose" data-in="query" placeholder="transactional"></label>
+<label><span><code>consent</code> <small>query</small></span><input data-param="consent" data-in="query" placeholder="existing_customer"></label>
+<label><span><code>from</code> <small>query</small></span><input data-param="from" data-in="query" placeholder="string"></label>
+
+<div class="try-actions"><button type="button" class="btn" data-send>Send request</button><code class="try-url">GET /v1/calls/quote</code></div>
+<div class="try-out" hidden><div class="code"><div class="code-head"><span data-status></span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code data-out></code></pre></div></div>
+</div>
+</details>
+<h3>Responses by status</h3>
+<div class="statuses"><details class="status"><summary><code class="st st-2">200</code> Destination, minute factor and whether this purpose is allowed there</summary><div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
   &quot;to&quot;: &quot;string&quot;,
   &quot;country&quot;: &quot;string&quot;,
   &quot;kind&quot;: &quot;string&quot;,
@@ -63,8 +92,35 @@
     &quot;legal_reviewed&quot;: true
   },
   &quot;simulator&quot;: &quot;string&quot;
-}</code></pre></div>
-<p class="op-errors">Errors: <a href="/errors"><code>400</code></a> <a href="/errors"><code>401</code></a> <a href="/errors"><code>403</code></a> <a href="/errors"><code>429</code></a></p>
+}</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 400,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">401</code> Missing, invalid, expired or revoked credential</summary><div class="code"><div class="code-head"><span>401 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 401,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">403</code> Missing permission, blocked or not allowed</summary><div class="code"><div class="code-head"><span>403 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 403,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">429</code> Rate limit exceeded (see RateLimit-* and Retry-After headers)</summary><div class="code"><div class="code-head"><span>429 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 429,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details></div>
 </section>
 <section class="op" id="post-v1-calls">
 <h2><span class="method method-post">POST</span><code class="path">/v1/calls</code><a class="anchor" href="#post-v1-calls" aria-hidden="true">#</a></h2>
@@ -76,12 +132,52 @@
 <h3>Response <code>201</code></h3>
 <div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>to</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>country</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>purpose</code> <span class="req">required</span></td><td><code class="type">&quot;transactional&quot; | &quot;scheduling&quot; | &quot;support&quot; | &quot;marketing&quot;</code></td><td></td></tr><tr><td><code>status</code> <span class="req">required</span></td><td><code class="type">&quot;queued&quot; | &quot;ringing&quot; | &quot;answered&quot; | &quot;completed&quot; | &quot;busy&quot; | &quot;voicemail&quot; | &quot;failed&quot; | &quot;blocked&quot;</code></td><td></td></tr><tr><td><code>ai_disclosure</code> <span class="req">required</span></td><td><code class="type">true</code></td><td></td></tr><tr><td><code>billed_seconds</code> <span class="req">required</span></td><td><code class="type">integer</code></td><td></td></tr><tr><td><code>created_at</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>livemode</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr></tbody></table></div>
 <h3>Example</h3>
-<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl -X POST &quot;https://api.kanutus.com/v1/calls&quot; \
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="post-v1-calls-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="post-v1-calls-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="post-v1-calls-p">Python</button></div><div class="tab-panel" data-panel="post-v1-calls-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl -X POST &quot;https://api.kanutus.com/v1/calls&quot; \
   -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot; \
   -H &quot;Idempotency-Key: $(uuidgen)&quot; \
   -H &quot;Content-Type: application/json&quot; \
-  -d '{&quot;to&quot;:&quot;+1 555 0100&quot;,&quot;from&quot;:&quot;string&quot;,&quot;purpose&quot;:&quot;transactional&quot;,&quot;consent&quot;:{&quot;kind&quot;:&quot;existing_customer&quot;,&quot;ref&quot;:&quot;string&quot;},&quot;agent_lang&quot;:&quot;en&quot;,&quot;remote_lang&quot;:&quot;string&quot;,&quot;voice_id&quot;:&quot;string&quot;}'</code></pre></div>
-<div class="code"><div class="code-head"><span>201</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  -d '{&quot;to&quot;:&quot;+1 555 0100&quot;,&quot;from&quot;:&quot;string&quot;,&quot;purpose&quot;:&quot;transactional&quot;,&quot;consent&quot;:{&quot;kind&quot;:&quot;existing_customer&quot;,&quot;ref&quot;:&quot;string&quot;},&quot;agent_lang&quot;:&quot;en&quot;,&quot;remote_lang&quot;:&quot;string&quot;,&quot;voice_id&quot;:&quot;string&quot;}'</code></pre></div></div><div class="tab-panel" data-panel="post-v1-calls-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/calls&quot;, {
+  method: &quot;POST&quot;,
+  headers: {
+    Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
+    &quot;Idempotency-Key&quot;: crypto.randomUUID(),
+    &quot;Content-Type&quot;: &quot;application/json&quot;,
+  },
+  body: JSON.stringify({&quot;to&quot;:&quot;+1 555 0100&quot;,&quot;from&quot;:&quot;string&quot;,&quot;purpose&quot;:&quot;transactional&quot;,&quot;consent&quot;:{&quot;kind&quot;:&quot;existing_customer&quot;,&quot;ref&quot;:&quot;string&quot;},&quot;agent_lang&quot;:&quot;en&quot;,&quot;remote_lang&quot;:&quot;string&quot;,&quot;voice_id&quot;:&quot;string&quot;}),
+});
+console.log(res.status, await res.json());</code></pre></div></div><div class="tab-panel" data-panel="post-v1-calls-p" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import os, uuid, requests
+
+r = requests.request(
+    &quot;POST&quot;,
+    &quot;https://api.kanutus.com/v1/calls&quot;,
+    headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;, &quot;Idempotency-Key&quot;: str(uuid.uuid4())},
+    json={&quot;to&quot;:&quot;+1 555 0100&quot;,&quot;from&quot;:&quot;string&quot;,&quot;purpose&quot;:&quot;transactional&quot;,&quot;consent&quot;:{&quot;kind&quot;:&quot;existing_customer&quot;,&quot;ref&quot;:&quot;string&quot;},&quot;agent_lang&quot;:&quot;en&quot;,&quot;remote_lang&quot;:&quot;string&quot;,&quot;voice_id&quot;:&quot;string&quot;},
+)
+print(r.status_code, r.json())</code></pre></div></div></div>
+<details class="try" data-try data-method="POST" data-path="/v1/calls" data-api="https://api.kanutus.com" data-idem>
+<summary>Try it</summary>
+<div class="try-body">
+<p class="try-note">Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.</p>
+<label><span>API key</span><input data-key type="password" autocomplete="off" placeholder="kt_test_..."></label>
+
+<label class="try-json"><span>Request body (JSON)</span><textarea data-body rows="13" spellcheck="false">{
+  &quot;to&quot;: &quot;+1 555 0100&quot;,
+  &quot;from&quot;: &quot;string&quot;,
+  &quot;purpose&quot;: &quot;transactional&quot;,
+  &quot;consent&quot;: {
+    &quot;kind&quot;: &quot;existing_customer&quot;,
+    &quot;ref&quot;: &quot;string&quot;
+  },
+  &quot;agent_lang&quot;: &quot;en&quot;,
+  &quot;remote_lang&quot;: &quot;string&quot;,
+  &quot;voice_id&quot;: &quot;string&quot;
+}</textarea></label>
+<div class="try-actions"><button type="button" class="btn" data-send>Send request</button><code class="try-url">POST /v1/calls</code></div>
+<div class="try-out" hidden><div class="code"><div class="code-head"><span data-status></span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code data-out></code></pre></div></div>
+</div>
+</details>
+<h3>Responses by status</h3>
+<div class="statuses"><details class="status"><summary><code class="st st-2">201</code> Call created</summary><div class="code"><div class="code-head"><span>201</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
   &quot;id&quot;: &quot;string&quot;,
   &quot;to&quot;: &quot;string&quot;,
   &quot;country&quot;: &quot;string&quot;,
@@ -91,8 +187,56 @@
   &quot;billed_seconds&quot;: 0,
   &quot;created_at&quot;: &quot;string&quot;,
   &quot;livemode&quot;: true
-}</code></pre></div>
-<p class="op-errors">Errors: <a href="/errors"><code>400</code></a> <a href="/errors"><code>401</code></a> <a href="/errors"><code>402</code></a> <a href="/errors"><code>403</code></a> <a href="/errors"><code>409</code></a> <a href="/errors"><code>429</code></a> <a href="/errors"><code>501</code></a></p>
+}</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 400,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">401</code> Missing, invalid, expired or revoked credential</summary><div class="code"><div class="code-head"><span>401 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 401,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">402</code> Spend limit of this credential reached</summary><div class="code"><div class="code-head"><span>402 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 402,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">403</code> Missing permission, blocked or not allowed</summary><div class="code"><div class="code-head"><span>403 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 403,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">409</code> Conflict (idempotency or state)</summary><div class="code"><div class="code-head"><span>409 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 409,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">429</code> Rate limit exceeded (see RateLimit-* and Retry-After headers)</summary><div class="code"><div class="code-head"><span>429 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 429,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-5">501</code> Not available yet in live mode (use a kt_test_ key)</summary><div class="code"><div class="code-head"><span>501 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 501,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details></div>
 </section>
 <section class="op" id="get-v1-calls">
 <h2><span class="method method-get">GET</span><code class="path">/v1/calls</code><a class="anchor" href="#get-v1-calls" aria-hidden="true">#</a></h2>
@@ -104,9 +248,34 @@
 <h3>Response <code>200</code></h3>
 <div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>data</code> <span class="req">required</span></td><td><code class="type">object[]</code></td><td></td></tr><tr><td><code>data[].id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].to</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].country</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].purpose</code> <span class="req">required</span></td><td><code class="type">&quot;transactional&quot; | &quot;scheduling&quot; | &quot;support&quot; | &quot;marketing&quot;</code></td><td></td></tr><tr><td><code>data[].status</code> <span class="req">required</span></td><td><code class="type">&quot;queued&quot; | &quot;ringing&quot; | &quot;answered&quot; | &quot;completed&quot; | &quot;busy&quot; | &quot;voicemail&quot; | &quot;failed&quot; | &quot;blocked&quot;</code></td><td></td></tr><tr><td><code>data[].ai_disclosure</code> <span class="req">required</span></td><td><code class="type">true</code></td><td></td></tr><tr><td><code>data[].billed_seconds</code> <span class="req">required</span></td><td><code class="type">integer</code></td><td></td></tr><tr><td><code>data[].created_at</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].livemode</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr></tbody></table></div>
 <h3>Example</h3>
-<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/calls&quot; \
-  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
-<div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="get-v1-calls-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-calls-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-calls-p">Python</button></div><div class="tab-panel" data-panel="get-v1-calls-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/calls&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div></div><div class="tab-panel" data-panel="get-v1-calls-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/calls&quot;, {
+  method: &quot;GET&quot;,
+  headers: {
+    Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
+  },
+});
+console.log(res.status, await res.json());</code></pre></div></div><div class="tab-panel" data-panel="get-v1-calls-p" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import os, uuid, requests
+
+r = requests.request(
+    &quot;GET&quot;,
+    &quot;https://api.kanutus.com/v1/calls&quot;,
+    headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;},
+)
+print(r.status_code, r.json())</code></pre></div></div></div>
+<details class="try" data-try data-method="GET" data-path="/v1/calls" data-api="https://api.kanutus.com">
+<summary>Try it</summary>
+<div class="try-body">
+<p class="try-note">Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.</p>
+<label><span>API key</span><input data-key type="password" autocomplete="off" placeholder="kt_test_..."></label>
+
+
+<div class="try-actions"><button type="button" class="btn" data-send>Send request</button><code class="try-url">GET /v1/calls</code></div>
+<div class="try-out" hidden><div class="code"><div class="code-head"><span data-status></span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code data-out></code></pre></div></div>
+</div>
+</details>
+<h3>Responses by status</h3>
+<div class="statuses"><details class="status"><summary><code class="st st-2">200</code> Calls, newest first</summary><div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
   &quot;data&quot;: [
     {
       &quot;id&quot;: &quot;string&quot;,
@@ -120,8 +289,35 @@
       &quot;livemode&quot;: true
     }
   ]
-}</code></pre></div>
-<p class="op-errors">Errors: <a href="/errors"><code>400</code></a> <a href="/errors"><code>401</code></a> <a href="/errors"><code>403</code></a> <a href="/errors"><code>429</code></a></p>
+}</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 400,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">401</code> Missing, invalid, expired or revoked credential</summary><div class="code"><div class="code-head"><span>401 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 401,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">403</code> Missing permission, blocked or not allowed</summary><div class="code"><div class="code-head"><span>403 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 403,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">429</code> Rate limit exceeded (see RateLimit-* and Retry-After headers)</summary><div class="code"><div class="code-head"><span>429 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 429,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details></div>
 </section>
 <section class="op" id="get-v1-calls-id">
 <h2><span class="method method-get">GET</span><code class="path">/v1/calls/{id}</code><a class="anchor" href="#get-v1-calls-id" aria-hidden="true">#</a></h2>
@@ -133,9 +329,34 @@
 <h3>Response <code>200</code></h3>
 <div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>to</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>country</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>purpose</code> <span class="req">required</span></td><td><code class="type">&quot;transactional&quot; | &quot;scheduling&quot; | &quot;support&quot; | &quot;marketing&quot;</code></td><td></td></tr><tr><td><code>status</code> <span class="req">required</span></td><td><code class="type">&quot;queued&quot; | &quot;ringing&quot; | &quot;answered&quot; | &quot;completed&quot; | &quot;busy&quot; | &quot;voicemail&quot; | &quot;failed&quot; | &quot;blocked&quot;</code></td><td></td></tr><tr><td><code>ai_disclosure</code> <span class="req">required</span></td><td><code class="type">true</code></td><td></td></tr><tr><td><code>billed_seconds</code> <span class="req">required</span></td><td><code class="type">integer</code></td><td></td></tr><tr><td><code>created_at</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>livemode</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr></tbody></table></div>
 <h3>Example</h3>
-<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/calls/call_7Hn2Qd9Wk4Lp6Rt1Xb8Mc3Zf&quot; \
-  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
-<div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="get-v1-calls-id-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-calls-id-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-calls-id-p">Python</button></div><div class="tab-panel" data-panel="get-v1-calls-id-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/calls/call_7Hn2Qd9Wk4Lp6Rt1Xb8Mc3Zf&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div></div><div class="tab-panel" data-panel="get-v1-calls-id-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/calls/call_7Hn2Qd9Wk4Lp6Rt1Xb8Mc3Zf&quot;, {
+  method: &quot;GET&quot;,
+  headers: {
+    Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
+  },
+});
+console.log(res.status, await res.json());</code></pre></div></div><div class="tab-panel" data-panel="get-v1-calls-id-p" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import os, uuid, requests
+
+r = requests.request(
+    &quot;GET&quot;,
+    &quot;https://api.kanutus.com/v1/calls/call_7Hn2Qd9Wk4Lp6Rt1Xb8Mc3Zf&quot;,
+    headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;},
+)
+print(r.status_code, r.json())</code></pre></div></div></div>
+<details class="try" data-try data-method="GET" data-path="/v1/calls/{id}" data-api="https://api.kanutus.com">
+<summary>Try it</summary>
+<div class="try-body">
+<p class="try-note">Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.</p>
+<label><span>API key</span><input data-key type="password" autocomplete="off" placeholder="kt_test_..."></label>
+<label><span><code>id</code> <small>path</small> <span class="req">required</span></span><input data-param="id" data-in="path" placeholder="call_7Hn2Qd9Wk4Lp6Rt1Xb8Mc3Zf" required></label>
+
+<div class="try-actions"><button type="button" class="btn" data-send>Send request</button><code class="try-url">GET /v1/calls/{id}</code></div>
+<div class="try-out" hidden><div class="code"><div class="code-head"><span data-status></span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code data-out></code></pre></div></div>
+</div>
+</details>
+<h3>Responses by status</h3>
+<div class="statuses"><details class="status"><summary><code class="st st-2">200</code> Call</summary><div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
   &quot;id&quot;: &quot;string&quot;,
   &quot;to&quot;: &quot;string&quot;,
   &quot;country&quot;: &quot;string&quot;,
@@ -145,8 +366,42 @@
   &quot;billed_seconds&quot;: 0,
   &quot;created_at&quot;: &quot;string&quot;,
   &quot;livemode&quot;: true
-}</code></pre></div>
-<p class="op-errors">Errors: <a href="/errors"><code>400</code></a> <a href="/errors"><code>401</code></a> <a href="/errors"><code>403</code></a> <a href="/errors"><code>404</code></a> <a href="/errors"><code>429</code></a></p>
+}</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 400,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">401</code> Missing, invalid, expired or revoked credential</summary><div class="code"><div class="code-head"><span>401 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 401,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">403</code> Missing permission, blocked or not allowed</summary><div class="code"><div class="code-head"><span>403 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 403,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">404</code> Not found</summary><div class="code"><div class="code-head"><span>404 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 404,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">429</code> Rate limit exceeded (see RateLimit-* and Retry-After headers)</summary><div class="code"><div class="code-head"><span>429 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 429,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details></div>
 </section>
 </article>
 <nav class="pager"><a class="prev" href="/reference/transcripts"><span>Previous</span><strong>Transcripts</strong></a><a class="next" href="/reference/webhooks"><span>Next</span><strong>Webhooks and events</strong></a></nav>

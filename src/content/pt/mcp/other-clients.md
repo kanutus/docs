@@ -52,7 +52,7 @@ Enquanto o pacote local não é publicado {soon}, dá para fazer uma ponte com o
 
 ## O seu próprio agente
 
-Se você está escrevendo um agente próprio (LangGraph, OpenAI Agents SDK, Vercel AI SDK, LiveKit Agents, Pipecat…), há dois caminhos:
+Se você está escrevendo um agente próprio, em qualquer framework (LangGraph, OpenAI Agents SDK ou o seu próprio código), há dois caminhos:
 
 - usar o servidor MCP com um token OAuth, como os clientes acima; ou
 - chamar a [API REST](/reference) direto com uma chave de API. Para um backend é mais simples, e você ainda ganha os [webhooks](/webhooks).

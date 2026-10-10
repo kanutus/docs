@@ -24,6 +24,80 @@
       menu.setAttribute("aria-expanded", String(open));
     }
   });
+  // endpoint search (reference pages)
+  document.querySelectorAll("[data-ref-search]").forEach((box) => {
+    const input = box.querySelector("input");
+    const list = box.querySelector("ul");
+    const data = JSON.parse(box.querySelector("script").textContent);
+    const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+    const render = () => {
+      const q = norm(input.value.trim());
+      if (!q) return (list.hidden = true);
+      const words = q.split(/\s+/);
+      const hits = data.filter((d) => words.every((w) => norm(`${d.m} ${d.p} ${d.s} ${d.g}`).includes(w))).slice(0, 12);
+      list.innerHTML = hits.length
+        ? hits.map((d) => `<li><a href="${d.u}"><span class="method method-${d.m.toLowerCase()}">${d.m}</span><code>${d.p}</code><small>${d.s.replace(/</g, "&lt;")}</small></a></li>`).join("")
+        : `<li class="empty">${box.dataset.empty}</li>`;
+      list.hidden = false;
+    };
+    input.addEventListener("input", render);
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") list.querySelector("a")?.click();
+      if (e.key === "Escape") (input.value = ""), render();
+    });
+    document.addEventListener("click", (e) => !box.contains(e.target) && (list.hidden = true));
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "/" && !/input|textarea/i.test(document.activeElement?.tagName || "")) {
+      const s = document.querySelector("[data-ref-search] input");
+      if (s) e.preventDefault(), s.focus();
+    }
+  });
+
+  // "Try it": calls the real API from the browser; the key lives only in sessionStorage of this tab
+  const KEY = "kanutus_docs_key";
+  const getKey = () => { try { return sessionStorage.getItem(KEY) || ""; } catch { return ""; } };
+  document.querySelectorAll("[data-try]").forEach((box) => {
+    const keyInput = box.querySelector("[data-key]");
+    box.addEventListener("toggle", () => box.open && !keyInput.value && (keyInput.value = getKey()));
+    keyInput.addEventListener("change", () => { try { sessionStorage.setItem(KEY, keyInput.value.trim()); } catch {} });
+    box.querySelector("[data-send]").addEventListener("click", async () => {
+      const out = box.querySelector(".try-out");
+      const status = box.querySelector("[data-status]");
+      const pre = box.querySelector("[data-out]");
+      let path = box.dataset.path;
+      const query = new URLSearchParams();
+      for (const inp of box.querySelectorAll("[data-param]")) {
+        const v = inp.value.trim() || (inp.dataset.in === "path" ? inp.placeholder : "");
+        if (inp.dataset.in === "path") path = path.replace(`{${inp.dataset.param}}`, encodeURIComponent(v));
+        else if (v) query.set(inp.dataset.param, v);
+      }
+      const headers = { Authorization: `Bearer ${keyInput.value.trim()}` };
+      if (box.hasAttribute("data-idem")) headers["Idempotency-Key"] = crypto.randomUUID();
+      const bodyEl = box.querySelector("[data-body]");
+      let body;
+      if (bodyEl) {
+        try { body = JSON.stringify(JSON.parse(bodyEl.value)); } catch { status.textContent = "JSON?"; pre.textContent = "Invalid JSON body"; out.hidden = false; return; }
+        headers["Content-Type"] = "application/json";
+      }
+      const url = `${box.dataset.api}${path}${query.toString() ? "?" + query : ""}`;
+      status.textContent = "…";
+      out.hidden = false;
+      const t0 = performance.now();
+      try {
+        const r = await fetch(url, { method: box.dataset.method, headers, body });
+        const text = await r.text();
+        let shown = text;
+        try { shown = JSON.stringify(JSON.parse(text), null, 2); } catch {}
+        status.textContent = `${r.status} · ${Math.round(performance.now() - t0)} ms${r.headers.get("x-request-id") ? " · " + r.headers.get("x-request-id") : ""}`;
+        pre.textContent = shown;
+      } catch (err) {
+        status.textContent = "network error";
+        pre.textContent = String(err);
+      }
+    });
+  });
+
   const links = [...document.querySelectorAll(".toc a")];
   if (!links.length || !("IntersectionObserver" in window)) return;
   const map = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
