@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schedule a meeting · Kanutus Docs</title>
+<meta name="description" content="Kanutus API and MCP documentation: rooms with live translation, scheduling, voices, calls and AI agents.">
+<link rel="canonical" href="https://docs.kanutus.com/guides/schedule-meeting">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/guides/schedule-meeting">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/guides/schedule-meeting">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Language"><a href="/guides/schedule-meeting" hreflang="en" lang="en" aria-current="true">EN</a><a href="/pt/guides/schedule-meeting" hreflang="pt-BR" lang="pt-BR">PT</a></nav>
+<a class="top-link" href="https://kanutus.com">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Open the app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Get started</p><ul><li><a href="/">Kanutus for developers</a></li><li><a href="/quickstart">Quickstart</a></li><li><a href="/authentication">Authentication</a></li><li><a href="/test-mode">Test mode</a></li></ul></div><div class="nav-group"><p>Connect AI assistants (MCP)</p><ul><li><a href="/mcp">Kanutus MCP server</a></li><li><a href="/mcp/connect-claude">Connect Claude</a></li><li><a href="/mcp/connect-chatgpt">Connect ChatGPT</a></li><li><a href="/mcp/other-clients">Cursor, VS Code and other clients</a></li><li><a href="/mcp/tools">The 23 MCP tools</a></li></ul></div><div class="nav-group"><p>Guides</p><ul><li><a href="/guides/agent-in-room">AI agent in a room</a></li><li><a href="/guides/schedule-meeting" aria-current="page">Schedule a meeting</a></li><li><a href="/guides/translated-call">Translated phone call</a></li><li><a href="/guides/transcripts">Receive transcripts</a></li></ul></div><div class="nav-group"><p>Build</p><ul><li><a href="/webhooks">Webhooks</a></li><li><a href="/errors">Limits and errors</a></li><li><a href="/responsible-use">Responsible use</a></li></ul></div><div class="nav-group"><p>API reference</p><ul><li><a href="/reference">API reference</a></li><li><a href="/reference/account" class="sub">Account and usage</a></li><li><a href="/reference/rooms" class="sub">Rooms</a></li><li><a href="/reference/calendar" class="sub">Meetings and booking</a></li><li><a href="/reference/agents" class="sub">AI agent in a room</a></li><li><a href="/reference/transcripts" class="sub">Transcripts</a></li><li><a href="/reference/calls" class="sub">Phone calls</a></li><li><a href="/reference/webhooks" class="sub">Webhooks and events</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Schedule a meeting</h1>
+<p>Two ways: schedule a meeting directly (you set the time and invite people), or book a free time on a booking link (like Calendly).</p>
+<h2 id="schedule-directly"><a class="anchor" href="#schedule-directly" aria-hidden="true">#</a>Schedule directly</h2>
+<p><code>POST /v1/meetings</code> creates a room with a date. Invitees get the invitation by email with the link and a calendar file. Needs <code>calendar:write</code>.</p>
+<div class="code"><div class="code-head"><span>bash</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl -X POST https://api.kanutus.com/v1/meetings \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot; \
+  -H &quot;Idempotency-Key: $(uuidgen)&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{
+    &quot;title&quot;: &quot;Review with Kenji&quot;,
+    &quot;starts_at&quot;: &quot;2026-10-12T10:00:00-03:00&quot;,
+    &quot;duration_min&quot;: 30,
+    &quot;invitees&quot;: [&quot;kenji@example.com&quot;],
+    &quot;langs&quot;: [&quot;pt&quot;, &quot;ja&quot;]
+  }'</code></pre></div>
+<ul><li><div><code>starts_at</code> is ISO 8601 <strong>with the time zone offset</strong>.</div></li><li><div><code>langs</code> are the languages of the participants (it helps Kanutus get ready).</div></li><li><div>The answer is a room with <code>status: &amp;quot;scheduled&amp;quot;</code> and its <code>url</code>.</div></li></ul>
+<p>List with <code>GET /v1/meetings?from=…&amp;amp;to=…</code> and cancel with <code>DELETE /v1/meetings/{id}</code> (invitees are told).</p>
+<h2 id="book-on-a-booking-link"><a class="anchor" href="#book-on-a-booking-link" aria-hidden="true">#</a>Book on a booking link</h2>
+<ol class="steps"><li><div>List your booking links (needs <code>calendar:read</code>):</div><div class="code"><div class="code-head"><span>bash</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl https://api.kanutus.com/v1/event-types -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div></li><li><div>Get the free times (UTC) of one of them:</div><div class="code"><div class="code-head"><span>bash</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/event-types/&lt;event_type_id&gt;/slots?from=2026-10-13&amp;to=2026-10-17&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div></li><li><div>Book one for a guest (needs <code>calendar:write</code>). The guest gets the invitation by email:</div><div class="code"><div class="code-head"><span>bash</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl -X POST https://api.kanutus.com/v1/bookings \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot; \
+  -H &quot;Idempotency-Key: $(uuidgen)&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;event_type_id&quot;: &quot;&lt;event_type_id&gt;&quot;, &quot;start&quot;: &quot;2026-10-14T13:00:00Z&quot;,
+       &quot;guest&quot;: {&quot;name&quot;: &quot;Lena&quot;, &quot;email&quot;: &quot;lena@example.com&quot;, &quot;speak&quot;: &quot;fr&quot;, &quot;tz&quot;: &quot;Europe/Paris&quot;}}'</code></pre></div></li></ol>
+<p>To book on <strong>someone else's</strong> link, send <code>page</code> and <code>event</code> (the slugs in their booking URL) instead of <code>event_type_id</code>. If the time was taken in the meantime: <code>409 slot_taken</code>.</p>
+<h2 id="events"><a class="anchor" href="#events" aria-hidden="true">#</a>Events</h2>
+<p><code>meeting.created</code>, <code>meeting.canceled</code> and <code>booking.created</code> arrive at your <a href="/webhooks">webhooks</a>.</p>
+<h2 id="with-an-assistant-mcp"><a class="anchor" href="#with-an-assistant-mcp" aria-hidden="true">#</a>With an assistant (MCP)</h2>
+<p><em>&quot;Find a free time next Tuesday afternoon on my 30-minute link and book it for lena@example.com, she speaks French.&quot;</em> The assistant uses <code>list_booking_links</code>, <code>find_slots</code> and <code>book_slot</code>.</p>
+</article>
+<nav class="pager"><a class="prev" href="/guides/agent-in-room"><span>Previous</span><strong>AI agent in a room</strong></a><a class="next" href="/guides/translated-call"><span>Next</span><strong>Translated phone call</strong></a></nav>
+<footer class="foot"><p>Something wrong or missing? Write to <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">OpenAPI 3.1 file</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>On this page</p><ul><li><a href="#schedule-directly">Schedule directly</a></li><li><a href="#book-on-a-booking-link">Book on a booking link</a></li><li><a href="#events">Events</a></li><li><a href="#with-an-assistant-mcp">With an assistant (MCP)</a></li></ul></aside>
+</div>
+</body>
+</html>

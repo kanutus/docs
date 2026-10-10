@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Webhooks · Kanutus Docs</title>
+<meta name="description" content="Documentação da API e do MCP do Kanutus: salas com tradução ao vivo, agenda, vozes, ligações e agentes de IA.">
+<link rel="canonical" href="https://docs.kanutus.com/pt/webhooks">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/webhooks">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/webhooks">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Pular para o conteúdo</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/pt" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Idioma"><a href="/webhooks" hreflang="en" lang="en">EN</a><a href="/pt/webhooks" hreflang="pt-BR" lang="pt-BR" aria-current="true">PT</a></nav>
+<a class="top-link" href="https://kanutus.com/pt">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Abrir o app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Começar</p><ul><li><a href="/pt">Kanutus para desenvolvedores</a></li><li><a href="/pt/quickstart">Começar em 5 minutos</a></li><li><a href="/pt/authentication">Autenticação</a></li><li><a href="/pt/test-mode">Modo de teste</a></li></ul></div><div class="nav-group"><p>Assistentes de IA (MCP)</p><ul><li><a href="/pt/mcp">Servidor MCP do Kanutus</a></li><li><a href="/pt/mcp/connect-claude">Conectar o Claude</a></li><li><a href="/pt/mcp/connect-chatgpt">Conectar o ChatGPT</a></li><li><a href="/pt/mcp/other-clients">Cursor, VS Code e outros clientes</a></li><li><a href="/pt/mcp/tools">As 23 ferramentas do MCP</a></li></ul></div><div class="nav-group"><p>Guias</p><ul><li><a href="/pt/guides/agent-in-room">Agente de IA na sala</a></li><li><a href="/pt/guides/schedule-meeting">Agendar reunião</a></li><li><a href="/pt/guides/translated-call">Ligação traduzida</a></li><li><a href="/pt/guides/transcripts">Receber transcrições</a></li></ul></div><div class="nav-group"><p>Integrar</p><ul><li><a href="/pt/webhooks" aria-current="page">Webhooks</a></li><li><a href="/pt/errors">Limites e erros</a></li><li><a href="/pt/responsible-use">Uso responsável</a></li></ul></div><div class="nav-group"><p>Referência da API</p><ul><li><a href="/pt/reference">Referência da API</a></li><li><a href="/pt/reference/account" class="sub">Conta e uso</a></li><li><a href="/pt/reference/rooms" class="sub">Salas</a></li><li><a href="/pt/reference/calendar" class="sub">Reuniões e agendamento</a></li><li><a href="/pt/reference/agents" class="sub">Agente de IA na sala</a></li><li><a href="/pt/reference/transcripts" class="sub">Transcrições</a></li><li><a href="/pt/reference/calls" class="sub">Ligações</a></li><li><a href="/pt/reference/webhooks" class="sub">Webhooks e eventos</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Webhooks</h1>
+<p>O Kanutus manda um <code>POST</code> HTTPS para o seu servidor quando algo acontece: uma sala começou, uma reunião foi agendada, uma sessão de agente terminou, um limite de gasto foi atingido.</p>
+<h2 id="crie-um-endpoint"><a class="anchor" href="#crie-um-endpoint" aria-hidden="true">#</a>Crie um endpoint</h2>
+<p>No app: <strong>Desenvolvedores → Webhooks → Adicionar</strong> (no modo <strong>Teste</strong> para endpoints de teste). Ou pela API, com a permissão <code>webhooks:write</code>:</p>
+<div class="code"><div class="code-head"><span>bash</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl -X POST https://api.kanutus.com/v1/webhook-endpoints \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;url&quot;: &quot;https://seu-sistema.com/kanutus&quot;, &quot;events&quot;: [&quot;meeting.created&quot;, &quot;booking.created&quot;, &quot;session.ended&quot;]}'</code></pre></div>
+<p>A resposta traz o segredo de assinatura <code>whsec_…</code>. <strong>Ele aparece uma única vez</strong>: guarde-o junto com os seus outros segredos.</p>
+<p>A URL precisa ser <code>https</code> e pública, sem redirecionamento. Endereços privados, de loopback e de metadados de nuvem são recusados.</p>
+<h2 id="o-evento"><a class="anchor" href="#o-evento" aria-hidden="true">#</a>O evento</h2>
+<div class="code"><div class="code-head"><span>json</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-json">{
+  &quot;id&quot;: &quot;evt_8c1Zq…&quot;,
+  &quot;type&quot;: &quot;booking.created&quot;,
+  &quot;created&quot;: 1791668000,
+  &quot;livemode&quot;: true,
+  &quot;org_id&quot;: &quot;…&quot;,
+  &quot;api_version&quot;: &quot;v1&quot;,
+  &quot;data&quot;: { &quot;object&quot;: { &quot;id&quot;: &quot;…&quot; } }
+}</code></pre></div>
+<p>Os eventos levam ids e só o mínimo necessário; os números de telefone vão mascarados. <strong>Texto de transcrição nunca vai no evento</strong>: busque-o com a sua credencial.</p>
+<h2 id="confira-a-assinatura"><a class="anchor" href="#confira-a-assinatura" aria-hidden="true">#</a>Confira a assinatura</h2>
+<p>Toda requisição traz o cabeçalho <code>Kanutus-Signature</code>:</p>
+<div class="code"><div class="code-head"><span>text</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-text">Kanutus-Signature: t=1791668000,v1=5f2b…</code></pre></div>
+<p><code>v1</code> é o HMAC-SHA256, em hexadecimal, de <code>&amp;quot;&amp;lt;t&amp;gt;.&amp;lt;corpo bruto&amp;gt;&amp;quot;</code> calculado com o seu segredo. Para conferir:</p>
+<ul><li><div>calcule sobre o <strong>corpo bruto</strong>, antes de interpretar o JSON;</div></li><li><div>compare em tempo constante;</div></li><li><div>recuse carimbos de tempo com mais de 5 minutos.</div></li></ul>
+<p>Durante a troca de segredo, o mesmo cabeçalho traz dois valores <code>v1=</code> por 24 horas. Aceite a requisição se <strong>qualquer um</strong> deles bater.</p>
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="t16-0">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="t16-1">Python</button></div><div class="tab-panel" data-panel="t16-0"><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-js">import crypto from &quot;node:crypto&quot;;
+
+export function verifyKanutus(rawBody, header, secret, toleranceS = 300) {
+  const parts = header.split(&quot;,&quot;).map((p) =&gt; p.trim().split(&quot;=&quot;));
+  const t = Number(parts.find(([k]) =&gt; k === &quot;t&quot;)?.[1]);
+  if (!Number.isFinite(t) || Math.abs(Date.now() / 1000 - t) &gt; toleranceS) return false;
+  const want = crypto.createHmac(&quot;sha256&quot;, secret).update(`${t}.${rawBody}`).digest(&quot;hex&quot;);
+  return parts.some(([k, v]) =&gt; k === &quot;v1&quot; &amp;&amp; v.length === want.length &amp;&amp;
+    crypto.timingSafeEqual(Buffer.from(v), Buffer.from(want)));
+}</code></pre></div></div><div class="tab-panel" data-panel="t16-1" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-python">import hmac, hashlib, time
+
+def verify_kanutus(raw_body: bytes, header: str, secret: str, tolerance_s: int = 300) -&gt; bool:
+    parts = [p.strip().split(&quot;=&quot;, 1) for p in header.split(&quot;,&quot;)]
+    t = next((int(v) for k, v in parts if k == &quot;t&quot;), None)
+    if t is None or abs(time.time() - t) &gt; tolerance_s:
+        return False
+    want = hmac.new(secret.encode(), f&quot;{t}.&quot;.encode() + raw_body, hashlib.sha256).hexdigest()
+    return any(k == &quot;v1&quot; and hmac.compare_digest(v, want) for k, v in parts)</code></pre></div></div></div>
+<h2 id="responda-rapido-o-kanutus-tenta-de-novo"><a class="anchor" href="#responda-rapido-o-kanutus-tenta-de-novo" aria-hidden="true">#</a>Responda rápido; o Kanutus tenta de novo</h2>
+<ul><li><div>Responda com qualquer <code>2xx</code> em até <strong>10 segundos</strong> e deixe o trabalho pesado para depois (numa fila).</div></li><li><div>Qualquer outra resposta é reenviada com espera exponencial: <strong>1 min, 5 min, 30 min, 2 h, 6 h, 12 h, 24 h, 24 h</strong> (cerca de 3 dias).</div></li><li><div>Um endpoint que falha sem parar por 3 dias é desativado, e o Dono recebe um e-mail.</div></li><li><div>A ordem dos eventos não é garantida, e o mesmo evento pode chegar duas vezes: use o <code>id</code> para descartar repetidos.</div></li><li><div>Perdeu algum evento? <code>GET /v1/events</code> lista os eventos dos últimos 30 dias. No app, dá para ver cada entrega e reenviar.</div></li><li><div>Para trocar o segredo, use <code>POST /v1/webhook-endpoints/{id}/rotate-secret</code>. Para mandar um teste assinado, use <code>POST /v1/webhook-endpoints/{id}/test</code>.</div></li></ul>
+<h2 id="tipos-de-evento"><a class="anchor" href="#tipos-de-evento" aria-hidden="true">#</a>Tipos de evento</h2>
+<div class="table"><table><thead><tr><th>Evento</th><th>Quando</th></tr></thead><tbody><tr><td><code>room.started</code></td><td>Uma sala foi criada pela API</td></tr><tr><td><code>room.ended</code>, <code>room.participant_joined</code>, <code>room.participant_left</code></td><td>Ciclo de vida da sala <span class="badge badge-soon">Em breve</span></td></tr><tr><td><code>session.started</code>, <code>session.ended</code></td><td>Um agente de IA entrou ou saiu de uma sala</td></tr><tr><td><code>meeting.created</code>, <code>meeting.canceled</code></td><td>Uma reunião foi marcada ou cancelada</td></tr><tr><td><code>meeting.updated</code></td><td>Uma reunião mudou <span class="badge badge-soon">Em breve</span></td></tr><tr><td><code>booking.created</code></td><td>Um horário foi agendado num link de agendamento</td></tr><tr><td><code>booking.rescheduled</code>, <code>booking.canceled</code></td><td>Mudanças num agendamento <span class="badge badge-soon">Em breve</span></td></tr><tr><td><code>transcript.ready</code></td><td>Uma transcrição já pode ser lida</td></tr><tr><td><code>summary.ready</code></td><td>Um resumo já pode ser lido <span class="badge badge-soon">Em breve</span></td></tr><tr><td><code>call.blocked</code></td><td>Uma ligação foi recusada (destino ou finalidade não permitidos)</td></tr><tr><td><code>call.ringing</code>, <code>call.answered</code>, <code>call.voicemail</code>, <code>call.completed</code>, <code>call.failed</code></td><td>Andamento da ligação <span class="badge badge-soon">Em breve</span></td></tr><tr><td><code>voice.consent_completed</code>, <code>voice.ready</code>, <code>voice.failed</code></td><td>Clonagem de voz com consentimento <span class="badge badge-soon">Em breve</span></td></tr><tr><td><code>usage.threshold</code></td><td>Uma chave chegou a 80% ou 100% do limite de gasto</td></tr><tr><td><code>credential.expiring</code></td><td>Uma chave vai vencer em breve <span class="badge badge-soon">Em breve</span></td></tr></tbody></table></div>
+</article>
+<nav class="pager"><a class="prev" href="/pt/guides/transcripts"><span>Anterior</span><strong>Receber transcrições</strong></a><a class="next" href="/pt/errors"><span>Próximo</span><strong>Limites e erros</strong></a></nav>
+<footer class="foot"><p>Achou algo errado ou faltando? Escreva para <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">Arquivo OpenAPI 3.1</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>Nesta página</p><ul><li><a href="#crie-um-endpoint">Crie um endpoint</a></li><li><a href="#o-evento">O evento</a></li><li><a href="#confira-a-assinatura">Confira a assinatura</a></li><li><a href="#responda-rapido-o-kanutus-tenta-de-novo">Responda rápido; o Kanutus tenta de novo</a></li><li><a href="#tipos-de-evento">Tipos de evento</a></li></ul></aside>
+</div>
+</body>
+</html>

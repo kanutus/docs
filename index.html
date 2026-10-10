@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kanutus Docs</title>
+<meta name="description" content="Kanutus API and MCP documentation: rooms with live translation, scheduling, voices, calls and AI agents.">
+<link rel="canonical" href="https://docs.kanutus.com">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Language"><a href="/" hreflang="en" lang="en" aria-current="true">EN</a><a href="/pt" hreflang="pt-BR" lang="pt-BR">PT</a></nav>
+<a class="top-link" href="https://kanutus.com">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Open the app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Get started</p><ul><li><a href="/" aria-current="page">Kanutus for developers</a></li><li><a href="/quickstart">Quickstart</a></li><li><a href="/authentication">Authentication</a></li><li><a href="/test-mode">Test mode</a></li></ul></div><div class="nav-group"><p>Connect AI assistants (MCP)</p><ul><li><a href="/mcp">Kanutus MCP server</a></li><li><a href="/mcp/connect-claude">Connect Claude</a></li><li><a href="/mcp/connect-chatgpt">Connect ChatGPT</a></li><li><a href="/mcp/other-clients">Cursor, VS Code and other clients</a></li><li><a href="/mcp/tools">The 23 MCP tools</a></li></ul></div><div class="nav-group"><p>Guides</p><ul><li><a href="/guides/agent-in-room">AI agent in a room</a></li><li><a href="/guides/schedule-meeting">Schedule a meeting</a></li><li><a href="/guides/translated-call">Translated phone call</a></li><li><a href="/guides/transcripts">Receive transcripts</a></li></ul></div><div class="nav-group"><p>Build</p><ul><li><a href="/webhooks">Webhooks</a></li><li><a href="/errors">Limits and errors</a></li><li><a href="/responsible-use">Responsible use</a></li></ul></div><div class="nav-group"><p>API reference</p><ul><li><a href="/reference">API reference</a></li><li><a href="/reference/account" class="sub">Account and usage</a></li><li><a href="/reference/rooms" class="sub">Rooms</a></li><li><a href="/reference/calendar" class="sub">Meetings and booking</a></li><li><a href="/reference/agents" class="sub">AI agent in a room</a></li><li><a href="/reference/transcripts" class="sub">Transcripts</a></li><li><a href="/reference/calls" class="sub">Phone calls</a></li><li><a href="/reference/webhooks" class="sub">Webhooks and events</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Kanutus for developers</h1>
+<p>Put Kanutus inside your systems and your AI assistants: create rooms with live voice translation, schedule meetings, book times on booking links, read usage and transcripts, and (soon) let an AI agent speak in a room or on a phone call, each listener hearing it in their own language.</p>
+<p>There are two ways in, both on top of the same product and the same permissions:</p>
+<div class="cards"><a class="card" href="/quickstart"><strong>REST API</strong><span><code>https://api.kanutus.com/v1</code>, OpenAPI 3.1. For your backend, scripts and your own agents.</span></a><a class="card" href="/mcp"><strong>MCP server</strong><span><code>https://mcp.kanutus.com/mcp</code>. Connect Kanutus to Claude, ChatGPT, Cursor and other AI assistants.</span></a></div>
+<h2 id="what-you-can-do"><a class="anchor" href="#what-you-can-do" aria-hidden="true">#</a>What you can do</h2>
+<div class="table"><table><thead><tr><th>Area</th><th>Available today</th><th>Next</th></tr></thead><tbody><tr><td>Account</td><td>Who am I, minutes left, API usage by day or by key</td><td></td></tr><tr><td>Rooms</td><td>Create an instant room with live translation, list, read, end it, guest links with name and language prefilled</td><td></td></tr><tr><td>Meetings and booking</td><td>Schedule meetings with invitees and languages, cancel, list booking links, free times, book a time</td><td></td></tr><tr><td>Voices</td><td>List your voices</td><td>Create and clone voices <span class="badge badge-soon">Soon</span></td></tr><tr><td>AI agent in a room</td><td>Join a room, speak (text in, translated voice out), listen</td><td>Live rooms <span class="badge badge-soon">Soon</span> · works today with a test key</td></tr><tr><td>Phone calls</td><td>Check a destination and the rules for the call purpose in that country</td><td>Translated calls by an AI agent <span class="badge badge-soon">Soon</span> · works today with a test key</td></tr><tr><td>Transcripts</td><td>Transcripts of the agent sessions your credential created</td><td>Transcripts and summaries of every meeting <span class="badge badge-soon">Soon</span></td></tr><tr><td>Webhooks</td><td>Signed events (HMAC), automatic retries, test events</td><td></td></tr></tbody></table></div>
+<h2 id="who-can-use-it"><a class="anchor" href="#who-can-use-it" aria-hidden="true">#</a>Who can use it</h2>
+<p>The API and the connectors are part of the <strong>paid plans</strong> and the <strong>business plans</strong>. On a free account, the <strong>Developers</strong> area in the app shows the plans instead, so you can upgrade. Everything you do through the API uses the same minutes as the app, at the same price.</p>
+<h2 id="start-here"><a class="anchor" href="#start-here" aria-hidden="true">#</a>Start here</h2>
+<div class="cards"><a class="card" href="/quickstart"><strong>Quickstart</strong><span>From sign-up to your first call with curl in 5 minutes.</span></a><a class="card" href="/mcp/connect-claude"><strong>Connect Claude</strong><span>Add Kanutus as a custom connector.</span></a><a class="card" href="/test-mode"><strong>Test mode</strong><span>Try everything with the simulator, without using minutes.</span></a><a class="card" href="/reference"><strong>API reference</strong><span>Every endpoint, generated from the OpenAPI file.</span></a></div>
+<p>Using AI to call or talk to people comes with rules. Please read <a href="/responsible-use">Responsible use</a>.</p>
+</article>
+<nav class="pager"><span></span><a class="next" href="/quickstart"><span>Next</span><strong>Quickstart</strong></a></nav>
+<footer class="foot"><p>Something wrong or missing? Write to <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">OpenAPI 3.1 file</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>On this page</p><ul><li><a href="#what-you-can-do">What you can do</a></li><li><a href="#who-can-use-it">Who can use it</a></li><li><a href="#start-here">Start here</a></li></ul></aside>
+</div>
+</body>
+</html>

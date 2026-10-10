@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Account and usage · Kanutus Docs</title>
+<meta name="description" content="Kanutus API and MCP documentation: rooms with live translation, scheduling, voices, calls and AI agents.">
+<link rel="canonical" href="https://docs.kanutus.com/reference/account">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/reference/account">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/reference/account">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Language"><a href="/reference/account" hreflang="en" lang="en" aria-current="true">EN</a><a href="/pt/reference/account" hreflang="pt-BR" lang="pt-BR">PT</a></nav>
+<a class="top-link" href="https://kanutus.com">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Open the app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Get started</p><ul><li><a href="/">Kanutus for developers</a></li><li><a href="/quickstart">Quickstart</a></li><li><a href="/authentication">Authentication</a></li><li><a href="/test-mode">Test mode</a></li></ul></div><div class="nav-group"><p>Connect AI assistants (MCP)</p><ul><li><a href="/mcp">Kanutus MCP server</a></li><li><a href="/mcp/connect-claude">Connect Claude</a></li><li><a href="/mcp/connect-chatgpt">Connect ChatGPT</a></li><li><a href="/mcp/other-clients">Cursor, VS Code and other clients</a></li><li><a href="/mcp/tools">The 23 MCP tools</a></li></ul></div><div class="nav-group"><p>Guides</p><ul><li><a href="/guides/agent-in-room">AI agent in a room</a></li><li><a href="/guides/schedule-meeting">Schedule a meeting</a></li><li><a href="/guides/translated-call">Translated phone call</a></li><li><a href="/guides/transcripts">Receive transcripts</a></li></ul></div><div class="nav-group"><p>Build</p><ul><li><a href="/webhooks">Webhooks</a></li><li><a href="/errors">Limits and errors</a></li><li><a href="/responsible-use">Responsible use</a></li></ul></div><div class="nav-group"><p>API reference</p><ul><li><a href="/reference">API reference</a></li><li><a href="/reference/account" aria-current="page" class="sub">Account and usage</a></li><li><a href="/reference/rooms" class="sub">Rooms</a></li><li><a href="/reference/calendar" class="sub">Meetings and booking</a></li><li><a href="/reference/agents" class="sub">AI agent in a room</a></li><li><a href="/reference/transcripts" class="sub">Transcripts</a></li><li><a href="/reference/calls" class="sub">Phone calls</a></li><li><a href="/reference/webhooks" class="sub">Webhooks and events</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Account and usage</h1>
+<section class="op" id="get-v1-me">
+<h2><span class="method method-get">GET</span><code class="path">/v1/me</code><a class="anchor" href="#get-v1-me" aria-hidden="true">#</a></h2>
+<p class="op-summary">Who am I: organization, permissions and limits of this credential</p>
+<p class="op-meta">Permission: any valid credential</p>
+
+
+
+<h3>Response <code>200</code></h3>
+<div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>credential</code> <span class="req">required</span></td><td><code class="type">object</code></td><td></td></tr><tr><td><code>credential.kind</code> <span class="req">required</span></td><td><code class="type">&quot;key&quot; | &quot;oauth&quot; | &quot;client&quot;</code></td><td>key = API key, oauth = app connected by a person, client = organization app</td></tr><tr><td><code>credential.id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>credential.name</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>credential.mode</code> <span class="req">required</span></td><td><code class="type">&quot;live&quot; | &quot;test&quot;</code></td><td></td></tr><tr><td><code>credential.needs_review</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr><tr><td><code>organization</code> <span class="req">required</span></td><td><code class="type">object | null</code></td><td></td></tr><tr><td><code>organization.id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>organization.name</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>user</code> <span class="req">required</span></td><td><code class="type">object | null</code></td><td></td></tr><tr><td><code>user.id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>user.name</code> <span class="req">required</span></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>permissions</code> <span class="req">required</span></td><td><code class="type">string[]</code></td><td></td></tr><tr><td><code>limits</code> <span class="req">required</span></td><td><code class="type">object</code></td><td></td></tr><tr><td><code>limits.spend_day_minutes</code> <span class="req">required</span></td><td><code class="type">number | null</code></td><td></td></tr><tr><td><code>limits.spend_month_minutes</code> <span class="req">required</span></td><td><code class="type">number | null</code></td><td></td></tr><tr><td><code>limits.per_call_minutes</code> <span class="req">required</span></td><td><code class="type">number | null</code></td><td></td></tr><tr><td><code>limits.requests_per_minute</code> <span class="req">required</span></td><td><code class="type">number</code></td><td></td></tr><tr><td><code>limits.spent_today_minutes</code> <span class="req">required</span></td><td><code class="type">number</code></td><td></td></tr><tr><td><code>limits.spent_month_minutes</code> <span class="req">required</span></td><td><code class="type">number</code></td><td></td></tr><tr><td><code>pricing</code> <span class="req">required</span></td><td><code class="type">object</code></td><td></td></tr><tr><td><code>pricing.api_minute_factor</code> <span class="req">required</span></td><td><code class="type">number</code></td><td></td></tr><tr><td><code>pricing.listen_text_factor</code> <span class="req">required</span></td><td><code class="type">number</code></td><td></td></tr></tbody></table></div>
+<h3>Example</h3>
+<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/me&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
+<div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;credential&quot;: {
+    &quot;kind&quot;: &quot;key&quot;,
+    &quot;id&quot;: &quot;string&quot;,
+    &quot;name&quot;: &quot;string&quot;,
+    &quot;mode&quot;: &quot;live&quot;,
+    &quot;needs_review&quot;: true
+  },
+  &quot;organization&quot;: {
+    &quot;id&quot;: &quot;string&quot;,
+    &quot;name&quot;: &quot;string&quot;
+  },
+  &quot;user&quot;: {
+    &quot;id&quot;: &quot;string&quot;,
+    &quot;name&quot;: &quot;string&quot;
+  },
+  &quot;permissions&quot;: [
+    &quot;string&quot;
+  ],
+  &quot;limits&quot;: {
+    &quot;spend_day_minutes&quot;: 0,
+    &quot;spend_month_minutes&quot;: 0,
+    &quot;per_call_minutes&quot;: 0,
+    &quot;requests_per_minute&quot;: 0,
+    &quot;spent_today_minutes&quot;: 0,
+    &quot;spent_month_minutes&quot;: 0
+  },
+  &quot;pricing&quot;: {
+    &quot;api_minute_factor&quot;: 0,
+    &quot;listen_text_factor&quot;: 0
+  }
+}</code></pre></div>
+<p class="op-errors">Errors: <a href="/errors"><code>400</code></a> <a href="/errors"><code>401</code></a> <a href="/errors"><code>403</code></a> <a href="/errors"><code>429</code></a></p>
+</section>
+<section class="op" id="get-v1-balance">
+<h2><span class="method method-get">GET</span><code class="path">/v1/balance</code><a class="anchor" href="#get-v1-balance" aria-hidden="true">#</a></h2>
+<p class="op-summary">Minutes left (organization pool/quota or personal plan)</p>
+<p class="op-meta">Permission: <code>usage:read</code></p>
+
+
+
+<h3>Response <code>200</code></h3>
+<div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>minutes_left</code> <span class="req">required</span></td><td><code class="type">number</code></td><td></td></tr><tr><td><code>seconds_left</code> <span class="req">required</span></td><td><code class="type">integer</code></td><td></td></tr><tr><td><code>low</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr><tr><td><code>source</code> <span class="req">required</span></td><td><code class="type">&quot;organization&quot; | &quot;personal&quot; | &quot;test&quot;</code></td><td></td></tr><tr><td><code>livemode</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr></tbody></table></div>
+<h3>Example</h3>
+<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/balance&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
+<div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;minutes_left&quot;: 0,
+  &quot;seconds_left&quot;: 0,
+  &quot;low&quot;: true,
+  &quot;source&quot;: &quot;organization&quot;,
+  &quot;livemode&quot;: true
+}</code></pre></div>
+<p class="op-errors">Errors: <a href="/errors"><code>400</code></a> <a href="/errors"><code>401</code></a> <a href="/errors"><code>403</code></a> <a href="/errors"><code>429</code></a></p>
+</section>
+<section class="op" id="get-v1-usage">
+<h2><span class="method method-get">GET</span><code class="path">/v1/usage</code><a class="anchor" href="#get-v1-usage" aria-hidden="true">#</a></h2>
+<p class="op-summary">API usage by day or by credential</p>
+<p class="op-meta">Permission: <code>usage:read</code></p>
+
+<h3>Parameters</h3><div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>from</code></td><td><code class="type">query · string</code></td><td></td></tr><tr><td><code>to</code></td><td><code class="type">query · string</code></td><td></td></tr><tr><td><code>group_by</code></td><td><code class="type">query · &quot;day&quot; | &quot;credential&quot;</code></td><td></td></tr></tbody></table></div>
+
+<h3>Response <code>200</code></h3>
+<div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>from</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>to</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>total_minutes</code> <span class="req">required</span></td><td><code class="type">number</code></td><td></td></tr><tr><td><code>requests</code> <span class="req">required</span></td><td><code class="type">integer</code></td><td></td></tr><tr><td><code>errors</code> <span class="req">required</span></td><td><code class="type">integer</code></td><td></td></tr><tr><td><code>data</code> <span class="req">required</span></td><td><code class="type">object[]</code></td><td></td></tr><tr><td><code>data[].day</code></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].credential_id</code></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].name</code></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].minutes</code> <span class="req">required</span></td><td><code class="type">number</code></td><td></td></tr><tr><td><code>data[].requests</code></td><td><code class="type">integer</code></td><td></td></tr></tbody></table></div>
+<h3>Example</h3>
+<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/usage&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
+<div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;from&quot;: &quot;string&quot;,
+  &quot;to&quot;: &quot;string&quot;,
+  &quot;total_minutes&quot;: 0,
+  &quot;requests&quot;: 0,
+  &quot;errors&quot;: 0,
+  &quot;data&quot;: [
+    {
+      &quot;day&quot;: &quot;string&quot;,
+      &quot;credential_id&quot;: &quot;string&quot;,
+      &quot;name&quot;: &quot;string&quot;,
+      &quot;minutes&quot;: 0,
+      &quot;requests&quot;: 0
+    }
+  ]
+}</code></pre></div>
+<p class="op-errors">Errors: <a href="/errors"><code>400</code></a> <a href="/errors"><code>401</code></a> <a href="/errors"><code>403</code></a> <a href="/errors"><code>429</code></a></p>
+</section>
+</article>
+<nav class="pager"><a class="prev" href="/reference"><span>Previous</span><strong>API reference</strong></a><a class="next" href="/reference/rooms"><span>Next</span><strong>Rooms</strong></a></nav>
+<footer class="foot"><p>Something wrong or missing? Write to <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">OpenAPI 3.1 file</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>On this page</p><ul><li><a href="#get-v1-me">GET /v1/me</a></li><li><a href="#get-v1-balance">GET /v1/balance</a></li><li><a href="#get-v1-usage">GET /v1/usage</a></li></ul></aside>
+</div>
+</body>
+</html>

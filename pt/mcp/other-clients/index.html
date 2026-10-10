@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cursor, VS Code e outros clientes · Kanutus Docs</title>
+<meta name="description" content="Documentação da API e do MCP do Kanutus: salas com tradução ao vivo, agenda, vozes, ligações e agentes de IA.">
+<link rel="canonical" href="https://docs.kanutus.com/pt/mcp/other-clients">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/mcp/other-clients">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/mcp/other-clients">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Pular para o conteúdo</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/pt" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Idioma"><a href="/mcp/other-clients" hreflang="en" lang="en">EN</a><a href="/pt/mcp/other-clients" hreflang="pt-BR" lang="pt-BR" aria-current="true">PT</a></nav>
+<a class="top-link" href="https://kanutus.com/pt">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Abrir o app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Começar</p><ul><li><a href="/pt">Kanutus para desenvolvedores</a></li><li><a href="/pt/quickstart">Começar em 5 minutos</a></li><li><a href="/pt/authentication">Autenticação</a></li><li><a href="/pt/test-mode">Modo de teste</a></li></ul></div><div class="nav-group"><p>Assistentes de IA (MCP)</p><ul><li><a href="/pt/mcp">Servidor MCP do Kanutus</a></li><li><a href="/pt/mcp/connect-claude">Conectar o Claude</a></li><li><a href="/pt/mcp/connect-chatgpt">Conectar o ChatGPT</a></li><li><a href="/pt/mcp/other-clients" aria-current="page">Cursor, VS Code e outros clientes</a></li><li><a href="/pt/mcp/tools">As 23 ferramentas do MCP</a></li></ul></div><div class="nav-group"><p>Guias</p><ul><li><a href="/pt/guides/agent-in-room">Agente de IA na sala</a></li><li><a href="/pt/guides/schedule-meeting">Agendar reunião</a></li><li><a href="/pt/guides/translated-call">Ligação traduzida</a></li><li><a href="/pt/guides/transcripts">Receber transcrições</a></li></ul></div><div class="nav-group"><p>Integrar</p><ul><li><a href="/pt/webhooks">Webhooks</a></li><li><a href="/pt/errors">Limites e erros</a></li><li><a href="/pt/responsible-use">Uso responsável</a></li></ul></div><div class="nav-group"><p>Referência da API</p><ul><li><a href="/pt/reference">Referência da API</a></li><li><a href="/pt/reference/account" class="sub">Conta e uso</a></li><li><a href="/pt/reference/rooms" class="sub">Salas</a></li><li><a href="/pt/reference/calendar" class="sub">Reuniões e agendamento</a></li><li><a href="/pt/reference/agents" class="sub">Agente de IA na sala</a></li><li><a href="/pt/reference/transcripts" class="sub">Transcrições</a></li><li><a href="/pt/reference/calls" class="sub">Ligações</a></li><li><a href="/pt/reference/webhooks" class="sub">Webhooks e eventos</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Cursor, VS Code e outros clientes</h1>
+<p>O servidor remoto funciona com qualquer cliente MCP que aceite <strong>Streamable HTTP</strong> com <strong>OAuth 2.1</strong> (PKCE e registro dinâmico de cliente). O cliente descobre tudo a partir da URL. Na primeira requisição, o servidor responde <code>401</code> com um cabeçalho <code>WWW-Authenticate</code>. Esse cabeçalho aponta para <code>/.well-known/oauth-protected-resource</code>, que indica o servidor de autorização do Kanutus.</p>
+<h2 id="cursor"><a class="anchor" href="#cursor" aria-hidden="true">#</a>Cursor</h2>
+<p>Em <strong>Cursor Settings → MCP → Add new MCP server</strong>, ou no arquivo <code>~/.cursor/mcp.json</code> (vale para todos os projetos) ou <code>.cursor/mcp.json</code> (vale só para um projeto):</p>
+<div class="code"><div class="code-head"><span>mcp.json</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-json">{
+  &quot;mcpServers&quot;: {
+    &quot;kanutus&quot;: { &quot;url&quot;: &quot;https://mcp.kanutus.com/mcp&quot; }
+  }
+}</code></pre></div>
+<p>O Cursor mostra <strong>Needs login</strong> ao lado do servidor. Clique ali para entrar no Kanutus.</p>
+<h2 id="vs-code-modo-agente-do-github-copilot"><a class="anchor" href="#vs-code-modo-agente-do-github-copilot" aria-hidden="true">#</a>VS Code (modo agente do GitHub Copilot)</h2>
+<p>No <code>.vscode/mcp.json</code>, ou com o comando <strong>MCP: Add Server</strong>:</p>
+<div class="code"><div class="code-head"><span>.vscode/mcp.json</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-json">{
+  &quot;servers&quot;: {
+    &quot;kanutus&quot;: { &quot;type&quot;: &quot;http&quot;, &quot;url&quot;: &quot;https://mcp.kanutus.com/mcp&quot; }
+  }
+}</code></pre></div>
+<p>Inicie o servidor pelo arquivo ou pela lista de servidores MCP e aceite o login.</p>
+<h2 id="claude-code"><a class="anchor" href="#claude-code" aria-hidden="true">#</a>Claude Code</h2>
+<div class="code"><div class="code-head"><span>terminal</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">claude mcp add --transport http kanutus https://mcp.kanutus.com/mcp</code></pre></div>
+<p>Depois, rode <code>/mcp</code>, escolha <strong>kanutus</strong> e clique em <strong>Authenticate</strong>. Veja <a href="/pt/mcp/connect-claude#claude-code">Conectar o Claude</a>.</p>
+<h2 id="clientes-que-so-rodam-servidores-locais"><a class="anchor" href="#clientes-que-so-rodam-servidores-locais" aria-hidden="true">#</a>Clientes que só rodam servidores locais</h2>
+<p>Enquanto o pacote local não é publicado <span class="badge badge-soon">Em breve</span>, dá para fazer uma ponte com o servidor remoto usando o pacote da comunidade <code>mcp-remote</code>. Ele cuida do login no seu navegador:</p>
+<div class="code"><div class="code-head"><span>config</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-json">{
+  &quot;mcpServers&quot;: {
+    &quot;kanutus&quot;: { &quot;command&quot;: &quot;npx&quot;, &quot;args&quot;: [&quot;-y&quot;, &quot;mcp-remote&quot;, &quot;https://mcp.kanutus.com/mcp&quot;] }
+  }
+}</code></pre></div>
+<h2 id="o-seu-proprio-agente"><a class="anchor" href="#o-seu-proprio-agente" aria-hidden="true">#</a>O seu próprio agente</h2>
+<p>Se você está escrevendo um agente próprio (LangGraph, OpenAI Agents SDK, Vercel AI SDK, LiveKit Agents, Pipecat…), há dois caminhos:</p>
+<ul><li><div>usar o servidor MCP com um token OAuth, como os clientes acima; ou</div></li><li><div>chamar a <a href="/pt/reference">API REST</a> direto com uma chave de API. Para um backend é mais simples, e você ainda ganha os <a href="/pt/webhooks">webhooks</a>.</div></li></ul>
+<p>Com o SDK oficial do MCP em TypeScript, a conexão fica assim (o SDK faz o fluxo OAuth por meio de um <code>authProvider</code>):</p>
+<div class="code"><div class="code-head"><span>agent.ts</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-ts">import { Client } from &quot;@modelcontextprotocol/sdk/client/index.js&quot;;
+import { StreamableHTTPClientTransport } from &quot;@modelcontextprotocol/sdk/client/streamableHttp.js&quot;;
+
+const transport = new StreamableHTTPClientTransport(new URL(&quot;https://mcp.kanutus.com/mcp&quot;), { authProvider });
+const client = new Client({ name: &quot;meu-agente&quot;, version: &quot;1.0.0&quot; });
+await client.connect(transport);
+console.log((await client.listTools()).tools.map((t) =&gt; t.name));
+const saldo = await client.callTool({ name: &quot;get_balance&quot;, arguments: {} });</code></pre></div>
+</article>
+<nav class="pager"><a class="prev" href="/pt/mcp/connect-chatgpt"><span>Anterior</span><strong>Conectar o ChatGPT</strong></a><a class="next" href="/pt/mcp/tools"><span>Próximo</span><strong>As 23 ferramentas do MCP</strong></a></nav>
+<footer class="foot"><p>Achou algo errado ou faltando? Escreva para <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">Arquivo OpenAPI 3.1</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>Nesta página</p><ul><li><a href="#cursor">Cursor</a></li><li><a href="#vs-code-modo-agente-do-github-copilot">VS Code (modo agente do GitHub Copilot)</a></li><li><a href="#claude-code">Claude Code</a></li><li><a href="#clientes-que-so-rodam-servidores-locais">Clientes que só rodam servidores locais</a></li><li><a href="#o-seu-proprio-agente">O seu próprio agente</a></li></ul></aside>
+</div>
+</body>
+</html>

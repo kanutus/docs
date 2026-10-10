@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ligação traduzida · Kanutus Docs</title>
+<meta name="description" content="Documentação da API e do MCP do Kanutus: salas com tradução ao vivo, agenda, vozes, ligações e agentes de IA.">
+<link rel="canonical" href="https://docs.kanutus.com/pt/guides/translated-call">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/guides/translated-call">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/guides/translated-call">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Pular para o conteúdo</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/pt" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Idioma"><a href="/guides/translated-call" hreflang="en" lang="en">EN</a><a href="/pt/guides/translated-call" hreflang="pt-BR" lang="pt-BR" aria-current="true">PT</a></nav>
+<a class="top-link" href="https://kanutus.com/pt">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Abrir o app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Começar</p><ul><li><a href="/pt">Kanutus para desenvolvedores</a></li><li><a href="/pt/quickstart">Começar em 5 minutos</a></li><li><a href="/pt/authentication">Autenticação</a></li><li><a href="/pt/test-mode">Modo de teste</a></li></ul></div><div class="nav-group"><p>Assistentes de IA (MCP)</p><ul><li><a href="/pt/mcp">Servidor MCP do Kanutus</a></li><li><a href="/pt/mcp/connect-claude">Conectar o Claude</a></li><li><a href="/pt/mcp/connect-chatgpt">Conectar o ChatGPT</a></li><li><a href="/pt/mcp/other-clients">Cursor, VS Code e outros clientes</a></li><li><a href="/pt/mcp/tools">As 23 ferramentas do MCP</a></li></ul></div><div class="nav-group"><p>Guias</p><ul><li><a href="/pt/guides/agent-in-room">Agente de IA na sala</a></li><li><a href="/pt/guides/schedule-meeting">Agendar reunião</a></li><li><a href="/pt/guides/translated-call" aria-current="page">Ligação traduzida</a></li><li><a href="/pt/guides/transcripts">Receber transcrições</a></li></ul></div><div class="nav-group"><p>Integrar</p><ul><li><a href="/pt/webhooks">Webhooks</a></li><li><a href="/pt/errors">Limites e erros</a></li><li><a href="/pt/responsible-use">Uso responsável</a></li></ul></div><div class="nav-group"><p>Referência da API</p><ul><li><a href="/pt/reference">Referência da API</a></li><li><a href="/pt/reference/account" class="sub">Conta e uso</a></li><li><a href="/pt/reference/rooms" class="sub">Salas</a></li><li><a href="/pt/reference/calendar" class="sub">Reuniões e agendamento</a></li><li><a href="/pt/reference/agents" class="sub">Agente de IA na sala</a></li><li><a href="/pt/reference/transcripts" class="sub">Transcrições</a></li><li><a href="/pt/reference/calls" class="sub">Ligações</a></li><li><a href="/pt/reference/webhooks" class="sub">Webhooks e eventos</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Ligação traduzida</h1>
+<p>Um agente de IA liga para um número de telefone e se apresenta como assistente de IA. Ele conversa com a pessoa na língua dela, enquanto você (ou o seu agente) escreve e lê na sua.</p>
+<div class="callout callout-soon"><p>Ligações reais chegam em breve. Com uma chave <code>kt_test_</code>, você já pode montar a integração inteira usando os <a href="/pt/test-mode#numeros-magicos">números mágicos</a>. Com uma chave de produção, <code>POST /v1/calls</code> responde <code>501 not_available_yet</code>.</p></div>
+<h2 id="1-confira-o-destino-e-a-finalidade"><a class="anchor" href="#1-confira-o-destino-e-a-finalidade" aria-hidden="true">#</a>1. Confira o destino e a finalidade</h2>
+<p>Toda ligação declara uma <strong>finalidade</strong>: <code>transactional</code>, <code>scheduling</code>, <code>support</code> ou <code>marketing</code>. O que é permitido depende do país. Nos EUA, por exemplo, marketing para celular exige consentimento prévio por escrito; no Brasil, o telemarketing tem regras próprias. Consulte antes de ligar:</p>
+<div class="code"><div class="code-head"><span>bash</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/calls/quote?to=%2B15550100&amp;purpose=scheduling&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_TEST_KEY&quot;</code></pre></div>
+<p>A resposta informa o país, o tipo de número, o fator do minuto e se o destino é permitido. Em <code>purpose</code>, diz também se essa finalidade é permitida ali e o que ela exige (<code>requires</code>, por exemplo <code>[&amp;quot;written_consent&amp;quot;]</code>). Números premium e de custo compartilhado são sempre bloqueados.</p>
+<h2 id="2-faca-a-ligacao"><a class="anchor" href="#2-faca-a-ligacao" aria-hidden="true">#</a>2. Faça a ligação</h2>
+<p>Exige a permissão <code>calls:dial</code>. Ela vem desativada por padrão, e só o Dono pode ativá-la.</p>
+<div class="code"><div class="code-head"><span>bash</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl -X POST https://api.kanutus.com/v1/calls \
+  -H &quot;Authorization: Bearer $KANUTUS_TEST_KEY&quot; \
+  -H &quot;Idempotency-Key: $(uuidgen)&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;to&quot;: &quot;+1 555 0100&quot;, &quot;purpose&quot;: &quot;scheduling&quot;,
+       &quot;consent&quot;: {&quot;kind&quot;: &quot;existing_customer&quot;, &quot;ref&quot;: &quot;crm-4821&quot;},
+       &quot;agent_lang&quot;: &quot;pt&quot;, &quot;remote_lang&quot;: &quot;en&quot;}'</code></pre></div>
+<ul><li><div><code>agent_lang</code>: a língua em que você escreve e lê. <code>remote_lang</code>: a língua de quem recebe a ligação.</div></li><li><div><code>consent</code>: o consentimento que você tem dessa pessoa e a sua referência ao registro dele.</div></li><li><div>A resposta traz o <code>id</code> e o <code>status</code> da ligação; <code>ai_disclosure</code> é sempre <code>true</code>.</div></li></ul>
+<p>Acompanhe a ligação com <code>GET /v1/calls/{id}</code> ou pelos <a href="/pt/webhooks">webhooks</a> <code>call.*</code> (<code>call.answered</code>, <code>call.voicemail</code>, <code>call.completed</code>, <code>call.failed</code>, <code>call.blocked</code>).</p>
+<h2 id="custo"><a class="anchor" href="#custo" aria-hidden="true">#</a>Custo</h2>
+<p><code>ceil(max(tempo de conversa, 30 s) × fator do destino)</code> minutos, com a tradução incluída. A cotação mostra o fator. Valem os limites por ligação e por dia da sua chave.</p>
+<h2 id="proximos-passos"><a class="anchor" href="#proximos-passos" aria-hidden="true">#</a>Próximos passos</h2>
+<ul><li><div>Falar e ouvir durante a ligação com <code>say</code> e <code>listen</code>, e mandar tons de teclado para menus de atendimento <span class="badge badge-soon">Em breve</span></div></li><li><div>Colocar alguém da sua organização na ligação, falando pelo app do Kanutus <span class="badge badge-soon">Em breve</span></div></li><li><div>Atender ligações recebidas com um agente <span class="badge badge-soon">Em breve</span></div></li></ul>
+<p>Leia o <a href="/pt/responsible-use">Uso responsável</a> antes de ligar para as pessoas.</p>
+</article>
+<nav class="pager"><a class="prev" href="/pt/guides/schedule-meeting"><span>Anterior</span><strong>Agendar reunião</strong></a><a class="next" href="/pt/guides/transcripts"><span>Próximo</span><strong>Receber transcrições</strong></a></nav>
+<footer class="foot"><p>Achou algo errado ou faltando? Escreva para <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">Arquivo OpenAPI 3.1</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>Nesta página</p><ul><li><a href="#1-confira-o-destino-e-a-finalidade">1. Confira o destino e a finalidade</a></li><li><a href="#2-faca-a-ligacao">2. Faça a ligação</a></li><li><a href="#custo">Custo</a></li><li><a href="#proximos-passos">Próximos passos</a></li></ul></aside>
+</div>
+</body>
+</html>

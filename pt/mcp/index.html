@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Servidor MCP do Kanutus · Kanutus Docs</title>
+<meta name="description" content="Documentação da API e do MCP do Kanutus: salas com tradução ao vivo, agenda, vozes, ligações e agentes de IA.">
+<link rel="canonical" href="https://docs.kanutus.com/pt/mcp">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/mcp">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/mcp">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Pular para o conteúdo</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/pt" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Idioma"><a href="/mcp" hreflang="en" lang="en">EN</a><a href="/pt/mcp" hreflang="pt-BR" lang="pt-BR" aria-current="true">PT</a></nav>
+<a class="top-link" href="https://kanutus.com/pt">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Abrir o app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Começar</p><ul><li><a href="/pt">Kanutus para desenvolvedores</a></li><li><a href="/pt/quickstart">Começar em 5 minutos</a></li><li><a href="/pt/authentication">Autenticação</a></li><li><a href="/pt/test-mode">Modo de teste</a></li></ul></div><div class="nav-group"><p>Assistentes de IA (MCP)</p><ul><li><a href="/pt/mcp" aria-current="page">Servidor MCP do Kanutus</a></li><li><a href="/pt/mcp/connect-claude">Conectar o Claude</a></li><li><a href="/pt/mcp/connect-chatgpt">Conectar o ChatGPT</a></li><li><a href="/pt/mcp/other-clients">Cursor, VS Code e outros clientes</a></li><li><a href="/pt/mcp/tools">As 23 ferramentas do MCP</a></li></ul></div><div class="nav-group"><p>Guias</p><ul><li><a href="/pt/guides/agent-in-room">Agente de IA na sala</a></li><li><a href="/pt/guides/schedule-meeting">Agendar reunião</a></li><li><a href="/pt/guides/translated-call">Ligação traduzida</a></li><li><a href="/pt/guides/transcripts">Receber transcrições</a></li></ul></div><div class="nav-group"><p>Integrar</p><ul><li><a href="/pt/webhooks">Webhooks</a></li><li><a href="/pt/errors">Limites e erros</a></li><li><a href="/pt/responsible-use">Uso responsável</a></li></ul></div><div class="nav-group"><p>Referência da API</p><ul><li><a href="/pt/reference">Referência da API</a></li><li><a href="/pt/reference/account" class="sub">Conta e uso</a></li><li><a href="/pt/reference/rooms" class="sub">Salas</a></li><li><a href="/pt/reference/calendar" class="sub">Reuniões e agendamento</a></li><li><a href="/pt/reference/agents" class="sub">Agente de IA na sala</a></li><li><a href="/pt/reference/transcripts" class="sub">Transcrições</a></li><li><a href="/pt/reference/calls" class="sub">Ligações</a></li><li><a href="/pt/reference/webhooks" class="sub">Webhooks e eventos</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Servidor MCP do Kanutus</h1>
+<p>O <a href="https://modelcontextprotocol.io" rel="noopener" target="_blank">Model Context Protocol</a> (MCP) é o padrão aberto que os assistentes de IA usam para acionar ferramentas externas. O servidor MCP do Kanutus dá a assistentes como o Claude e o ChatGPT <strong>23 ferramentas</strong>. Com elas, o assistente cria salas com tradução ao vivo, marca reuniões e agenda horários. Também consulta seus minutos e transcrições e participa de uma sala como agente de IA.</p>
+<div class="logos"><img src="/assets/logos/claude.svg" alt="Claude" width="28" height="28"><img src="/assets/logos/openai.svg" alt="ChatGPT" width="28" height="28"></div>
+<h2 id="a-url-do-conector"><a class="anchor" href="#a-url-do-conector" aria-hidden="true">#</a>A URL do conector</h2>
+<div class="code"><div class="code-head"><span>URL do conector</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-text">https://mcp.kanutus.com/mcp</code></pre></div>
+<ul><li><div><strong>Remoto, Streamable HTTP, OAuth 2.1.</strong> Você entra com a sua conta Kanutus na tela de permissão do próprio Kanutus e escolhe a organização e as permissões. O assistente recebe um token que só pode fazer o que você liberou. A sua senha nunca chega ao assistente.</div></li><li><div>Funciona nos <strong>planos pagos</strong> e nos <strong>planos para empresas</strong>, como a API.</div></li><li><div>O Dono da organização pode exigir aprovação antes de os membros conectarem apps.</div></li></ul>
+<h2 id="conecte-o-seu-assistente"><a class="anchor" href="#conecte-o-seu-assistente" aria-hidden="true">#</a>Conecte o seu assistente</h2>
+<div class="cards"><a class="card" href="/pt/mcp/connect-claude"><strong>Claude</strong><span>claude.ai, Claude Desktop, Claude no celular e Claude Code.</span></a><a class="card" href="/pt/mcp/connect-chatgpt"><strong>ChatGPT</strong><span>chatgpt.com e os apps do ChatGPT (modo desenvolvedor).</span></a><a class="card" href="/pt/mcp/other-clients"><strong>Cursor, VS Code e outros</strong><span>Qualquer cliente que fale MCP por HTTP com OAuth.</span></a><a class="card" href="/pt/mcp/tools"><strong>As 23 ferramentas</strong><span>O que o assistente consegue fazer, com exemplos.</span></a></div>
+<h2 id="o-que-pedir"><a class="anchor" href="#o-que-pedir" aria-hidden="true">#</a>O que pedir</h2>
+<p>Depois de conectar, é só pedir em linguagem natural. O assistente só faz o que as permissões que você deu permitem.</p>
+<ul><li><div>&quot;Crie uma sala para uma conversa com o Kenji. Eu falo português e ele fala japonês.&quot;</div></li><li><div>&quot;Marque uma reunião de 30 minutos amanhã às 10h com ana@exemplo.com, em português e espanhol.&quot;</div></li><li><div>&quot;Quantos minutos ainda tenho?&quot;</div></li><li><div>&quot;Ache um horário livre na semana que vem no meu link de agendamento e agende para a Lena (francês).&quot;</div></li></ul>
+<h2 id="seguranca-embutida"><a class="anchor" href="#seguranca-embutida" aria-hidden="true">#</a>Segurança embutida</h2>
+<ul><li><div><strong>Pergunta antes de agir.</strong> Antes de qualquer ação que gaste minutos ou envolva outras pessoas, o assistente pede a sua confirmação: encerrar uma sala, entrar como agente, ligar para um telefone. Assistentes que não conseguem perguntar precisam mandar <code>confirm: true</code>, e só devem fazer isso depois de perguntar a você.</div></li><li><div><strong>Conteúdo não confiável.</strong> Tudo o que outras pessoas disseram ou escreveram volta dentro de <code>untrusted_content</code>: transcrições, títulos de sala, nomes. É dado, nunca instrução para o assistente.</div></li><li><div><strong>Sem duplicatas.</strong> As requisições de criação levam uma chave de idempotência. Se o assistente repetir uma chamada, nada é criado duas vezes.</div></li><li><div><strong>Código aberto.</strong> O servidor tem licença MIT e só conversa com a API pública do Kanutus, usando as suas permissões: <a href="https://github.com/kanutus/mcp" rel="noopener" target="_blank">github.com/kanutus/mcp</a>.</div></li></ul>
+<h2 id="rodar-localmente-stdio"><a class="anchor" href="#rodar-localmente-stdio" aria-hidden="true">#</a>Rodar localmente (stdio) <span class="badge badge-soon">Em breve</span></h2>
+<p>Uma versão local, que roda na sua máquina com uma chave de API, para clientes que só aceitam servidores locais:</p>
+<div class="code"><div class="code-head"><span>claude_desktop_config.json</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-json">{
+  &quot;mcpServers&quot;: {
+    &quot;kanutus&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;-y&quot;, &quot;@kanutus/mcp&quot;],
+      &quot;env&quot;: { &quot;KANUTUS_API_KEY&quot;: &quot;kt_test_...&quot; }
+    }
+  }
+}</code></pre></div>
+<p>O pacote <code>@kanutus/mcp</code> ainda não está no npm. Até ele ser publicado, use a URL remota acima. Claude Desktop, Claude Code, Cursor e VS Code já aceitam essa URL.</p>
+</article>
+<nav class="pager"><a class="prev" href="/pt/test-mode"><span>Anterior</span><strong>Modo de teste</strong></a><a class="next" href="/pt/mcp/connect-claude"><span>Próximo</span><strong>Conectar o Claude</strong></a></nav>
+<footer class="foot"><p>Achou algo errado ou faltando? Escreva para <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">Arquivo OpenAPI 3.1</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>Nesta página</p><ul><li><a href="#a-url-do-conector">A URL do conector</a></li><li><a href="#conecte-o-seu-assistente">Conecte o seu assistente</a></li><li><a href="#o-que-pedir">O que pedir</a></li><li><a href="#seguranca-embutida">Segurança embutida</a></li><li><a href="#rodar-localmente-stdio">Rodar localmente (stdio)</a></li></ul></aside>
+</div>
+</body>
+</html>

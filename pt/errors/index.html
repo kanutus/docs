@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Limites e erros · Kanutus Docs</title>
+<meta name="description" content="Documentação da API e do MCP do Kanutus: salas com tradução ao vivo, agenda, vozes, ligações e agentes de IA.">
+<link rel="canonical" href="https://docs.kanutus.com/pt/errors">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/errors">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/errors">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Pular para o conteúdo</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/pt" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Idioma"><a href="/errors" hreflang="en" lang="en">EN</a><a href="/pt/errors" hreflang="pt-BR" lang="pt-BR" aria-current="true">PT</a></nav>
+<a class="top-link" href="https://kanutus.com/pt">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Abrir o app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Começar</p><ul><li><a href="/pt">Kanutus para desenvolvedores</a></li><li><a href="/pt/quickstart">Começar em 5 minutos</a></li><li><a href="/pt/authentication">Autenticação</a></li><li><a href="/pt/test-mode">Modo de teste</a></li></ul></div><div class="nav-group"><p>Assistentes de IA (MCP)</p><ul><li><a href="/pt/mcp">Servidor MCP do Kanutus</a></li><li><a href="/pt/mcp/connect-claude">Conectar o Claude</a></li><li><a href="/pt/mcp/connect-chatgpt">Conectar o ChatGPT</a></li><li><a href="/pt/mcp/other-clients">Cursor, VS Code e outros clientes</a></li><li><a href="/pt/mcp/tools">As 23 ferramentas do MCP</a></li></ul></div><div class="nav-group"><p>Guias</p><ul><li><a href="/pt/guides/agent-in-room">Agente de IA na sala</a></li><li><a href="/pt/guides/schedule-meeting">Agendar reunião</a></li><li><a href="/pt/guides/translated-call">Ligação traduzida</a></li><li><a href="/pt/guides/transcripts">Receber transcrições</a></li></ul></div><div class="nav-group"><p>Integrar</p><ul><li><a href="/pt/webhooks">Webhooks</a></li><li><a href="/pt/errors" aria-current="page">Limites e erros</a></li><li><a href="/pt/responsible-use">Uso responsável</a></li></ul></div><div class="nav-group"><p>Referência da API</p><ul><li><a href="/pt/reference">Referência da API</a></li><li><a href="/pt/reference/account" class="sub">Conta e uso</a></li><li><a href="/pt/reference/rooms" class="sub">Salas</a></li><li><a href="/pt/reference/calendar" class="sub">Reuniões e agendamento</a></li><li><a href="/pt/reference/agents" class="sub">Agente de IA na sala</a></li><li><a href="/pt/reference/transcripts" class="sub">Transcrições</a></li><li><a href="/pt/reference/calls" class="sub">Ligações</a></li><li><a href="/pt/reference/webhooks" class="sub">Webhooks e eventos</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Limites e erros</h1>
+<h2 id="formato-dos-erros"><a class="anchor" href="#formato-dos-erros" aria-hidden="true">#</a>Formato dos erros</h2>
+<p>Os erros vêm em <code>application/problem+json</code> (RFC 9457). O <code>code</code> é estável, então você pode usá-lo nas suas regras. Já a <code>message</code> é para pessoas e pode mudar. Toda resposta traz um <code>X-Request-Id</code>: inclua esse valor quando falar com a gente.</p>
+<div class="code"><div class="code-head"><span>json</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://kanutus.com/developers/errors#insufficient_scope&quot;,
+  &quot;title&quot;: &quot;insufficient_scope&quot;,
+  &quot;status&quot;: 403,
+  &quot;code&quot;: &quot;insufficient_scope&quot;,
+  &quot;message&quot;: &quot;This credential lacks the permission rooms:write.&quot;,
+  &quot;request_id&quot;: &quot;req_0NjjmC1WyEw2Tmyz1rwP&quot;
+}</code></pre></div>
+<h2 id="codigos"><a class="anchor" href="#codigos" aria-hidden="true">#</a>Códigos</h2>
+<div class="table"><table><thead><tr><th>HTTP</th><th><code>code</code></th><th>O que fazer</th></tr></thead><tbody><tr><td>400</td><td><code>invalid_request</code></td><td>Corrija a requisição; a <code>message</code> diz qual campo está errado</td></tr><tr><td>400</td><td><code>idempotency_key_required</code></td><td>Mande o cabeçalho <code>Idempotency-Key</code> nas requisições que criam algo</td></tr><tr><td>401</td><td><code>unauthorized</code></td><td>A credencial está ausente, inválida, vencida ou revogada</td></tr><tr><td>402</td><td><code>spend_limit_reached</code></td><td>A chave atingiu o limite de gasto (do dia, do mês ou por ligação) ou acabaram os minutos</td></tr><tr><td>403</td><td><code>insufficient_scope</code></td><td>Falta uma permissão à credencial; o cabeçalho <code>WWW-Authenticate</code> diz qual</td></tr><tr><td>403</td><td><code>needs_review</code></td><td>Quem criou a chave saiu da organização; ela só lê até um Dono revisá-la</td></tr><tr><td>403</td><td><code>paid_plan_required</code></td><td>A conta está no plano grátis</td></tr><tr><td>403</td><td><code>ip_not_allowed</code></td><td>A requisição veio de um IP fora da lista permitida da chave</td></tr><tr><td>403</td><td><code>language_not_allowed</code>, <code>voice_not_allowed</code>, <code>number_not_allowed</code>, <code>destination_not_allowed</code></td><td>Fora das restrições da chave ou das regras do país</td></tr><tr><td>403</td><td><code>org_blocked</code>, <code>org_suspended</code></td><td>A organização foi bloqueada ou suspensa; fale com a gente</td></tr><tr><td>404</td><td><code>not_found</code></td><td>Não existe ou esta credencial não tem acesso</td></tr><tr><td>409</td><td><code>idempotency_mismatch</code></td><td>O mesmo <code>Idempotency-Key</code> foi usado com um corpo diferente</td></tr><tr><td>409</td><td><code>idempotency_in_progress</code></td><td>A primeira requisição com essa chave ainda está rodando; tente de novo em instantes</td></tr><tr><td>409</td><td><code>slot_taken</code></td><td>O horário foi ocupado nesse meio-tempo</td></tr><tr><td>409</td><td><code>session_ended</code></td><td>A sessão do agente já terminou</td></tr><tr><td>429</td><td><code>rate_limited</code></td><td>Requisições demais; espere o tempo do <code>Retry-After</code></td></tr><tr><td>429</td><td><code>too_many_sessions</code></td><td>Sessões de agente demais ao mesmo tempo</td></tr><tr><td>429</td><td><code>test_daily_limit</code></td><td>Chaves de teste aceitam 1.000 requisições por dia</td></tr><tr><td>501</td><td><code>not_available_yet</code></td><td>Ainda não está disponível em produção; funciona com uma chave <code>kt_test_</code></td></tr><tr><td>503</td><td><code>api_disabled</code>, <code>mcp_disabled</code>, <code>booking_unavailable</code></td><td>Indisponível no momento; tente mais tarde</td></tr></tbody></table></div>
+<h2 id="limites-de-requisicoes"><a class="anchor" href="#limites-de-requisicoes" aria-hidden="true">#</a>Limites de requisições</h2>
+<ul><li><div>O padrão é de <strong>60 requisições por minuto</strong> por credencial; planos para empresas podem ter mais. Chaves de teste também têm um limite de <strong>1.000 requisições por dia</strong>.</div></li><li><div>Toda resposta traz <code>RateLimit-Limit</code>, <code>RateLimit-Remaining</code> e <code>RateLimit-Reset</code>. Um <code>429</code> também traz <code>Retry-After</code> (em segundos).</div></li><li><div>Repita <code>429</code> e <code>5xx</code> com espera exponencial e jitter. Não repita outros <code>4xx</code>, a não ser <code>409 idempotency_in_progress</code>.</div></li></ul>
+<h2 id="idempotencia"><a class="anchor" href="#idempotencia" aria-hidden="true">#</a>Idempotência</h2>
+<p>As requisições que criam algo exigem o cabeçalho <code>Idempotency-Key</code>: <code>POST /v1/rooms</code>, <code>/meetings</code>, <code>/bookings</code>, <code>/calls</code> e <code>/rooms/{id}/agent-sessions</code>. Use qualquer valor único de até 255 caracteres, como um UUID. Se a rede falhar, mande a mesma requisição <strong>com a mesma chave</strong>: você recebe a resposta original em vez de uma segunda sala, agendamento ou ligação. As chaves ficam guardadas por 24 horas, por credencial.</p>
+<h2 id="versoes"><a class="anchor" href="#versoes" aria-hidden="true">#</a>Versões</h2>
+<p>A versão vai no caminho (<code>/v1</code>). Campos e endpoints novos podem aparecer a qualquer momento, então ignore os campos que você não conhece. Uma mudança incompatível viria como <code>/v2</code>, com 12 meses de convivência entre as duas versões e um e-mail aos donos das chaves que usam a rota antiga. Toda resposta traz <code>Kanutus-Version</code>.</p>
+</article>
+<nav class="pager"><a class="prev" href="/pt/webhooks"><span>Anterior</span><strong>Webhooks</strong></a><a class="next" href="/pt/responsible-use"><span>Próximo</span><strong>Uso responsável</strong></a></nav>
+<footer class="foot"><p>Achou algo errado ou faltando? Escreva para <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">Arquivo OpenAPI 3.1</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>Nesta página</p><ul><li><a href="#formato-dos-erros">Formato dos erros</a></li><li><a href="#codigos">Códigos</a></li><li><a href="#limites-de-requisicoes">Limites de requisições</a></li><li><a href="#idempotencia">Idempotência</a></li><li><a href="#versoes">Versões</a></li></ul></aside>
+</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agendar reunião · Kanutus Docs</title>
+<meta name="description" content="Documentação da API e do MCP do Kanutus: salas com tradução ao vivo, agenda, vozes, ligações e agentes de IA.">
+<link rel="canonical" href="https://docs.kanutus.com/pt/guides/schedule-meeting">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/guides/schedule-meeting">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/guides/schedule-meeting">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Pular para o conteúdo</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/pt" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Idioma"><a href="/guides/schedule-meeting" hreflang="en" lang="en">EN</a><a href="/pt/guides/schedule-meeting" hreflang="pt-BR" lang="pt-BR" aria-current="true">PT</a></nav>
+<a class="top-link" href="https://kanutus.com/pt">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Abrir o app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Começar</p><ul><li><a href="/pt">Kanutus para desenvolvedores</a></li><li><a href="/pt/quickstart">Começar em 5 minutos</a></li><li><a href="/pt/authentication">Autenticação</a></li><li><a href="/pt/test-mode">Modo de teste</a></li></ul></div><div class="nav-group"><p>Assistentes de IA (MCP)</p><ul><li><a href="/pt/mcp">Servidor MCP do Kanutus</a></li><li><a href="/pt/mcp/connect-claude">Conectar o Claude</a></li><li><a href="/pt/mcp/connect-chatgpt">Conectar o ChatGPT</a></li><li><a href="/pt/mcp/other-clients">Cursor, VS Code e outros clientes</a></li><li><a href="/pt/mcp/tools">As 23 ferramentas do MCP</a></li></ul></div><div class="nav-group"><p>Guias</p><ul><li><a href="/pt/guides/agent-in-room">Agente de IA na sala</a></li><li><a href="/pt/guides/schedule-meeting" aria-current="page">Agendar reunião</a></li><li><a href="/pt/guides/translated-call">Ligação traduzida</a></li><li><a href="/pt/guides/transcripts">Receber transcrições</a></li></ul></div><div class="nav-group"><p>Integrar</p><ul><li><a href="/pt/webhooks">Webhooks</a></li><li><a href="/pt/errors">Limites e erros</a></li><li><a href="/pt/responsible-use">Uso responsável</a></li></ul></div><div class="nav-group"><p>Referência da API</p><ul><li><a href="/pt/reference">Referência da API</a></li><li><a href="/pt/reference/account" class="sub">Conta e uso</a></li><li><a href="/pt/reference/rooms" class="sub">Salas</a></li><li><a href="/pt/reference/calendar" class="sub">Reuniões e agendamento</a></li><li><a href="/pt/reference/agents" class="sub">Agente de IA na sala</a></li><li><a href="/pt/reference/transcripts" class="sub">Transcrições</a></li><li><a href="/pt/reference/calls" class="sub">Ligações</a></li><li><a href="/pt/reference/webhooks" class="sub">Webhooks e eventos</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Agendar reunião</h1>
+<p>Há dois caminhos: marcar a reunião direto (você define o horário e convida as pessoas) ou agendar um horário livre num link de agendamento (como no Calendly).</p>
+<h2 id="marcar-direto"><a class="anchor" href="#marcar-direto" aria-hidden="true">#</a>Marcar direto</h2>
+<p><code>POST /v1/meetings</code> cria uma sala com data. Os convidados recebem o convite por e-mail, com o link e um arquivo de calendário. Exige a permissão <code>calendar:write</code>.</p>
+<div class="code"><div class="code-head"><span>bash</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl -X POST https://api.kanutus.com/v1/meetings \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot; \
+  -H &quot;Idempotency-Key: $(uuidgen)&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{
+    &quot;title&quot;: &quot;Revisão com Kenji&quot;,
+    &quot;starts_at&quot;: &quot;2026-10-12T10:00:00-03:00&quot;,
+    &quot;duration_min&quot;: 30,
+    &quot;invitees&quot;: [&quot;kenji@exemplo.com&quot;],
+    &quot;langs&quot;: [&quot;pt&quot;, &quot;ja&quot;]
+  }'</code></pre></div>
+<ul><li><div><code>starts_at</code> vai em ISO 8601 <strong>com o fuso horário</strong>.</div></li><li><div><code>langs</code> são as línguas dos participantes; elas ajudam o Kanutus a se preparar.</div></li><li><div>A resposta é uma sala com <code>status: &amp;quot;scheduled&amp;quot;</code> e a <code>url</code> dela.</div></li></ul>
+<p>Para listar, use <code>GET /v1/meetings?from=…&amp;amp;to=…</code>. Para cancelar, use <code>DELETE /v1/meetings/{id}</code>; os convidados são avisados.</p>
+<h2 id="agendar-num-link-de-agendamento"><a class="anchor" href="#agendar-num-link-de-agendamento" aria-hidden="true">#</a>Agendar num link de agendamento</h2>
+<ol class="steps"><li><div>Liste os seus links de agendamento (exige <code>calendar:read</code>):</div><div class="code"><div class="code-head"><span>bash</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl https://api.kanutus.com/v1/event-types -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div></li><li><div>Veja os horários livres (em UTC) de um deles:</div><div class="code"><div class="code-head"><span>bash</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/event-types/&lt;event_type_id&gt;/slots?from=2026-10-13&amp;to=2026-10-17&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div></li><li><div>Agende um horário para o convidado (exige <code>calendar:write</code>). Ele recebe o convite por e-mail:</div><div class="code"><div class="code-head"><span>bash</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl -X POST https://api.kanutus.com/v1/bookings \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot; \
+  -H &quot;Idempotency-Key: $(uuidgen)&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;event_type_id&quot;: &quot;&lt;event_type_id&gt;&quot;, &quot;start&quot;: &quot;2026-10-14T13:00:00Z&quot;,
+       &quot;guest&quot;: {&quot;name&quot;: &quot;Lena&quot;, &quot;email&quot;: &quot;lena@exemplo.com&quot;, &quot;speak&quot;: &quot;fr&quot;, &quot;tz&quot;: &quot;Europe/Paris&quot;}}'</code></pre></div></li></ol>
+<p>Para agendar no link de <strong>outra pessoa</strong>, mande <code>page</code> e <code>event</code> (os trechos da URL de agendamento dela) em vez de <code>event_type_id</code>. Se o horário tiver sido ocupado nesse meio-tempo, a resposta é <code>409 slot_taken</code>.</p>
+<h2 id="eventos"><a class="anchor" href="#eventos" aria-hidden="true">#</a>Eventos</h2>
+<p><code>meeting.created</code>, <code>meeting.canceled</code> e <code>booking.created</code> chegam aos seus <a href="/pt/webhooks">webhooks</a>.</p>
+<h2 id="com-um-assistente-mcp"><a class="anchor" href="#com-um-assistente-mcp" aria-hidden="true">#</a>Com um assistente (MCP)</h2>
+<p><em>&quot;Ache um horário livre na terça que vem à tarde no meu link de 30 minutos e agende para lena@exemplo.com, ela fala francês.&quot;</em> O assistente usa <code>list_booking_links</code>, <code>find_slots</code> e <code>book_slot</code>.</p>
+</article>
+<nav class="pager"><a class="prev" href="/pt/guides/agent-in-room"><span>Anterior</span><strong>Agente de IA na sala</strong></a><a class="next" href="/pt/guides/translated-call"><span>Próximo</span><strong>Ligação traduzida</strong></a></nav>
+<footer class="foot"><p>Achou algo errado ou faltando? Escreva para <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">Arquivo OpenAPI 3.1</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>Nesta página</p><ul><li><a href="#marcar-direto">Marcar direto</a></li><li><a href="#agendar-num-link-de-agendamento">Agendar num link de agendamento</a></li><li><a href="#eventos">Eventos</a></li><li><a href="#com-um-assistente-mcp">Com um assistente (MCP)</a></li></ul></aside>
+</div>
+</body>
+</html>

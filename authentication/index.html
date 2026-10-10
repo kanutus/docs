@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Authentication · Kanutus Docs</title>
+<meta name="description" content="Kanutus API and MCP documentation: rooms with live translation, scheduling, voices, calls and AI agents.">
+<link rel="canonical" href="https://docs.kanutus.com/authentication">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/authentication">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/authentication">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Language"><a href="/authentication" hreflang="en" lang="en" aria-current="true">EN</a><a href="/pt/authentication" hreflang="pt-BR" lang="pt-BR">PT</a></nav>
+<a class="top-link" href="https://kanutus.com">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Open the app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Get started</p><ul><li><a href="/">Kanutus for developers</a></li><li><a href="/quickstart">Quickstart</a></li><li><a href="/authentication" aria-current="page">Authentication</a></li><li><a href="/test-mode">Test mode</a></li></ul></div><div class="nav-group"><p>Connect AI assistants (MCP)</p><ul><li><a href="/mcp">Kanutus MCP server</a></li><li><a href="/mcp/connect-claude">Connect Claude</a></li><li><a href="/mcp/connect-chatgpt">Connect ChatGPT</a></li><li><a href="/mcp/other-clients">Cursor, VS Code and other clients</a></li><li><a href="/mcp/tools">The 23 MCP tools</a></li></ul></div><div class="nav-group"><p>Guides</p><ul><li><a href="/guides/agent-in-room">AI agent in a room</a></li><li><a href="/guides/schedule-meeting">Schedule a meeting</a></li><li><a href="/guides/translated-call">Translated phone call</a></li><li><a href="/guides/transcripts">Receive transcripts</a></li></ul></div><div class="nav-group"><p>Build</p><ul><li><a href="/webhooks">Webhooks</a></li><li><a href="/errors">Limits and errors</a></li><li><a href="/responsible-use">Responsible use</a></li></ul></div><div class="nav-group"><p>API reference</p><ul><li><a href="/reference">API reference</a></li><li><a href="/reference/account" class="sub">Account and usage</a></li><li><a href="/reference/rooms" class="sub">Rooms</a></li><li><a href="/reference/calendar" class="sub">Meetings and booking</a></li><li><a href="/reference/agents" class="sub">AI agent in a room</a></li><li><a href="/reference/transcripts" class="sub">Transcripts</a></li><li><a href="/reference/calls" class="sub">Phone calls</a></li><li><a href="/reference/webhooks" class="sub">Webhooks and events</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Authentication</h1>
+<p>Every request carries a credential in the <code>Authorization</code> header:</p>
+<div class="code"><div class="code-head"><span>http</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-http">Authorization: Bearer kt_live_...</code></pre></div>
+<p>There are two kinds of credential. Both go through the same permissions, limits and logs.</p>
+<div class="table"><table><thead><tr><th>Credential</th><th>For</th><th>Lifetime</th></tr></thead><tbody><tr><td><strong>API key</strong> <code>kt_live_…</code> / <code>kt_test_…</code></td><td>Your servers, scripts and your own agents</td><td>30, 90 or 365 days, or a date you choose</td></tr><tr><td><strong>OAuth 2.1</strong> access token</td><td>Apps acting on behalf of a person: Claude, ChatGPT, partner apps</td><td>15 minutes, renewed with a refresh token (30 days, rotating)</td></tr><tr><td>Organization app (client credentials) <span class="badge badge-soon">Soon</span></td><td>Partners integrating as a service of the organization</td><td>15 minutes</td></tr></tbody></table></div>
+<h2 id="api-keys"><a class="anchor" href="#api-keys" aria-hidden="true">#</a>API keys</h2>
+<p>Create keys in <strong>Developers → API keys</strong> in the app (see the <a href="/quickstart">Quickstart</a>).</p>
+<ul><li><div><code>kt_live_…</code> keys work in production and use minutes. <code>kt_test_…</code> keys use the <a href="/test-mode">simulator</a> and never use minutes.</div></li><li><div>The key is <strong>shown once</strong>. Kanutus keeps only a hash of it. If you lose it, revoke it and create another.</div></li><li><div>Revoking takes effect in <strong>less than a minute</strong>.</div></li><li><div>A key belongs to the <strong>organization</strong> (or to your account, on a personal plan). It keeps working if the person who created it leaves, but then it becomes <strong>read only</strong> until an owner reviews it (<code>needs_review: true</code> in <code>GET /v1/me</code>).</div></li><li><div>A key can <strong>never do more than the person who created it</strong>. If that person's role goes down, the key goes down with it.</div></li><li><div>Keys have a checksum at the end, so secret scanners can recognise them. Treat a leaked key as compromised: revoke it.</div></li></ul>
+<div class="callout callout-warn"><p>Keep keys on the server. Never put a key in a web page, a mobile app, a public repository or a prompt.</p></div>
+<h2 id="permissions"><a class="anchor" href="#permissions" aria-hidden="true">#</a>Permissions</h2>
+<p>Each key or connected app has a set of permissions (scopes). The <a href="/reference">reference</a> shows the permission each endpoint needs. Missing permission = <code>403 insufficient_scope</code>.</p>
+<div class="table"><table><thead><tr><th>Permission</th><th>What it allows</th></tr></thead><tbody><tr><td><code>usage:read</code></td><td>Minutes left and API usage</td></tr><tr><td><code>members:read</code></td><td>List members of the organization</td></tr><tr><td><code>rooms:read</code> / <code>rooms:write</code></td><td>Read rooms · create, end, guest links</td></tr><tr><td><code>rooms:join</code></td><td>AI agent in a room: join, speak, listen</td></tr><tr><td><code>calls:read</code></td><td>Call history and destination quotes</td></tr><tr><td><code>calls:dial</code></td><td>Place translated calls as an AI agent</td></tr><tr><td><code>numbers:read</code></td><td>Company phone numbers</td></tr><tr><td><code>contacts:read</code> / <code>contacts:write</code></td><td>Phone contacts</td></tr><tr><td><code>calendar:read</code> / <code>calendar:write</code></td><td>Meetings, booking links, free times, bookings</td></tr><tr><td><code>booking:write</code></td><td>Create and edit booking links</td></tr><tr><td><code>voices:read</code> / <code>voices:write</code></td><td>List voices · rename and delete</td></tr><tr><td><code>voices:clone</code></td><td>Ask someone to clone their voice (always with their recorded consent) <span class="badge badge-soon">Soon</span></td></tr><tr><td><code>transcripts:read</code></td><td>Transcripts this credential can read</td></tr><tr><td><code>webhooks:write</code> · <code>events:read</code></td><td>Webhook endpoints · event log</td></tr></tbody></table></div>
+<p><code>GET /v1/me</code> works with any valid credential.</p>
+<h2 id="ready-made-roles"><a class="anchor" href="#ready-made-roles" aria-hidden="true">#</a>Ready-made roles</h2>
+<p>When creating a key you can pick a role instead of ticking permissions one by one:</p>
+<div class="table"><table><thead><tr><th>Role</th><th>Permissions</th></tr></thead><tbody><tr><td><strong>Read only</strong></td><td><code>usage:read rooms:read calls:read calendar:read voices:read transcripts:read</code></td></tr><tr><td><strong>Meeting assistant</strong></td><td><code>rooms:read rooms:write rooms:join calendar:read calendar:write voices:read transcripts:read</code></td></tr><tr><td><strong>Phone agent</strong></td><td><code>calls:read calls:dial numbers:read contacts:read contacts:write voices:read transcripts:read</code></td></tr><tr><td><strong>Calendar</strong></td><td><code>calendar:read calendar:write booking:write members:read</code></td></tr><tr><td><strong>Full integration</strong></td><td>everything except <code>voices:clone</code> and <code>calls:answer</code>, which you tick separately</td></tr><tr><td><strong>Custom</strong></td><td>your choice</td></tr></tbody></table></div>
+<h2 id="restrictions-and-spending-limit"><a class="anchor" href="#restrictions-and-spending-limit" aria-hidden="true">#</a>Restrictions and spending limit</h2>
+<p>On top of permissions, each key can be restricted:</p>
+<ul><li><div><strong>Spending limit</strong> in minutes per day, per month and per call. When reached, the API answers <code>402 spend_limit_reached</code>, and a <code>usage.threshold</code> event goes out at 80% and 100%.</div></li><li><div><strong>Department</strong> (organizations): minutes come from that department's quota.</div></li><li><div><strong>Phone numbers</strong> used as caller ID, <strong>destination countries</strong>, <strong>languages</strong> the agent speaks and hears.</div></li><li><div><strong>IP addresses</strong> allowed (optional).</div></li><li><div><strong>Rate limit</strong>: 60 requests per minute by default. Every response has <code>RateLimit-*</code> headers.</div></li></ul>
+<p>The rule is always: <strong>what the key can do = the creator's role ∩ the key's permissions ∩ its restrictions</strong>, checked on every request.</p>
+<h2 id="oauth-2-1-apps-acting-for-a-person"><a class="anchor" href="#oauth-2-1-apps-acting-for-a-person" aria-hidden="true">#</a>OAuth 2.1 (apps acting for a person)</h2>
+<p>This is what Claude and ChatGPT use when you add Kanutus as a connector. You only need it if you are building an app that other people connect to their Kanutus account.</p>
+<ul><li><div>Discovery: <code>https://api.kanutus.com/.well-known/oauth-authorization-server</code> (RFC 8414). The MCP server publishes <code>/.well-known/oauth-protected-resource</code> (RFC 9728).</div></li><li><div><strong>Authorization code + PKCE (S256 only)</strong>. No implicit flow, no password flow.</div></li><li><div><strong>Dynamic Client Registration</strong> (RFC 7591) at <code>https://api.kanutus.com/oauth/register</code>. New apps show as &quot;not verified&quot; on the consent screen until Kanutus verifies them.</div></li><li><div>The person signs in at <code>https://app.kanutus.com/oauth/authorize</code>, chooses the organization, can untick permissions, and clicks <strong>Allow</strong>.</div></li><li><div>Send <code>resource</code> (RFC 8707) with the URL of the API or the MCP server; the token only works there.</div></li><li><div>Access tokens are JWT (ES256), 15 minutes; public keys at <code>https://api.kanutus.com/.well-known/jwks.json</code>. Refresh tokens rotate; reusing an old one revokes the whole chain.</div></li><li><div>People can disconnect an app at any time in <strong>Developers → Connected apps</strong>.</div></li></ul>
+<div class="code"><div class="code-head"><span>discovery</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl https://api.kanutus.com/.well-known/oauth-authorization-server</code></pre></div>
+<h2 id="organizations-and-roles-in-the-app"><a class="anchor" href="#organizations-and-roles-in-the-app" aria-hidden="true">#</a>Organizations and roles in the app</h2>
+<ul><li><div><strong>Owner</strong> and <strong>manager</strong> can open <strong>Developers</strong> and create keys (a manager only for their own departments, if the owner allows it).</div></li><li><div>Personal account on a paid plan: the keys use your own minutes.</div></li><li><div>Nobody reads someone else's transcript through the API, not even an owner. A key only reads transcripts of sessions it created.</div></li></ul>
+</article>
+<nav class="pager"><a class="prev" href="/quickstart"><span>Previous</span><strong>Quickstart</strong></a><a class="next" href="/test-mode"><span>Next</span><strong>Test mode</strong></a></nav>
+<footer class="foot"><p>Something wrong or missing? Write to <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">OpenAPI 3.1 file</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>On this page</p><ul><li><a href="#api-keys">API keys</a></li><li><a href="#permissions">Permissions</a></li><li><a href="#ready-made-roles">Ready-made roles</a></li><li><a href="#restrictions-and-spending-limit">Restrictions and spending limit</a></li><li><a href="#oauth-2-1-apps-acting-for-a-person">OAuth 2.1 (apps acting for a person)</a></li><li><a href="#organizations-and-roles-in-the-app">Organizations and roles in the app</a></li></ul></aside>
+</div>
+</body>
+</html>

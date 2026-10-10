@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Responsible use · Kanutus Docs</title>
+<meta name="description" content="Kanutus API and MCP documentation: rooms with live translation, scheduling, voices, calls and AI agents.">
+<link rel="canonical" href="https://docs.kanutus.com/responsible-use">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/responsible-use">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/responsible-use">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Language"><a href="/responsible-use" hreflang="en" lang="en" aria-current="true">EN</a><a href="/pt/responsible-use" hreflang="pt-BR" lang="pt-BR">PT</a></nav>
+<a class="top-link" href="https://kanutus.com">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Open the app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Get started</p><ul><li><a href="/">Kanutus for developers</a></li><li><a href="/quickstart">Quickstart</a></li><li><a href="/authentication">Authentication</a></li><li><a href="/test-mode">Test mode</a></li></ul></div><div class="nav-group"><p>Connect AI assistants (MCP)</p><ul><li><a href="/mcp">Kanutus MCP server</a></li><li><a href="/mcp/connect-claude">Connect Claude</a></li><li><a href="/mcp/connect-chatgpt">Connect ChatGPT</a></li><li><a href="/mcp/other-clients">Cursor, VS Code and other clients</a></li><li><a href="/mcp/tools">The 23 MCP tools</a></li></ul></div><div class="nav-group"><p>Guides</p><ul><li><a href="/guides/agent-in-room">AI agent in a room</a></li><li><a href="/guides/schedule-meeting">Schedule a meeting</a></li><li><a href="/guides/translated-call">Translated phone call</a></li><li><a href="/guides/transcripts">Receive transcripts</a></li></ul></div><div class="nav-group"><p>Build</p><ul><li><a href="/webhooks">Webhooks</a></li><li><a href="/errors">Limits and errors</a></li><li><a href="/responsible-use" aria-current="page">Responsible use</a></li></ul></div><div class="nav-group"><p>API reference</p><ul><li><a href="/reference">API reference</a></li><li><a href="/reference/account" class="sub">Account and usage</a></li><li><a href="/reference/rooms" class="sub">Rooms</a></li><li><a href="/reference/calendar" class="sub">Meetings and booking</a></li><li><a href="/reference/agents" class="sub">AI agent in a room</a></li><li><a href="/reference/transcripts" class="sub">Transcripts</a></li><li><a href="/reference/calls" class="sub">Phone calls</a></li><li><a href="/reference/webhooks" class="sub">Webhooks and events</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Responsible use</h1>
+<p>Kanutus lets AI speak with real people, in rooms and on the phone, with voices that sound human. That needs care. By using the API and the connectors you agree to these rules; they are also enforced by the product.</p>
+<h2 id="an-ai-always-says-it-is-an-ai"><a class="anchor" href="#an-ai-always-says-it-is-an-ai" aria-hidden="true">#</a>An AI always says it is an AI</h2>
+<ul><li><div>In rooms, an agent always shows the <strong>AI badge</strong> next to its name. With <code>announce: true</code> (default) the room also hears that an AI assistant joined.</div></li><li><div>On phone calls, the agent <strong>always</strong> opens by saying it is an AI assistant and on whose behalf it calls. This cannot be turned off.</div></li><li><div>Never use a name, a voice or a script that makes people believe they are talking to a human.</div></li></ul>
+<h2 id="phone-calls"><a class="anchor" href="#phone-calls" aria-hidden="true">#</a>Phone calls</h2>
+<ul><li><div>Every call declares its <strong>purpose</strong> (<code>transactional</code>, <code>scheduling</code>, <code>support</code>, <code>marketing</code>) and the <strong>consent</strong> you have from the person. Kanutus applies the rules of each country, and refuses calls the rules do not allow.</div></li><li><div>In the United States, an AI voice counts as an &quot;artificial voice&quot; under the TCPA: marketing calls to mobile phones need <strong>prior written consent</strong>. In Brazil, telemarketing must follow Anatel rules (prefix 0303) and the &quot;Não Me Perturbe&quot; list, with a legal basis under the LGPD. Where there is no rule set, marketing is blocked.</div></li><li><div>Respect local business hours and your organization's do-not-call lists.</div></li><li><div>Premium, shared-cost and satellite numbers are always blocked. Bursts of calls, many short calls or sequential numbers suspend that key's calls.</div></li><li><div>The country rules are a safety net, not legal advice. You are responsible for the consent and for the laws that apply to you.</div></li></ul>
+<h2 id="voices"><a class="anchor" href="#voices" aria-hidden="true">#</a>Voices</h2>
+<ul><li><div>Creating and cloning voices through the API is coming soon <span class="badge badge-soon">Soon</span>. When it arrives, a voice can only be cloned with the <strong>live recorded consent</strong> of its owner: the person opens a link, reads a consent sentence with a random code, and records it. Uploaded audio files are never accepted for cloning.</div></li><li><div>The owner can revoke consent at any time, and the voice disappears.</div></li><li><div>Voices of public figures or of anyone without their consent are forbidden. Reports are acted on immediately.</div></li></ul>
+<h2 id="transcripts-and-privacy"><a class="anchor" href="#transcripts-and-privacy" aria-hidden="true">#</a>Transcripts and privacy</h2>
+<ul><li><div>What people say is personal data. Keep only what you need, follow your organization's retention rules, and tell participants when an assistant is listening.</div></li><li><div>A key only reads transcripts of sessions it created. Nobody reads someone else's conversations through the API.</div></li><li><div>Treat transcripts as untrusted input for AI models (they can carry prompt injection).</div></li></ul>
+<h2 id="report-abuse"><a class="anchor" href="#report-abuse" aria-hidden="true">#</a>Report abuse</h2>
+<p>Write to <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> with &quot;Abuse&quot; in the subject. We can block a key, an app or an organization in under a minute.</p>
+</article>
+<nav class="pager"><a class="prev" href="/errors"><span>Previous</span><strong>Limits and errors</strong></a><a class="next" href="/reference"><span>Next</span><strong>API reference</strong></a></nav>
+<footer class="foot"><p>Something wrong or missing? Write to <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">OpenAPI 3.1 file</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>On this page</p><ul><li><a href="#an-ai-always-says-it-is-an-ai">An AI always says it is an AI</a></li><li><a href="#phone-calls">Phone calls</a></li><li><a href="#voices">Voices</a></li><li><a href="#transcripts-and-privacy">Transcripts and privacy</a></li><li><a href="#report-abuse">Report abuse</a></li></ul></aside>
+</div>
+</body>
+</html>

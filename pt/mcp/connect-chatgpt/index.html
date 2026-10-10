@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conectar o ChatGPT · Kanutus Docs</title>
+<meta name="description" content="Documentação da API e do MCP do Kanutus: salas com tradução ao vivo, agenda, vozes, ligações e agentes de IA.">
+<link rel="canonical" href="https://docs.kanutus.com/pt/mcp/connect-chatgpt">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/mcp/connect-chatgpt">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/mcp/connect-chatgpt">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Pular para o conteúdo</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/pt" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Idioma"><a href="/mcp/connect-chatgpt" hreflang="en" lang="en">EN</a><a href="/pt/mcp/connect-chatgpt" hreflang="pt-BR" lang="pt-BR" aria-current="true">PT</a></nav>
+<a class="top-link" href="https://kanutus.com/pt">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Abrir o app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Começar</p><ul><li><a href="/pt">Kanutus para desenvolvedores</a></li><li><a href="/pt/quickstart">Começar em 5 minutos</a></li><li><a href="/pt/authentication">Autenticação</a></li><li><a href="/pt/test-mode">Modo de teste</a></li></ul></div><div class="nav-group"><p>Assistentes de IA (MCP)</p><ul><li><a href="/pt/mcp">Servidor MCP do Kanutus</a></li><li><a href="/pt/mcp/connect-claude">Conectar o Claude</a></li><li><a href="/pt/mcp/connect-chatgpt" aria-current="page">Conectar o ChatGPT</a></li><li><a href="/pt/mcp/other-clients">Cursor, VS Code e outros clientes</a></li><li><a href="/pt/mcp/tools">As 23 ferramentas do MCP</a></li></ul></div><div class="nav-group"><p>Guias</p><ul><li><a href="/pt/guides/agent-in-room">Agente de IA na sala</a></li><li><a href="/pt/guides/schedule-meeting">Agendar reunião</a></li><li><a href="/pt/guides/translated-call">Ligação traduzida</a></li><li><a href="/pt/guides/transcripts">Receber transcrições</a></li></ul></div><div class="nav-group"><p>Integrar</p><ul><li><a href="/pt/webhooks">Webhooks</a></li><li><a href="/pt/errors">Limites e erros</a></li><li><a href="/pt/responsible-use">Uso responsável</a></li></ul></div><div class="nav-group"><p>Referência da API</p><ul><li><a href="/pt/reference">Referência da API</a></li><li><a href="/pt/reference/account" class="sub">Conta e uso</a></li><li><a href="/pt/reference/rooms" class="sub">Salas</a></li><li><a href="/pt/reference/calendar" class="sub">Reuniões e agendamento</a></li><li><a href="/pt/reference/agents" class="sub">Agente de IA na sala</a></li><li><a href="/pt/reference/transcripts" class="sub">Transcrições</a></li><li><a href="/pt/reference/calls" class="sub">Ligações</a></li><li><a href="/pt/reference/webhooks" class="sub">Webhooks e eventos</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Conectar o ChatGPT</h1>
+<div class="logos"><img src="/assets/logos/openai.svg" alt="ChatGPT" width="28" height="28"></div>
+<p>O ChatGPT se conecta a servidores MCP remotos pelo <strong>modo desenvolvedor</strong>.</p>
+<ol class="steps"><li><div>No ChatGPT, abra <strong>Configurações → Apps e conectores → Configurações avançadas</strong> e ligue o <strong>Modo desenvolvedor</strong>.</div></li><li><div>Volte em <strong>Apps e conectores</strong> e clique em <strong>Criar</strong>.</div></li><li><div>Dê o nome <strong>Kanutus</strong>, cole a URL do conector e escolha <strong>OAuth</strong> como autenticação:</div><div class="code"><div class="code-head"><span>text</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-text">https://mcp.kanutus.com/mcp</code></pre></div></li><li><div>Confirme que confia no app e clique em <strong>Criar</strong>. O ChatGPT abre o login do Kanutus: entre, escolha a organização e as permissões e clique em <strong>Permitir</strong>.</div></li><li><div>Numa conversa nova, adicione o <strong>Kanutus</strong> pelo menu de ferramentas (botão <strong>+</strong>) e pergunte: <em>&quot;Quantos minutos do Kanutus eu ainda tenho?&quot;</em></div></li></ol>
+<div class="callout callout-note"><p>O modo desenvolvedor existe nos planos pagos do ChatGPT. Nos planos Business e Enterprise, talvez um administrador do workspace precise liberá-lo. A OpenAI muda esses menus com frequência; se algum nome estiver diferente, procure por <strong>Conectores</strong> ou <strong>Apps</strong> nas Configurações.</p></div>
+<p>O ChatGPT pede confirmação antes de ações que alteram alguma coisa. O Kanutus também pergunta antes de gastar minutos ou de entrar em contato com pessoas (veja a <a href="/pt/mcp#seguranca-embutida">segurança</a>).</p>
+<p>Para desconectar, apague o conector no ChatGPT ou clique em <strong>Desconectar</strong> no Kanutus, em <strong>Desenvolvedores → Apps conectados</strong>.</p>
+</article>
+<nav class="pager"><a class="prev" href="/pt/mcp/connect-claude"><span>Anterior</span><strong>Conectar o Claude</strong></a><a class="next" href="/pt/mcp/other-clients"><span>Próximo</span><strong>Cursor, VS Code e outros clientes</strong></a></nav>
+<footer class="foot"><p>Achou algo errado ou faltando? Escreva para <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">Arquivo OpenAPI 3.1</a> · © 2026 Kanutus</p></footer>
+</main>
+
+</div>
+</body>
+</html>

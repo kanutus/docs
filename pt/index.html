@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kanutus Docs</title>
+<meta name="description" content="Documentação da API e do MCP do Kanutus: salas com tradução ao vivo, agenda, vozes, ligações e agentes de IA.">
+<link rel="canonical" href="https://docs.kanutus.com/pt">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Pular para o conteúdo</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/pt" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Idioma"><a href="/" hreflang="en" lang="en">EN</a><a href="/pt" hreflang="pt-BR" lang="pt-BR" aria-current="true">PT</a></nav>
+<a class="top-link" href="https://kanutus.com/pt">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Abrir o app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Começar</p><ul><li><a href="/pt" aria-current="page">Kanutus para desenvolvedores</a></li><li><a href="/pt/quickstart">Começar em 5 minutos</a></li><li><a href="/pt/authentication">Autenticação</a></li><li><a href="/pt/test-mode">Modo de teste</a></li></ul></div><div class="nav-group"><p>Assistentes de IA (MCP)</p><ul><li><a href="/pt/mcp">Servidor MCP do Kanutus</a></li><li><a href="/pt/mcp/connect-claude">Conectar o Claude</a></li><li><a href="/pt/mcp/connect-chatgpt">Conectar o ChatGPT</a></li><li><a href="/pt/mcp/other-clients">Cursor, VS Code e outros clientes</a></li><li><a href="/pt/mcp/tools">As 23 ferramentas do MCP</a></li></ul></div><div class="nav-group"><p>Guias</p><ul><li><a href="/pt/guides/agent-in-room">Agente de IA na sala</a></li><li><a href="/pt/guides/schedule-meeting">Agendar reunião</a></li><li><a href="/pt/guides/translated-call">Ligação traduzida</a></li><li><a href="/pt/guides/transcripts">Receber transcrições</a></li></ul></div><div class="nav-group"><p>Integrar</p><ul><li><a href="/pt/webhooks">Webhooks</a></li><li><a href="/pt/errors">Limites e erros</a></li><li><a href="/pt/responsible-use">Uso responsável</a></li></ul></div><div class="nav-group"><p>Referência da API</p><ul><li><a href="/pt/reference">Referência da API</a></li><li><a href="/pt/reference/account" class="sub">Conta e uso</a></li><li><a href="/pt/reference/rooms" class="sub">Salas</a></li><li><a href="/pt/reference/calendar" class="sub">Reuniões e agendamento</a></li><li><a href="/pt/reference/agents" class="sub">Agente de IA na sala</a></li><li><a href="/pt/reference/transcripts" class="sub">Transcrições</a></li><li><a href="/pt/reference/calls" class="sub">Ligações</a></li><li><a href="/pt/reference/webhooks" class="sub">Webhooks e eventos</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Kanutus para desenvolvedores</h1>
+<p>Use o Kanutus dentro dos seus sistemas e dos seus assistentes de IA. Crie salas com tradução de voz ao vivo, marque reuniões, agende horários em links de agendamento e consulte uso e transcrições. Em breve, um agente de IA também poderá falar numa sala ou numa ligação, e cada pessoa vai ouvi-lo na própria língua.</p>
+<p>São duas portas de entrada. As duas usam o mesmo produto e as mesmas permissões:</p>
+<div class="cards"><a class="card" href="/pt/quickstart"><strong>API REST</strong><span><code>https://api.kanutus.com/v1</code>, OpenAPI 3.1. Para o seu backend, scripts e agentes próprios.</span></a><a class="card" href="/pt/mcp"><strong>Servidor MCP</strong><span><code>https://mcp.kanutus.com/mcp</code>. Conecte o Kanutus ao Claude, ao ChatGPT, ao Cursor e a outros assistentes de IA.</span></a></div>
+<h2 id="o-que-da-para-fazer"><a class="anchor" href="#o-que-da-para-fazer" aria-hidden="true">#</a>O que dá para fazer</h2>
+<div class="table"><table><thead><tr><th>Área</th><th>Disponível hoje</th><th>Próximos passos</th></tr></thead><tbody><tr><td>Conta</td><td>Quem sou eu, minutos restantes, uso da API por dia ou por chave</td><td></td></tr><tr><td>Salas</td><td>Criar sala instantânea com tradução ao vivo, listar, ler e encerrar; links de convidado com nome e língua preenchidos</td><td></td></tr><tr><td>Reuniões e agendamento</td><td>Marcar reuniões com convidados e línguas, cancelar, listar links de agendamento, ver horários livres e agendar</td><td></td></tr><tr><td>Vozes</td><td>Listar suas vozes</td><td>Criar e clonar vozes <span class="badge badge-soon">Em breve</span></td></tr><tr><td>Agente de IA na sala</td><td>Entrar na sala, falar (entra texto, sai voz traduzida) e ouvir</td><td>Salas reais <span class="badge badge-soon">Em breve</span> · já funciona com chave de teste</td></tr><tr><td>Ligações</td><td>Conferir o destino e as regras da finalidade da ligação naquele país</td><td>Ligações traduzidas feitas por agente de IA <span class="badge badge-soon">Em breve</span> · já funciona com chave de teste</td></tr><tr><td>Transcrições</td><td>Transcrições das sessões de agente criadas pela sua credencial</td><td>Transcrições e resumos de todas as reuniões <span class="badge badge-soon">Em breve</span></td></tr><tr><td>Webhooks</td><td>Eventos assinados (HMAC), reenvio automático, eventos de teste</td><td></td></tr></tbody></table></div>
+<h2 id="quem-pode-usar"><a class="anchor" href="#quem-pode-usar" aria-hidden="true">#</a>Quem pode usar</h2>
+<p>A API e os conectores fazem parte dos <strong>planos pagos</strong> e dos <strong>planos para empresas</strong>. Numa conta grátis, a área <strong>Desenvolvedores</strong> do app mostra os planos para você fazer o upgrade. Tudo o que você faz pela API usa os mesmos minutos do app, pelo mesmo preço.</p>
+<h2 id="comece-por-aqui"><a class="anchor" href="#comece-por-aqui" aria-hidden="true">#</a>Comece por aqui</h2>
+<div class="cards"><a class="card" href="/pt/quickstart"><strong>Começar em 5 minutos</strong><span>Da criação da conta até a primeira chamada com curl.</span></a><a class="card" href="/pt/mcp/connect-claude"><strong>Conectar o Claude</strong><span>Adicione o Kanutus como conector personalizado.</span></a><a class="card" href="/pt/test-mode"><strong>Modo de teste</strong><span>Teste tudo no simulador, sem gastar minutos.</span></a><a class="card" href="/pt/reference"><strong>Referência da API</strong><span>Todos os endpoints, gerados a partir do arquivo OpenAPI.</span></a></div>
+<p>Usar IA para ligar ou conversar com pessoas exige cuidado e tem regras. Leia o <a href="/pt/responsible-use">Uso responsável</a>.</p>
+</article>
+<nav class="pager"><span></span><a class="next" href="/pt/quickstart"><span>Próximo</span><strong>Começar em 5 minutos</strong></a></nav>
+<footer class="foot"><p>Achou algo errado ou faltando? Escreva para <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">Arquivo OpenAPI 3.1</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>Nesta página</p><ul><li><a href="#o-que-da-para-fazer">O que dá para fazer</a></li><li><a href="#quem-pode-usar">Quem pode usar</a></li><li><a href="#comece-por-aqui">Comece por aqui</a></li></ul></aside>
+</div>
+</body>
+</html>

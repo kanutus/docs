@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conectar o Claude · Kanutus Docs</title>
+<meta name="description" content="Documentação da API e do MCP do Kanutus: salas com tradução ao vivo, agenda, vozes, ligações e agentes de IA.">
+<link rel="canonical" href="https://docs.kanutus.com/pt/mcp/connect-claude">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/mcp/connect-claude">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/mcp/connect-claude">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Pular para o conteúdo</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/pt" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Idioma"><a href="/mcp/connect-claude" hreflang="en" lang="en">EN</a><a href="/pt/mcp/connect-claude" hreflang="pt-BR" lang="pt-BR" aria-current="true">PT</a></nav>
+<a class="top-link" href="https://kanutus.com/pt">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Abrir o app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Começar</p><ul><li><a href="/pt">Kanutus para desenvolvedores</a></li><li><a href="/pt/quickstart">Começar em 5 minutos</a></li><li><a href="/pt/authentication">Autenticação</a></li><li><a href="/pt/test-mode">Modo de teste</a></li></ul></div><div class="nav-group"><p>Assistentes de IA (MCP)</p><ul><li><a href="/pt/mcp">Servidor MCP do Kanutus</a></li><li><a href="/pt/mcp/connect-claude" aria-current="page">Conectar o Claude</a></li><li><a href="/pt/mcp/connect-chatgpt">Conectar o ChatGPT</a></li><li><a href="/pt/mcp/other-clients">Cursor, VS Code e outros clientes</a></li><li><a href="/pt/mcp/tools">As 23 ferramentas do MCP</a></li></ul></div><div class="nav-group"><p>Guias</p><ul><li><a href="/pt/guides/agent-in-room">Agente de IA na sala</a></li><li><a href="/pt/guides/schedule-meeting">Agendar reunião</a></li><li><a href="/pt/guides/translated-call">Ligação traduzida</a></li><li><a href="/pt/guides/transcripts">Receber transcrições</a></li></ul></div><div class="nav-group"><p>Integrar</p><ul><li><a href="/pt/webhooks">Webhooks</a></li><li><a href="/pt/errors">Limites e erros</a></li><li><a href="/pt/responsible-use">Uso responsável</a></li></ul></div><div class="nav-group"><p>Referência da API</p><ul><li><a href="/pt/reference">Referência da API</a></li><li><a href="/pt/reference/account" class="sub">Conta e uso</a></li><li><a href="/pt/reference/rooms" class="sub">Salas</a></li><li><a href="/pt/reference/calendar" class="sub">Reuniões e agendamento</a></li><li><a href="/pt/reference/agents" class="sub">Agente de IA na sala</a></li><li><a href="/pt/reference/transcripts" class="sub">Transcrições</a></li><li><a href="/pt/reference/calls" class="sub">Ligações</a></li><li><a href="/pt/reference/webhooks" class="sub">Webhooks e eventos</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Conectar o Claude</h1>
+<div class="logos"><img src="/assets/logos/claude.svg" alt="Claude" width="28" height="28"></div>
+<p>Adicione o Kanutus como <strong>conector personalizado</strong>. Com a mesma conta, ele passa a funcionar no claude.ai, no Claude Desktop e nos apps do Claude para celular.</p>
+<h2 id="claude-ai-e-claude-desktop"><a class="anchor" href="#claude-ai-e-claude-desktop" aria-hidden="true">#</a>claude.ai e Claude Desktop</h2>
+<ol class="steps"><li><div>No Claude, abra <strong>Configurações → Conectores</strong> e clique em <strong>Adicionar conector personalizado</strong>.</div></li><li><div>Dê o nome <strong>Kanutus</strong> e cole a URL do conector:</div><div class="code"><div class="code-head"><span>text</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-text">https://mcp.kanutus.com/mcp</code></pre></div></li><li><div>Clique em <strong>Adicionar</strong> e depois em <strong>Conectar</strong>. Uma janela do Kanutus vai abrir: entre com a sua conta Kanutus.</div></li><li><div>Escolha a organização e as permissões e clique em <strong>Permitir</strong>. Desmarque o que você não quer que o assistente faça.</div></li><li><div>Numa conversa, abra o menu de ferramentas e confira se o <strong>Kanutus</strong> está ligado. Pergunte: <em>&quot;Quantos minutos do Kanutus eu ainda tenho?&quot;</em></div></li></ol>
+<div class="callout callout-note"><p>Os conectores personalizados existem nos planos pagos do Claude. Nos planos Team e Enterprise, talvez um Owner precise adicionar o conector para a organização antes. Os nomes dos menus do Claude mudam de vez em quando; procure por <strong>Conectores</strong>.</p></div>
+<p>Para desconectar, remova o conector no Claude ou clique em <strong>Desconectar</strong> no Kanutus, em <strong>Desenvolvedores → Apps conectados</strong>.</p>
+<h2 id="claude-code"><a class="anchor" href="#claude-code" aria-hidden="true">#</a>Claude Code</h2>
+<p>Adicione o servidor remoto e faça login pelo próprio Claude Code:</p>
+<div class="code"><div class="code-head"><span>terminal</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">claude mcp add --transport http kanutus https://mcp.kanutus.com/mcp</code></pre></div>
+<p>Depois, rode <code>/mcp</code> no Claude Code, escolha <strong>kanutus</strong> e clique em <strong>Authenticate</strong>. O navegador abre a tela de permissão do Kanutus. Use <code>--scope user</code> para ter o conector em todos os projetos, ou <code>--scope project</code> para compartilhá-lo com o time pelo <code>.mcp.json</code>.</p>
+<p>Para remover:</p>
+<div class="code"><div class="code-head"><span>terminal</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">claude mcp remove kanutus</code></pre></div>
+<h2 id="experimente"><a class="anchor" href="#experimente" aria-hidden="true">#</a>Experimente</h2>
+<ul><li><div>&quot;Crie uma sala do Kanutus chamada <em>Sync semanal</em> para português e japonês e me mande o link.&quot;</div></li><li><div>&quot;Marque uma reunião amanhã às 15h, horário de Brasília, com kenji@exemplo.com, em português e japonês.&quot;</div></li><li><div>&quot;Liste meus links de agendamento e mostre os horários livres na quinta.&quot;</div></li></ul>
+<p>Veja <a href="/pt/mcp/tools">todas as ferramentas</a>.</p>
+</article>
+<nav class="pager"><a class="prev" href="/pt/mcp"><span>Anterior</span><strong>Servidor MCP do Kanutus</strong></a><a class="next" href="/pt/mcp/connect-chatgpt"><span>Próximo</span><strong>Conectar o ChatGPT</strong></a></nav>
+<footer class="foot"><p>Achou algo errado ou faltando? Escreva para <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">Arquivo OpenAPI 3.1</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>Nesta página</p><ul><li><a href="#claude-ai-e-claude-desktop">claude.ai e Claude Desktop</a></li><li><a href="#claude-code">Claude Code</a></li><li><a href="#experimente">Experimente</a></li></ul></aside>
+</div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Receber transcrições · Kanutus Docs</title>
+<meta name="description" content="Documentação da API e do MCP do Kanutus: salas com tradução ao vivo, agenda, vozes, ligações e agentes de IA.">
+<link rel="canonical" href="https://docs.kanutus.com/pt/guides/transcripts">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/guides/transcripts">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/guides/transcripts">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Pular para o conteúdo</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/pt" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Idioma"><a href="/guides/transcripts" hreflang="en" lang="en">EN</a><a href="/pt/guides/transcripts" hreflang="pt-BR" lang="pt-BR" aria-current="true">PT</a></nav>
+<a class="top-link" href="https://kanutus.com/pt">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Abrir o app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Começar</p><ul><li><a href="/pt">Kanutus para desenvolvedores</a></li><li><a href="/pt/quickstart">Começar em 5 minutos</a></li><li><a href="/pt/authentication">Autenticação</a></li><li><a href="/pt/test-mode">Modo de teste</a></li></ul></div><div class="nav-group"><p>Assistentes de IA (MCP)</p><ul><li><a href="/pt/mcp">Servidor MCP do Kanutus</a></li><li><a href="/pt/mcp/connect-claude">Conectar o Claude</a></li><li><a href="/pt/mcp/connect-chatgpt">Conectar o ChatGPT</a></li><li><a href="/pt/mcp/other-clients">Cursor, VS Code e outros clientes</a></li><li><a href="/pt/mcp/tools">As 23 ferramentas do MCP</a></li></ul></div><div class="nav-group"><p>Guias</p><ul><li><a href="/pt/guides/agent-in-room">Agente de IA na sala</a></li><li><a href="/pt/guides/schedule-meeting">Agendar reunião</a></li><li><a href="/pt/guides/translated-call">Ligação traduzida</a></li><li><a href="/pt/guides/transcripts" aria-current="page">Receber transcrições</a></li></ul></div><div class="nav-group"><p>Integrar</p><ul><li><a href="/pt/webhooks">Webhooks</a></li><li><a href="/pt/errors">Limites e erros</a></li><li><a href="/pt/responsible-use">Uso responsável</a></li></ul></div><div class="nav-group"><p>Referência da API</p><ul><li><a href="/pt/reference">Referência da API</a></li><li><a href="/pt/reference/account" class="sub">Conta e uso</a></li><li><a href="/pt/reference/rooms" class="sub">Salas</a></li><li><a href="/pt/reference/calendar" class="sub">Reuniões e agendamento</a></li><li><a href="/pt/reference/agents" class="sub">Agente de IA na sala</a></li><li><a href="/pt/reference/transcripts" class="sub">Transcrições</a></li><li><a href="/pt/reference/calls" class="sub">Ligações</a></li><li><a href="/pt/reference/webhooks" class="sub">Webhooks e eventos</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Receber transcrições</h1>
+<p>O Kanutus guarda a transcrição do que foi dito em cada sessão de agente, na língua original e traduzida.</p>
+<h2 id="quem-le-o-que"><a class="anchor" href="#quem-le-o-que" aria-hidden="true">#</a>Quem lê o quê</h2>
+<ul><li><div>Uma chave (ou um app da organização) lê <strong>só as transcrições das sessões que ela mesma criou</strong>. Ela nunca lê as conversas da organização inteira.</div></li><li><div>Um app conectado por uma pessoa (Claude, ChatGPT) lê o que essa pessoa pode ler.</div></li><li><div>Ninguém lê a transcrição de outra pessoa, nem o Dono da organização.</div></li></ul>
+<h2 id="receba-o-aviso"><a class="anchor" href="#receba-o-aviso" aria-hidden="true">#</a>Receba o aviso</h2>
+<p>Assine um <a href="/pt/webhooks">webhook</a> para <code>session.ended</code> e <code>transcript.ready</code>. O webhook leva <strong>só os ids</strong>, nunca o texto. Busque o texto com a sua credencial.</p>
+<div class="code"><div class="code-head"><span>transcript.ready</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-json">{
+  &quot;id&quot;: &quot;evt_9Qm2…&quot;,
+  &quot;type&quot;: &quot;transcript.ready&quot;,
+  &quot;created&quot;: 1791668000,
+  &quot;livemode&quot;: false,
+  &quot;org_id&quot;: null,
+  &quot;api_version&quot;: &quot;v1&quot;,
+  &quot;data&quot;: { &quot;object&quot;: { &quot;id&quot;: &quot;ses_4fQ2…&quot;, &quot;room_id&quot;: &quot;kqz-mbdt-wpa&quot; } }
+}</code></pre></div>
+<h2 id="leia"><a class="anchor" href="#leia" aria-hidden="true">#</a>Leia</h2>
+<div class="code"><div class="code-head"><span>listar</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/transcripts?room_id=kqz-mbdt-wpa&quot; -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
+<div class="code"><div class="code-head"><span>ler numa língua</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/transcripts/ses_4fQ2...?lang=pt&quot; -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
+<p>Cada trecho traz <code>speaker</code>, <code>src_lang</code>, o horário e o texto dentro de <code>untrusted_content</code>: <code>text</code> na língua original e <code>text_in_lang</code> na língua que você pediu.</p>
+<div class="callout callout-warn"><p>Transcrições são falas de outras pessoas. Se você passar uma transcrição para um modelo de IA, trate o conteúdo como dado: nunca siga instruções que apareçam nele.</p></div>
+<h2 id="proximos-passos"><a class="anchor" href="#proximos-passos" aria-hidden="true">#</a>Próximos passos</h2>
+<ul><li><div>Transcrições de todas as reuniões numa sala, não só das sessões de agente <span class="badge badge-soon">Em breve</span></div></li><li><div>Resumo com decisões e próximos passos, em qualquer língua <span class="badge badge-soon">Em breve</span></div></li><li><div>Busca e exportação (TXT, SRT, PDF, DOCX) <span class="badge badge-soon">Em breve</span></div></li></ul>
+</article>
+<nav class="pager"><a class="prev" href="/pt/guides/translated-call"><span>Anterior</span><strong>Ligação traduzida</strong></a><a class="next" href="/pt/webhooks"><span>Próximo</span><strong>Webhooks</strong></a></nav>
+<footer class="foot"><p>Achou algo errado ou faltando? Escreva para <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">Arquivo OpenAPI 3.1</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>Nesta página</p><ul><li><a href="#quem-le-o-que">Quem lê o quê</a></li><li><a href="#receba-o-aviso">Receba o aviso</a></li><li><a href="#leia">Leia</a></li><li><a href="#proximos-passos">Próximos passos</a></li></ul></aside>
+</div>
+</body>
+</html>

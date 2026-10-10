@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modo de teste · Kanutus Docs</title>
+<meta name="description" content="Documentação da API e do MCP do Kanutus: salas com tradução ao vivo, agenda, vozes, ligações e agentes de IA.">
+<link rel="canonical" href="https://docs.kanutus.com/pt/test-mode">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/test-mode">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/test-mode">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Pular para o conteúdo</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/pt" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Idioma"><a href="/test-mode" hreflang="en" lang="en">EN</a><a href="/pt/test-mode" hreflang="pt-BR" lang="pt-BR" aria-current="true">PT</a></nav>
+<a class="top-link" href="https://kanutus.com/pt">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Abrir o app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Começar</p><ul><li><a href="/pt">Kanutus para desenvolvedores</a></li><li><a href="/pt/quickstart">Começar em 5 minutos</a></li><li><a href="/pt/authentication">Autenticação</a></li><li><a href="/pt/test-mode" aria-current="page">Modo de teste</a></li></ul></div><div class="nav-group"><p>Assistentes de IA (MCP)</p><ul><li><a href="/pt/mcp">Servidor MCP do Kanutus</a></li><li><a href="/pt/mcp/connect-claude">Conectar o Claude</a></li><li><a href="/pt/mcp/connect-chatgpt">Conectar o ChatGPT</a></li><li><a href="/pt/mcp/other-clients">Cursor, VS Code e outros clientes</a></li><li><a href="/pt/mcp/tools">As 23 ferramentas do MCP</a></li></ul></div><div class="nav-group"><p>Guias</p><ul><li><a href="/pt/guides/agent-in-room">Agente de IA na sala</a></li><li><a href="/pt/guides/schedule-meeting">Agendar reunião</a></li><li><a href="/pt/guides/translated-call">Ligação traduzida</a></li><li><a href="/pt/guides/transcripts">Receber transcrições</a></li></ul></div><div class="nav-group"><p>Integrar</p><ul><li><a href="/pt/webhooks">Webhooks</a></li><li><a href="/pt/errors">Limites e erros</a></li><li><a href="/pt/responsible-use">Uso responsável</a></li></ul></div><div class="nav-group"><p>Referência da API</p><ul><li><a href="/pt/reference">Referência da API</a></li><li><a href="/pt/reference/account" class="sub">Conta e uso</a></li><li><a href="/pt/reference/rooms" class="sub">Salas</a></li><li><a href="/pt/reference/calendar" class="sub">Reuniões e agendamento</a></li><li><a href="/pt/reference/agents" class="sub">Agente de IA na sala</a></li><li><a href="/pt/reference/transcripts" class="sub">Transcrições</a></li><li><a href="/pt/reference/calls" class="sub">Ligações</a></li><li><a href="/pt/reference/webhooks" class="sub">Webhooks e eventos</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Modo de teste</h1>
+<p>Chaves que começam com <code>kt_test_</code> rodam tudo num <strong>simulador</strong>. Nada gasta minutos, nenhum telefone toca e nenhuma GPU é usada. Mesmo assim, permissões, limites de gasto, webhooks e erros funcionam como em produção. Use o modo de teste para desenvolver e para rodar os seus testes.</p>
+<h2 id="como-criar-uma-chave-de-teste"><a class="anchor" href="#como-criar-uma-chave-de-teste" aria-hidden="true">#</a>Como criar uma chave de teste</h2>
+<p>No app, abra <strong>Desenvolvedores</strong> e mude a chave <strong>Produção | Teste</strong> para <strong>Teste</strong> (a barra fica amarela). As chaves criadas ali começam com <code>kt_test_</code>. Os dados de teste ficam separados: os objetos voltam com <code>&amp;quot;livemode&amp;quot;: false</code>.</p>
+<h2 id="o-que-o-simulador-faz"><a class="anchor" href="#o-que-o-simulador-faz" aria-hidden="true">#</a>O que o simulador faz</h2>
+<div class="table"><table><thead><tr><th>Recurso</th><th>No modo de teste</th></tr></thead><tbody><tr><td>Salas e reuniões</td><td>São criadas de verdade (com <code>livemode: false</code>), então você pode abrir os links</td></tr><tr><td>Agente de IA na sala</td><td>Já funciona. Dois participantes robôs entram na sala: <strong>Kenji</strong> (fala japonês) e <strong>Lena</strong> (fala francês). Eles cumprimentam e respondem com frases fixas, traduzidas para a sua <code>hear_lang</code></td></tr><tr><td>Ligações</td><td>Já funcionam com os números mágicos abaixo</td></tr><tr><td>Vozes</td><td>Uma voz clonada no teste é uma voz padrão; ninguém é contatado</td></tr><tr><td>Webhooks</td><td>São entregues de verdade aos seus endpoints de teste, com a mesma assinatura</td></tr><tr><td>Limites</td><td>Até 1.000 requisições por dia por chave de teste (<code>429 test_daily_limit</code>)</td></tr></tbody></table></div>
+<h2 id="numeros-magicos"><a class="anchor" href="#numeros-magicos" aria-hidden="true">#</a>Números mágicos</h2>
+<div class="table"><table><thead><tr><th>Número</th><th>O que acontece</th></tr></thead><tbody><tr><td><code>+1 555 0100</code></td><td>Atende e responde com frases de teste em inglês</td></tr><tr><td><code>+55 11 5555 0100</code></td><td>Atende em português</td></tr><tr><td><code>+1 555 0101</code></td><td>Ocupado</td></tr><tr><td><code>+1 555 0102</code></td><td>Cai na caixa postal</td></tr><tr><td><code>+1 555 0199</code></td><td>Destino bloqueado (número premium)</td></tr></tbody></table></div>
+<p>Qualquer outro número passa pelas regras reais (país, tipo de número, finalidade da ligação) e depois é simulado.</p>
+<div class="code"><div class="code-head"><span>cotar um destino</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/calls/quote?to=%2B15550100&amp;purpose=scheduling&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_TEST_KEY&quot;</code></pre></div>
+<h2 id="disparar-um-evento-de-teste"><a class="anchor" href="#disparar-um-evento-de-teste" aria-hidden="true">#</a>Disparar um evento de teste</h2>
+<p>No app, em <strong>Desenvolvedores → Webhooks</strong> (no modo Teste), ou pela API:</p>
+<div class="code"><div class="code-head"><span>bash</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl -X POST https://api.kanutus.com/v1/webhook-endpoints/&lt;endpoint_id&gt;/test \
+  -H &quot;Authorization: Bearer $KANUTUS_TEST_KEY&quot;</code></pre></div>
+<h2 id="indo-para-producao"><a class="anchor" href="#indo-para-producao" aria-hidden="true">#</a>Indo para produção</h2>
+<p>Crie uma chave <code>kt_live_</code> em <strong>Produção</strong> com as mesmas permissões e use-a no lugar da chave de teste. Agentes em salas reais e ligações reais estão <span class="badge badge-soon">Em breve</span>: hoje, com uma chave de produção, esses endpoints respondem <code>501 not_available_yet</code>.</p>
+</article>
+<nav class="pager"><a class="prev" href="/pt/authentication"><span>Anterior</span><strong>Autenticação</strong></a><a class="next" href="/pt/mcp"><span>Próximo</span><strong>Servidor MCP do Kanutus</strong></a></nav>
+<footer class="foot"><p>Achou algo errado ou faltando? Escreva para <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">Arquivo OpenAPI 3.1</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>Nesta página</p><ul><li><a href="#como-criar-uma-chave-de-teste">Como criar uma chave de teste</a></li><li><a href="#o-que-o-simulador-faz">O que o simulador faz</a></li><li><a href="#numeros-magicos">Números mágicos</a></li><li><a href="#disparar-um-evento-de-teste">Disparar um evento de teste</a></li><li><a href="#indo-para-producao">Indo para produção</a></li></ul></aside>
+</div>
+</body>
+</html>

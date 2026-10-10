@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Webhooks · Kanutus Docs</title>
+<meta name="description" content="Kanutus API and MCP documentation: rooms with live translation, scheduling, voices, calls and AI agents.">
+<link rel="canonical" href="https://docs.kanutus.com/webhooks">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/webhooks">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/webhooks">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Language"><a href="/webhooks" hreflang="en" lang="en" aria-current="true">EN</a><a href="/pt/webhooks" hreflang="pt-BR" lang="pt-BR">PT</a></nav>
+<a class="top-link" href="https://kanutus.com">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Open the app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Get started</p><ul><li><a href="/">Kanutus for developers</a></li><li><a href="/quickstart">Quickstart</a></li><li><a href="/authentication">Authentication</a></li><li><a href="/test-mode">Test mode</a></li></ul></div><div class="nav-group"><p>Connect AI assistants (MCP)</p><ul><li><a href="/mcp">Kanutus MCP server</a></li><li><a href="/mcp/connect-claude">Connect Claude</a></li><li><a href="/mcp/connect-chatgpt">Connect ChatGPT</a></li><li><a href="/mcp/other-clients">Cursor, VS Code and other clients</a></li><li><a href="/mcp/tools">The 23 MCP tools</a></li></ul></div><div class="nav-group"><p>Guides</p><ul><li><a href="/guides/agent-in-room">AI agent in a room</a></li><li><a href="/guides/schedule-meeting">Schedule a meeting</a></li><li><a href="/guides/translated-call">Translated phone call</a></li><li><a href="/guides/transcripts">Receive transcripts</a></li></ul></div><div class="nav-group"><p>Build</p><ul><li><a href="/webhooks" aria-current="page">Webhooks</a></li><li><a href="/errors">Limits and errors</a></li><li><a href="/responsible-use">Responsible use</a></li></ul></div><div class="nav-group"><p>API reference</p><ul><li><a href="/reference">API reference</a></li><li><a href="/reference/account" class="sub">Account and usage</a></li><li><a href="/reference/rooms" class="sub">Rooms</a></li><li><a href="/reference/calendar" class="sub">Meetings and booking</a></li><li><a href="/reference/agents" class="sub">AI agent in a room</a></li><li><a href="/reference/transcripts" class="sub">Transcripts</a></li><li><a href="/reference/calls" class="sub">Phone calls</a></li><li><a href="/reference/webhooks" class="sub">Webhooks and events</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Webhooks</h1>
+<p>Kanutus sends an HTTPS <code>POST</code> to your server when something happens: a room started, a meeting was booked, an agent session ended, a spending limit was reached.</p>
+<h2 id="create-an-endpoint"><a class="anchor" href="#create-an-endpoint" aria-hidden="true">#</a>Create an endpoint</h2>
+<p>In the app: <strong>Developers → Webhooks → Add</strong> (use <strong>Test</strong> for test endpoints). Or with the API (needs <code>webhooks:write</code>):</p>
+<div class="code"><div class="code-head"><span>bash</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl -X POST https://api.kanutus.com/v1/webhook-endpoints \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;url&quot;: &quot;https://your-system.com/kanutus&quot;, &quot;events&quot;: [&quot;meeting.created&quot;, &quot;booking.created&quot;, &quot;session.ended&quot;]}'</code></pre></div>
+<p>The answer includes the signing secret <code>whsec_…</code>. <strong>It is shown only once</strong>: store it with your other secrets.</p>
+<p>The URL must be <code>https</code>, public, with no redirect. Private, loopback and cloud metadata addresses are refused.</p>
+<h2 id="the-event"><a class="anchor" href="#the-event" aria-hidden="true">#</a>The event</h2>
+<div class="code"><div class="code-head"><span>json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;id&quot;: &quot;evt_8c1Zq…&quot;,
+  &quot;type&quot;: &quot;booking.created&quot;,
+  &quot;created&quot;: 1791668000,
+  &quot;livemode&quot;: true,
+  &quot;org_id&quot;: &quot;…&quot;,
+  &quot;api_version&quot;: &quot;v1&quot;,
+  &quot;data&quot;: { &quot;object&quot;: { &quot;id&quot;: &quot;…&quot; } }
+}</code></pre></div>
+<p>Events carry ids and the minimum needed (phone numbers are masked). <strong>Never transcript text</strong>: fetch it with your credential.</p>
+<h2 id="verify-the-signature"><a class="anchor" href="#verify-the-signature" aria-hidden="true">#</a>Verify the signature</h2>
+<p>Every request has a <code>Kanutus-Signature</code> header:</p>
+<div class="code"><div class="code-head"><span>text</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-text">Kanutus-Signature: t=1791668000,v1=5f2b…</code></pre></div>
+<p><code>v1</code> is the HMAC-SHA256 of <code>&amp;quot;&amp;lt;t&amp;gt;.&amp;lt;raw body&amp;gt;&amp;quot;</code> with your secret, in hex. Compute it over the <strong>raw body</strong> (before parsing JSON), compare in constant time, and refuse timestamps older than 5 minutes. During a secret rotation two <code>v1=</code> values come in the same header for 24 hours: accept the request if <strong>any</strong> of them matches.</p>
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="t14-0">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="t14-1">Python</button></div><div class="tab-panel" data-panel="t14-0"><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">import crypto from &quot;node:crypto&quot;;
+
+export function verifyKanutus(rawBody, header, secret, toleranceS = 300) {
+  const parts = header.split(&quot;,&quot;).map((p) =&gt; p.trim().split(&quot;=&quot;));
+  const t = Number(parts.find(([k]) =&gt; k === &quot;t&quot;)?.[1]);
+  if (!Number.isFinite(t) || Math.abs(Date.now() / 1000 - t) &gt; toleranceS) return false;
+  const want = crypto.createHmac(&quot;sha256&quot;, secret).update(`${t}.${rawBody}`).digest(&quot;hex&quot;);
+  return parts.some(([k, v]) =&gt; k === &quot;v1&quot; &amp;&amp; v.length === want.length &amp;&amp;
+    crypto.timingSafeEqual(Buffer.from(v), Buffer.from(want)));
+}</code></pre></div></div><div class="tab-panel" data-panel="t14-1" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import hmac, hashlib, time
+
+def verify_kanutus(raw_body: bytes, header: str, secret: str, tolerance_s: int = 300) -&gt; bool:
+    parts = [p.strip().split(&quot;=&quot;, 1) for p in header.split(&quot;,&quot;)]
+    t = next((int(v) for k, v in parts if k == &quot;t&quot;), None)
+    if t is None or abs(time.time() - t) &gt; tolerance_s:
+        return False
+    want = hmac.new(secret.encode(), f&quot;{t}.&quot;.encode() + raw_body, hashlib.sha256).hexdigest()
+    return any(k == &quot;v1&quot; and hmac.compare_digest(v, want) for k, v in parts)</code></pre></div></div></div>
+<h2 id="answer-quickly-retries"><a class="anchor" href="#answer-quickly-retries" aria-hidden="true">#</a>Answer quickly, retries</h2>
+<ul><li><div>Answer with any <code>2xx</code> within <strong>10 seconds</strong>. Do the heavy work afterwards (a queue).</div></li><li><div>Anything else is retried with exponential backoff: <strong>1 min, 5 min, 30 min, 2 h, 6 h, 12 h, 24 h, 24 h</strong> (about 3 days).</div></li><li><div>An endpoint that keeps failing for 3 days is disabled, and the owner gets an email.</div></li><li><div>Order is not guaranteed and the same event can arrive twice: use <code>id</code> to deduplicate.</div></li><li><div>Missed something? <code>GET /v1/events</code> lists the last 30 days of events. In the app you can see each delivery and resend it.</div></li><li><div>Rotate the secret with <code>POST /v1/webhook-endpoints/{id}/rotate-secret</code>; send a signed test with <code>POST /v1/webhook-endpoints/{id}/test</code>.</div></li></ul>
+<h2 id="event-types"><a class="anchor" href="#event-types" aria-hidden="true">#</a>Event types</h2>
+<div class="table"><table><thead><tr><th>Event</th><th>When</th></tr></thead><tbody><tr><td><code>room.started</code></td><td>A room was created through the API</td></tr><tr><td><code>room.ended</code>, <code>room.participant_joined</code>, <code>room.participant_left</code></td><td>Room life cycle <span class="badge badge-soon">Soon</span></td></tr><tr><td><code>session.started</code>, <code>session.ended</code></td><td>An AI agent joined or left a room</td></tr><tr><td><code>meeting.created</code>, <code>meeting.canceled</code></td><td>A meeting was scheduled or canceled</td></tr><tr><td><code>meeting.updated</code></td><td>A meeting changed <span class="badge badge-soon">Soon</span></td></tr><tr><td><code>booking.created</code></td><td>A time was booked on a booking link</td></tr><tr><td><code>booking.rescheduled</code>, <code>booking.canceled</code></td><td>Changes to a booking <span class="badge badge-soon">Soon</span></td></tr><tr><td><code>transcript.ready</code></td><td>A transcript can be read</td></tr><tr><td><code>summary.ready</code></td><td>A summary can be read <span class="badge badge-soon">Soon</span></td></tr><tr><td><code>call.blocked</code></td><td>A call was refused (destination or purpose not allowed)</td></tr><tr><td><code>call.ringing</code>, <code>call.answered</code>, <code>call.voicemail</code>, <code>call.completed</code>, <code>call.failed</code></td><td>Phone call progress <span class="badge badge-soon">Soon</span></td></tr><tr><td><code>voice.consent_completed</code>, <code>voice.ready</code>, <code>voice.failed</code></td><td>Voice cloning with consent <span class="badge badge-soon">Soon</span></td></tr><tr><td><code>usage.threshold</code></td><td>A key reached 80% or 100% of its spending limit</td></tr><tr><td><code>credential.expiring</code></td><td>A key expires soon <span class="badge badge-soon">Soon</span></td></tr></tbody></table></div>
+</article>
+<nav class="pager"><a class="prev" href="/guides/transcripts"><span>Previous</span><strong>Receive transcripts</strong></a><a class="next" href="/errors"><span>Next</span><strong>Limits and errors</strong></a></nav>
+<footer class="foot"><p>Something wrong or missing? Write to <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">OpenAPI 3.1 file</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>On this page</p><ul><li><a href="#create-an-endpoint">Create an endpoint</a></li><li><a href="#the-event">The event</a></li><li><a href="#verify-the-signature">Verify the signature</a></li><li><a href="#answer-quickly-retries">Answer quickly, retries</a></li><li><a href="#event-types">Event types</a></li></ul></aside>
+</div>
+</body>
+</html>

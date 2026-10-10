@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reuniões e agendamento · Kanutus Docs</title>
+<meta name="description" content="Documentação da API e do MCP do Kanutus: salas com tradução ao vivo, agenda, vozes, ligações e agentes de IA.">
+<link rel="canonical" href="https://docs.kanutus.com/pt/reference/calendar">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/reference/calendar">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/reference/calendar">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Pular para o conteúdo</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/pt" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Idioma"><a href="/reference/calendar" hreflang="en" lang="en">EN</a><a href="/pt/reference/calendar" hreflang="pt-BR" lang="pt-BR" aria-current="true">PT</a></nav>
+<a class="top-link" href="https://kanutus.com/pt">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Abrir o app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Começar</p><ul><li><a href="/pt">Kanutus para desenvolvedores</a></li><li><a href="/pt/quickstart">Começar em 5 minutos</a></li><li><a href="/pt/authentication">Autenticação</a></li><li><a href="/pt/test-mode">Modo de teste</a></li></ul></div><div class="nav-group"><p>Assistentes de IA (MCP)</p><ul><li><a href="/pt/mcp">Servidor MCP do Kanutus</a></li><li><a href="/pt/mcp/connect-claude">Conectar o Claude</a></li><li><a href="/pt/mcp/connect-chatgpt">Conectar o ChatGPT</a></li><li><a href="/pt/mcp/other-clients">Cursor, VS Code e outros clientes</a></li><li><a href="/pt/mcp/tools">As 23 ferramentas do MCP</a></li></ul></div><div class="nav-group"><p>Guias</p><ul><li><a href="/pt/guides/agent-in-room">Agente de IA na sala</a></li><li><a href="/pt/guides/schedule-meeting">Agendar reunião</a></li><li><a href="/pt/guides/translated-call">Ligação traduzida</a></li><li><a href="/pt/guides/transcripts">Receber transcrições</a></li></ul></div><div class="nav-group"><p>Integrar</p><ul><li><a href="/pt/webhooks">Webhooks</a></li><li><a href="/pt/errors">Limites e erros</a></li><li><a href="/pt/responsible-use">Uso responsável</a></li></ul></div><div class="nav-group"><p>Referência da API</p><ul><li><a href="/pt/reference">Referência da API</a></li><li><a href="/pt/reference/account" class="sub">Conta e uso</a></li><li><a href="/pt/reference/rooms" class="sub">Salas</a></li><li><a href="/pt/reference/calendar" aria-current="page" class="sub">Reuniões e agendamento</a></li><li><a href="/pt/reference/agents" class="sub">Agente de IA na sala</a></li><li><a href="/pt/reference/transcripts" class="sub">Transcrições</a></li><li><a href="/pt/reference/calls" class="sub">Ligações</a></li><li><a href="/pt/reference/webhooks" class="sub">Webhooks e eventos</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Reuniões e agendamento</h1>
+<section class="op" id="get-v1-meetings">
+<h2><span class="method method-get">GET</span><code class="path">/v1/meetings</code><a class="anchor" href="#get-v1-meetings" aria-hidden="true">#</a></h2>
+<p class="op-summary">Listar reuniões agendadas</p>
+<p class="op-meta">Permissão: <code>calendar:read</code></p>
+
+<h3>Parâmetros</h3><div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>from</code></td><td><code class="type">query · string</code></td><td></td></tr><tr><td><code>to</code></td><td><code class="type">query · string</code></td><td></td></tr><tr><td><code>limit</code></td><td><code class="type">query · integer</code></td><td></td></tr></tbody></table></div>
+
+<h3>Resposta <code>200</code></h3>
+<div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>data</code> <span class="req">obrigatório</span></td><td><code class="type">object[]</code></td><td></td></tr><tr><td><code>data[].id</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].url</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].title</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].visibility</code> <span class="req">obrigatório</span></td><td><code class="type">&quot;private&quot; | &quot;public&quot;</code></td><td></td></tr><tr><td><code>data[].status</code> <span class="req">obrigatório</span></td><td><code class="type">&quot;scheduled&quot; | &quot;live&quot; | &quot;ended&quot;</code></td><td></td></tr><tr><td><code>data[].created_at</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].expires_at</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].starts_at</code> <span class="req">obrigatório</span></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>data[].duration_min</code> <span class="req">obrigatório</span></td><td><code class="type">integer | null</code></td><td></td></tr><tr><td><code>data[].invitees</code> <span class="req">obrigatório</span></td><td><code class="type">string[]</code></td><td></td></tr><tr><td><code>data[].langs</code> <span class="req">obrigatório</span></td><td><code class="type">string[]</code></td><td></td></tr><tr><td><code>data[].livemode</code> <span class="req">obrigatório</span></td><td><code class="type">boolean</code></td><td>false for objects created with a kt_test_ key (simulator).</td></tr></tbody></table></div>
+<h3>Exemplo</h3>
+<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/meetings&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
+<div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-json">{
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;kqz-mbdt-wpa&quot;,
+      &quot;url&quot;: &quot;https://example.com&quot;,
+      &quot;title&quot;: &quot;string&quot;,
+      &quot;visibility&quot;: &quot;private&quot;,
+      &quot;status&quot;: &quot;scheduled&quot;,
+      &quot;created_at&quot;: &quot;string&quot;,
+      &quot;expires_at&quot;: &quot;string&quot;,
+      &quot;starts_at&quot;: &quot;string&quot;,
+      &quot;duration_min&quot;: 0,
+      &quot;invitees&quot;: [
+        &quot;string&quot;
+      ],
+      &quot;langs&quot;: [
+        &quot;string&quot;
+      ],
+      &quot;livemode&quot;: true
+    }
+  ]
+}</code></pre></div>
+<p class="op-errors">Erros: <a href="/pt/errors"><code>400</code></a> <a href="/pt/errors"><code>401</code></a> <a href="/pt/errors"><code>403</code></a> <a href="/pt/errors"><code>429</code></a></p>
+</section>
+<section class="op" id="post-v1-meetings">
+<h2><span class="method method-post">POST</span><code class="path">/v1/meetings</code><a class="anchor" href="#post-v1-meetings" aria-hidden="true">#</a></h2>
+<p class="op-summary">Agendar uma reunião (sala com data, convidados e línguas)</p>
+<p class="op-meta">Permissão: <code>calendar:write</code></p>
+
+<h3>Parâmetros</h3><div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>idempotency-key</code> <span class="req">obrigatório</span></td><td><code class="type">header · string</code></td><td>Unique key per create request; retries with the same key return the same result.</td></tr></tbody></table></div>
+<h3>Corpo da requisição</h3><div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>title</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td>length 1–120</td></tr><tr><td><code>starts_at</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>duration_min</code></td><td><code class="type">integer</code></td><td>5…720 · default 30</td></tr><tr><td><code>invitees</code></td><td><code class="type">string[]</code></td><td></td></tr><tr><td><code>langs</code></td><td><code class="type">string[]</code></td><td>Languages of the participants, e.g. [&quot;pt&quot;, &quot;ja&quot;].</td></tr><tr><td><code>visibility</code></td><td><code class="type">&quot;private&quot; | &quot;public&quot;</code></td><td>default &quot;private&quot;</td></tr></tbody></table></div>
+<h3>Resposta <code>201</code></h3>
+<div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>url</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>title</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>visibility</code> <span class="req">obrigatório</span></td><td><code class="type">&quot;private&quot; | &quot;public&quot;</code></td><td></td></tr><tr><td><code>status</code> <span class="req">obrigatório</span></td><td><code class="type">&quot;scheduled&quot; | &quot;live&quot; | &quot;ended&quot;</code></td><td></td></tr><tr><td><code>created_at</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>expires_at</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>starts_at</code> <span class="req">obrigatório</span></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>duration_min</code> <span class="req">obrigatório</span></td><td><code class="type">integer | null</code></td><td></td></tr><tr><td><code>invitees</code> <span class="req">obrigatório</span></td><td><code class="type">string[]</code></td><td></td></tr><tr><td><code>langs</code> <span class="req">obrigatório</span></td><td><code class="type">string[]</code></td><td></td></tr><tr><td><code>livemode</code> <span class="req">obrigatório</span></td><td><code class="type">boolean</code></td><td>false for objects created with a kt_test_ key (simulator).</td></tr></tbody></table></div>
+<h3>Exemplo</h3>
+<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl -X POST &quot;https://api.kanutus.com/v1/meetings&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot; \
+  -H &quot;Idempotency-Key: $(uuidgen)&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;title&quot;:&quot;Revisão com Kenji&quot;,&quot;starts_at&quot;:&quot;2026-10-12T13:00:00-03:00&quot;,&quot;duration_min&quot;:30,&quot;invitees&quot;:[],&quot;langs&quot;:[],&quot;visibility&quot;:&quot;private&quot;}'</code></pre></div>
+<div class="code"><div class="code-head"><span>201</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-json">{
+  &quot;id&quot;: &quot;kqz-mbdt-wpa&quot;,
+  &quot;url&quot;: &quot;https://example.com&quot;,
+  &quot;title&quot;: &quot;string&quot;,
+  &quot;visibility&quot;: &quot;private&quot;,
+  &quot;status&quot;: &quot;scheduled&quot;,
+  &quot;created_at&quot;: &quot;string&quot;,
+  &quot;expires_at&quot;: &quot;string&quot;,
+  &quot;starts_at&quot;: &quot;string&quot;,
+  &quot;duration_min&quot;: 0,
+  &quot;invitees&quot;: [
+    &quot;string&quot;
+  ],
+  &quot;langs&quot;: [
+    &quot;string&quot;
+  ],
+  &quot;livemode&quot;: true
+}</code></pre></div>
+<p class="op-errors">Erros: <a href="/pt/errors"><code>400</code></a> <a href="/pt/errors"><code>401</code></a> <a href="/pt/errors"><code>403</code></a> <a href="/pt/errors"><code>409</code></a> <a href="/pt/errors"><code>429</code></a></p>
+</section>
+<section class="op" id="delete-v1-meetings-id">
+<h2><span class="method method-delete">DELETE</span><code class="path">/v1/meetings/{id}</code><a class="anchor" href="#delete-v1-meetings-id" aria-hidden="true">#</a></h2>
+<p class="op-summary">Cancelar uma reunião agendada</p>
+<p class="op-meta">Permissão: <code>calendar:write</code></p>
+
+<h3>Parâmetros</h3><div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">obrigatório</span></td><td><code class="type">path · string</code></td><td></td></tr></tbody></table></div>
+
+<h3>Resposta <code>200</code></h3>
+<div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>url</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>title</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>visibility</code> <span class="req">obrigatório</span></td><td><code class="type">&quot;private&quot; | &quot;public&quot;</code></td><td></td></tr><tr><td><code>status</code> <span class="req">obrigatório</span></td><td><code class="type">&quot;scheduled&quot; | &quot;live&quot; | &quot;ended&quot;</code></td><td></td></tr><tr><td><code>created_at</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>expires_at</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>starts_at</code> <span class="req">obrigatório</span></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>duration_min</code> <span class="req">obrigatório</span></td><td><code class="type">integer | null</code></td><td></td></tr><tr><td><code>invitees</code> <span class="req">obrigatório</span></td><td><code class="type">string[]</code></td><td></td></tr><tr><td><code>langs</code> <span class="req">obrigatório</span></td><td><code class="type">string[]</code></td><td></td></tr><tr><td><code>livemode</code> <span class="req">obrigatório</span></td><td><code class="type">boolean</code></td><td>false for objects created with a kt_test_ key (simulator).</td></tr></tbody></table></div>
+<h3>Exemplo</h3>
+<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl -X DELETE &quot;https://api.kanutus.com/v1/meetings/kqz-mbdt-wpa&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
+<div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-json">{
+  &quot;id&quot;: &quot;kqz-mbdt-wpa&quot;,
+  &quot;url&quot;: &quot;https://example.com&quot;,
+  &quot;title&quot;: &quot;string&quot;,
+  &quot;visibility&quot;: &quot;private&quot;,
+  &quot;status&quot;: &quot;scheduled&quot;,
+  &quot;created_at&quot;: &quot;string&quot;,
+  &quot;expires_at&quot;: &quot;string&quot;,
+  &quot;starts_at&quot;: &quot;string&quot;,
+  &quot;duration_min&quot;: 0,
+  &quot;invitees&quot;: [
+    &quot;string&quot;
+  ],
+  &quot;langs&quot;: [
+    &quot;string&quot;
+  ],
+  &quot;livemode&quot;: true
+}</code></pre></div>
+<p class="op-errors">Erros: <a href="/pt/errors"><code>400</code></a> <a href="/pt/errors"><code>401</code></a> <a href="/pt/errors"><code>403</code></a> <a href="/pt/errors"><code>404</code></a> <a href="/pt/errors"><code>429</code></a></p>
+</section>
+<section class="op" id="get-v1-event-types">
+<h2><span class="method method-get">GET</span><code class="path">/v1/event-types</code><a class="anchor" href="#get-v1-event-types" aria-hidden="true">#</a></h2>
+<p class="op-summary">Listar seus links de agendamento (tipos de evento)</p>
+<p class="op-meta">Permissão: <code>calendar:read</code></p>
+
+
+
+<h3>Resposta <code>200</code></h3>
+<div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>data</code> <span class="req">obrigatório</span></td><td><code class="type">object[]</code></td><td></td></tr><tr><td><code>data[].id</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].title</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].duration_min</code> <span class="req">obrigatório</span></td><td><code class="type">integer</code></td><td></td></tr><tr><td><code>data[].page</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td>Booking page slug (person or team)</td></tr><tr><td><code>data[].slug</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].url</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].active</code> <span class="req">obrigatório</span></td><td><code class="type">boolean</code></td><td></td></tr></tbody></table></div>
+<h3>Exemplo</h3>
+<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/event-types&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
+<div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-json">{
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;string&quot;,
+      &quot;title&quot;: &quot;string&quot;,
+      &quot;duration_min&quot;: 0,
+      &quot;page&quot;: &quot;paulo&quot;,
+      &quot;slug&quot;: &quot;30min&quot;,
+      &quot;url&quot;: &quot;https://example.com&quot;,
+      &quot;active&quot;: true
+    }
+  ]
+}</code></pre></div>
+<p class="op-errors">Erros: <a href="/pt/errors"><code>400</code></a> <a href="/pt/errors"><code>401</code></a> <a href="/pt/errors"><code>403</code></a> <a href="/pt/errors"><code>429</code></a></p>
+</section>
+<section class="op" id="get-v1-event-types-id-slots">
+<h2><span class="method method-get">GET</span><code class="path">/v1/event-types/{id}/slots</code><a class="anchor" href="#get-v1-event-types-id-slots" aria-hidden="true">#</a></h2>
+<p class="op-summary">Horários livres de um link de agendamento</p>
+<p class="op-meta">Permissão: <code>calendar:read</code></p>
+
+<h3>Parâmetros</h3><div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">obrigatório</span></td><td><code class="type">path · string</code></td><td></td></tr><tr><td><code>from</code></td><td><code class="type">query · string</code></td><td></td></tr><tr><td><code>to</code></td><td><code class="type">query · string</code></td><td></td></tr></tbody></table></div>
+
+<h3>Resposta <code>200</code></h3>
+<div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>tz</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td>Host time zone</td></tr><tr><td><code>duration_min</code> <span class="req">obrigatório</span></td><td><code class="type">integer</code></td><td></td></tr><tr><td><code>slots</code> <span class="req">obrigatório</span></td><td><code class="type">string[]</code></td><td>Free start times (ISO 8601, UTC)</td></tr><tr><td><code>full_days</code> <span class="req">obrigatório</span></td><td><code class="type">string[]</code></td><td></td></tr></tbody></table></div>
+<h3>Exemplo</h3>
+<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/event-types/8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10/slots&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
+<div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-json">{
+  &quot;tz&quot;: &quot;string&quot;,
+  &quot;duration_min&quot;: 0,
+  &quot;slots&quot;: [
+    &quot;string&quot;
+  ],
+  &quot;full_days&quot;: [
+    &quot;string&quot;
+  ]
+}</code></pre></div>
+<p class="op-errors">Erros: <a href="/pt/errors"><code>400</code></a> <a href="/pt/errors"><code>401</code></a> <a href="/pt/errors"><code>403</code></a> <a href="/pt/errors"><code>404</code></a> <a href="/pt/errors"><code>429</code></a></p>
+</section>
+<section class="op" id="post-v1-bookings">
+<h2><span class="method method-post">POST</span><code class="path">/v1/bookings</code><a class="anchor" href="#post-v1-bookings" aria-hidden="true">#</a></h2>
+<p class="op-summary">Agendar um horário num link (seu ou de outra pessoa)</p>
+<p class="op-meta">Permissão: <code>calendar:write</code></p>
+
+<h3>Parâmetros</h3><div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>idempotency-key</code> <span class="req">obrigatório</span></td><td><code class="type">header · string</code></td><td>Unique key per create request; retries with the same key return the same result.</td></tr></tbody></table></div>
+<h3>Corpo da requisição</h3><div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>event_type_id</code></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>page</code></td><td><code class="type">string</code></td><td>Booking page slug, when booking someone else's link</td></tr><tr><td><code>event</code></td><td><code class="type">string</code></td><td>Event slug on that page</td></tr><tr><td><code>start</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>guest</code> <span class="req">obrigatório</span></td><td><code class="type">object</code></td><td></td></tr><tr><td><code>guest.name</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td>length 1–80</td></tr><tr><td><code>guest.email</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td>length 0–254</td></tr><tr><td><code>guest.speak</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>guest.hear</code></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>guest.tz</code></td><td><code class="type">string</code></td><td>length 0–64 · default &quot;UTC&quot;</td></tr><tr><td><code>guest.locale</code></td><td><code class="type">string</code></td><td>length 0–8 · default &quot;en&quot;</td></tr><tr><td><code>answers</code></td><td><code class="type">object</code></td><td></td></tr></tbody></table></div>
+<h3>Resposta <code>201</code></h3>
+<div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>room_url</code> <span class="req">obrigatório</span></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>manage_url</code> <span class="req">obrigatório</span></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>start</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>livemode</code> <span class="req">obrigatório</span></td><td><code class="type">boolean</code></td><td></td></tr></tbody></table></div>
+<h3>Exemplo</h3>
+<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl -X POST &quot;https://api.kanutus.com/v1/bookings&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot; \
+  -H &quot;Idempotency-Key: $(uuidgen)&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;event_type_id&quot;:&quot;string&quot;,&quot;page&quot;:&quot;string&quot;,&quot;event&quot;:&quot;string&quot;,&quot;start&quot;:&quot;2026-10-14T13:00:00Z&quot;,&quot;guest&quot;:{&quot;name&quot;:&quot;string&quot;,&quot;email&quot;:&quot;ana@example.com&quot;,&quot;speak&quot;:&quot;ja&quot;,&quot;hear&quot;:&quot;string&quot;,&quot;tz&quot;:&quot;UTC&quot;,&quot;locale&quot;:&quot;en&quot;},&quot;answers&quot;:{}}'</code></pre></div>
+<div class="code"><div class="code-head"><span>201</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-json">{
+  &quot;id&quot;: &quot;string&quot;,
+  &quot;room_url&quot;: &quot;https://example.com&quot;,
+  &quot;manage_url&quot;: &quot;https://example.com&quot;,
+  &quot;start&quot;: &quot;string&quot;,
+  &quot;livemode&quot;: true
+}</code></pre></div>
+<p class="op-errors">Erros: <a href="/pt/errors"><code>400</code></a> <a href="/pt/errors"><code>401</code></a> <a href="/pt/errors"><code>403</code></a> <a href="/pt/errors"><code>404</code></a> <a href="/pt/errors"><code>409</code></a> <a href="/pt/errors"><code>429</code></a></p>
+</section>
+</article>
+<nav class="pager"><a class="prev" href="/pt/reference/rooms"><span>Anterior</span><strong>Salas</strong></a><a class="next" href="/pt/reference/agents"><span>Próximo</span><strong>Agente de IA na sala</strong></a></nav>
+<footer class="foot"><p>Achou algo errado ou faltando? Escreva para <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">Arquivo OpenAPI 3.1</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>Nesta página</p><ul><li><a href="#get-v1-meetings">GET /v1/meetings</a></li><li><a href="#post-v1-meetings">POST /v1/meetings</a></li><li><a href="#delete-v1-meetings-id">DELETE /v1/meetings/{id}</a></li><li><a href="#get-v1-event-types">GET /v1/event-types</a></li><li><a href="#get-v1-event-types-id-slots">GET /v1/event-types/{id}/slots</a></li><li><a href="#post-v1-bookings">POST /v1/bookings</a></li></ul></aside>
+</div>
+</body>
+</html>

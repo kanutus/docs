@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Webhooks e eventos · Kanutus Docs</title>
+<meta name="description" content="Documentação da API e do MCP do Kanutus: salas com tradução ao vivo, agenda, vozes, ligações e agentes de IA.">
+<link rel="canonical" href="https://docs.kanutus.com/pt/reference/webhooks">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/reference/webhooks">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/reference/webhooks">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Pular para o conteúdo</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/pt" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Idioma"><a href="/reference/webhooks" hreflang="en" lang="en">EN</a><a href="/pt/reference/webhooks" hreflang="pt-BR" lang="pt-BR" aria-current="true">PT</a></nav>
+<a class="top-link" href="https://kanutus.com/pt">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Abrir o app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Começar</p><ul><li><a href="/pt">Kanutus para desenvolvedores</a></li><li><a href="/pt/quickstart">Começar em 5 minutos</a></li><li><a href="/pt/authentication">Autenticação</a></li><li><a href="/pt/test-mode">Modo de teste</a></li></ul></div><div class="nav-group"><p>Assistentes de IA (MCP)</p><ul><li><a href="/pt/mcp">Servidor MCP do Kanutus</a></li><li><a href="/pt/mcp/connect-claude">Conectar o Claude</a></li><li><a href="/pt/mcp/connect-chatgpt">Conectar o ChatGPT</a></li><li><a href="/pt/mcp/other-clients">Cursor, VS Code e outros clientes</a></li><li><a href="/pt/mcp/tools">As 23 ferramentas do MCP</a></li></ul></div><div class="nav-group"><p>Guias</p><ul><li><a href="/pt/guides/agent-in-room">Agente de IA na sala</a></li><li><a href="/pt/guides/schedule-meeting">Agendar reunião</a></li><li><a href="/pt/guides/translated-call">Ligação traduzida</a></li><li><a href="/pt/guides/transcripts">Receber transcrições</a></li></ul></div><div class="nav-group"><p>Integrar</p><ul><li><a href="/pt/webhooks">Webhooks</a></li><li><a href="/pt/errors">Limites e erros</a></li><li><a href="/pt/responsible-use">Uso responsável</a></li></ul></div><div class="nav-group"><p>Referência da API</p><ul><li><a href="/pt/reference">Referência da API</a></li><li><a href="/pt/reference/account" class="sub">Conta e uso</a></li><li><a href="/pt/reference/rooms" class="sub">Salas</a></li><li><a href="/pt/reference/calendar" class="sub">Reuniões e agendamento</a></li><li><a href="/pt/reference/agents" class="sub">Agente de IA na sala</a></li><li><a href="/pt/reference/transcripts" class="sub">Transcrições</a></li><li><a href="/pt/reference/calls" class="sub">Ligações</a></li><li><a href="/pt/reference/webhooks" aria-current="page" class="sub">Webhooks e eventos</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Webhooks e eventos</h1>
+<section class="op" id="get-v1-webhook-endpoints">
+<h2><span class="method method-get">GET</span><code class="path">/v1/webhook-endpoints</code><a class="anchor" href="#get-v1-webhook-endpoints" aria-hidden="true">#</a></h2>
+<p class="op-summary">Listar endpoints de webhook</p>
+<p class="op-meta">Permissão: <code>webhooks:write</code></p>
+
+
+
+<h3>Resposta <code>200</code></h3>
+<div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>data</code> <span class="req">obrigatório</span></td><td><code class="type">object[]</code></td><td></td></tr><tr><td><code>data[].id</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].url</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].events</code> <span class="req">obrigatório</span></td><td><code class="type">string[]</code></td><td></td></tr><tr><td><code>data[].status</code> <span class="req">obrigatório</span></td><td><code class="type">&quot;active&quot; | &quot;disabled&quot;</code></td><td></td></tr><tr><td><code>data[].livemode</code> <span class="req">obrigatório</span></td><td><code class="type">boolean</code></td><td></td></tr><tr><td><code>data[].created_at</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr></tbody></table></div>
+<h3>Exemplo</h3>
+<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/webhook-endpoints&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
+<div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-json">{
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;string&quot;,
+      &quot;url&quot;: &quot;string&quot;,
+      &quot;events&quot;: [
+        &quot;string&quot;
+      ],
+      &quot;status&quot;: &quot;active&quot;,
+      &quot;livemode&quot;: true,
+      &quot;created_at&quot;: &quot;string&quot;
+    }
+  ]
+}</code></pre></div>
+<p class="op-errors">Erros: <a href="/pt/errors"><code>400</code></a> <a href="/pt/errors"><code>401</code></a> <a href="/pt/errors"><code>403</code></a> <a href="/pt/errors"><code>429</code></a></p>
+</section>
+<section class="op" id="post-v1-webhook-endpoints">
+<h2><span class="method method-post">POST</span><code class="path">/v1/webhook-endpoints</code><a class="anchor" href="#post-v1-webhook-endpoints" aria-hidden="true">#</a></h2>
+<p class="op-summary">Criar endpoint de webhook (o segredo de assinatura aparece uma vez)</p>
+<p class="op-meta">Permissão: <code>webhooks:write</code></p>
+
+
+<h3>Corpo da requisição</h3><div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>url</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td>length 0–2000</td></tr><tr><td><code>events</code> <span class="req">obrigatório</span></td><td><code class="type">&quot;room.started&quot; | &quot;room.ended&quot; | &quot;room.participant_joined&quot; | &quot;room.participant_left&quot; | &quot;session.started&quot; | &quot;session.ended&quot; | &quot;call.ringing&quot; | &quot;call.answered&quot; | &quot;call.voicemail&quot; | &quot;call.completed&quot; | &quot;call.failed&quot; | &quot;call.blocked&quot; | &quot;meeting.created&quot; | &quot;meeting.updated&quot; | &quot;meeting.canceled&quot; | &quot;booking.created&quot; | &quot;booking.rescheduled&quot; | &quot;booking.canceled&quot; | &quot;transcript.ready&quot; | &quot;summary.ready&quot; | &quot;voice.consent_completed&quot; | &quot;voice.ready&quot; | &quot;voice.failed&quot; | &quot;usage.threshold&quot; | &quot;credential.expiring&quot;[]</code></td><td></td></tr><tr><td><code>description</code></td><td><code class="type">string</code></td><td>length 0–200</td></tr></tbody></table></div>
+<h3>Resposta <code>201</code></h3>
+<div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>url</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>events</code> <span class="req">obrigatório</span></td><td><code class="type">string[]</code></td><td></td></tr><tr><td><code>status</code> <span class="req">obrigatório</span></td><td><code class="type">&quot;active&quot; | &quot;disabled&quot;</code></td><td></td></tr><tr><td><code>livemode</code> <span class="req">obrigatório</span></td><td><code class="type">boolean</code></td><td></td></tr><tr><td><code>created_at</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>secret</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td>whsec_… shown only now</td></tr></tbody></table></div>
+<h3>Exemplo</h3>
+<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl -X POST &quot;https://api.kanutus.com/v1/webhook-endpoints&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;url&quot;:&quot;https://example.com&quot;,&quot;events&quot;:[&quot;room.started&quot;],&quot;description&quot;:&quot;string&quot;}'</code></pre></div>
+<div class="code"><div class="code-head"><span>201</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-json">{
+  &quot;id&quot;: &quot;string&quot;,
+  &quot;url&quot;: &quot;string&quot;,
+  &quot;events&quot;: [
+    &quot;string&quot;
+  ],
+  &quot;status&quot;: &quot;active&quot;,
+  &quot;livemode&quot;: true,
+  &quot;created_at&quot;: &quot;string&quot;,
+  &quot;secret&quot;: &quot;string&quot;
+}</code></pre></div>
+<p class="op-errors">Erros: <a href="/pt/errors"><code>400</code></a> <a href="/pt/errors"><code>401</code></a> <a href="/pt/errors"><code>403</code></a> <a href="/pt/errors"><code>429</code></a></p>
+</section>
+<section class="op" id="delete-v1-webhook-endpoints-id">
+<h2><span class="method method-delete">DELETE</span><code class="path">/v1/webhook-endpoints/{id}</code><a class="anchor" href="#delete-v1-webhook-endpoints-id" aria-hidden="true">#</a></h2>
+<p class="op-summary">Apagar um endpoint de webhook</p>
+<p class="op-meta">Permissão: <code>webhooks:write</code></p>
+
+<h3>Parâmetros</h3><div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">obrigatório</span></td><td><code class="type">path · string</code></td><td></td></tr></tbody></table></div>
+
+<h3>Resposta <code>200</code></h3>
+<div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>deleted</code> <span class="req">obrigatório</span></td><td><code class="type">true</code></td><td></td></tr></tbody></table></div>
+<h3>Exemplo</h3>
+<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl -X DELETE &quot;https://api.kanutus.com/v1/webhook-endpoints/8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
+<div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-json">{
+  &quot;id&quot;: &quot;string&quot;,
+  &quot;deleted&quot;: true
+}</code></pre></div>
+<p class="op-errors">Erros: <a href="/pt/errors"><code>400</code></a> <a href="/pt/errors"><code>401</code></a> <a href="/pt/errors"><code>403</code></a> <a href="/pt/errors"><code>404</code></a> <a href="/pt/errors"><code>429</code></a></p>
+</section>
+<section class="op" id="post-v1-webhook-endpoints-id-rotate-secret">
+<h2><span class="method method-post">POST</span><code class="path">/v1/webhook-endpoints/{id}/rotate-secret</code><a class="anchor" href="#post-v1-webhook-endpoints-id-rotate-secret" aria-hidden="true">#</a></h2>
+<p class="op-summary">Trocar o segredo de assinatura (os dois assinam por 24 h)</p>
+<p class="op-meta">Permissão: <code>webhooks:write</code></p>
+
+<h3>Parâmetros</h3><div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">obrigatório</span></td><td><code class="type">path · string</code></td><td></td></tr></tbody></table></div>
+
+<h3>Resposta <code>200</code></h3>
+<div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>secret</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr></tbody></table></div>
+<h3>Exemplo</h3>
+<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl -X POST &quot;https://api.kanutus.com/v1/webhook-endpoints/8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10/rotate-secret&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
+<div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-json">{
+  &quot;id&quot;: &quot;string&quot;,
+  &quot;secret&quot;: &quot;string&quot;
+}</code></pre></div>
+<p class="op-errors">Erros: <a href="/pt/errors"><code>400</code></a> <a href="/pt/errors"><code>401</code></a> <a href="/pt/errors"><code>403</code></a> <a href="/pt/errors"><code>404</code></a> <a href="/pt/errors"><code>429</code></a></p>
+</section>
+<section class="op" id="post-v1-webhook-endpoints-id-test">
+<h2><span class="method method-post">POST</span><code class="path">/v1/webhook-endpoints/{id}/test</code><a class="anchor" href="#post-v1-webhook-endpoints-id-test" aria-hidden="true">#</a></h2>
+<p class="op-summary">Enviar agora um evento de teste assinado</p>
+<p class="op-meta">Permissão: <code>webhooks:write</code></p>
+
+<h3>Parâmetros</h3><div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">obrigatório</span></td><td><code class="type">path · string</code></td><td></td></tr></tbody></table></div>
+<h3>Corpo da requisição</h3><div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>type</code></td><td><code class="type">&quot;room.started&quot; | &quot;room.ended&quot; | &quot;room.participant_joined&quot; | &quot;room.participant_left&quot; | &quot;session.started&quot; | &quot;session.ended&quot; | &quot;call.ringing&quot; | &quot;call.answered&quot; | &quot;call.voicemail&quot; | &quot;call.completed&quot; | &quot;call.failed&quot; | &quot;call.blocked&quot; | &quot;meeting.created&quot; | &quot;meeting.updated&quot; | &quot;meeting.canceled&quot; | &quot;booking.created&quot; | &quot;booking.rescheduled&quot; | &quot;booking.canceled&quot; | &quot;transcript.ready&quot; | &quot;summary.ready&quot; | &quot;voice.consent_completed&quot; | &quot;voice.ready&quot; | &quot;voice.failed&quot; | &quot;usage.threshold&quot; | &quot;credential.expiring&quot;</code></td><td>default &quot;meeting.created&quot;</td></tr></tbody></table></div>
+<h3>Resposta <code>200</code></h3>
+<div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>ok</code> <span class="req">obrigatório</span></td><td><code class="type">boolean</code></td><td></td></tr><tr><td><code>status</code> <span class="req">obrigatório</span></td><td><code class="type">number | null</code></td><td></td></tr><tr><td><code>latency_ms</code> <span class="req">obrigatório</span></td><td><code class="type">number</code></td><td></td></tr><tr><td><code>delivery_id</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>error</code> <span class="req">obrigatório</span></td><td><code class="type">string | null</code></td><td></td></tr></tbody></table></div>
+<h3>Exemplo</h3>
+<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl -X POST &quot;https://api.kanutus.com/v1/webhook-endpoints/8f14e45f-ceea-4c8e-9b3a-2f1d5a7c3b10/test&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;type&quot;:&quot;meeting.created&quot;}'</code></pre></div>
+<div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-json">{
+  &quot;ok&quot;: true,
+  &quot;status&quot;: 0,
+  &quot;latency_ms&quot;: 0,
+  &quot;delivery_id&quot;: &quot;string&quot;,
+  &quot;error&quot;: &quot;string&quot;
+}</code></pre></div>
+<p class="op-errors">Erros: <a href="/pt/errors"><code>400</code></a> <a href="/pt/errors"><code>401</code></a> <a href="/pt/errors"><code>403</code></a> <a href="/pt/errors"><code>404</code></a> <a href="/pt/errors"><code>429</code></a></p>
+</section>
+<section class="op" id="get-v1-events">
+<h2><span class="method method-get">GET</span><code class="path">/v1/events</code><a class="anchor" href="#get-v1-events" aria-hidden="true">#</a></h2>
+<p class="op-summary">Eventos recentes (para conciliar o que o webhook perdeu; 30 dias)</p>
+<p class="op-meta">Permissão: <code>events:read</code></p>
+
+<h3>Parâmetros</h3><div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>type</code></td><td><code class="type">query · string</code></td><td></td></tr><tr><td><code>since</code></td><td><code class="type">query · string</code></td><td></td></tr><tr><td><code>limit</code></td><td><code class="type">query · integer</code></td><td></td></tr></tbody></table></div>
+
+<h3>Resposta <code>200</code></h3>
+<div class="table"><table><thead><tr><th>Nome</th><th>Tipo</th><th>Descrição</th></tr></thead><tbody><tr><td><code>data</code> <span class="req">obrigatório</span></td><td><code class="type">object[]</code></td><td></td></tr><tr><td><code>data[].id</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].type</code> <span class="req">obrigatório</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].created</code> <span class="req">obrigatório</span></td><td><code class="type">integer</code></td><td></td></tr><tr><td><code>data[].livemode</code> <span class="req">obrigatório</span></td><td><code class="type">boolean</code></td><td></td></tr><tr><td><code>data[].data</code> <span class="req">obrigatório</span></td><td><code class="type">object</code></td><td></td></tr><tr><td><code>data[].data.object</code> <span class="req">obrigatório</span></td><td><code class="type">object</code></td><td></td></tr></tbody></table></div>
+<h3>Exemplo</h3>
+<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/events&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
+<div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-json">{
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;string&quot;,
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;created&quot;: 0,
+      &quot;livemode&quot;: true,
+      &quot;data&quot;: {
+        &quot;object&quot;: {}
+      }
+    }
+  ]
+}</code></pre></div>
+<p class="op-errors">Erros: <a href="/pt/errors"><code>400</code></a> <a href="/pt/errors"><code>401</code></a> <a href="/pt/errors"><code>403</code></a> <a href="/pt/errors"><code>429</code></a></p>
+</section>
+</article>
+<nav class="pager"><a class="prev" href="/pt/reference/calls"><span>Anterior</span><strong>Ligações</strong></a></nav>
+<footer class="foot"><p>Achou algo errado ou faltando? Escreva para <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">Arquivo OpenAPI 3.1</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>Nesta página</p><ul><li><a href="#get-v1-webhook-endpoints">GET /v1/webhook-endpoints</a></li><li><a href="#post-v1-webhook-endpoints">POST /v1/webhook-endpoints</a></li><li><a href="#delete-v1-webhook-endpoints-id">DELETE /v1/webhook-endpoints/{id}</a></li><li><a href="#post-v1-webhook-endpoints-id-rotate-secret">POST /v1/webhook-endpoints/{id}/rotate-secret</a></li><li><a href="#post-v1-webhook-endpoints-id-test">POST /v1/webhook-endpoints/{id}/test</a></li><li><a href="#get-v1-events">GET /v1/events</a></li></ul></aside>
+</div>
+</body>
+</html>

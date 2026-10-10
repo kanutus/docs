@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Referência da API · Kanutus Docs</title>
+<meta name="description" content="Documentação da API e do MCP do Kanutus: salas com tradução ao vivo, agenda, vozes, ligações e agentes de IA.">
+<link rel="canonical" href="https://docs.kanutus.com/pt/reference">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/reference">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/reference">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Pular para o conteúdo</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/pt" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Idioma"><a href="/reference" hreflang="en" lang="en">EN</a><a href="/pt/reference" hreflang="pt-BR" lang="pt-BR" aria-current="true">PT</a></nav>
+<a class="top-link" href="https://kanutus.com/pt">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Abrir o app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Começar</p><ul><li><a href="/pt">Kanutus para desenvolvedores</a></li><li><a href="/pt/quickstart">Começar em 5 minutos</a></li><li><a href="/pt/authentication">Autenticação</a></li><li><a href="/pt/test-mode">Modo de teste</a></li></ul></div><div class="nav-group"><p>Assistentes de IA (MCP)</p><ul><li><a href="/pt/mcp">Servidor MCP do Kanutus</a></li><li><a href="/pt/mcp/connect-claude">Conectar o Claude</a></li><li><a href="/pt/mcp/connect-chatgpt">Conectar o ChatGPT</a></li><li><a href="/pt/mcp/other-clients">Cursor, VS Code e outros clientes</a></li><li><a href="/pt/mcp/tools">As 23 ferramentas do MCP</a></li></ul></div><div class="nav-group"><p>Guias</p><ul><li><a href="/pt/guides/agent-in-room">Agente de IA na sala</a></li><li><a href="/pt/guides/schedule-meeting">Agendar reunião</a></li><li><a href="/pt/guides/translated-call">Ligação traduzida</a></li><li><a href="/pt/guides/transcripts">Receber transcrições</a></li></ul></div><div class="nav-group"><p>Integrar</p><ul><li><a href="/pt/webhooks">Webhooks</a></li><li><a href="/pt/errors">Limites e erros</a></li><li><a href="/pt/responsible-use">Uso responsável</a></li></ul></div><div class="nav-group"><p>Referência da API</p><ul><li><a href="/pt/reference" aria-current="page">Referência da API</a></li><li><a href="/pt/reference/account" class="sub">Conta e uso</a></li><li><a href="/pt/reference/rooms" class="sub">Salas</a></li><li><a href="/pt/reference/calendar" class="sub">Reuniões e agendamento</a></li><li><a href="/pt/reference/agents" class="sub">Agente de IA na sala</a></li><li><a href="/pt/reference/transcripts" class="sub">Transcrições</a></li><li><a href="/pt/reference/calls" class="sub">Ligações</a></li><li><a href="/pt/reference/webhooks" class="sub">Webhooks e eventos</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Referência da API</h1>
+<p>Esta referência é gerada a partir do <a href="/openapi.json">arquivo OpenAPI 3.1</a> da API. Há também uma versão interativa em <a href="https://api.kanutus.com/docs" rel="noopener" target="_blank">https://api.kanutus.com/docs</a>.</p>
+<h2 id="url-base"><a class="anchor" href="#url-base" aria-hidden="true">#</a>URL base</h2>
+<div class="code"><div class="code-head"><span>text</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-text">https://api.kanutus.com/v1</code></pre></div>
+<h2 id="autenticacao"><a class="anchor" href="#autenticacao" aria-hidden="true">#</a>Autenticação</h2>
+<div class="code"><div class="code-head"><span>http</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-http">Authorization: Bearer kt_live_...</code></pre></div>
+<p>Use uma chave de API ou um token de acesso OAuth. Veja <a href="/pt/authentication">Autenticação</a>.</p>
+<h2 id="convencoes"><a class="anchor" href="#convencoes" aria-hidden="true">#</a>Convenções</h2>
+<ul><li><div>JSON na entrada e na saída (<code>Content-Type: application/json</code>). Datas em ISO 8601; horários em UTC, a não ser que tragam o fuso.</div></li><li><div>Requisições <code>POST</code> que criam algo precisam do <code>Idempotency-Key</code> (<a href="/pt/errors#idempotencia">por quê</a>).</div></li><li><div>Objetos criados com uma chave de teste vêm com <code>&amp;quot;livemode&amp;quot;: false</code>.</div></li><li><div>Listas vêm no formato <code>{ &amp;quot;data&amp;quot;: [...] }</code>.</div></li><li><div>Erros: <code>application/problem+json</code> com um <code>code</code> estável (<a href="/pt/errors">lista</a>).</div></li></ul>
+<h2 id="endpoints"><a class="anchor" href="#endpoints" aria-hidden="true">#</a>Endpoints</h2>
+<div class="cards"><a class="card" href="/pt/reference/account"><strong>Conta e uso</strong><span><code>GET /v1/me</code>, saldo, uso e vozes.</span></a><a class="card" href="/pt/reference/rooms"><strong>Salas</strong><span>Criar, listar, ler, encerrar e gerar links de convidado.</span></a><a class="card" href="/pt/reference/calendar"><strong>Reuniões e agendamento</strong><span>Reuniões, links de agendamento, horários livres e agendamentos.</span></a><a class="card" href="/pt/reference/agents"><strong>Agente de IA na sala</strong><span>Entrar, falar, ouvir e sair <span class="badge badge-soon">Em breve</span>.</span></a><a class="card" href="/pt/reference/transcripts"><strong>Transcrições</strong><span>O que esta credencial pode ler.</span></a><a class="card" href="/pt/reference/calls"><strong>Ligações</strong><span>Cotar destinos e fazer ligações traduzidas <span class="badge badge-soon">Em breve</span>.</span></a><a class="card" href="/pt/reference/webhooks"><strong>Webhooks e eventos</strong><span>Endpoints, segredos, testes e registro de eventos.</span></a></div>
+<h2 id="sdks"><a class="anchor" href="#sdks" aria-hidden="true">#</a>SDKs</h2>
+<p>Os SDKs oficiais em TypeScript e Python, gerados a partir deste arquivo, chegam em breve <span class="badge badge-soon">Em breve</span>. Enquanto isso, o arquivo OpenAPI funciona com qualquer gerador, por exemplo o <code>openapi-typescript</code> ou o <code>openapi-python-client</code>.</p>
+</article>
+<nav class="pager"><a class="prev" href="/pt/responsible-use"><span>Anterior</span><strong>Uso responsável</strong></a><a class="next" href="/pt/reference/account"><span>Próximo</span><strong>Conta e uso</strong></a></nav>
+<footer class="foot"><p>Achou algo errado ou faltando? Escreva para <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">Arquivo OpenAPI 3.1</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>Nesta página</p><ul><li><a href="#url-base">URL base</a></li><li><a href="#autenticacao">Autenticação</a></li><li><a href="#convencoes">Convenções</a></li><li><a href="#endpoints">Endpoints</a></li><li><a href="#sdks">SDKs</a></li></ul></aside>
+</div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Começar em 5 minutos · Kanutus Docs</title>
+<meta name="description" content="Documentação da API e do MCP do Kanutus: salas com tradução ao vivo, agenda, vozes, ligações e agentes de IA.">
+<link rel="canonical" href="https://docs.kanutus.com/pt/quickstart">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/quickstart">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/quickstart">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Pular para o conteúdo</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/pt" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<nav class="lang" aria-label="Idioma"><a href="/quickstart" hreflang="en" lang="en">EN</a><a href="/pt/quickstart" hreflang="pt-BR" lang="pt-BR" aria-current="true">PT</a></nav>
+<a class="top-link" href="https://kanutus.com/pt">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com">Abrir o app</a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Começar</p><ul><li><a href="/pt">Kanutus para desenvolvedores</a></li><li><a href="/pt/quickstart" aria-current="page">Começar em 5 minutos</a></li><li><a href="/pt/authentication">Autenticação</a></li><li><a href="/pt/test-mode">Modo de teste</a></li></ul></div><div class="nav-group"><p>Assistentes de IA (MCP)</p><ul><li><a href="/pt/mcp">Servidor MCP do Kanutus</a></li><li><a href="/pt/mcp/connect-claude">Conectar o Claude</a></li><li><a href="/pt/mcp/connect-chatgpt">Conectar o ChatGPT</a></li><li><a href="/pt/mcp/other-clients">Cursor, VS Code e outros clientes</a></li><li><a href="/pt/mcp/tools">As 23 ferramentas do MCP</a></li></ul></div><div class="nav-group"><p>Guias</p><ul><li><a href="/pt/guides/agent-in-room">Agente de IA na sala</a></li><li><a href="/pt/guides/schedule-meeting">Agendar reunião</a></li><li><a href="/pt/guides/translated-call">Ligação traduzida</a></li><li><a href="/pt/guides/transcripts">Receber transcrições</a></li></ul></div><div class="nav-group"><p>Integrar</p><ul><li><a href="/pt/webhooks">Webhooks</a></li><li><a href="/pt/errors">Limites e erros</a></li><li><a href="/pt/responsible-use">Uso responsável</a></li></ul></div><div class="nav-group"><p>Referência da API</p><ul><li><a href="/pt/reference">Referência da API</a></li><li><a href="/pt/reference/account" class="sub">Conta e uso</a></li><li><a href="/pt/reference/rooms" class="sub">Salas</a></li><li><a href="/pt/reference/calendar" class="sub">Reuniões e agendamento</a></li><li><a href="/pt/reference/agents" class="sub">Agente de IA na sala</a></li><li><a href="/pt/reference/transcripts" class="sub">Transcrições</a></li><li><a href="/pt/reference/calls" class="sub">Ligações</a></li><li><a href="/pt/reference/webhooks" class="sub">Webhooks e eventos</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Começar em 5 minutos</h1>
+<p>Do zero até a sua primeira chamada à API em uns cinco minutos.</p>
+<h2 id="1-crie-sua-conta-e-escolha-um-plano"><a class="anchor" href="#1-crie-sua-conta-e-escolha-um-plano" aria-hidden="true">#</a>1. Crie sua conta e escolha um plano</h2>
+<ol class="steps"><li><div>Acesse <a href="https://app.kanutus.com" rel="noopener" target="_blank">app.kanutus.com</a> e entre com o Google ou com um link enviado para o seu e-mail.</div></li><li><div>A API faz parte dos <strong>planos pagos</strong> e dos <strong>planos para empresas</strong>. No app, abra <strong>Assinatura e minutos</strong> e escolha um plano. Se a sua empresa já usa o Kanutus, peça acesso a um Dono ou Gestor da organização.</div></li></ol>
+<h2 id="2-abra-desenvolvedores"><a class="anchor" href="#2-abra-desenvolvedores" aria-hidden="true">#</a>2. Abra Desenvolvedores</h2>
+<p>No menu do app, abra <strong>Desenvolvedores</strong>:</p>
+<ul><li><div><strong>Conta pessoal:</strong> no menu principal, logo abaixo de <strong>Assinatura e minutos</strong> (<a href="https://app.kanutus.com/developers" rel="noopener" target="_blank">https://app.kanutus.com/developers</a>).</div></li><li><div><strong>Organização:</strong> em <strong>Gestão → Desenvolvedores</strong> (<a href="https://app.kanutus.com/org/developers" rel="noopener" target="_blank">https://app.kanutus.com/org/developers</a>). Donos e Gestores veem essa opção.</div></li></ul>
+<div class="callout callout-tip"><p>No canto superior direito há a chave <strong>Produção | Teste</strong>. Em <strong>Teste</strong>, as chaves começam com <code>kt_test_</code> e tudo roda no <a href="/pt/test-mode">simulador</a>, sem gastar minutos. Comece por ele.</p></div>
+<h2 id="3-crie-uma-chave"><a class="anchor" href="#3-crie-uma-chave" aria-hidden="true">#</a>3. Crie uma chave</h2>
+<ol class="steps"><li><div>Mude para <strong>Teste</strong> e clique em <strong>Criar chave</strong>.</div></li><li><div>Dê um nome (por exemplo, &quot;Meu primeiro teste&quot;) e escolha um papel (<strong>Somente leitura</strong> basta para começar), um limite de gasto e a validade.</div></li><li><div>Clique em <strong>Criar</strong> e <strong>copie a chave na hora</strong>. Ela só aparece uma vez. Se perder, crie outra.</div></li></ol>
+<p>Guarde a chave no seu servidor, numa variável de ambiente. Nunca a coloque num navegador, num app de celular ou num repositório público.</p>
+<div class="code"><div class="code-head"><span>terminal</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">export KANUTUS_API_KEY=&quot;kt_test_...&quot;</code></pre></div>
+<h2 id="4-faca-a-primeira-chamada"><a class="anchor" href="#4-faca-a-primeira-chamada" aria-hidden="true">#</a>4. Faça a primeira chamada</h2>
+<p><code>GET /v1/me</code> mostra a quem a chave pertence, que permissões ela tem e quais são os limites dela:</p>
+<div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl https://api.kanutus.com/v1/me -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div>
+<div class="code"><div class="code-head"><span>resposta</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-json">{
+  &quot;credential&quot;: { &quot;kind&quot;: &quot;key&quot;, &quot;id&quot;: &quot;…&quot;, &quot;name&quot;: &quot;Meu primeiro teste&quot;, &quot;mode&quot;: &quot;test&quot;, &quot;needs_review&quot;: false },
+  &quot;organization&quot;: null,
+  &quot;user&quot;: { &quot;id&quot;: &quot;…&quot;, &quot;name&quot;: &quot;Ana&quot; },
+  &quot;permissions&quot;: [&quot;usage:read&quot;, &quot;rooms:read&quot;, &quot;calls:read&quot;, &quot;calendar:read&quot;, &quot;voices:read&quot;, &quot;transcripts:read&quot;],
+  &quot;limits&quot;: { &quot;spend_day_minutes&quot;: 60, &quot;spend_month_minutes&quot;: null, &quot;per_call_minutes&quot;: null, &quot;requests_per_minute&quot;: 60, &quot;spent_today_minutes&quot;: 0, &quot;spent_month_minutes&quot;: 0 },
+  &quot;pricing&quot;: { &quot;api_minute_factor&quot;: 1, &quot;listen_text_factor&quot;: 0.1 }
+}</code></pre></div>
+<p>Agora crie uma sala. Toda requisição que cria algo precisa do cabeçalho <code>Idempotency-Key</code>. Use qualquer valor único: se você repetir a mesma requisição com o mesmo valor, recebe o mesmo resultado em vez de criar a sala duas vezes. Para criar salas, a chave precisa da permissão <code>rooms:write</code>, que vem, por exemplo, no papel <strong>Assistente de reuniões</strong>:</p>
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="t17-0">curl</button><button type="button" role="tab" aria-selected="false" data-tab="t17-1">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="t17-2">Python</button></div><div class="tab-panel" data-panel="t17-0"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-bash">curl -X POST https://api.kanutus.com/v1/rooms \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot; \
+  -H &quot;Idempotency-Key: $(uuidgen)&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;title&quot;: &quot;Proposta com a Andes&quot;, &quot;langs&quot;: [&quot;pt&quot;, &quot;es&quot;]}'</code></pre></div></div><div class="tab-panel" data-panel="t17-1" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/rooms&quot;, {
+  method: &quot;POST&quot;,
+  headers: {
+    Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
+    &quot;Idempotency-Key&quot;: crypto.randomUUID(),
+    &quot;Content-Type&quot;: &quot;application/json&quot;,
+  },
+  body: JSON.stringify({ title: &quot;Proposta com a Andes&quot;, langs: [&quot;pt&quot;, &quot;es&quot;] }),
+});
+const room = await res.json();
+console.log(room.url);</code></pre></div></div><div class="tab-panel" data-panel="t17-2" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copiado">Copiar</button></div><pre><code class="lang-python">import os, uuid, requests
+
+r = requests.post(
+    &quot;https://api.kanutus.com/v1/rooms&quot;,
+    headers={
+        &quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;,
+        &quot;Idempotency-Key&quot;: str(uuid.uuid4()),
+    },
+    json={&quot;title&quot;: &quot;Proposta com a Andes&quot;, &quot;langs&quot;: [&quot;pt&quot;, &quot;es&quot;]},
+)
+print(r.json()[&quot;url&quot;])</code></pre></div></div></div>
+<p>A resposta traz a <code>url</code> da sala. Abra ou compartilhe esse link: cada pessoa ouve as outras na própria língua.</p>
+<h2 id="proximos-passos"><a class="anchor" href="#proximos-passos" aria-hidden="true">#</a>Próximos passos</h2>
+<div class="cards"><a class="card" href="/pt/authentication"><strong>Autenticação</strong><span>Chaves, OAuth, permissões, papéis e limite de gasto.</span></a><a class="card" href="/pt/mcp"><strong>Conectar o Claude ou o ChatGPT</strong><span>Os mesmos recursos dentro do seu assistente de IA.</span></a><a class="card" href="/pt/webhooks"><strong>Webhooks</strong><span>Receba um aviso quando algo acontecer.</span></a><a class="card" href="/pt/reference"><strong>Referência da API</strong><span>Todos os endpoints.</span></a></div>
+</article>
+<nav class="pager"><a class="prev" href="/pt"><span>Anterior</span><strong>Kanutus para desenvolvedores</strong></a><a class="next" href="/pt/authentication"><span>Próximo</span><strong>Autenticação</strong></a></nav>
+<footer class="foot"><p>Achou algo errado ou faltando? Escreva para <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">Arquivo OpenAPI 3.1</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>Nesta página</p><ul><li><a href="#1-crie-sua-conta-e-escolha-um-plano">1. Crie sua conta e escolha um plano</a></li><li><a href="#2-abra-desenvolvedores">2. Abra Desenvolvedores</a></li><li><a href="#3-crie-uma-chave">3. Crie uma chave</a></li><li><a href="#4-faca-a-primeira-chamada">4. Faça a primeira chamada</a></li><li><a href="#proximos-passos">Próximos passos</a></li></ul></aside>
+</div>
+</body>
+</html>
