@@ -33,16 +33,16 @@
 <main id="content" class="content">
 <article class="prose">
 <h1>Voices</h1>
-<div class="ref-search" data-ref-search data-empty="No endpoint found"><input type="search" placeholder="Search endpoints (rooms, meetings, webhook…)" aria-label="Search endpoints (rooms, meetings, webhook…)" autocomplete="off"><ul hidden></ul><script type="application/json">[{"m":"GET","p":"/v1/me","s":"Who am I: organization, permissions and limits of this credential","g":"Account and usage","u":"/reference/account#get-v1-me"},{"m":"GET","p":"/v1/balance","s":"Minutes left (organization pool/quota or personal plan)","g":"Account and usage","u":"/reference/account#get-v1-balance"},{"m":"GET","p":"/v1/usage","s":"API usage by day or by credential","g":"Account and usage","u":"/reference/account#get-v1-usage"},{"m":"GET","p":"/v1/voices","s":"List voices (your clones and your chosen generic voices)","g":"Voices","u":"/reference/voices#get-v1-voices"},{"m":"GET","p":"/v1/rooms","s":"List rooms","g":"Rooms","u":"/reference/rooms#get-v1-rooms"},{"m":"POST","p":"/v1/rooms","s":"Create an instant room","g":"Rooms","u":"/reference/rooms#post-v1-rooms"},{"m":"GET","p":"/v1/rooms/{id}","s":"Get a room","g":"Rooms","u":"/reference/rooms#get-v1-rooms-id"},{"m":"DELETE","p":"/v1/rooms/{id}","s":"End a room for everyone","g":"Rooms","u":"/reference/rooms#delete-v1-rooms-id"},{"m":"POST","p":"/v1/rooms/{id}/join-links","s":"Create a guest join link (name and language prefilled)","g":"Rooms","u":"/reference/rooms#post-v1-rooms-id-join-links"},{"m":"GET","p":"/v1/meetings","s":"List scheduled meetings","g":"Meetings and booking","u":"/reference/calendar#get-v1-meetings"},{"m":"POST","p":"/v1/meetings","s":"Schedule a meeting (room with date, invitees and languages)","g":"Meetings and booking","u":"/reference/calendar#post-v1-meetings"},{"m":"DELETE","p":"/v1/meetings/{id}","s":"Cancel a scheduled meeting","g":"Meetings and booking","u":"/reference/calendar#delete-v1-meetings-id"},{"m":"GET","p":"/v1/event-types","s":"List your booking links (event types)","g":"Meetings and booking","u":"/reference/calendar#get-v1-event-types"},{"m":"GET","p":"/v1/event-types/{id}/slots","s":"Free times of a booking link","g":"Meetings and booking","u":"/reference/calendar#get-v1-event-types-id-slots"},{"m":"POST","p":"/v1/bookings","s":"Book a time on a booking link (yours or someone else's)","g":"Meetings and booking","u":"/reference/calendar#post-v1-bookings"},{"m":"POST","p":"/v1/rooms/{id}/agent-sessions","s":"Join a room as an AI agent (text in, translated voice out)","g":"AI agent in a room","u":"/reference/agents#post-v1-rooms-id-agent-sessions"},{"m":"GET","p":"/v1/sessions/{id}","s":"Get an agent session","g":"AI agent in a room","u":"/reference/agents#get-v1-sessions-id"},{"m":"POST","p":"/v1/sessions/{id}/say","s":"Speak: text is translated for each listener and spoken with the chosen voice","g":"AI agent in a room","u":"/reference/agents#post-v1-sessions-id-say"},{"m":"GET","p":"/v1/sessions/{id}/events","s":"Listen: new phrases since cursor (long-poll up to `wait` seconds)","g":"AI agent in a room","u":"/reference/agents#get-v1-sessions-id-events"},{"m":"POST","p":"/v1/sessions/{id}/leave","s":"Leave the room","g":"AI agent in a room","u":"/reference/agents#post-v1-sessions-id-leave"},{"m":"GET","p":"/v1/transcripts","s":"Transcripts this credential can read","g":"Transcripts","u":"/reference/transcripts#get-v1-transcripts"},{"m":"GET","p":"/v1/transcripts/{id}","s":"Read a transcript","g":"Transcripts","u":"/reference/transcripts#get-v1-transcripts-id"},{"m":"GET","p":"/v1/calls/quote","s":"Quote a destination and check the call purpose for that country","g":"Phone calls","u":"/reference/calls#get-v1-calls-quote"},{"m":"POST","p":"/v1/calls","s":"Place a translated call as an AI agent (always announces it is an AI)","g":"Phone calls","u":"/reference/calls#post-v1-calls"},{"m":"GET","p":"/v1/calls","s":"Calls placed by this credential","g":"Phone calls","u":"/reference/calls#get-v1-calls"},{"m":"GET","p":"/v1/calls/{id}","s":"Get a call","g":"Phone calls","u":"/reference/calls#get-v1-calls-id"},{"m":"GET","p":"/v1/webhook-endpoints","s":"List webhook endpoints","g":"Webhooks and events","u":"/reference/webhooks#get-v1-webhook-endpoints"},{"m":"POST","p":"/v1/webhook-endpoints","s":"Create a webhook endpoint (the signing secret is returned once)","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints"},{"m":"DELETE","p":"/v1/webhook-endpoints/{id}","s":"Delete a webhook endpoint","g":"Webhooks and events","u":"/reference/webhooks#delete-v1-webhook-endpoints-id"},{"m":"POST","p":"/v1/webhook-endpoints/{id}/rotate-secret","s":"Rotate the signing secret (both secrets sign for 24 h)","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints-id-rotate-secret"},{"m":"POST","p":"/v1/webhook-endpoints/{id}/test","s":"Send a signed test event now","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints-id-test"},{"m":"GET","p":"/v1/events","s":"Recent events (to reconcile what a webhook missed; 30 days)","g":"Webhooks and events","u":"/reference/webhooks#get-v1-events"}]</script></div>
+<div class="ref-search" data-ref-search data-empty="No endpoint found"><input type="search" placeholder="Search endpoints (rooms, meetings, webhook…)" aria-label="Search endpoints (rooms, meetings, webhook…)" autocomplete="off"><ul hidden></ul><script type="application/json">[{"m":"GET","p":"/v1/me","s":"Who am I: organization, permissions and limits of this credential","g":"Account and usage","u":"/reference/account#get-v1-me"},{"m":"GET","p":"/v1/balance","s":"Minutes left (organization pool/quota or personal plan)","g":"Account and usage","u":"/reference/account#get-v1-balance"},{"m":"GET","p":"/v1/usage","s":"API usage by day or by credential","g":"Account and usage","u":"/reference/account#get-v1-usage"},{"m":"GET","p":"/v1/voices","s":"List voices: consented clones of the organization, your own clones and your chosen generic voices","g":"Voices","u":"/reference/voices#get-v1-voices"},{"m":"POST","p":"/v1/voices","s":"Clone a voice with verifiable consent: returns a link the person opens to read the consent sentence and record live","g":"Voices","u":"/reference/voices#post-v1-voices"},{"m":"GET","p":"/v1/voices/catalog","s":"Generic voices you can choose (no consent needed)","g":"Voices","u":"/reference/voices#get-v1-voices-catalog"},{"m":"POST","p":"/v1/voices/generic","s":"Choose a generic voice from the catalog (adds it to your voices)","g":"Voices","u":"/reference/voices#post-v1-voices-generic"},{"m":"GET","p":"/v1/voices/{id}","s":"Get a voice (and its consent status)","g":"Voices","u":"/reference/voices#get-v1-voices-id"},{"m":"DELETE","p":"/v1/voices/{id}","s":"Delete a voice: revokes a consented clone or removes a chosen generic voice","g":"Voices","u":"/reference/voices#delete-v1-voices-id"},{"m":"GET","p":"/v1/rooms","s":"List rooms","g":"Rooms","u":"/reference/rooms#get-v1-rooms"},{"m":"POST","p":"/v1/rooms","s":"Create an instant room","g":"Rooms","u":"/reference/rooms#post-v1-rooms"},{"m":"GET","p":"/v1/rooms/{id}","s":"Get a room","g":"Rooms","u":"/reference/rooms#get-v1-rooms-id"},{"m":"DELETE","p":"/v1/rooms/{id}","s":"End a room for everyone","g":"Rooms","u":"/reference/rooms#delete-v1-rooms-id"},{"m":"POST","p":"/v1/rooms/{id}/join-links","s":"Create a guest join link (name and language prefilled)","g":"Rooms","u":"/reference/rooms#post-v1-rooms-id-join-links"},{"m":"GET","p":"/v1/meetings","s":"List scheduled meetings","g":"Meetings and booking","u":"/reference/calendar#get-v1-meetings"},{"m":"POST","p":"/v1/meetings","s":"Schedule a meeting (room with date, invitees and languages)","g":"Meetings and booking","u":"/reference/calendar#post-v1-meetings"},{"m":"DELETE","p":"/v1/meetings/{id}","s":"Cancel a scheduled meeting","g":"Meetings and booking","u":"/reference/calendar#delete-v1-meetings-id"},{"m":"GET","p":"/v1/event-types","s":"List your booking links (event types)","g":"Meetings and booking","u":"/reference/calendar#get-v1-event-types"},{"m":"GET","p":"/v1/event-types/{id}/slots","s":"Free times of a booking link","g":"Meetings and booking","u":"/reference/calendar#get-v1-event-types-id-slots"},{"m":"POST","p":"/v1/bookings","s":"Book a time on a booking link (yours or someone else's)","g":"Meetings and booking","u":"/reference/calendar#post-v1-bookings"},{"m":"POST","p":"/v1/rooms/{id}/agent-sessions","s":"Join a room as an AI agent (text in, translated voice out)","g":"AI agent in a room","u":"/reference/agents#post-v1-rooms-id-agent-sessions"},{"m":"GET","p":"/v1/sessions/{id}","s":"Get an agent session","g":"AI agent in a room","u":"/reference/agents#get-v1-sessions-id"},{"m":"POST","p":"/v1/sessions/{id}/say","s":"Speak: text is translated for each listener and spoken with the chosen voice","g":"AI agent in a room","u":"/reference/agents#post-v1-sessions-id-say"},{"m":"GET","p":"/v1/sessions/{id}/events","s":"Listen: new phrases since cursor (long-poll up to `wait` seconds)","g":"AI agent in a room","u":"/reference/agents#get-v1-sessions-id-events"},{"m":"POST","p":"/v1/sessions/{id}/leave","s":"Leave the room","g":"AI agent in a room","u":"/reference/agents#post-v1-sessions-id-leave"},{"m":"GET","p":"/v1/transcripts","s":"Transcripts this credential can read","g":"Transcripts","u":"/reference/transcripts#get-v1-transcripts"},{"m":"GET","p":"/v1/transcripts/{id}","s":"Read a transcript","g":"Transcripts","u":"/reference/transcripts#get-v1-transcripts-id"},{"m":"GET","p":"/v1/calls/quote","s":"Quote a destination and check the call purpose for that country","g":"Phone calls","u":"/reference/calls#get-v1-calls-quote"},{"m":"POST","p":"/v1/calls","s":"Place a translated call as an AI agent (always announces it is an AI)","g":"Phone calls","u":"/reference/calls#post-v1-calls"},{"m":"GET","p":"/v1/calls","s":"Calls placed by this credential","g":"Phone calls","u":"/reference/calls#get-v1-calls"},{"m":"GET","p":"/v1/calls/{id}","s":"Get a call","g":"Phone calls","u":"/reference/calls#get-v1-calls-id"},{"m":"POST","p":"/v1/calls/{id}/hangup","s":"Hang up (idempotent: an ended call is returned as is)","g":"Phone calls","u":"/reference/calls#post-v1-calls-id-hangup"},{"m":"POST","p":"/v1/calls/{id}/dtmf","s":"Press phone keys (DTMF) for menus like \"press 2 for sales\": 0-9, * and #, up to 32","g":"Phone calls","u":"/reference/calls#post-v1-calls-id-dtmf"},{"m":"GET","p":"/v1/webhook-endpoints","s":"List webhook endpoints","g":"Webhooks and events","u":"/reference/webhooks#get-v1-webhook-endpoints"},{"m":"POST","p":"/v1/webhook-endpoints","s":"Create a webhook endpoint (the signing secret is returned once)","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints"},{"m":"DELETE","p":"/v1/webhook-endpoints/{id}","s":"Delete a webhook endpoint","g":"Webhooks and events","u":"/reference/webhooks#delete-v1-webhook-endpoints-id"},{"m":"POST","p":"/v1/webhook-endpoints/{id}/rotate-secret","s":"Rotate the signing secret (both secrets sign for 24 h)","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints-id-rotate-secret"},{"m":"POST","p":"/v1/webhook-endpoints/{id}/test","s":"Send a signed test event now","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints-id-test"},{"m":"GET","p":"/v1/events","s":"Recent events (to reconcile what a webhook missed; 30 days)","g":"Webhooks and events","u":"/reference/webhooks#get-v1-events"}]</script></div>
 <section class="op" id="get-v1-voices">
 <h2><span class="method method-get">GET</span><code class="path">/v1/voices</code><a class="anchor" href="#get-v1-voices" aria-hidden="true">#</a></h2>
-<p class="op-summary">List voices (your clones and your chosen generic voices)</p>
+<p class="op-summary">List voices: consented clones of the organization, your own clones and your chosen generic voices</p>
 <p class="op-meta">Permission: <code>voices:read</code></p>
 
 
 
 <h3>Response <code>200</code></h3>
-<div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>data</code> <span class="req">required</span></td><td><code class="type">object[]</code></td><td></td></tr><tr><td><code>data[].id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].name</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].kind</code> <span class="req">required</span></td><td><code class="type">&quot;clone&quot; | &quot;generic&quot;</code></td><td></td></tr><tr><td><code>data[].active</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr><tr><td><code>data[].gender</code> <span class="req">required</span></td><td><code class="type">&quot;male&quot; | &quot;female&quot; | null</code></td><td></td></tr></tbody></table></div>
+<div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>data</code> <span class="req">required</span></td><td><code class="type">object[]</code></td><td></td></tr><tr><td><code>data[].id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].name</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].kind</code> <span class="req">required</span></td><td><code class="type">&quot;clone&quot; | &quot;generic&quot;</code></td><td></td></tr><tr><td><code>data[].active</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr><tr><td><code>data[].gender</code> <span class="req">required</span></td><td><code class="type">&quot;male&quot; | &quot;female&quot; | null</code></td><td></td></tr><tr><td><code>data[].status</code></td><td><code class="type">&quot;awaiting_consent&quot; | &quot;processing&quot; | &quot;ready&quot; | &quot;failed&quot; | &quot;revoked&quot; | &quot;expired&quot;</code></td><td>Voices created through the API (consent flow). <code>ready</code> = usable in say.</td></tr><tr><td><code>data[].consent_url</code></td><td><code class="type">string | null</code></td><td>Send this link to the person whose voice it is. They sign in with the email of the request, read the consent sentence and record live. Shown while awaiting consent.</td></tr><tr><td><code>data[].language</code></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].person</code></td><td><code class="type">object</code></td><td></td></tr><tr><td><code>data[].person.name</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].person.email</code> <span class="req">required</span></td><td><code class="type">string</code></td><td>Masked</td></tr><tr><td><code>data[].failure_code</code></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>data[].expires_at</code></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>data[].created_at</code></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].livemode</code></td><td><code class="type">boolean</code></td><td></td></tr></tbody></table></div>
 <h3>Example</h3>
 <div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="get-v1-voices-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-voices-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-voices-p">Python</button></div><div class="tab-panel" data-panel="get-v1-voices-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/voices&quot; \
   -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div></div><div class="tab-panel" data-panel="get-v1-voices-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/voices&quot;, {
@@ -78,7 +78,18 @@ print(r.status_code, r.json())</code></pre></div></div></div>
       &quot;name&quot;: &quot;string&quot;,
       &quot;kind&quot;: &quot;clone&quot;,
       &quot;active&quot;: true,
-      &quot;gender&quot;: &quot;male&quot;
+      &quot;gender&quot;: &quot;male&quot;,
+      &quot;status&quot;: &quot;awaiting_consent&quot;,
+      &quot;consent_url&quot;: &quot;https://example.com&quot;,
+      &quot;language&quot;: &quot;string&quot;,
+      &quot;person&quot;: {
+        &quot;name&quot;: &quot;string&quot;,
+        &quot;email&quot;: &quot;string&quot;
+      },
+      &quot;failure_code&quot;: &quot;string&quot;,
+      &quot;expires_at&quot;: &quot;string&quot;,
+      &quot;created_at&quot;: &quot;string&quot;,
+      &quot;livemode&quot;: true
     }
   ]
 }</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
@@ -111,11 +122,467 @@ print(r.status_code, r.json())</code></pre></div></div></div>
   &quot;request_id&quot;: &quot;req_…&quot;
 }</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details></div>
 </section>
+<section class="op" id="post-v1-voices">
+<h2><span class="method method-post">POST</span><code class="path">/v1/voices</code><a class="anchor" href="#post-v1-voices" aria-hidden="true">#</a></h2>
+<p class="op-summary">Clone a voice with verifiable consent: returns a link the person opens to read the consent sentence and record live <span class="badge badge-soon">Soon</span></p>
+<p class="op-meta">Permission: <code>voices:clone</code></p>
+<div class="callout callout-soon"><p>Live mode answers 501 coming soon. Try it now with a kt_test_ key (simulator).</p></div>
+<h3>Parameters</h3><div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>idempotency-key</code> <span class="req">required</span></td><td><code class="type">header · string</code></td><td>Unique key per create request; retries with the same key return the same result.</td></tr></tbody></table></div>
+<h3>Request body</h3><div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code> <span class="req">required</span></td><td><code class="type">string</code></td><td>length 1–60</td></tr><tr><td><code>language</code> <span class="req">required</span></td><td><code class="type">string</code></td><td>Language the person will read in (consent sentence: pt, en or es; others read in English).</td></tr><tr><td><code>person</code> <span class="req">required</span></td><td><code class="type">object</code></td><td></td></tr><tr><td><code>person.name</code> <span class="req">required</span></td><td><code class="type">string</code></td><td>length 1–80</td></tr><tr><td><code>person.email</code> <span class="req">required</span></td><td><code class="type">string</code></td><td>The person signs in with this email to give consent and record. · length 0–254</td></tr></tbody></table></div>
+<h3>Response <code>202</code></h3>
+<div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>name</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>kind</code> <span class="req">required</span></td><td><code class="type">&quot;clone&quot; | &quot;generic&quot;</code></td><td></td></tr><tr><td><code>active</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr><tr><td><code>gender</code> <span class="req">required</span></td><td><code class="type">&quot;male&quot; | &quot;female&quot; | null</code></td><td></td></tr><tr><td><code>status</code></td><td><code class="type">&quot;awaiting_consent&quot; | &quot;processing&quot; | &quot;ready&quot; | &quot;failed&quot; | &quot;revoked&quot; | &quot;expired&quot;</code></td><td>Voices created through the API (consent flow). <code>ready</code> = usable in say.</td></tr><tr><td><code>consent_url</code></td><td><code class="type">string | null</code></td><td>Send this link to the person whose voice it is. They sign in with the email of the request, read the consent sentence and record live. Shown while awaiting consent.</td></tr><tr><td><code>language</code></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>person</code></td><td><code class="type">object</code></td><td></td></tr><tr><td><code>person.name</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>person.email</code> <span class="req">required</span></td><td><code class="type">string</code></td><td>Masked</td></tr><tr><td><code>failure_code</code></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>expires_at</code></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>created_at</code></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>livemode</code></td><td><code class="type">boolean</code></td><td></td></tr></tbody></table></div>
+<h3>Example</h3>
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="post-v1-voices-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="post-v1-voices-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="post-v1-voices-p">Python</button></div><div class="tab-panel" data-panel="post-v1-voices-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl -X POST &quot;https://api.kanutus.com/v1/voices&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot; \
+  -H &quot;Idempotency-Key: $(uuidgen)&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;name&quot;:&quot;Ana (atendimento)&quot;,&quot;language&quot;:&quot;pt&quot;,&quot;person&quot;:{&quot;name&quot;:&quot;Ana Ribeiro&quot;,&quot;email&quot;:&quot;ana@vertice.com&quot;}}'</code></pre></div></div><div class="tab-panel" data-panel="post-v1-voices-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/voices&quot;, {
+  method: &quot;POST&quot;,
+  headers: {
+    Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
+    &quot;Idempotency-Key&quot;: crypto.randomUUID(),
+    &quot;Content-Type&quot;: &quot;application/json&quot;,
+  },
+  body: JSON.stringify({&quot;name&quot;:&quot;Ana (atendimento)&quot;,&quot;language&quot;:&quot;pt&quot;,&quot;person&quot;:{&quot;name&quot;:&quot;Ana Ribeiro&quot;,&quot;email&quot;:&quot;ana@vertice.com&quot;}}),
+});
+console.log(res.status, await res.json());</code></pre></div></div><div class="tab-panel" data-panel="post-v1-voices-p" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import os, uuid, requests
+
+r = requests.request(
+    &quot;POST&quot;,
+    &quot;https://api.kanutus.com/v1/voices&quot;,
+    headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;, &quot;Idempotency-Key&quot;: str(uuid.uuid4())},
+    json={&quot;name&quot;:&quot;Ana (atendimento)&quot;,&quot;language&quot;:&quot;pt&quot;,&quot;person&quot;:{&quot;name&quot;:&quot;Ana Ribeiro&quot;,&quot;email&quot;:&quot;ana@vertice.com&quot;}},
+)
+print(r.status_code, r.json())</code></pre></div></div></div>
+<details class="try" data-try data-method="POST" data-path="/v1/voices" data-api="https://api.kanutus.com" data-idem>
+<summary>Try it</summary>
+<div class="try-body">
+<p class="try-note">Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.</p>
+<label><span>API key</span><input data-key type="password" autocomplete="off" placeholder="kt_test_..."></label>
+
+<label class="try-json"><span>Request body (JSON)</span><textarea data-body rows="9" spellcheck="false">{
+  &quot;name&quot;: &quot;Ana (atendimento)&quot;,
+  &quot;language&quot;: &quot;pt&quot;,
+  &quot;person&quot;: {
+    &quot;name&quot;: &quot;Ana Ribeiro&quot;,
+    &quot;email&quot;: &quot;ana@vertice.com&quot;
+  }
+}</textarea></label>
+<div class="try-actions"><button type="button" class="btn" data-send>Send request</button><code class="try-url">POST /v1/voices</code></div>
+<div class="try-out" hidden><div class="code"><div class="code-head"><span data-status></span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code data-out></code></pre></div></div>
+</div>
+</details>
+<h3>Responses by status</h3>
+<div class="statuses"><details class="status"><summary><code class="st st-2">202</code> Waiting for the person's consent (status awaiting_consent)</summary><div class="code"><div class="code-head"><span>202</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;id&quot;: &quot;string&quot;,
+  &quot;name&quot;: &quot;string&quot;,
+  &quot;kind&quot;: &quot;clone&quot;,
+  &quot;active&quot;: true,
+  &quot;gender&quot;: &quot;male&quot;,
+  &quot;status&quot;: &quot;awaiting_consent&quot;,
+  &quot;consent_url&quot;: &quot;https://example.com&quot;,
+  &quot;language&quot;: &quot;string&quot;,
+  &quot;person&quot;: {
+    &quot;name&quot;: &quot;string&quot;,
+    &quot;email&quot;: &quot;string&quot;
+  },
+  &quot;failure_code&quot;: &quot;string&quot;,
+  &quot;expires_at&quot;: &quot;string&quot;,
+  &quot;created_at&quot;: &quot;string&quot;,
+  &quot;livemode&quot;: true
+}</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 400,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">401</code> Missing, invalid, expired or revoked credential</summary><div class="code"><div class="code-head"><span>401 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 401,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">403</code> Missing permission, blocked or not allowed</summary><div class="code"><div class="code-head"><span>403 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 403,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">409</code> Conflict (idempotency or state)</summary><div class="code"><div class="code-head"><span>409 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 409,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">429</code> Rate limit exceeded (see RateLimit-* and Retry-After headers)</summary><div class="code"><div class="code-head"><span>429 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 429,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-5">501</code> Not available yet in live mode (use a kt_test_ key)</summary><div class="code"><div class="code-head"><span>501 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 501,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details></div>
+</section>
+<section class="op" id="get-v1-voices-catalog">
+<h2><span class="method method-get">GET</span><code class="path">/v1/voices/catalog</code><a class="anchor" href="#get-v1-voices-catalog" aria-hidden="true">#</a></h2>
+<p class="op-summary">Generic voices you can choose (no consent needed)</p>
+<p class="op-meta">Permission: <code>voices:read</code></p>
+
+
+
+<h3>Response <code>200</code></h3>
+<div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>data</code> <span class="req">required</span></td><td><code class="type">object[]</code></td><td></td></tr><tr><td><code>data[].id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].name</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].gender</code> <span class="req">required</span></td><td><code class="type">&quot;male&quot; | &quot;female&quot;</code></td><td></td></tr><tr><td><code>data[].accent</code> <span class="req">required</span></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>data[].description</code> <span class="req">required</span></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>data[].preview_url</code> <span class="req">required</span></td><td><code class="type">string | null</code></td><td></td></tr></tbody></table></div>
+<h3>Example</h3>
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="get-v1-voices-catalog-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-voices-catalog-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-voices-catalog-p">Python</button></div><div class="tab-panel" data-panel="get-v1-voices-catalog-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/voices/catalog&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div></div><div class="tab-panel" data-panel="get-v1-voices-catalog-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/voices/catalog&quot;, {
+  method: &quot;GET&quot;,
+  headers: {
+    Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
+  },
+});
+console.log(res.status, await res.json());</code></pre></div></div><div class="tab-panel" data-panel="get-v1-voices-catalog-p" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import os, uuid, requests
+
+r = requests.request(
+    &quot;GET&quot;,
+    &quot;https://api.kanutus.com/v1/voices/catalog&quot;,
+    headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;},
+)
+print(r.status_code, r.json())</code></pre></div></div></div>
+<details class="try" data-try data-method="GET" data-path="/v1/voices/catalog" data-api="https://api.kanutus.com">
+<summary>Try it</summary>
+<div class="try-body">
+<p class="try-note">Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.</p>
+<label><span>API key</span><input data-key type="password" autocomplete="off" placeholder="kt_test_..."></label>
+
+
+<div class="try-actions"><button type="button" class="btn" data-send>Send request</button><code class="try-url">GET /v1/voices/catalog</code></div>
+<div class="try-out" hidden><div class="code"><div class="code-head"><span data-status></span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code data-out></code></pre></div></div>
+</div>
+</details>
+<h3>Responses by status</h3>
+<div class="statuses"><details class="status"><summary><code class="st st-2">200</code> Catalog</summary><div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;string&quot;,
+      &quot;name&quot;: &quot;string&quot;,
+      &quot;gender&quot;: &quot;male&quot;,
+      &quot;accent&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;string&quot;,
+      &quot;preview_url&quot;: &quot;string&quot;
+    }
+  ]
+}</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 400,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">401</code> Missing, invalid, expired or revoked credential</summary><div class="code"><div class="code-head"><span>401 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 401,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">403</code> Missing permission, blocked or not allowed</summary><div class="code"><div class="code-head"><span>403 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 403,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">429</code> Rate limit exceeded (see RateLimit-* and Retry-After headers)</summary><div class="code"><div class="code-head"><span>429 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 429,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details></div>
+</section>
+<section class="op" id="post-v1-voices-generic">
+<h2><span class="method method-post">POST</span><code class="path">/v1/voices/generic</code><a class="anchor" href="#post-v1-voices-generic" aria-hidden="true">#</a></h2>
+<p class="op-summary">Choose a generic voice from the catalog (adds it to your voices)</p>
+<p class="op-meta">Permission: <code>voices:write</code></p>
+
+
+<h3>Request body</h3><div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>voice_id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr></tbody></table></div>
+<h3>Response <code>200</code></h3>
+<div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>name</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>kind</code> <span class="req">required</span></td><td><code class="type">&quot;clone&quot; | &quot;generic&quot;</code></td><td></td></tr><tr><td><code>active</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr><tr><td><code>gender</code> <span class="req">required</span></td><td><code class="type">&quot;male&quot; | &quot;female&quot; | null</code></td><td></td></tr><tr><td><code>status</code></td><td><code class="type">&quot;awaiting_consent&quot; | &quot;processing&quot; | &quot;ready&quot; | &quot;failed&quot; | &quot;revoked&quot; | &quot;expired&quot;</code></td><td>Voices created through the API (consent flow). <code>ready</code> = usable in say.</td></tr><tr><td><code>consent_url</code></td><td><code class="type">string | null</code></td><td>Send this link to the person whose voice it is. They sign in with the email of the request, read the consent sentence and record live. Shown while awaiting consent.</td></tr><tr><td><code>language</code></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>person</code></td><td><code class="type">object</code></td><td></td></tr><tr><td><code>person.name</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>person.email</code> <span class="req">required</span></td><td><code class="type">string</code></td><td>Masked</td></tr><tr><td><code>failure_code</code></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>expires_at</code></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>created_at</code></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>livemode</code></td><td><code class="type">boolean</code></td><td></td></tr></tbody></table></div>
+<h3>Example</h3>
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="post-v1-voices-generic-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="post-v1-voices-generic-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="post-v1-voices-generic-p">Python</button></div><div class="tab-panel" data-panel="post-v1-voices-generic-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl -X POST &quot;https://api.kanutus.com/v1/voices/generic&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;voice_id&quot;:&quot;generic_EXAVITQu4vr4xnSDxMaL&quot;}'</code></pre></div></div><div class="tab-panel" data-panel="post-v1-voices-generic-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/voices/generic&quot;, {
+  method: &quot;POST&quot;,
+  headers: {
+    Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
+    &quot;Content-Type&quot;: &quot;application/json&quot;,
+  },
+  body: JSON.stringify({&quot;voice_id&quot;:&quot;generic_EXAVITQu4vr4xnSDxMaL&quot;}),
+});
+console.log(res.status, await res.json());</code></pre></div></div><div class="tab-panel" data-panel="post-v1-voices-generic-p" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import os, uuid, requests
+
+r = requests.request(
+    &quot;POST&quot;,
+    &quot;https://api.kanutus.com/v1/voices/generic&quot;,
+    headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;},
+    json={&quot;voice_id&quot;:&quot;generic_EXAVITQu4vr4xnSDxMaL&quot;},
+)
+print(r.status_code, r.json())</code></pre></div></div></div>
+<details class="try" data-try data-method="POST" data-path="/v1/voices/generic" data-api="https://api.kanutus.com">
+<summary>Try it</summary>
+<div class="try-body">
+<p class="try-note">Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.</p>
+<label><span>API key</span><input data-key type="password" autocomplete="off" placeholder="kt_test_..."></label>
+
+<label class="try-json"><span>Request body (JSON)</span><textarea data-body rows="4" spellcheck="false">{
+  &quot;voice_id&quot;: &quot;generic_EXAVITQu4vr4xnSDxMaL&quot;
+}</textarea></label>
+<div class="try-actions"><button type="button" class="btn" data-send>Send request</button><code class="try-url">POST /v1/voices/generic</code></div>
+<div class="try-out" hidden><div class="code"><div class="code-head"><span data-status></span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code data-out></code></pre></div></div>
+</div>
+</details>
+<h3>Responses by status</h3>
+<div class="statuses"><details class="status"><summary><code class="st st-2">200</code> Chosen</summary><div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;id&quot;: &quot;string&quot;,
+  &quot;name&quot;: &quot;string&quot;,
+  &quot;kind&quot;: &quot;clone&quot;,
+  &quot;active&quot;: true,
+  &quot;gender&quot;: &quot;male&quot;,
+  &quot;status&quot;: &quot;awaiting_consent&quot;,
+  &quot;consent_url&quot;: &quot;https://example.com&quot;,
+  &quot;language&quot;: &quot;string&quot;,
+  &quot;person&quot;: {
+    &quot;name&quot;: &quot;string&quot;,
+    &quot;email&quot;: &quot;string&quot;
+  },
+  &quot;failure_code&quot;: &quot;string&quot;,
+  &quot;expires_at&quot;: &quot;string&quot;,
+  &quot;created_at&quot;: &quot;string&quot;,
+  &quot;livemode&quot;: true
+}</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 400,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">401</code> Missing, invalid, expired or revoked credential</summary><div class="code"><div class="code-head"><span>401 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 401,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">403</code> Missing permission, blocked or not allowed</summary><div class="code"><div class="code-head"><span>403 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 403,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">409</code> Conflict (idempotency or state)</summary><div class="code"><div class="code-head"><span>409 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 409,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">429</code> Rate limit exceeded (see RateLimit-* and Retry-After headers)</summary><div class="code"><div class="code-head"><span>429 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 429,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details></div>
+</section>
+<section class="op" id="get-v1-voices-id">
+<h2><span class="method method-get">GET</span><code class="path">/v1/voices/{id}</code><a class="anchor" href="#get-v1-voices-id" aria-hidden="true">#</a></h2>
+<p class="op-summary">Get a voice (and its consent status)</p>
+<p class="op-meta">Permission: <code>voices:read</code></p>
+
+<h3>Parameters</h3><div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">required</span></td><td><code class="type">path · string</code></td><td></td></tr></tbody></table></div>
+
+<h3>Response <code>200</code></h3>
+<div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>name</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>kind</code> <span class="req">required</span></td><td><code class="type">&quot;clone&quot; | &quot;generic&quot;</code></td><td></td></tr><tr><td><code>active</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr><tr><td><code>gender</code> <span class="req">required</span></td><td><code class="type">&quot;male&quot; | &quot;female&quot; | null</code></td><td></td></tr><tr><td><code>status</code></td><td><code class="type">&quot;awaiting_consent&quot; | &quot;processing&quot; | &quot;ready&quot; | &quot;failed&quot; | &quot;revoked&quot; | &quot;expired&quot;</code></td><td>Voices created through the API (consent flow). <code>ready</code> = usable in say.</td></tr><tr><td><code>consent_url</code></td><td><code class="type">string | null</code></td><td>Send this link to the person whose voice it is. They sign in with the email of the request, read the consent sentence and record live. Shown while awaiting consent.</td></tr><tr><td><code>language</code></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>person</code></td><td><code class="type">object</code></td><td></td></tr><tr><td><code>person.name</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>person.email</code> <span class="req">required</span></td><td><code class="type">string</code></td><td>Masked</td></tr><tr><td><code>failure_code</code></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>expires_at</code></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>created_at</code></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>livemode</code></td><td><code class="type">boolean</code></td><td></td></tr></tbody></table></div>
+<h3>Example</h3>
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="get-v1-voices-id-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-voices-id-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-voices-id-p">Python</button></div><div class="tab-panel" data-panel="get-v1-voices-id-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/voices/kqz-mbdt-wpa&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div></div><div class="tab-panel" data-panel="get-v1-voices-id-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/voices/kqz-mbdt-wpa&quot;, {
+  method: &quot;GET&quot;,
+  headers: {
+    Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
+  },
+});
+console.log(res.status, await res.json());</code></pre></div></div><div class="tab-panel" data-panel="get-v1-voices-id-p" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import os, uuid, requests
+
+r = requests.request(
+    &quot;GET&quot;,
+    &quot;https://api.kanutus.com/v1/voices/kqz-mbdt-wpa&quot;,
+    headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;},
+)
+print(r.status_code, r.json())</code></pre></div></div></div>
+<details class="try" data-try data-method="GET" data-path="/v1/voices/{id}" data-api="https://api.kanutus.com">
+<summary>Try it</summary>
+<div class="try-body">
+<p class="try-note">Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.</p>
+<label><span>API key</span><input data-key type="password" autocomplete="off" placeholder="kt_test_..."></label>
+<label><span><code>id</code> <small>path</small> <span class="req">required</span></span><input data-param="id" data-in="path" placeholder="kqz-mbdt-wpa" required></label>
+
+<div class="try-actions"><button type="button" class="btn" data-send>Send request</button><code class="try-url">GET /v1/voices/{id}</code></div>
+<div class="try-out" hidden><div class="code"><div class="code-head"><span data-status></span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code data-out></code></pre></div></div>
+</div>
+</details>
+<h3>Responses by status</h3>
+<div class="statuses"><details class="status"><summary><code class="st st-2">200</code> Voice</summary><div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;id&quot;: &quot;string&quot;,
+  &quot;name&quot;: &quot;string&quot;,
+  &quot;kind&quot;: &quot;clone&quot;,
+  &quot;active&quot;: true,
+  &quot;gender&quot;: &quot;male&quot;,
+  &quot;status&quot;: &quot;awaiting_consent&quot;,
+  &quot;consent_url&quot;: &quot;https://example.com&quot;,
+  &quot;language&quot;: &quot;string&quot;,
+  &quot;person&quot;: {
+    &quot;name&quot;: &quot;string&quot;,
+    &quot;email&quot;: &quot;string&quot;
+  },
+  &quot;failure_code&quot;: &quot;string&quot;,
+  &quot;expires_at&quot;: &quot;string&quot;,
+  &quot;created_at&quot;: &quot;string&quot;,
+  &quot;livemode&quot;: true
+}</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 400,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">401</code> Missing, invalid, expired or revoked credential</summary><div class="code"><div class="code-head"><span>401 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 401,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">403</code> Missing permission, blocked or not allowed</summary><div class="code"><div class="code-head"><span>403 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 403,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">404</code> Not found</summary><div class="code"><div class="code-head"><span>404 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 404,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">429</code> Rate limit exceeded (see RateLimit-* and Retry-After headers)</summary><div class="code"><div class="code-head"><span>429 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 429,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details></div>
+</section>
+<section class="op" id="delete-v1-voices-id">
+<h2><span class="method method-delete">DELETE</span><code class="path">/v1/voices/{id}</code><a class="anchor" href="#delete-v1-voices-id" aria-hidden="true">#</a></h2>
+<p class="op-summary">Delete a voice: revokes a consented clone or removes a chosen generic voice</p>
+<p class="op-meta">Permission: <code>voices:write</code></p>
+
+<h3>Parameters</h3><div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">required</span></td><td><code class="type">path · string</code></td><td></td></tr></tbody></table></div>
+
+<h3>Response <code>200</code></h3>
+<div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>deleted</code> <span class="req">required</span></td><td><code class="type">true</code></td><td></td></tr></tbody></table></div>
+<h3>Example</h3>
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="delete-v1-voices-id-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="delete-v1-voices-id-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="delete-v1-voices-id-p">Python</button></div><div class="tab-panel" data-panel="delete-v1-voices-id-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl -X DELETE &quot;https://api.kanutus.com/v1/voices/kqz-mbdt-wpa&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div></div><div class="tab-panel" data-panel="delete-v1-voices-id-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/voices/kqz-mbdt-wpa&quot;, {
+  method: &quot;DELETE&quot;,
+  headers: {
+    Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
+  },
+});
+console.log(res.status, await res.json());</code></pre></div></div><div class="tab-panel" data-panel="delete-v1-voices-id-p" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import os, uuid, requests
+
+r = requests.request(
+    &quot;DELETE&quot;,
+    &quot;https://api.kanutus.com/v1/voices/kqz-mbdt-wpa&quot;,
+    headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;},
+)
+print(r.status_code, r.json())</code></pre></div></div></div>
+<details class="try" data-try data-method="DELETE" data-path="/v1/voices/{id}" data-api="https://api.kanutus.com">
+<summary>Try it</summary>
+<div class="try-body">
+<p class="try-note">Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.</p>
+<label><span>API key</span><input data-key type="password" autocomplete="off" placeholder="kt_test_..."></label>
+<label><span><code>id</code> <small>path</small> <span class="req">required</span></span><input data-param="id" data-in="path" placeholder="kqz-mbdt-wpa" required></label>
+
+<div class="try-actions"><button type="button" class="btn" data-send>Send request</button><code class="try-url">DELETE /v1/voices/{id}</code></div>
+<div class="try-out" hidden><div class="code"><div class="code-head"><span data-status></span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code data-out></code></pre></div></div>
+</div>
+</details>
+<h3>Responses by status</h3>
+<div class="statuses"><details class="status"><summary><code class="st st-2">200</code> Deleted</summary><div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;id&quot;: &quot;string&quot;,
+  &quot;deleted&quot;: true
+}</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 400,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">401</code> Missing, invalid, expired or revoked credential</summary><div class="code"><div class="code-head"><span>401 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 401,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">403</code> Missing permission, blocked or not allowed</summary><div class="code"><div class="code-head"><span>403 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 403,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">404</code> Not found</summary><div class="code"><div class="code-head"><span>404 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 404,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">429</code> Rate limit exceeded (see RateLimit-* and Retry-After headers)</summary><div class="code"><div class="code-head"><span>429 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 429,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details></div>
+</section>
 </article>
 <nav class="pager"><a class="prev" href="/reference/account"><span>Previous</span><strong>Account and usage</strong></a><a class="next" href="/reference/rooms"><span>Next</span><strong>Rooms</strong></a></nav>
 <footer class="foot"><p>Something wrong or missing? Write to <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">OpenAPI 3.1 file</a> · © 2026 Kanutus</p></footer>
 </main>
-
+<aside class="toc"><p>On this page</p><ul><li><a href="#get-v1-voices">GET /v1/voices</a></li><li><a href="#post-v1-voices">POST /v1/voices</a></li><li><a href="#get-v1-voices-catalog">GET /v1/voices/catalog</a></li><li><a href="#post-v1-voices-generic">POST /v1/voices/generic</a></li><li><a href="#get-v1-voices-id">GET /v1/voices/{id}</a></li><li><a href="#delete-v1-voices-id">DELETE /v1/voices/{id}</a></li></ul></aside>
 </div>
 </body>
 </html>

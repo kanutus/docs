@@ -33,7 +33,7 @@
 <main id="content" class="content">
 <article class="prose">
 <h1>Phone calls</h1>
-<div class="ref-search" data-ref-search data-empty="No endpoint found"><input type="search" placeholder="Search endpoints (rooms, meetings, webhook…)" aria-label="Search endpoints (rooms, meetings, webhook…)" autocomplete="off"><ul hidden></ul><script type="application/json">[{"m":"GET","p":"/v1/me","s":"Who am I: organization, permissions and limits of this credential","g":"Account and usage","u":"/reference/account#get-v1-me"},{"m":"GET","p":"/v1/balance","s":"Minutes left (organization pool/quota or personal plan)","g":"Account and usage","u":"/reference/account#get-v1-balance"},{"m":"GET","p":"/v1/usage","s":"API usage by day or by credential","g":"Account and usage","u":"/reference/account#get-v1-usage"},{"m":"GET","p":"/v1/voices","s":"List voices (your clones and your chosen generic voices)","g":"Voices","u":"/reference/voices#get-v1-voices"},{"m":"GET","p":"/v1/rooms","s":"List rooms","g":"Rooms","u":"/reference/rooms#get-v1-rooms"},{"m":"POST","p":"/v1/rooms","s":"Create an instant room","g":"Rooms","u":"/reference/rooms#post-v1-rooms"},{"m":"GET","p":"/v1/rooms/{id}","s":"Get a room","g":"Rooms","u":"/reference/rooms#get-v1-rooms-id"},{"m":"DELETE","p":"/v1/rooms/{id}","s":"End a room for everyone","g":"Rooms","u":"/reference/rooms#delete-v1-rooms-id"},{"m":"POST","p":"/v1/rooms/{id}/join-links","s":"Create a guest join link (name and language prefilled)","g":"Rooms","u":"/reference/rooms#post-v1-rooms-id-join-links"},{"m":"GET","p":"/v1/meetings","s":"List scheduled meetings","g":"Meetings and booking","u":"/reference/calendar#get-v1-meetings"},{"m":"POST","p":"/v1/meetings","s":"Schedule a meeting (room with date, invitees and languages)","g":"Meetings and booking","u":"/reference/calendar#post-v1-meetings"},{"m":"DELETE","p":"/v1/meetings/{id}","s":"Cancel a scheduled meeting","g":"Meetings and booking","u":"/reference/calendar#delete-v1-meetings-id"},{"m":"GET","p":"/v1/event-types","s":"List your booking links (event types)","g":"Meetings and booking","u":"/reference/calendar#get-v1-event-types"},{"m":"GET","p":"/v1/event-types/{id}/slots","s":"Free times of a booking link","g":"Meetings and booking","u":"/reference/calendar#get-v1-event-types-id-slots"},{"m":"POST","p":"/v1/bookings","s":"Book a time on a booking link (yours or someone else's)","g":"Meetings and booking","u":"/reference/calendar#post-v1-bookings"},{"m":"POST","p":"/v1/rooms/{id}/agent-sessions","s":"Join a room as an AI agent (text in, translated voice out)","g":"AI agent in a room","u":"/reference/agents#post-v1-rooms-id-agent-sessions"},{"m":"GET","p":"/v1/sessions/{id}","s":"Get an agent session","g":"AI agent in a room","u":"/reference/agents#get-v1-sessions-id"},{"m":"POST","p":"/v1/sessions/{id}/say","s":"Speak: text is translated for each listener and spoken with the chosen voice","g":"AI agent in a room","u":"/reference/agents#post-v1-sessions-id-say"},{"m":"GET","p":"/v1/sessions/{id}/events","s":"Listen: new phrases since cursor (long-poll up to `wait` seconds)","g":"AI agent in a room","u":"/reference/agents#get-v1-sessions-id-events"},{"m":"POST","p":"/v1/sessions/{id}/leave","s":"Leave the room","g":"AI agent in a room","u":"/reference/agents#post-v1-sessions-id-leave"},{"m":"GET","p":"/v1/transcripts","s":"Transcripts this credential can read","g":"Transcripts","u":"/reference/transcripts#get-v1-transcripts"},{"m":"GET","p":"/v1/transcripts/{id}","s":"Read a transcript","g":"Transcripts","u":"/reference/transcripts#get-v1-transcripts-id"},{"m":"GET","p":"/v1/calls/quote","s":"Quote a destination and check the call purpose for that country","g":"Phone calls","u":"/reference/calls#get-v1-calls-quote"},{"m":"POST","p":"/v1/calls","s":"Place a translated call as an AI agent (always announces it is an AI)","g":"Phone calls","u":"/reference/calls#post-v1-calls"},{"m":"GET","p":"/v1/calls","s":"Calls placed by this credential","g":"Phone calls","u":"/reference/calls#get-v1-calls"},{"m":"GET","p":"/v1/calls/{id}","s":"Get a call","g":"Phone calls","u":"/reference/calls#get-v1-calls-id"},{"m":"GET","p":"/v1/webhook-endpoints","s":"List webhook endpoints","g":"Webhooks and events","u":"/reference/webhooks#get-v1-webhook-endpoints"},{"m":"POST","p":"/v1/webhook-endpoints","s":"Create a webhook endpoint (the signing secret is returned once)","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints"},{"m":"DELETE","p":"/v1/webhook-endpoints/{id}","s":"Delete a webhook endpoint","g":"Webhooks and events","u":"/reference/webhooks#delete-v1-webhook-endpoints-id"},{"m":"POST","p":"/v1/webhook-endpoints/{id}/rotate-secret","s":"Rotate the signing secret (both secrets sign for 24 h)","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints-id-rotate-secret"},{"m":"POST","p":"/v1/webhook-endpoints/{id}/test","s":"Send a signed test event now","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints-id-test"},{"m":"GET","p":"/v1/events","s":"Recent events (to reconcile what a webhook missed; 30 days)","g":"Webhooks and events","u":"/reference/webhooks#get-v1-events"}]</script></div>
+<div class="ref-search" data-ref-search data-empty="No endpoint found"><input type="search" placeholder="Search endpoints (rooms, meetings, webhook…)" aria-label="Search endpoints (rooms, meetings, webhook…)" autocomplete="off"><ul hidden></ul><script type="application/json">[{"m":"GET","p":"/v1/me","s":"Who am I: organization, permissions and limits of this credential","g":"Account and usage","u":"/reference/account#get-v1-me"},{"m":"GET","p":"/v1/balance","s":"Minutes left (organization pool/quota or personal plan)","g":"Account and usage","u":"/reference/account#get-v1-balance"},{"m":"GET","p":"/v1/usage","s":"API usage by day or by credential","g":"Account and usage","u":"/reference/account#get-v1-usage"},{"m":"GET","p":"/v1/voices","s":"List voices: consented clones of the organization, your own clones and your chosen generic voices","g":"Voices","u":"/reference/voices#get-v1-voices"},{"m":"POST","p":"/v1/voices","s":"Clone a voice with verifiable consent: returns a link the person opens to read the consent sentence and record live","g":"Voices","u":"/reference/voices#post-v1-voices"},{"m":"GET","p":"/v1/voices/catalog","s":"Generic voices you can choose (no consent needed)","g":"Voices","u":"/reference/voices#get-v1-voices-catalog"},{"m":"POST","p":"/v1/voices/generic","s":"Choose a generic voice from the catalog (adds it to your voices)","g":"Voices","u":"/reference/voices#post-v1-voices-generic"},{"m":"GET","p":"/v1/voices/{id}","s":"Get a voice (and its consent status)","g":"Voices","u":"/reference/voices#get-v1-voices-id"},{"m":"DELETE","p":"/v1/voices/{id}","s":"Delete a voice: revokes a consented clone or removes a chosen generic voice","g":"Voices","u":"/reference/voices#delete-v1-voices-id"},{"m":"GET","p":"/v1/rooms","s":"List rooms","g":"Rooms","u":"/reference/rooms#get-v1-rooms"},{"m":"POST","p":"/v1/rooms","s":"Create an instant room","g":"Rooms","u":"/reference/rooms#post-v1-rooms"},{"m":"GET","p":"/v1/rooms/{id}","s":"Get a room","g":"Rooms","u":"/reference/rooms#get-v1-rooms-id"},{"m":"DELETE","p":"/v1/rooms/{id}","s":"End a room for everyone","g":"Rooms","u":"/reference/rooms#delete-v1-rooms-id"},{"m":"POST","p":"/v1/rooms/{id}/join-links","s":"Create a guest join link (name and language prefilled)","g":"Rooms","u":"/reference/rooms#post-v1-rooms-id-join-links"},{"m":"GET","p":"/v1/meetings","s":"List scheduled meetings","g":"Meetings and booking","u":"/reference/calendar#get-v1-meetings"},{"m":"POST","p":"/v1/meetings","s":"Schedule a meeting (room with date, invitees and languages)","g":"Meetings and booking","u":"/reference/calendar#post-v1-meetings"},{"m":"DELETE","p":"/v1/meetings/{id}","s":"Cancel a scheduled meeting","g":"Meetings and booking","u":"/reference/calendar#delete-v1-meetings-id"},{"m":"GET","p":"/v1/event-types","s":"List your booking links (event types)","g":"Meetings and booking","u":"/reference/calendar#get-v1-event-types"},{"m":"GET","p":"/v1/event-types/{id}/slots","s":"Free times of a booking link","g":"Meetings and booking","u":"/reference/calendar#get-v1-event-types-id-slots"},{"m":"POST","p":"/v1/bookings","s":"Book a time on a booking link (yours or someone else's)","g":"Meetings and booking","u":"/reference/calendar#post-v1-bookings"},{"m":"POST","p":"/v1/rooms/{id}/agent-sessions","s":"Join a room as an AI agent (text in, translated voice out)","g":"AI agent in a room","u":"/reference/agents#post-v1-rooms-id-agent-sessions"},{"m":"GET","p":"/v1/sessions/{id}","s":"Get an agent session","g":"AI agent in a room","u":"/reference/agents#get-v1-sessions-id"},{"m":"POST","p":"/v1/sessions/{id}/say","s":"Speak: text is translated for each listener and spoken with the chosen voice","g":"AI agent in a room","u":"/reference/agents#post-v1-sessions-id-say"},{"m":"GET","p":"/v1/sessions/{id}/events","s":"Listen: new phrases since cursor (long-poll up to `wait` seconds)","g":"AI agent in a room","u":"/reference/agents#get-v1-sessions-id-events"},{"m":"POST","p":"/v1/sessions/{id}/leave","s":"Leave the room","g":"AI agent in a room","u":"/reference/agents#post-v1-sessions-id-leave"},{"m":"GET","p":"/v1/transcripts","s":"Transcripts this credential can read","g":"Transcripts","u":"/reference/transcripts#get-v1-transcripts"},{"m":"GET","p":"/v1/transcripts/{id}","s":"Read a transcript","g":"Transcripts","u":"/reference/transcripts#get-v1-transcripts-id"},{"m":"GET","p":"/v1/calls/quote","s":"Quote a destination and check the call purpose for that country","g":"Phone calls","u":"/reference/calls#get-v1-calls-quote"},{"m":"POST","p":"/v1/calls","s":"Place a translated call as an AI agent (always announces it is an AI)","g":"Phone calls","u":"/reference/calls#post-v1-calls"},{"m":"GET","p":"/v1/calls","s":"Calls placed by this credential","g":"Phone calls","u":"/reference/calls#get-v1-calls"},{"m":"GET","p":"/v1/calls/{id}","s":"Get a call","g":"Phone calls","u":"/reference/calls#get-v1-calls-id"},{"m":"POST","p":"/v1/calls/{id}/hangup","s":"Hang up (idempotent: an ended call is returned as is)","g":"Phone calls","u":"/reference/calls#post-v1-calls-id-hangup"},{"m":"POST","p":"/v1/calls/{id}/dtmf","s":"Press phone keys (DTMF) for menus like \"press 2 for sales\": 0-9, * and #, up to 32","g":"Phone calls","u":"/reference/calls#post-v1-calls-id-dtmf"},{"m":"GET","p":"/v1/webhook-endpoints","s":"List webhook endpoints","g":"Webhooks and events","u":"/reference/webhooks#get-v1-webhook-endpoints"},{"m":"POST","p":"/v1/webhook-endpoints","s":"Create a webhook endpoint (the signing secret is returned once)","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints"},{"m":"DELETE","p":"/v1/webhook-endpoints/{id}","s":"Delete a webhook endpoint","g":"Webhooks and events","u":"/reference/webhooks#delete-v1-webhook-endpoints-id"},{"m":"POST","p":"/v1/webhook-endpoints/{id}/rotate-secret","s":"Rotate the signing secret (both secrets sign for 24 h)","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints-id-rotate-secret"},{"m":"POST","p":"/v1/webhook-endpoints/{id}/test","s":"Send a signed test event now","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints-id-test"},{"m":"GET","p":"/v1/events","s":"Recent events (to reconcile what a webhook missed; 30 days)","g":"Webhooks and events","u":"/reference/webhooks#get-v1-events"}]</script></div>
 <section class="op" id="get-v1-calls-quote">
 <h2><span class="method method-get">GET</span><code class="path">/v1/calls/quote</code><a class="anchor" href="#get-v1-calls-quote" aria-hidden="true">#</a></h2>
 <p class="op-summary">Quote a destination and check the call purpose for that country</p>
@@ -130,7 +130,7 @@ print(r.status_code, r.json())</code></pre></div></div></div>
 <h3>Parameters</h3><div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>idempotency-key</code> <span class="req">required</span></td><td><code class="type">header · string</code></td><td>Unique key per create request; retries with the same key return the same result.</td></tr></tbody></table></div>
 <h3>Request body</h3><div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>to</code> <span class="req">required</span></td><td><code class="type">string</code></td><td>length 4–32</td></tr><tr><td><code>from</code></td><td><code class="type">string</code></td><td>Caller ID (one of the organization's numbers) · length 0–32</td></tr><tr><td><code>purpose</code> <span class="req">required</span></td><td><code class="type">&quot;transactional&quot; | &quot;scheduling&quot; | &quot;support&quot; | &quot;marketing&quot;</code></td><td></td></tr><tr><td><code>consent</code></td><td><code class="type">object</code></td><td></td></tr><tr><td><code>consent.kind</code> <span class="req">required</span></td><td><code class="type">&quot;existing_customer&quot; | &quot;prior_express&quot; | &quot;written&quot;</code></td><td></td></tr><tr><td><code>consent.ref</code></td><td><code class="type">string</code></td><td>Your reference to the consent record · length 0–200</td></tr><tr><td><code>agent_lang</code></td><td><code class="type">string</code></td><td>default &quot;en&quot;</td></tr><tr><td><code>remote_lang</code></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>voice_id</code></td><td><code class="type">string</code></td><td>length 0–100</td></tr></tbody></table></div>
 <h3>Response <code>201</code></h3>
-<div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>to</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>country</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>purpose</code> <span class="req">required</span></td><td><code class="type">&quot;transactional&quot; | &quot;scheduling&quot; | &quot;support&quot; | &quot;marketing&quot;</code></td><td></td></tr><tr><td><code>status</code> <span class="req">required</span></td><td><code class="type">&quot;queued&quot; | &quot;ringing&quot; | &quot;answered&quot; | &quot;completed&quot; | &quot;busy&quot; | &quot;voicemail&quot; | &quot;failed&quot; | &quot;blocked&quot;</code></td><td></td></tr><tr><td><code>ai_disclosure</code> <span class="req">required</span></td><td><code class="type">true</code></td><td></td></tr><tr><td><code>billed_seconds</code> <span class="req">required</span></td><td><code class="type">integer</code></td><td></td></tr><tr><td><code>created_at</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>livemode</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr></tbody></table></div>
+<div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>to</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>country</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>purpose</code> <span class="req">required</span></td><td><code class="type">&quot;transactional&quot; | &quot;scheduling&quot; | &quot;support&quot; | &quot;marketing&quot;</code></td><td></td></tr><tr><td><code>status</code> <span class="req">required</span></td><td><code class="type">&quot;queued&quot; | &quot;ringing&quot; | &quot;answered&quot; | &quot;completed&quot; | &quot;busy&quot; | &quot;voicemail&quot; | &quot;no_answer&quot; | &quot;failed&quot; | &quot;blocked&quot;</code></td><td></td></tr><tr><td><code>ai_disclosure</code> <span class="req">required</span></td><td><code class="type">true</code></td><td></td></tr><tr><td><code>billed_seconds</code> <span class="req">required</span></td><td><code class="type">integer</code></td><td></td></tr><tr><td><code>created_at</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>answered_at</code></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>ended_at</code></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>end_reason</code></td><td><code class="type">string | null</code></td><td>agent_hangup, remote_hangup, max_duration, busy, voicemail, no_answer…</td></tr><tr><td><code>livemode</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr></tbody></table></div>
 <h3>Example</h3>
 <div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="post-v1-calls-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="post-v1-calls-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="post-v1-calls-p">Python</button></div><div class="tab-panel" data-panel="post-v1-calls-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl -X POST &quot;https://api.kanutus.com/v1/calls&quot; \
   -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot; \
@@ -186,6 +186,9 @@ print(r.status_code, r.json())</code></pre></div></div></div>
   &quot;ai_disclosure&quot;: true,
   &quot;billed_seconds&quot;: 0,
   &quot;created_at&quot;: &quot;string&quot;,
+  &quot;answered_at&quot;: &quot;string&quot;,
+  &quot;ended_at&quot;: &quot;string&quot;,
+  &quot;end_reason&quot;: &quot;string&quot;,
   &quot;livemode&quot;: true
 }</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
   &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
@@ -246,7 +249,7 @@ print(r.status_code, r.json())</code></pre></div></div></div>
 
 
 <h3>Response <code>200</code></h3>
-<div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>data</code> <span class="req">required</span></td><td><code class="type">object[]</code></td><td></td></tr><tr><td><code>data[].id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].to</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].country</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].purpose</code> <span class="req">required</span></td><td><code class="type">&quot;transactional&quot; | &quot;scheduling&quot; | &quot;support&quot; | &quot;marketing&quot;</code></td><td></td></tr><tr><td><code>data[].status</code> <span class="req">required</span></td><td><code class="type">&quot;queued&quot; | &quot;ringing&quot; | &quot;answered&quot; | &quot;completed&quot; | &quot;busy&quot; | &quot;voicemail&quot; | &quot;failed&quot; | &quot;blocked&quot;</code></td><td></td></tr><tr><td><code>data[].ai_disclosure</code> <span class="req">required</span></td><td><code class="type">true</code></td><td></td></tr><tr><td><code>data[].billed_seconds</code> <span class="req">required</span></td><td><code class="type">integer</code></td><td></td></tr><tr><td><code>data[].created_at</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].livemode</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr></tbody></table></div>
+<div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>data</code> <span class="req">required</span></td><td><code class="type">object[]</code></td><td></td></tr><tr><td><code>data[].id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].to</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].country</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].purpose</code> <span class="req">required</span></td><td><code class="type">&quot;transactional&quot; | &quot;scheduling&quot; | &quot;support&quot; | &quot;marketing&quot;</code></td><td></td></tr><tr><td><code>data[].status</code> <span class="req">required</span></td><td><code class="type">&quot;queued&quot; | &quot;ringing&quot; | &quot;answered&quot; | &quot;completed&quot; | &quot;busy&quot; | &quot;voicemail&quot; | &quot;no_answer&quot; | &quot;failed&quot; | &quot;blocked&quot;</code></td><td></td></tr><tr><td><code>data[].ai_disclosure</code> <span class="req">required</span></td><td><code class="type">true</code></td><td></td></tr><tr><td><code>data[].billed_seconds</code> <span class="req">required</span></td><td><code class="type">integer</code></td><td></td></tr><tr><td><code>data[].created_at</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].answered_at</code></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>data[].ended_at</code></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>data[].end_reason</code></td><td><code class="type">string | null</code></td><td>agent_hangup, remote_hangup, max_duration, busy, voicemail, no_answer…</td></tr><tr><td><code>data[].livemode</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr></tbody></table></div>
 <h3>Example</h3>
 <div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="get-v1-calls-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-calls-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-calls-p">Python</button></div><div class="tab-panel" data-panel="get-v1-calls-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/calls&quot; \
   -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div></div><div class="tab-panel" data-panel="get-v1-calls-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/calls&quot;, {
@@ -286,6 +289,9 @@ print(r.status_code, r.json())</code></pre></div></div></div>
       &quot;ai_disclosure&quot;: true,
       &quot;billed_seconds&quot;: 0,
       &quot;created_at&quot;: &quot;string&quot;,
+      &quot;answered_at&quot;: &quot;string&quot;,
+      &quot;ended_at&quot;: &quot;string&quot;,
+      &quot;end_reason&quot;: &quot;string&quot;,
       &quot;livemode&quot;: true
     }
   ]
@@ -327,7 +333,7 @@ print(r.status_code, r.json())</code></pre></div></div></div>
 <h3>Parameters</h3><div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">required</span></td><td><code class="type">path · string</code></td><td></td></tr></tbody></table></div>
 
 <h3>Response <code>200</code></h3>
-<div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>to</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>country</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>purpose</code> <span class="req">required</span></td><td><code class="type">&quot;transactional&quot; | &quot;scheduling&quot; | &quot;support&quot; | &quot;marketing&quot;</code></td><td></td></tr><tr><td><code>status</code> <span class="req">required</span></td><td><code class="type">&quot;queued&quot; | &quot;ringing&quot; | &quot;answered&quot; | &quot;completed&quot; | &quot;busy&quot; | &quot;voicemail&quot; | &quot;failed&quot; | &quot;blocked&quot;</code></td><td></td></tr><tr><td><code>ai_disclosure</code> <span class="req">required</span></td><td><code class="type">true</code></td><td></td></tr><tr><td><code>billed_seconds</code> <span class="req">required</span></td><td><code class="type">integer</code></td><td></td></tr><tr><td><code>created_at</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>livemode</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr></tbody></table></div>
+<div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>to</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>country</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>purpose</code> <span class="req">required</span></td><td><code class="type">&quot;transactional&quot; | &quot;scheduling&quot; | &quot;support&quot; | &quot;marketing&quot;</code></td><td></td></tr><tr><td><code>status</code> <span class="req">required</span></td><td><code class="type">&quot;queued&quot; | &quot;ringing&quot; | &quot;answered&quot; | &quot;completed&quot; | &quot;busy&quot; | &quot;voicemail&quot; | &quot;no_answer&quot; | &quot;failed&quot; | &quot;blocked&quot;</code></td><td></td></tr><tr><td><code>ai_disclosure</code> <span class="req">required</span></td><td><code class="type">true</code></td><td></td></tr><tr><td><code>billed_seconds</code> <span class="req">required</span></td><td><code class="type">integer</code></td><td></td></tr><tr><td><code>created_at</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>answered_at</code></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>ended_at</code></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>end_reason</code></td><td><code class="type">string | null</code></td><td>agent_hangup, remote_hangup, max_duration, busy, voicemail, no_answer…</td></tr><tr><td><code>livemode</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr></tbody></table></div>
 <h3>Example</h3>
 <div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="get-v1-calls-id-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-calls-id-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-calls-id-p">Python</button></div><div class="tab-panel" data-panel="get-v1-calls-id-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/calls/call_7Hn2Qd9Wk4Lp6Rt1Xb8Mc3Zf&quot; \
   -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div></div><div class="tab-panel" data-panel="get-v1-calls-id-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/calls/call_7Hn2Qd9Wk4Lp6Rt1Xb8Mc3Zf&quot;, {
@@ -365,6 +371,9 @@ print(r.status_code, r.json())</code></pre></div></div></div>
   &quot;ai_disclosure&quot;: true,
   &quot;billed_seconds&quot;: 0,
   &quot;created_at&quot;: &quot;string&quot;,
+  &quot;answered_at&quot;: &quot;string&quot;,
+  &quot;ended_at&quot;: &quot;string&quot;,
+  &quot;end_reason&quot;: &quot;string&quot;,
   &quot;livemode&quot;: true
 }</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
   &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
@@ -403,11 +412,198 @@ print(r.status_code, r.json())</code></pre></div></div></div>
   &quot;request_id&quot;: &quot;req_…&quot;
 }</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details></div>
 </section>
+<section class="op" id="post-v1-calls-id-hangup">
+<h2><span class="method method-post">POST</span><code class="path">/v1/calls/{id}/hangup</code><a class="anchor" href="#post-v1-calls-id-hangup" aria-hidden="true">#</a></h2>
+<p class="op-summary">Hang up (idempotent: an ended call is returned as is) <span class="badge badge-soon">Soon</span></p>
+<p class="op-meta">Permission: <code>calls:dial</code></p>
+<div class="callout callout-soon"><p>Live mode answers 501 coming soon. Try it now with a kt_test_ key (simulator).</p></div>
+<h3>Parameters</h3><div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">required</span></td><td><code class="type">path · string</code></td><td></td></tr></tbody></table></div>
+
+<h3>Response <code>200</code></h3>
+<div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>to</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>country</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>purpose</code> <span class="req">required</span></td><td><code class="type">&quot;transactional&quot; | &quot;scheduling&quot; | &quot;support&quot; | &quot;marketing&quot;</code></td><td></td></tr><tr><td><code>status</code> <span class="req">required</span></td><td><code class="type">&quot;queued&quot; | &quot;ringing&quot; | &quot;answered&quot; | &quot;completed&quot; | &quot;busy&quot; | &quot;voicemail&quot; | &quot;no_answer&quot; | &quot;failed&quot; | &quot;blocked&quot;</code></td><td></td></tr><tr><td><code>ai_disclosure</code> <span class="req">required</span></td><td><code class="type">true</code></td><td></td></tr><tr><td><code>billed_seconds</code> <span class="req">required</span></td><td><code class="type">integer</code></td><td></td></tr><tr><td><code>created_at</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>answered_at</code></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>ended_at</code></td><td><code class="type">string | null</code></td><td></td></tr><tr><td><code>end_reason</code></td><td><code class="type">string | null</code></td><td>agent_hangup, remote_hangup, max_duration, busy, voicemail, no_answer…</td></tr><tr><td><code>livemode</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr></tbody></table></div>
+<h3>Example</h3>
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="post-v1-calls-id-hangup-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="post-v1-calls-id-hangup-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="post-v1-calls-id-hangup-p">Python</button></div><div class="tab-panel" data-panel="post-v1-calls-id-hangup-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl -X POST &quot;https://api.kanutus.com/v1/calls/call_7Hn2Qd9Wk4Lp6Rt1Xb8Mc3Zf/hangup&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div></div><div class="tab-panel" data-panel="post-v1-calls-id-hangup-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/calls/call_7Hn2Qd9Wk4Lp6Rt1Xb8Mc3Zf/hangup&quot;, {
+  method: &quot;POST&quot;,
+  headers: {
+    Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
+  },
+});
+console.log(res.status, await res.json());</code></pre></div></div><div class="tab-panel" data-panel="post-v1-calls-id-hangup-p" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import os, uuid, requests
+
+r = requests.request(
+    &quot;POST&quot;,
+    &quot;https://api.kanutus.com/v1/calls/call_7Hn2Qd9Wk4Lp6Rt1Xb8Mc3Zf/hangup&quot;,
+    headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;},
+)
+print(r.status_code, r.json())</code></pre></div></div></div>
+<details class="try" data-try data-method="POST" data-path="/v1/calls/{id}/hangup" data-api="https://api.kanutus.com">
+<summary>Try it</summary>
+<div class="try-body">
+<p class="try-note">Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.</p>
+<label><span>API key</span><input data-key type="password" autocomplete="off" placeholder="kt_test_..."></label>
+<label><span><code>id</code> <small>path</small> <span class="req">required</span></span><input data-param="id" data-in="path" placeholder="call_7Hn2Qd9Wk4Lp6Rt1Xb8Mc3Zf" required></label>
+
+<div class="try-actions"><button type="button" class="btn" data-send>Send request</button><code class="try-url">POST /v1/calls/{id}/hangup</code></div>
+<div class="try-out" hidden><div class="code"><div class="code-head"><span data-status></span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code data-out></code></pre></div></div>
+</div>
+</details>
+<h3>Responses by status</h3>
+<div class="statuses"><details class="status"><summary><code class="st st-2">200</code> The call, ended</summary><div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;id&quot;: &quot;string&quot;,
+  &quot;to&quot;: &quot;string&quot;,
+  &quot;country&quot;: &quot;string&quot;,
+  &quot;purpose&quot;: &quot;transactional&quot;,
+  &quot;status&quot;: &quot;queued&quot;,
+  &quot;ai_disclosure&quot;: true,
+  &quot;billed_seconds&quot;: 0,
+  &quot;created_at&quot;: &quot;string&quot;,
+  &quot;answered_at&quot;: &quot;string&quot;,
+  &quot;ended_at&quot;: &quot;string&quot;,
+  &quot;end_reason&quot;: &quot;string&quot;,
+  &quot;livemode&quot;: true
+}</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 400,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">401</code> Missing, invalid, expired or revoked credential</summary><div class="code"><div class="code-head"><span>401 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 401,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">403</code> Missing permission, blocked or not allowed</summary><div class="code"><div class="code-head"><span>403 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 403,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">404</code> Not found</summary><div class="code"><div class="code-head"><span>404 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 404,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">409</code> Conflict (idempotency or state)</summary><div class="code"><div class="code-head"><span>409 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 409,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">429</code> Rate limit exceeded (see RateLimit-* and Retry-After headers)</summary><div class="code"><div class="code-head"><span>429 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 429,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details></div>
+</section>
+<section class="op" id="post-v1-calls-id-dtmf">
+<h2><span class="method method-post">POST</span><code class="path">/v1/calls/{id}/dtmf</code><a class="anchor" href="#post-v1-calls-id-dtmf" aria-hidden="true">#</a></h2>
+<p class="op-summary">Press phone keys (DTMF) for menus like &quot;press 2 for sales&quot;: 0-9, * and #, up to 32 <span class="badge badge-soon">Soon</span></p>
+<p class="op-meta">Permission: <code>calls:dial</code></p>
+<div class="callout callout-soon"><p>Live mode answers 501 coming soon. Try it now with a kt_test_ key (simulator).</p></div>
+<h3>Parameters</h3><div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">required</span></td><td><code class="type">path · string</code></td><td></td></tr></tbody></table></div>
+<h3>Request body</h3><div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>digits</code> <span class="req">required</span></td><td><code class="type">string</code></td><td>0-9, * and #; spaces and dashes are ignored · length 1–64</td></tr></tbody></table></div>
+<h3>Response <code>200</code></h3>
+<div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>sent</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>status</code> <span class="req">required</span></td><td><code class="type">&quot;queued&quot; | &quot;ringing&quot; | &quot;answered&quot; | &quot;completed&quot; | &quot;busy&quot; | &quot;voicemail&quot; | &quot;no_answer&quot; | &quot;failed&quot; | &quot;blocked&quot;</code></td><td></td></tr><tr><td><code>livemode</code> <span class="req">required</span></td><td><code class="type">boolean</code></td><td></td></tr></tbody></table></div>
+<h3>Example</h3>
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="post-v1-calls-id-dtmf-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="post-v1-calls-id-dtmf-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="post-v1-calls-id-dtmf-p">Python</button></div><div class="tab-panel" data-panel="post-v1-calls-id-dtmf-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl -X POST &quot;https://api.kanutus.com/v1/calls/call_7Hn2Qd9Wk4Lp6Rt1Xb8Mc3Zf/dtmf&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;digits&quot;:&quot;2#&quot;}'</code></pre></div></div><div class="tab-panel" data-panel="post-v1-calls-id-dtmf-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/calls/call_7Hn2Qd9Wk4Lp6Rt1Xb8Mc3Zf/dtmf&quot;, {
+  method: &quot;POST&quot;,
+  headers: {
+    Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
+    &quot;Content-Type&quot;: &quot;application/json&quot;,
+  },
+  body: JSON.stringify({&quot;digits&quot;:&quot;2#&quot;}),
+});
+console.log(res.status, await res.json());</code></pre></div></div><div class="tab-panel" data-panel="post-v1-calls-id-dtmf-p" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import os, uuid, requests
+
+r = requests.request(
+    &quot;POST&quot;,
+    &quot;https://api.kanutus.com/v1/calls/call_7Hn2Qd9Wk4Lp6Rt1Xb8Mc3Zf/dtmf&quot;,
+    headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;},
+    json={&quot;digits&quot;:&quot;2#&quot;},
+)
+print(r.status_code, r.json())</code></pre></div></div></div>
+<details class="try" data-try data-method="POST" data-path="/v1/calls/{id}/dtmf" data-api="https://api.kanutus.com">
+<summary>Try it</summary>
+<div class="try-body">
+<p class="try-note">Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.</p>
+<label><span>API key</span><input data-key type="password" autocomplete="off" placeholder="kt_test_..."></label>
+<label><span><code>id</code> <small>path</small> <span class="req">required</span></span><input data-param="id" data-in="path" placeholder="call_7Hn2Qd9Wk4Lp6Rt1Xb8Mc3Zf" required></label>
+<label class="try-json"><span>Request body (JSON)</span><textarea data-body rows="4" spellcheck="false">{
+  &quot;digits&quot;: &quot;2#&quot;
+}</textarea></label>
+<div class="try-actions"><button type="button" class="btn" data-send>Send request</button><code class="try-url">POST /v1/calls/{id}/dtmf</code></div>
+<div class="try-out" hidden><div class="code"><div class="code-head"><span data-status></span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code data-out></code></pre></div></div>
+</div>
+</details>
+<h3>Responses by status</h3>
+<div class="statuses"><details class="status"><summary><code class="st st-2">200</code> Keys sent</summary><div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;id&quot;: &quot;string&quot;,
+  &quot;sent&quot;: &quot;string&quot;,
+  &quot;status&quot;: &quot;queued&quot;,
+  &quot;livemode&quot;: true
+}</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 400,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">401</code> Missing, invalid, expired or revoked credential</summary><div class="code"><div class="code-head"><span>401 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 401,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">403</code> Missing permission, blocked or not allowed</summary><div class="code"><div class="code-head"><span>403 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 403,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">404</code> Not found</summary><div class="code"><div class="code-head"><span>404 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 404,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">409</code> Conflict (idempotency or state)</summary><div class="code"><div class="code-head"><span>409 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 409,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">429</code> Rate limit exceeded (see RateLimit-* and Retry-After headers)</summary><div class="code"><div class="code-head"><span>429 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 429,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details></div>
+</section>
 </article>
 <nav class="pager"><a class="prev" href="/reference/transcripts"><span>Previous</span><strong>Transcripts</strong></a><a class="next" href="/reference/webhooks"><span>Next</span><strong>Webhooks and events</strong></a></nav>
 <footer class="foot"><p>Something wrong or missing? Write to <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">OpenAPI 3.1 file</a> · © 2026 Kanutus</p></footer>
 </main>
-<aside class="toc"><p>On this page</p><ul><li><a href="#get-v1-calls-quote">GET /v1/calls/quote</a></li><li><a href="#post-v1-calls">POST /v1/calls</a></li><li><a href="#get-v1-calls">GET /v1/calls</a></li><li><a href="#get-v1-calls-id">GET /v1/calls/{id}</a></li></ul></aside>
+<aside class="toc"><p>On this page</p><ul><li><a href="#get-v1-calls-quote">GET /v1/calls/quote</a></li><li><a href="#post-v1-calls">POST /v1/calls</a></li><li><a href="#get-v1-calls">GET /v1/calls</a></li><li><a href="#get-v1-calls-id">GET /v1/calls/{id}</a></li><li><a href="#post-v1-calls-id-hangup">POST /v1/calls/{id}/hangup</a></li><li><a href="#post-v1-calls-id-dtmf">POST /v1/calls/{id}/dtmf</a></li></ul></aside>
 </div>
 </body>
 </html>

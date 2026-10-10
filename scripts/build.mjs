@@ -5,7 +5,7 @@
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync, copyFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { API_URL, APP_URL, DOCS_URL, LANGS, MCP_URL, NAV, ROUTES, SITE_URL, SUMMARY_PT, TAGS } from "../src/config.mjs";
+import { API_URL, APP_URL, DOCS_URL, LANGS, MCP_URL, NAV, ROUTES, SITE_URL, SUMMARY_EN, SUMMARY_PT, TAGS } from "../src/config.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = resolve(process.argv[2] || ROOT);
@@ -305,7 +305,7 @@ function searchIndex(L) {
   const out = [];
   for (const T of TAGS) for (const { method, path, op } of opsByTag(T.tag)) {
     const key = `${method} ${path}`;
-    out.push({ m: method, p: path, s: L.code === "pt" ? SUMMARY_PT[key] || op.summary : op.summary, g: T[L.code], u: `${L.prefix}/reference/${T.slug}#${opId(method, path)}` });
+    out.push({ m: method, p: path, s: L.code === "pt" ? SUMMARY_PT[key] || op.summary : SUMMARY_EN[key] || op.summary, g: T[L.code], u: `${L.prefix}/reference/${T.slug}#${opId(method, path)}` });
   }
   return out;
 }
@@ -340,7 +340,7 @@ function referencePage(T, L) {
   for (const { method, path, op } of opsByTag(T.tag)) {
     const key = `${method} ${path}`;
     const meta = ROUTES[key] || {};
-    const summary = L.code === "pt" ? SUMMARY_PT[key] || op.summary : op.summary;
+    const summary = L.code === "pt" ? SUMMARY_PT[key] || op.summary : SUMMARY_EN[key] || op.summary;
     const id = opId(method, path);
     toc.push({ id, text: `${method} ${path}` });
     const params = (op.parameters || []).map((p) => ({ name: p.name, type: `${p.in} · ${typeOf(p.schema)}`, required: !!p.required, desc: p.description || deref(p.schema).description || "" }));
@@ -477,6 +477,8 @@ for (const L of LANGS) {
 write("404.html", layout(LANGS[0], "404", { title: UI.en.notFound, toc: [], html: `<h1>${UI.en.notFound}</h1><p>${UI.en.notFoundBody} <a href="/">${UI.en.backHome}</a>.</p><p lang="pt-BR">${UI.pt.notFoundBody} <a href="/pt">${UI.pt.backHome}</a>.</p>` }));
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.map((u) => `  <url><loc>${u}</loc></url>`).join("\n")}\n</urlset>\n`);
 // the spec, with the public server URL of this build
-write("openapi.json", JSON.stringify({ ...spec, servers: [{ url: API_URL }] }, null, 2) + "\n");
+const pub = structuredClone(spec);
+for (const [path, item] of Object.entries(pub.paths)) for (const [m, op] of Object.entries(item)) if (SUMMARY_EN[`${m.toUpperCase()} ${path}`]) op.summary = SUMMARY_EN[`${m.toUpperCase()} ${path}`];
+write("openapi.json", JSON.stringify({ ...pub, servers: [{ url: API_URL }] }, null, 2) + "\n");
 if (OUT !== ROOT) for (const f of ["robots.txt"]) existsSync(join(ROOT, f)) && copyFileSync(join(ROOT, f), join(OUT, f));
 console.log(`docs: ${pages.length} pages (${LANGS.map((L) => L.code).join(", ")}), API ${API_URL}, MCP ${MCP_URL}`);

@@ -28,7 +28,7 @@ An API key or an OAuth access token. See [Authentication](/authentication).
 
 ::: cards
 - [Account and usage](/reference/account) — `GET /v1/me`, balance and usage.
-- [Voices](/reference/voices) — Voices you can use; creating and cloning {soon}.
+- [Voices](/reference/voices) — List, generic catalog, choose and delete; cloning with consent {soon}.
 - [Rooms](/reference/rooms) — Create, list, read, end, guest links.
 - [Meetings and booking](/reference/calendar) — Meetings, booking links, free times, bookings.
 - [AI agent in a room](/reference/agents) — Join, say, listen, leave {soon}.

@@ -16,7 +16,7 @@ There are two ways in, both on top of the same product and the same permissions:
 | Account | Who am I, minutes left, API usage by day or by key | |
 | Rooms | Create an instant room with live translation, list, read, end it, guest links with name and language prefilled | |
 | Meetings and booking | Schedule meetings with invitees and languages, cancel, list booking links, free times, book a time | |
-| Voices | List your voices | Create and clone voices {soon} |
+| Voices | List your voices, browse the generic catalog, choose and delete voices | Clone a voice with recorded consent {soon} |
 | AI agent in a room | Join a room, speak (text in, translated voice out), listen | Live rooms {soon} · works today with a test key |
 | Phone calls | Check a destination and the rules for the call purpose in that country | Translated calls by an AI agent {soon} · works today with a test key |
 | Transcripts | Transcripts of the agent sessions your credential created | Transcripts and summaries of every meeting {soon} |
