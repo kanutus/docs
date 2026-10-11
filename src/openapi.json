@@ -1578,7 +1578,9 @@
                 "voice.ready",
                 "voice.failed",
                 "usage.threshold",
-                "credential.expiring"
+                "credential.expiring",
+                "academy.completed",
+                "academy.certified"
               ]
             },
             "minItems": 1,
@@ -5155,7 +5157,9 @@
                       "voice.ready",
                       "voice.failed",
                       "usage.threshold",
-                      "credential.expiring"
+                      "credential.expiring",
+                      "academy.completed",
+                      "academy.certified"
                     ],
                     "default": "meeting.created"
                   }

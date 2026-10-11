@@ -96,3 +96,5 @@ def verify_kanutus(raw_body: bytes, header: str, secret: str, tolerance_s: int =
 | `voice.consent_completed`, `voice.ready`, `voice.failed` | Voice cloning with consent {soon} |
 | `usage.threshold` | A key reached 80% or 100% of its spending limit |
 | `credential.expiring` | A key expires soon {soon} |
+| `academy.completed` | Someone in the organization finished every lesson of a Kanutus Academy track |
+| `academy.certified` | Someone in the organization earned a Kanutus Academy certificate (code and verification link; no name or email) |
