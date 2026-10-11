@@ -8,6 +8,7 @@
     "build": "node scripts/build.mjs",
     "test": "node scripts/check.mjs",
     "preview": "node scripts/serve.mjs 4174",
-    "openapi": "node scripts/pull-openapi.mjs"
+    "openapi": "node scripts/pull-openapi.mjs",
+    "sync:globe": "node ../../packages/ui/scripts/sync-people-globe.mjs assets/people-globe"
   }
 }

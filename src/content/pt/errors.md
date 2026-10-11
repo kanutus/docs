@@ -6,7 +6,7 @@ Os erros vêm em `application/problem+json` (RFC 9457). O `code` é estável, en
 
 ```json
 {
-  "type": "https://kanutus.com/developers/errors#insufficient_scope",
+  "type": "https://docs.kanutus.com/errors#insufficient_scope",
   "title": "insufficient_scope",
   "status": 403,
   "code": "insufficient_scope",

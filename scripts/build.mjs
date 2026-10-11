@@ -17,7 +17,7 @@ const UI = {
     prev: "Previous", next: "Next", soon: "Soon", permission: "Permission", anyCredential: "any valid credential", params: "Parameters",
     body: "Request body", response: "Response", errors: "Errors", example: "Example", name: "Name", in: "In", type: "Type", required: "Required",
     description: "Description", yes: "yes", soonOp: "Live mode answers 501 coming soon. Try it now with a kt_test_ key (simulator).",
-    edit: "Something wrong or missing? Write to", notFound: "Page not found", notFoundBody: "This page does not exist (or moved).", backHome: "Go to the docs home",
+    edit: "Something wrong or missing? Write to", notFound: "This page got lost along the way.", notFoundBody: "The link may be old or mistyped, or the page moved.", backHome: "Back to the docs home",
     langLabel: "Language", spec: "OpenAPI 3.1 file", skip: "Skip to content", fields: "Fields", searchPh: "Search endpoints (rooms, meetings, webhook…)", noResults: "No endpoint found", tryIt: "Try it", tryNote: "Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.", tryKey: "API key", trySend: "Send request", responses: "Responses by status", errorCodes: "See all error codes", signIn: "Sign in / Create account", signInShort: "Sign in",
   },
   pt: {
@@ -25,7 +25,7 @@ const UI = {
     prev: "Anterior", next: "Próximo", soon: "Em breve", permission: "Permissão", anyCredential: "qualquer credencial válida", params: "Parâmetros",
     body: "Corpo da requisição", response: "Resposta", errors: "Erros", example: "Exemplo", name: "Nome", in: "Onde", type: "Tipo", required: "Obrigatório",
     description: "Descrição", yes: "sim", soonOp: "Em produção responde 501 (em breve). Já dá para testar com uma chave kt_test_ (simulador).",
-    edit: "Achou algo errado ou faltando? Escreva para", notFound: "Página não encontrada", notFoundBody: "Esta página não existe (ou mudou de lugar).", backHome: "Ir para o início da documentação",
+    edit: "Achou algo errado ou faltando? Escreva para", notFound: "Essa página se perdeu no caminho.", notFoundBody: "O link pode estar antigo, com erro de digitação, ou a página mudou de lugar.", backHome: "Voltar ao início da documentação",
     langLabel: "Idioma", spec: "Arquivo OpenAPI 3.1", skip: "Pular para o conteúdo", fields: "Campos", searchPh: "Buscar endpoints (salas, reuniões, webhook…)", noResults: "Nenhum endpoint encontrado", tryIt: "Testar agora", tryNote: "Roda no seu navegador contra a API de verdade. Use uma chave kt_test_: nada é cobrado. A chave fica só nesta aba.", tryKey: "Chave de API", trySend: "Enviar requisição", responses: "Respostas por status", errorCodes: "Ver todos os códigos de erro", signIn: "Entrar / Criar conta", signInShort: "Entrar",
   },
 };
@@ -385,6 +385,20 @@ function navHtml(L, current) {
 const order = NAV.flatMap((g) => g.items.flatMap((s) => (s === "@reference" ? TAGS.map((T) => `reference/${T.slug}`) : [s])));
 const titles = { en: {}, pt: {} };
 
+// ---------------------------------------------------------------- language selector (same as kanutus.com)
+// Flags = the drawings of the kanutus.com menu (packages/ui/src/brand/language-flags.ts). Only the languages the docs
+// have. A click stores the choice in the cookie kt_lang (Domain=.kanutus.com, docs.js), shared by every Kanutus app.
+const FLAGS = { en: "<svg viewBox=\"0 0 20 14\" aria-hidden=\"true\"><rect width=\"20\" height=\"14\" fill=\"#fff\"/><rect y=\"0\" width=\"20\" height=\"1.0769230769230769\" fill=\"#B22234\"/><rect y=\"2.1538461538461537\" width=\"20\" height=\"1.0769230769230769\" fill=\"#B22234\"/><rect y=\"4.3076923076923075\" width=\"20\" height=\"1.0769230769230769\" fill=\"#B22234\"/><rect y=\"6.461538461538462\" width=\"20\" height=\"1.0769230769230769\" fill=\"#B22234\"/><rect y=\"8.615384615384615\" width=\"20\" height=\"1.0769230769230769\" fill=\"#B22234\"/><rect y=\"10.76923076923077\" width=\"20\" height=\"1.0769230769230769\" fill=\"#B22234\"/><rect y=\"12.923076923076923\" width=\"20\" height=\"1.0769230769230769\" fill=\"#B22234\"/><rect width=\"9\" height=\"7.54\" fill=\"#3C3B6E\"/></svg>", pt: "<svg viewBox=\"0 0 20 14\" aria-hidden=\"true\"><rect width=\"20\" height=\"14\" fill=\"#009C3B\"/><path d=\"M10 1.6 18.2 7 10 12.4 1.8 7z\" fill=\"#FFDF00\"/><circle cx=\"10\" cy=\"7\" r=\"3.1\" fill=\"#002776\"/></svg>" };
+const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+const CHEVRON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+function langSelect(L, slug, t) {
+  const items = LANGS.map((A) => {
+    const on = A.code === L.code;
+    return `<li><a href="${pageUrl(A, slug === "404" ? "index" : slug)}" hreflang="${A.html}" lang="${A.html}" data-lang="${A.code}"${on ? ' aria-current="true"' : ""}><span class="flag-ic">${FLAGS[A.code]}</span><span>${A.name}</span>${on ? CHECK : ""}</a></li>`;
+  }).join("");
+  return `<details class="langsel"><summary aria-label="${t.langLabel}: ${L.name}"><span class="flag-ic">${FLAGS[L.code]}</span><span>${L.code.toUpperCase()}</span>${CHEVRON}</summary><ul class="langsel-menu" aria-label="${t.langLabel}">${items}</ul></details>`;
+}
+
 function layout(L, slug, page) {
   const t = UI[L.code];
   const idx = order.indexOf(slug);
@@ -419,7 +433,7 @@ ${alt}
 <button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">${t.menu}</button>
 <a class="brand" href="${L.prefix || "/"}" aria-label="Kanutus ${t.docs}"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>${t.docs}</span></a>
 <div class="top-right">
-<nav class="lang" aria-label="${t.langLabel}">${LANGS.map((A) => `<a href="${pageUrl(A, slug === "404" ? "index" : slug)}" hreflang="${A.html}" lang="${A.html}"${A.code === L.code ? ' aria-current="true"' : ""}>${A.code.toUpperCase()}</a>`).join("")}</nav>
+${langSelect(L, slug, t)}
 <a class="top-link" href="${SITE_URL}${L.code === "pt" ? "/pt" : ""}">${t.site}</a>
 <a class="btn" href="${APP_URL}/developers"><span class="long">${t.signIn}</span><span class="short">${t.signInShort}</span></a>
 </div>
@@ -435,6 +449,45 @@ ${slug === "reference" ? page.html.replace("</h1>", "</h1>\n" + searchBox(L)) : 
 </main>
 ${page.toc.length > 1 ? `<aside class="toc"><p>${t.onThisPage}</p><ul>${page.toc.map((h) => `<li><a href="#${h.id}">${esc(h.text)}</a></li>`).join("")}</ul></aside>` : ""}
 </div>
+</body>
+</html>
+`;
+}
+
+function notFoundPage() {
+  const S = Object.fromEntries(LANGS.map((A) => [A.code, { h: UI[A.code].notFound, b: UI[A.code].notFoundBody, a: UI[A.code].backHome, u: A.prefix || "/", lang: A.html, docs: UI[A.code].docs }]));
+  const en = S.en;
+  return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 · Kanutus Docs</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+</head>
+<body class="nf404-body">
+<div class="nf404">
+<header class="nf404-top"><a class="brand" href="/" data-nf-home aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a></header>
+<main id="content" class="nf404-main">
+<div class="nf404-copy"><p class="nf404-code">404</p><h1 data-nf="h">${esc(en.h)}</h1><p class="nf404-lead" data-nf="b">${esc(en.b)}</p><p><a class="btn btn-lg" href="/" data-nf-home data-nf="a">${esc(en.a)}</a></p></div>
+<div class="nf404-globe" data-people-globe aria-hidden="true"></div>
+</main>
+</div>
+<script>(function(){var S=${JSON.stringify(S).replace(/</g, "\u003c")};
+var m=document.cookie.match(/(?:^|; )kt_lang=([^;]*)/),seg=(location.pathname.split("/")[1]||"").toLowerCase(),c="";
+var cand=[seg,m?decodeURIComponent(m[1]):""].concat((navigator.languages||[navigator.language||""]).map(function(x){return String(x).toLowerCase().split("-")[0]}));
+for(var i=0;i<cand.length;i++){if(cand[i]&&S[cand[i]]){c=cand[i];break}}
+if(!c||c==="en")return;var s=S[c];document.documentElement.lang=s.lang;
+["h","b","a"].forEach(function(k){document.querySelector('[data-nf="'+k+'"]').textContent=s[k]});
+document.querySelectorAll("[data-nf-home]").forEach(function(a){a.setAttribute("href",s.u)});})();</script>
+<script type="module">import { mountPeopleGlobe } from "/assets/people-globe/people-globe.js";
+mountPeopleGlobe(document.querySelector("[data-people-globe]"), { lost: true });</script>
 </body>
 </html>
 `;
@@ -473,8 +526,10 @@ for (const L of LANGS) {
     pages.push(`${DOCS_URL}${pageUrl(L, slug) === "/" ? "" : pageUrl(L, slug)}`);
   }
 }
-// 404 (bilingual)
-write("404.html", layout(LANGS[0], "404", { title: UI.en.notFound, toc: [], html: `<h1>${UI.en.notFound}</h1><p>${UI.en.notFoundBody} <a href="/">${UI.en.backHome}</a>.</p><p lang="pt-BR">${UI.pt.notFoundBody} <a href="/pt">${UI.pt.backHome}</a>.</p>` }));
+// 404: the people globe of kanutus.com in its "connection lost" variant (assets/people-globe, copied from apps/site by
+// `pnpm sync:globe`) + one short line. English baked in; docs.js-free inline script picks Portuguese for /pt/... or the
+// remembered choice (cookie kt_lang) or the browser. The button goes to the start of the DOCS (/ or /pt).
+write("404.html", notFoundPage());
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.map((u) => `  <url><loc>${u}</loc></url>`).join("\n")}\n</urlset>\n`);
 // the spec, with the public server URL of this build
 const pub = structuredClone(spec);

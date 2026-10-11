@@ -24,6 +24,26 @@
       menu.setAttribute("aria-expanded", String(open));
     }
   });
+  // language selector (same as kanutus.com): Escape / click outside close it; a click remembers the choice for every
+  // Kanutus subdomain (cookie kt_lang on .kanutus.com). Arriving from outside the docs on a page in another language
+  // than the remembered one sends you to the same page in that language (never while moving inside the docs).
+  const lang = document.querySelector("details.langsel");
+  if (lang) {
+    document.addEventListener("click", (e) => { if (lang.open && !lang.contains(e.target)) lang.open = false; });
+    lang.addEventListener("keydown", (e) => { if (e.key === "Escape" && lang.open) { lang.open = false; lang.querySelector("summary").focus(); } });
+    lang.addEventListener("click", (e) => {
+      const a = e.target.closest("a[data-lang]");
+      if (!a) return;
+      const dom = /(^|\.)kanutus\.com$/.test(location.hostname) ? "; Domain=.kanutus.com" : "";
+      document.cookie = `kt_lang=${a.dataset.lang}; Path=/; Max-Age=31536000; SameSite=Lax${dom}${location.protocol === "https:" ? "; Secure" : ""}`;
+    });
+    const want = (document.cookie.match(/(?:^|; )kt_lang=([^;]*)/) || [])[1];
+    const here = lang.querySelector('a[aria-current="true"]');
+    let internal = false;
+    try { internal = !!document.referrer && new URL(document.referrer).host === location.host; } catch {}
+    const target = want && lang.querySelector(`a[data-lang="${want}"]`);
+    if (!internal && target && here && here !== target) location.replace(target.getAttribute("href") + location.hash);
+  }
   // endpoint search (reference pages)
   document.querySelectorAll("[data-ref-search]").forEach((box) => {
     const input = box.querySelector("input");
