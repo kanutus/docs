@@ -32,4 +32,4 @@ Com o Kanutus, a IA fala com pessoas reais, em salas e por telefone, com vozes q
 
 ## Denuncie abusos
 
-Escreva para [mailing@kanutus.com](mailto:mailing@kanutus.com) com "Abuso" no assunto. Conseguimos bloquear uma chave, um app ou uma organização em menos de um minuto.
+Escreva para [contact@kanutus.com](mailto:contact@kanutus.com) com "Abuso" no assunto. Conseguimos bloquear uma chave, um app ou uma organização em menos de um minuto.

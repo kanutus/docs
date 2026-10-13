@@ -30,4 +30,4 @@ Kanutus lets AI speak with real people, in rooms and on the phone, with voices t
 
 ## Report abuse
 
-Write to [mailing@kanutus.com](mailto:mailing@kanutus.com) with "Abuse" in the subject. We can block a key, an app or an organization in under a minute.
+Write to [contact@kanutus.com](mailto:contact@kanutus.com) with "Abuse" in the subject. We can block a key, an app or an organization in under a minute.

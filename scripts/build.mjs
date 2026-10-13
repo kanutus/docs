@@ -445,7 +445,7 @@ ${langSelect(L, slug, t)}
 ${slug === "reference" ? page.html.replace("</h1>", "</h1>\n" + searchBox(L)) : page.html}
 </article>
 <nav class="pager">${prev ? `<a class="prev" href="${pageUrl(L, prev)}"><span>${t.prev}</span><strong>${inline(titleOf(prev), L)}</strong></a>` : "<span></span>"}${next ? `<a class="next" href="${pageUrl(L, next)}"><span>${t.next}</span><strong>${inline(titleOf(next), L)}</strong></a>` : ""}</nav>
-<footer class="foot"><p>${t.edit} <a href="mailto:mailing@kanutus.com">mailing@kanutus.com</a> · <a href="/openapi.json">${t.spec}</a> · © 2026 Kanutus</p></footer>
+<footer class="foot"><p>${t.edit} <a href="mailto:contact@kanutus.com">contact@kanutus.com</a> · <a href="/openapi.json">${t.spec}</a> · © 2026 Kanutus</p></footer>
 </main>
 ${page.toc.length > 1 ? `<aside class="toc"><p>${t.onThisPage}</p><ul>${page.toc.map((h) => `<li><a href="#${h.id}">${esc(h.text)}</a></li>`).join("")}</ul></aside>` : ""}
 </div>
