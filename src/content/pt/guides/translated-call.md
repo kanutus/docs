@@ -98,6 +98,7 @@ Cada organização tem limites diários para ligações de agentes, combinados c
 | 403 | `outside_calling_hours` | Fora do horário permitido para essa finalidade, na hora local do destino. |
 | 403 | `number_not_member` | A pessoa dona da chave (ou o agente) não pode usar esse número `from`. |
 | 409 | `number_not_active` | O número `from` está em análise, suspenso ou cancelado. |
+| 409 | `number_required` | A sua organização ainda não tem um número de telefone próprio. Alugue um no app (Ligações › Números) e ligue de novo. |
 | 409 | `disclosure_pending` | `say` antes de o aviso de IA terminar. Tente de novo em um segundo. |
 | 409 | `not_answered` / `call_ended` | Teclas antes de a ligação ser atendida, ou depois de terminar. |
 | 429 | `daily_call_limit` / `daily_minutes_limit` | A organização bateu o limite diário de ligações de agentes. Zera à meia-noite (horário de Brasília). |

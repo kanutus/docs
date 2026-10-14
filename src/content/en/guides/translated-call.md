@@ -98,6 +98,7 @@ Each organization has daily limits for agent calls, set with Kanutus: by default
 | 403 | `outside_calling_hours` | Outside the hours allowed for that purpose at the destination's local time. |
 | 403 | `number_not_member` | The key's owner (or the agent) is not allowed to use that `from` number. |
 | 409 | `number_not_active` | The `from` number is under review, suspended or cancelled. |
+| 409 | `number_required` | Your organization has no phone number of its own yet. Rent one in the app (Calls › Numbers), then call again. |
 | 409 | `disclosure_pending` | `say` before the AI notice finished. Try again in a second. |
 | 409 | `not_answered` / `call_ended` | Keys before the call was answered, or after it ended. |
 | 429 | `daily_call_limit` / `daily_minutes_limit` | The organization reached its daily limit for agent calls. Resets at midnight (Brasília time). |
