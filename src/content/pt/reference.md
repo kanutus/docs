@@ -34,7 +34,7 @@ Use uma chave de API ou um token de acesso OAuth. Veja [Autenticação](/authent
 - [Reuniões e agendamento](/reference/calendar) — Reuniões, links de agendamento, horários livres e agendamentos.
 - [Agente de IA na sala](/reference/agents) — Entrar, falar, ouvir e sair {soon}.
 - [Transcrições](/reference/transcripts) — O que esta credencial pode ler.
-- [Ligações](/reference/calls) — Cotar destinos e fazer ligações traduzidas {soon}.
+- [Ligações](/reference/calls) — Cotar destinos e fazer ligações traduzidas.
 - [Webhooks e eventos](/reference/webhooks) — Endpoints, segredos, testes e registro de eventos.
 :::
 

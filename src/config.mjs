@@ -21,7 +21,7 @@ export const LANGS = [
 export const NAV = [
   { group: { en: "Get started", pt: "Começar" }, items: ["index", "quickstart", "authentication", "test-mode"] },
   { group: { en: "Connect AI assistants (MCP)", pt: "Assistentes de IA (MCP)" }, items: ["mcp", "mcp/connect-claude", "mcp/connect-chatgpt", "mcp/other-clients", "mcp/tools"] },
-  { group: { en: "Guides", pt: "Guias" }, items: ["guides/agent-in-room", "guides/schedule-meeting", "guides/translated-call", "guides/transcripts"] },
+  { group: { en: "Guides", pt: "Guias" }, items: ["guides/agent-in-room", "guides/schedule-meeting", "guides/translated-call", "guides/transcripts", "numbers"] },
   { group: { en: "Build", pt: "Integrar" }, items: ["webhooks", "errors", "responsible-use"] },
   { group: { en: "API reference", pt: "Referência da API" }, items: ["reference", "@reference"] },
 ];
@@ -73,11 +73,11 @@ export const ROUTES = {
   "GET /v1/transcripts": { scope: "transcripts:read" },
   "GET /v1/transcripts/{id}": { scope: "transcripts:read" },
   "GET /v1/calls/quote": { scope: "calls:read" },
-  "POST /v1/calls": { scope: "calls:dial", soon: true },
+  "POST /v1/calls": { scope: "calls:dial" },
   "GET /v1/calls": { scope: "calls:read" },
   "GET /v1/calls/{id}": { scope: "calls:read" },
-  "POST /v1/calls/{id}/hangup": { scope: "calls:dial", soon: true },
-  "POST /v1/calls/{id}/dtmf": { scope: "calls:dial", soon: true },
+  "POST /v1/calls/{id}/hangup": { scope: "calls:dial" },
+  "POST /v1/calls/{id}/dtmf": { scope: "calls:dial" },
   "GET /v1/webhook-endpoints": { scope: "webhooks:write" },
   "POST /v1/webhook-endpoints": { scope: "webhooks:write" },
   "DELETE /v1/webhook-endpoints/{id}": { scope: "webhooks:write" },

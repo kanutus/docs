@@ -34,7 +34,7 @@ An API key or an OAuth access token. See [Authentication](/authentication).
 - [Meetings and booking](/reference/calendar) — Meetings, booking links, free times, bookings.
 - [AI agent in a room](/reference/agents) — Join, say, listen, leave {soon}.
 - [Transcripts](/reference/transcripts) — What this credential can read.
-- [Phone calls](/reference/calls) — Quote and place translated calls {soon}.
+- [Phone calls](/reference/calls) — Quote and place translated calls.
 - [Webhooks and events](/reference/webhooks) — Endpoints, secrets, tests, event log.
 :::
 

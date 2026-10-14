@@ -36,6 +36,16 @@ Errors use `application/problem+json` (RFC 9457). `code` is stable and safe to b
 | 409 | `session_ended` | The agent session already ended |
 | 429 | `rate_limited` | Too many requests; wait for `Retry-After` |
 | 429 | `too_many_sessions` | Too many agent sessions at the same time |
+| 403 | `live_calls_disabled` | Live phone calls through the API are not turned on for your organization yet; ask Kanutus |
+| 403 | `purpose_not_allowed`, `outside_calling_hours` | The call purpose is not allowed for AI agents or for that country, or it is outside the allowed hours at the destination |
+| 409 | `disclosure_pending` | `say` in a phone call before the AI notice finished; retry in a second |
+| 409 | `not_answered`, `call_ended` | Phone keys before the call was answered, or after it ended |
+| 429 | `daily_call_limit`, `daily_minutes_limit`, `concurrent_limit` | The organization reached a limit for AI agent calls; wait for `Retry-After` (daily limits reset at midnight, Brasília time) |
+| 429 | `dial_burst` | Too many calls started by this key in the last minute |
+| 402 | `no_minutes` | Not enough minutes for a phone call (at least 2 minutes) |
+| 502 | `dial_failed` | The phone network refused the call; nothing was charged |
+| 503 | `call_starting` | The translation server for the call is starting; nothing was dialed or charged. Retry after `Retry-After` (also in `retry_after_s`) |
+| 503 | `phone_unavailable` | Phone calls are temporarily unavailable; retry later |
 | 429 | `test_daily_limit` | Test keys allow 1,000 requests per day |
 | 501 | `not_available_yet` | Coming soon in live mode; works with a `kt_test_` key |
 | 503 | `api_disabled`, `mcp_disabled`, `booking_unavailable` | Temporarily unavailable; retry later |

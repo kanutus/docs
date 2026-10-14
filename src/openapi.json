@@ -916,6 +916,10 @@
           },
           "livemode": {
             "type": "boolean"
+          },
+          "call_id": {
+            "type": "string",
+            "description": "Set when the session is the agent inside a phone call (POST /v1/calls)."
           }
         },
         "required": [
@@ -1074,7 +1078,7 @@
           "meta": {
             "type": "object",
             "additionalProperties": {},
-            "description": "Ids and numbers only (seq, participant_id, lang, error code). Additive."
+            "description": "Ids, numbers and times only. Additive. Common keys: seq, participant_id, lang, code, utterance_id, targets. `start`/`end`: when the phrase was spoken (ISO 8601 wall clock when `clock` is \"wall\"; seconds on the room audio clock when `clock` is \"room\"). `latency`: {stt_ms, mt_ms, tts_ms} measured by the translation server, when it reports them. `voice_started_at` (utterance.translated): when the translated voice started playing. `refunded_seconds` (utterance.dropped): seconds given back because the voice could not be delivered."
           },
           "created_at": {
             "type": "string"
@@ -1115,6 +1119,12 @@
           },
           "livemode": {
             "type": "boolean"
+          },
+          "call_id": {
+            "type": [
+              "string",
+              "null"
+            ]
           }
         },
         "required": [
@@ -1193,6 +1203,9 @@
                 "at"
               ]
             }
+          },
+          "call_id": {
+            "type": "string"
           }
         },
         "required": [
@@ -1357,6 +1370,34 @@
           },
           "livemode": {
             "type": "boolean"
+          },
+          "ended_by": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "agent",
+              "remote",
+              "limit",
+              "system",
+              null
+            ],
+            "description": "Who ended the call: `agent` (you hung up), `remote` (the person hung up, was busy or did not answer), `limit` (maximum duration or minutes) or `system`."
+          },
+          "session_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Agent session inside the call: use `say` and `listen` (POST /v1/sessions/{id}/say, GET /v1/sessions/{id}/events) with it. Included in the call price."
+          },
+          "max_seconds": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "description": "The call ends by itself after this many seconds of talk."
           }
         },
         "required": [
@@ -1427,6 +1468,13 @@
           "voice_id": {
             "type": "string",
             "maxLength": 100
+          },
+          "agent_name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80,
+            "description": "Name shown in the organization's call history (default \"AI assistant\"). The person hears the AI notice with your organization's name.",
+            "example": "Ava"
           }
         },
         "required": [
@@ -3771,6 +3819,16 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Temporarily unavailable; retry after the `Retry-After` header. Codes: `room_starting` (the room's translation server is starting), `room_unavailable` (not reachable), `agents_disabled` (AI agents are not enabled on this room's server right now), `voice_warming` (the server's voice is still warming up; usually a few seconds)",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -3897,7 +3955,7 @@
         },
         "responses": {
           "202": {
-            "description": "Queued; progress arrives as events",
+            "description": "Queued; progress arrives as events. If the voice cannot be delivered, the seconds are given back (`utterance.dropped` with `meta.refunded_seconds`).",
             "content": {
               "application/json": {
                 "schema": {
@@ -3968,6 +4026,16 @@
           },
           "429": {
             "description": "Rate limit exceeded (see RateLimit-* and Retry-After headers)",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Temporarily unavailable; retry after the `Retry-After` header. Codes: `room_starting` (the room's translation server is starting), `room_unavailable` (not reachable), `agents_disabled` (AI agents are not enabled on this room's server right now), `voice_warming` (the server's voice is still warming up; usually a few seconds)",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -4099,6 +4167,16 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Temporarily unavailable; retry after the `Retry-After` header. Codes: `room_starting` (the room's translation server is starting), `room_unavailable` (not reachable), `agents_disabled` (AI agents are not enabled on this room's server right now), `voice_warming` (the server's voice is still warming up; usually a few seconds)",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -4209,6 +4287,17 @@
             },
             "required": false,
             "name": "room_id",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "pattern": "^call_[0-9A-Za-z]{10,40}$",
+              "description": "Only the transcript of this phone call (agent calls always have one)."
+            },
+            "required": false,
+            "description": "Only the transcript of this phone call (agent calls always have one).",
+            "name": "call_id",
             "in": "query"
           }
         ],
@@ -4524,7 +4613,7 @@
         },
         "responses": {
           "201": {
-            "description": "Call created",
+            "description": "Call created: ringing. Use `session_id` with say/listen after the AI notice (call.answered).",
             "content": {
               "application/json": {
                 "schema": {
@@ -4593,12 +4682,41 @@
               }
             }
           },
-          "501": {
-            "description": "Not available yet in live mode (use a kt_test_ key)",
+          "502": {
+            "description": "`dial_failed`: the phone network refused the call (wrong number, carrier refused). Nothing was charged.",
             "content": {
               "application/problem+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Problem"
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code"
+                  ]
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "`call_starting`: the translation server is starting (nothing was dialed or charged); retry after `retry_after_s` / `Retry-After`. `phone_unavailable`: phone calls are not available right now.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "retry_after_s": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "code"
+                  ]
                 }
               }
             }

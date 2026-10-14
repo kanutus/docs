@@ -50,14 +50,17 @@ Já funciona com uma chave de teste (simulador); em salas reais, chega em breve.
 | `listen` | Espera até 20 s pelo que os outros disseram, já traduzido | `rooms:join` | (o assistente chama em sequência, várias vezes) |
 | `leave` | Sai da sala | `rooms:join` | "Saia da sala." |
 
-## Ligações {soon}
+## Ligações
 
-Já funciona com uma chave de teste e os [números mágicos](/test-mode#numeros-magicos). Veja o [guia](/guides/translated-call).
+Ligações reais precisam de **Ligações ao vivo pela API** liberadas para a sua organização; com uma chave de teste, usam os [números mágicos](/test-mode#numeros-magicos). Depois do `start_call`, use `say` e `listen` com o `session_id` devolvido. Veja o [guia](/guides/translated-call).
 
 | Ferramenta | O que faz | Permissão | Exemplo de pedido |
 | --- | --- | --- | --- |
 | `quote_call` | País do destino, fator do minuto e se a finalidade é permitida ali | `calls:read` | "Posso ligar para +1 555 0100 para confirmar um horário?" |
 | `start_call` | Liga como agente de IA, com tradução; sempre avisa que é uma IA · pergunta antes | `calls:dial` | "Ligue para +1 555 0100 para confirmar o horário de amanhã, em inglês." |
+| `get_call` | Situação da ligação; no fim, quem desligou e os minutos cobrados | `calls:read` | "A ligação terminou?" |
+| `send_dtmf` | Aperta teclas em menus de atendimento (0-9, * e #) | `calls:dial` | "Tecle 2 para vendas." |
+| `hangup_call` | Desliga | `calls:dial` | "Desligue." |
 
 ## Para quem desenvolve
 

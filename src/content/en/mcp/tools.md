@@ -50,14 +50,17 @@ Works today with a test key (simulator); live rooms are coming soon. See the [gu
 | `listen` | Wait up to 20 s for what others said, already translated | `rooms:join` | (the assistant calls it in a loop) |
 | `leave` | Leave the room | `rooms:join` | "Leave the room." |
 
-## Phone calls {soon}
+## Phone calls
 
-Works today with a test key and the [magic numbers](/test-mode#magic-phone-numbers). See the [guide](/guides/translated-call).
+Real calls need **Live calls through the API** turned on for your organization; with a test key they use the [magic numbers](/test-mode#magic-phone-numbers). After `start_call`, use `say` and `listen` with the returned `session_id`. See the [guide](/guides/translated-call).
 
 | Tool | What it does | Permission | Example request |
 | --- | --- | --- | --- |
 | `quote_call` | Destination country, minute factor, and whether the purpose is allowed there | `calls:read` | "Can I call +1 555 0100 to confirm an appointment?" |
 | `start_call` | Call as an AI agent with translation; always announces it is an AI · asks first | `calls:dial` | "Call +1 555 0100 to confirm tomorrow's appointment, in English." |
+| `get_call` | Call status; at the end, who ended it and the minutes charged | `calls:read` | "Did the call end?" |
+| `send_dtmf` | Press phone keys in menus (0-9, * and #) | `calls:dial` | "Press 2 for sales." |
+| `hangup_call` | Hang up | `calls:dial` | "Hang up." |
 
 ## Notes for builders
 

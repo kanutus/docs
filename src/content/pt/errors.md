@@ -36,6 +36,16 @@ Os erros vêm em `application/problem+json` (RFC 9457). O `code` é estável, en
 | 409 | `session_ended` | A sessão do agente já terminou |
 | 429 | `rate_limited` | Requisições demais; espere o tempo do `Retry-After` |
 | 429 | `too_many_sessions` | Sessões de agente demais ao mesmo tempo |
+| 403 | `live_calls_disabled` | As ligações ao vivo pela API ainda não estão liberadas para a sua organização; peça para a Kanutus |
+| 403 | `purpose_not_allowed`, `outside_calling_hours` | A finalidade não é permitida para agentes de IA ou nesse país, ou está fora do horário permitido no destino |
+| 409 | `disclosure_pending` | `say` numa ligação antes de o aviso de IA terminar; tente de novo em um segundo |
+| 409 | `not_answered`, `call_ended` | Teclas antes de a ligação ser atendida, ou depois de terminar |
+| 429 | `daily_call_limit`, `daily_minutes_limit`, `concurrent_limit` | A organização bateu um limite das ligações de agentes; espere o `Retry-After` (os diários zeram à meia-noite, horário de Brasília) |
+| 429 | `dial_burst` | Ligações demais iniciadas por esta chave no último minuto |
+| 402 | `no_minutes` | Minutos insuficientes para uma ligação (pelo menos 2 minutos) |
+| 502 | `dial_failed` | A rede de telefonia recusou a ligação; nada foi cobrado |
+| 503 | `call_starting` | O servidor de tradução da ligação está ligando; nada foi discado nem cobrado. Tente de novo depois do `Retry-After` (também em `retry_after_s`) |
+| 503 | `phone_unavailable` | Ligações indisponíveis no momento; tente mais tarde |
 | 429 | `test_daily_limit` | Chaves de teste aceitam 1.000 requisições por dia |
 | 501 | `not_available_yet` | Ainda não está disponível em produção; funciona com uma chave `kt_test_` |
 | 503 | `api_disabled`, `mcp_disabled`, `booking_unavailable` | Indisponível no momento; tente mais tarde |

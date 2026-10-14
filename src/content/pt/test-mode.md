@@ -45,4 +45,4 @@ curl -X POST {{API}}/v1/webhook-endpoints/<endpoint_id>/test \
 
 ## Indo para produção
 
-Crie uma chave `kt_live_` em **Produção** com as mesmas permissões e use-a no lugar da chave de teste. Agentes em salas reais e ligações reais estão {soon}: hoje, com uma chave de produção, esses endpoints respondem `501 not_available_yet`.
+Crie uma chave `kt_live_` em **Produção** com as mesmas permissões e use-a no lugar da chave de teste. Agentes em salas reais estão {soon}: hoje, com uma chave de produção, esses endpoints respondem `501 not_available_yet`. Ligações reais precisam de **Ligações ao vivo pela API** liberadas para a sua organização (veja o [guia](/guides/translated-call)).

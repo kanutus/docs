@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Numbers · Kanutus Docs</title>
+<meta name="description" content="Kanutus API and MCP documentation: rooms with live translation, scheduling, voices, calls and AI agents.">
+<link rel="canonical" href="https://docs.kanutus.com/numbers">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/numbers">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/numbers">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<details class="langsel"><summary aria-label="Language: English"><span class="flag-ic"><svg viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#fff"/><rect y="0" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="2.1538461538461537" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="4.3076923076923075" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="6.461538461538462" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="8.615384615384615" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="10.76923076923077" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="12.923076923076923" width="20" height="1.0769230769230769" fill="#B22234"/><rect width="9" height="7.54" fill="#3C3B6E"/></svg></span><span>EN</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><ul class="langsel-menu" aria-label="Language"><li><a href="/numbers" hreflang="en" lang="en" data-lang="en" aria-current="true"><span class="flag-ic"><svg viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#fff"/><rect y="0" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="2.1538461538461537" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="4.3076923076923075" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="6.461538461538462" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="8.615384615384615" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="10.76923076923077" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="12.923076923076923" width="20" height="1.0769230769230769" fill="#B22234"/><rect width="9" height="7.54" fill="#3C3B6E"/></svg></span><span>English</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></a></li><li><a href="/pt/numbers" hreflang="pt-BR" lang="pt-BR" data-lang="pt"><span class="flag-ic"><svg viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#009C3B"/><path d="M10 1.6 18.2 7 10 12.4 1.8 7z" fill="#FFDF00"/><circle cx="10" cy="7" r="3.1" fill="#002776"/></svg></span><span>Português</span></a></li></ul></details>
+<a class="top-link" href="https://kanutus.com">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com/developers"><span class="long">Sign in / Create account</span><span class="short">Sign in</span></a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Get started</p><ul><li><a href="/">Kanutus for developers</a></li><li><a href="/quickstart">Quickstart</a></li><li><a href="/authentication">Authentication</a></li><li><a href="/test-mode">Test mode</a></li></ul></div><div class="nav-group"><p>Connect AI assistants (MCP)</p><ul><li><a href="/mcp">Kanutus MCP server</a></li><li><a href="/mcp/connect-claude">Connect Claude</a></li><li><a href="/mcp/connect-chatgpt">Connect ChatGPT</a></li><li><a href="/mcp/other-clients">Cursor, VS Code and other clients</a></li><li><a href="/mcp/tools">The 23 MCP tools</a></li></ul></div><div class="nav-group"><p>Guides</p><ul><li><a href="/guides/agent-in-room">AI agent in a room</a></li><li><a href="/guides/schedule-meeting">Schedule a meeting</a></li><li><a href="/guides/translated-call">Translated phone call</a></li><li><a href="/guides/transcripts">Receive transcripts</a></li><li><a href="/numbers" aria-current="page">Numbers</a></li></ul></div><div class="nav-group"><p>Build</p><ul><li><a href="/webhooks">Webhooks</a></li><li><a href="/errors">Limits and errors</a></li><li><a href="/responsible-use">Responsible use</a></li></ul></div><div class="nav-group"><p>API reference</p><ul><li><a href="/reference">API reference</a></li><li><a href="/reference/account" class="sub">Account and usage</a></li><li><a href="/reference/voices" class="sub">Voices</a></li><li><a href="/reference/avatars" class="sub">Avatars</a></li><li><a href="/reference/rooms" class="sub">Rooms</a></li><li><a href="/reference/calendar" class="sub">Meetings and booking</a></li><li><a href="/reference/agents" class="sub">AI agent in a room</a></li><li><a href="/reference/transcripts" class="sub">Transcripts</a></li><li><a href="/reference/calls" class="sub">Phone calls</a></li><li><a href="/reference/webhooks" class="sub">Webhooks and events</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Numbers</h1>
+<p>Your organization's own phone numbers: the number people see when your team calls them. Without a number of your own, calls go out from the Kanutus shared number (+1 646 518 1033).</p>
+<div class="callout callout-note"><p>Numbers are rented in the app by an owner or manager of an organization whose company is verified. Through the API <span class="badge badge-soon">Soon</span>.</p></div>
+<h2 id="rent-in-the-app"><a class="anchor" href="#rent-in-the-app" aria-hidden="true">#</a>Rent in the app</h2>
+<ol class="steps"><li><div>Open <strong>Calls › Numbers</strong> at <a href="https://app.kanutus.com/org/phone/numbers" rel="noopener" target="_blank">https://app.kanutus.com/org/phone/numbers</a> and click <strong>Rent a number</strong>.</div></li><li><div>Choose the country, the area code and the type (local or toll-free). The list shows the free numbers, the activation and the monthly fee.</div></li><li><div>Check the summary: what is charged when the number becomes active, where the charge goes and the documents the country requires.</div></li><li><div>Click <strong>Rent</strong> and confirm with the code from your authenticator app.</div></li></ol>
+<p>Today you can rent numbers in the United States, Canada and Brazil.</p>
+<h2 id="number-status"><a class="anchor" href="#number-status" aria-hidden="true">#</a>Number status</h2>
+<div class="table"><table><thead><tr><th>Status</th><th>What it means</th></tr></thead><tbody><tr><td>Under review</td><td>Documents sent to the carrier. Nothing is charged and the number does not call yet.</td></tr><tr><td>Active</td><td>It calls. Activation is charged that day and the monthly fee every month, on the same day.</td></tr><tr><td>Rejected</td><td>The carrier or Kanutus rejected the documents. The reason shows in the list; send them again and request another number.</td></tr><tr><td>Suspended</td><td>Payment 7 days late. It does not call.</td></tr><tr><td>Cancelled</td><td>Returned to the carrier. It leaves &quot;Call from&quot;; the history stays.</td></tr></tbody></table></div>
+<p>In the United States and Canada there are no documents: the number is active as soon as the carrier confirms. In Brazil the carrier asks for the company registration card (CNPJ), a proof of address up to 90 days old and the address where the service is provided. They come from your company verification, nothing to send again.</p>
+<h2 id="price-and-billing"><a class="anchor" href="#price-and-billing" aria-hidden="true">#</a>Price and billing</h2>
+<p>Each number has an activation (charged once, when it becomes active) and a monthly fee, with no proration in the first month. The price is locked on the day you rent.</p>
+<div class="table"><table><thead><tr><th>Country · type</th><th>Activation</th><th>Monthly</th></tr></thead><tbody><tr><td>United States · local</td><td>US$ 5 / R$ 29</td><td>US$ 5 / R$ 29</td></tr><tr><td>United States · toll-free</td><td>US$ 10 / R$ 55</td><td>US$ 10 / R$ 55</td></tr><tr><td>Canada · local</td><td>US$ 5 / R$ 29</td><td>US$ 5 / R$ 29</td></tr><tr><td>Canada · toll-free</td><td>US$ 10 / R$ 55</td><td>US$ 10 / R$ 55</td></tr><tr><td>Brazil · local</td><td>US$ 8 / R$ 39</td><td>US$ 8 / R$ 39</td></tr></tbody></table></div>
+<ul><li><div><strong>Enterprise contract:</strong> numbers included in the contract cost zero; the others go on the monthly invoice.</div></li><li><div><strong>No invoice:</strong> card. We ask for a card on the first rental and charge only when the number becomes active.</div></li><li><div><strong>Minutes don't pay for numbers:</strong> your minute balance is only for calls.</div></li></ul>
+<p>How many numbers an organization can have: Business, 1; Enterprise, what the contract says.</p>
+<p>If a payment fails, we warn the owner the same day. After 7 days the number is suspended. After 30 days it goes back to the carrier and may not be recoverable.</p>
+<h2 id="who-uses-each-number"><a class="anchor" href="#who-uses-each-number" aria-hidden="true">#</a>Who uses each number</h2>
+<p>On the number's page, choose the groups (departments, access profiles, company login groups) and the people who can call and receive with it. With no group or person selected, everyone who can call uses the number.</p>
+<p>The <strong>organization's default number</strong> is pre-selected in &quot;Call from&quot;. People who can't use the default call from the first number they can use or, if there is none, from the Kanutus shared number.</p>
+<h2 id="cancel"><a class="anchor" href="#cancel" aria-hidden="true">#</a>Cancel</h2>
+<p>On the number's page, <strong>Cancel number</strong> asks you to type the number to confirm. It keeps working until the end of the paid month and then goes back to the carrier. There is no refund, and the number may not be recoverable.</p>
+</article>
+<nav class="pager"><a class="prev" href="/guides/transcripts"><span>Previous</span><strong>Receive transcripts</strong></a><a class="next" href="/webhooks"><span>Next</span><strong>Webhooks</strong></a></nav>
+<footer class="foot"><p>Something wrong or missing? Write to <a href="mailto:contact@kanutus.com">contact@kanutus.com</a> · <a href="/openapi.json">OpenAPI 3.1 file</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>On this page</p><ul><li><a href="#rent-in-the-app">Rent in the app</a></li><li><a href="#number-status">Number status</a></li><li><a href="#price-and-billing">Price and billing</a></li><li><a href="#who-uses-each-number">Who uses each number</a></li><li><a href="#cancel">Cancel</a></li></ul></aside>
+</div>
+</body>
+</html>

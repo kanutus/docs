@@ -18,7 +18,7 @@ There are two ways in, both on top of the same product and the same permissions:
 | Meetings and booking | Schedule meetings with invitees and languages, cancel, list booking links, free times, book a time | |
 | Voices | List your voices, browse the generic catalog, choose and delete voices | Clone a voice with recorded consent {soon} |
 | AI agent in a room | Join a room, speak (text in, translated voice out), listen | Live rooms {soon} · works today with a test key |
-| Phone calls | Check a destination and the rules for the call purpose in that country | Translated calls by an AI agent {soon} · works today with a test key |
+| Phone calls | Check a destination and the rules for the call purpose in that country, call as an AI agent with translation, talk and listen, phone keys, hang up | |
 | Transcripts | Transcripts of the agent sessions your credential created | Transcripts and summaries of every meeting {soon} |
 | Webhooks | Signed events (HMAC), automatic retries, test events | |
 

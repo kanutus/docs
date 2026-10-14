@@ -98,7 +98,8 @@ def verify_kanutus(raw_body: bytes, header: str, secret: str, tolerance_s: int =
 | `transcript.ready` | Uma transcrição já pode ser lida |
 | `summary.ready` | Um resumo já pode ser lido {soon} |
 | `call.blocked` | Uma ligação foi recusada (destino ou finalidade não permitidos) |
-| `call.ringing`, `call.answered`, `call.voicemail`, `call.completed`, `call.failed` | Andamento da ligação {soon} |
+| `call.ringing`, `call.answered`, `call.voicemail`, `call.completed`, `call.failed` | Andamento da ligação |
+| `call.ended` | Sempre o último evento da ligação, depois de acertar os minutos: `status`, `billed_seconds` e `ended_by` (`agent`, `remote`, `limit` ou `system`) |
 | `voice.consent_completed`, `voice.ready`, `voice.failed` | Clonagem de voz com consentimento {soon} |
 | `usage.threshold` | Uma chave chegou a 80% ou 100% do limite de gasto |
 | `credential.expiring` | Uma chave vai vencer em breve {soon} |

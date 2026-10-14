@@ -45,4 +45,4 @@ curl -X POST {{API}}/v1/webhook-endpoints/<endpoint_id>/test \
 
 ## Going live
 
-Create a `kt_live_` key in **Production** with the same permissions and swap it in. Agents in live rooms and live phone calls are {soon}: with a live key those endpoints answer `501 not_available_yet` today.
+Create a `kt_live_` key in **Production** with the same permissions and swap it in. Agents in live rooms are {soon}: with a live key those endpoints answer `501 not_available_yet` today. Live phone calls need **Live calls through the API** turned on for your organization (see the [guide](/guides/translated-call)).

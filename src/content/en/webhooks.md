@@ -92,7 +92,8 @@ def verify_kanutus(raw_body: bytes, header: str, secret: str, tolerance_s: int =
 | `transcript.ready` | A transcript can be read |
 | `summary.ready` | A summary can be read {soon} |
 | `call.blocked` | A call was refused (destination or purpose not allowed) |
-| `call.ringing`, `call.answered`, `call.voicemail`, `call.completed`, `call.failed` | Phone call progress {soon} |
+| `call.ringing`, `call.answered`, `call.voicemail`, `call.completed`, `call.failed` | Phone call progress |
+| `call.ended` | Always the last event of a call, once the minutes are settled: `status`, `billed_seconds` and `ended_by` (`agent`, `remote`, `limit` or `system`) |
 | `voice.consent_completed`, `voice.ready`, `voice.failed` | Voice cloning with consent {soon} |
 | `usage.threshold` | A key reached 80% or 100% of its spending limit |
 | `credential.expiring` | A key expires soon {soon} |

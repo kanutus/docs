@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Números · Kanutus Docs</title>
+<meta name="description" content="Documentação da API e do MCP do Kanutus: salas com tradução ao vivo, agenda, vozes, ligações e agentes de IA.">
+<link rel="canonical" href="https://docs.kanutus.com/pt/numbers">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/numbers">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/numbers">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Pular para o conteúdo</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/pt" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<details class="langsel"><summary aria-label="Idioma: Português"><span class="flag-ic"><svg viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#009C3B"/><path d="M10 1.6 18.2 7 10 12.4 1.8 7z" fill="#FFDF00"/><circle cx="10" cy="7" r="3.1" fill="#002776"/></svg></span><span>PT</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><ul class="langsel-menu" aria-label="Idioma"><li><a href="/numbers" hreflang="en" lang="en" data-lang="en"><span class="flag-ic"><svg viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#fff"/><rect y="0" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="2.1538461538461537" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="4.3076923076923075" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="6.461538461538462" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="8.615384615384615" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="10.76923076923077" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="12.923076923076923" width="20" height="1.0769230769230769" fill="#B22234"/><rect width="9" height="7.54" fill="#3C3B6E"/></svg></span><span>English</span></a></li><li><a href="/pt/numbers" hreflang="pt-BR" lang="pt-BR" data-lang="pt" aria-current="true"><span class="flag-ic"><svg viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#009C3B"/><path d="M10 1.6 18.2 7 10 12.4 1.8 7z" fill="#FFDF00"/><circle cx="10" cy="7" r="3.1" fill="#002776"/></svg></span><span>Português</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></a></li></ul></details>
+<a class="top-link" href="https://kanutus.com/pt">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com/developers"><span class="long">Entrar / Criar conta</span><span class="short">Entrar</span></a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Começar</p><ul><li><a href="/pt">Kanutus para desenvolvedores</a></li><li><a href="/pt/quickstart">Começar em 5 minutos</a></li><li><a href="/pt/authentication">Autenticação</a></li><li><a href="/pt/test-mode">Modo de teste</a></li></ul></div><div class="nav-group"><p>Assistentes de IA (MCP)</p><ul><li><a href="/pt/mcp">Servidor MCP do Kanutus</a></li><li><a href="/pt/mcp/connect-claude">Conectar o Claude</a></li><li><a href="/pt/mcp/connect-chatgpt">Conectar o ChatGPT</a></li><li><a href="/pt/mcp/other-clients">Cursor, VS Code e outros clientes</a></li><li><a href="/pt/mcp/tools">As 23 ferramentas do MCP</a></li></ul></div><div class="nav-group"><p>Guias</p><ul><li><a href="/pt/guides/agent-in-room">Agente de IA na sala</a></li><li><a href="/pt/guides/schedule-meeting">Agendar reunião</a></li><li><a href="/pt/guides/translated-call">Ligação traduzida</a></li><li><a href="/pt/guides/transcripts">Receber transcrições</a></li><li><a href="/pt/numbers" aria-current="page">Números</a></li></ul></div><div class="nav-group"><p>Integrar</p><ul><li><a href="/pt/webhooks">Webhooks</a></li><li><a href="/pt/errors">Limites e erros</a></li><li><a href="/pt/responsible-use">Uso responsável</a></li></ul></div><div class="nav-group"><p>Referência da API</p><ul><li><a href="/pt/reference">Referência da API</a></li><li><a href="/pt/reference/account" class="sub">Conta e uso</a></li><li><a href="/pt/reference/voices" class="sub">Vozes</a></li><li><a href="/pt/reference/avatars" class="sub">Avatares</a></li><li><a href="/pt/reference/rooms" class="sub">Salas</a></li><li><a href="/pt/reference/calendar" class="sub">Reuniões e agendamento</a></li><li><a href="/pt/reference/agents" class="sub">Agente de IA na sala</a></li><li><a href="/pt/reference/transcripts" class="sub">Transcrições</a></li><li><a href="/pt/reference/calls" class="sub">Ligações</a></li><li><a href="/pt/reference/webhooks" class="sub">Webhooks e eventos</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Números</h1>
+<p>Os números de telefone da sua organização: o número que aparece para quem recebe a ligação do seu time. Sem número próprio, as ligações saem do número compartilhado da Kanutus (+1 646 518 1033).</p>
+<div class="callout callout-note"><p>Alugar número é feito no app, por Dono ou Gestor de uma organização com a empresa verificada. Pela API <span class="badge badge-soon">Em breve</span>.</p></div>
+<h2 id="alugue-no-app"><a class="anchor" href="#alugue-no-app" aria-hidden="true">#</a>Alugue no app</h2>
+<ol class="steps"><li><div>Abra <strong>Ligações › Números</strong> em <a href="https://app.kanutus.com/org/phone/numbers" rel="noopener" target="_blank">https://app.kanutus.com/org/phone/numbers</a> e clique em <strong>Alugar número</strong>.</div></li><li><div>Escolha o país, o DDD (código de área) e o tipo (fixo ou 0800). A lista mostra os números livres, a ativação e a mensalidade.</div></li><li><div>Confira o resumo: quanto é cobrado quando o número fica ativo, de onde sai a cobrança e os documentos que o país exige.</div></li><li><div>Clique em <strong>Alugar</strong> e confirme com o código do seu app autenticador.</div></li></ol>
+<p>Hoje dá para alugar números dos Estados Unidos, do Canadá e do Brasil.</p>
+<h2 id="situacao-do-numero"><a class="anchor" href="#situacao-do-numero" aria-hidden="true">#</a>Situação do número</h2>
+<div class="table"><table><thead><tr><th>Situação</th><th>O que vale</th></tr></thead><tbody><tr><td>Em análise</td><td>Documentos enviados à operadora. Nada é cobrado e o número ainda não liga.</td></tr><tr><td>Ativo</td><td>Liga. A ativação é cobrada no dia e a mensalidade todo mês, no mesmo dia.</td></tr><tr><td>Recusado</td><td>A operadora ou a Kanutus recusou os documentos. O motivo aparece na lista; reenvie e peça outro número.</td></tr><tr><td>Suspenso</td><td>Pagamento em atraso há 7 dias. Não liga.</td></tr><tr><td>Cancelado</td><td>Devolvido à operadora. Some do &quot;Ligar de&quot;; o histórico fica.</td></tr></tbody></table></div>
+<p>Nos Estados Unidos e no Canadá não há documentos: o número fica ativo assim que a operadora confirma. No Brasil a operadora pede o Cartão CNPJ, um comprovante de endereço de até 90 dias e o endereço onde o serviço é prestado. Eles vêm da verificação da sua empresa, sem reenviar nada.</p>
+<h2 id="preco-e-cobranca"><a class="anchor" href="#preco-e-cobranca" aria-hidden="true">#</a>Preço e cobrança</h2>
+<p>Cada número tem uma ativação (cobrada uma vez, quando fica ativo) e uma mensalidade, sem pró-rata no primeiro mês. O preço fica fechado no dia do aluguel.</p>
+<div class="table"><table><thead><tr><th>País · tipo</th><th>Ativação</th><th>Mensalidade</th></tr></thead><tbody><tr><td>Estados Unidos · fixo</td><td>US$ 5 / R$ 29</td><td>US$ 5 / R$ 29</td></tr><tr><td>Estados Unidos · 0800</td><td>US$ 10 / R$ 55</td><td>US$ 10 / R$ 55</td></tr><tr><td>Canadá · fixo</td><td>US$ 5 / R$ 29</td><td>US$ 5 / R$ 29</td></tr><tr><td>Canadá · 0800</td><td>US$ 10 / R$ 55</td><td>US$ 10 / R$ 55</td></tr><tr><td>Brasil · fixo</td><td>US$ 8 / R$ 39</td><td>US$ 8 / R$ 39</td></tr></tbody></table></div>
+<ul><li><div><strong>Contrato Enterprise:</strong> os números inclusos no contrato saem a zero; os outros entram na fatura mensal.</div></li><li><div><strong>Sem fatura:</strong> cartão. Pedimos o cartão no primeiro aluguel e a cobrança acontece só quando o número fica ativo.</div></li><li><div><strong>Minutos não pagam número:</strong> o saldo em minutos é só para as ligações.</div></li></ul>
+<p>Quantos números a organização pode ter: Business, 1; Enterprise, o que estiver no contrato.</p>
+<p>Se um pagamento falhar, avisamos o Dono no mesmo dia. Depois de 7 dias o número fica suspenso. Depois de 30 dias ele volta para a operadora e pode não ter volta.</p>
+<h2 id="quem-usa-cada-numero"><a class="anchor" href="#quem-usa-cada-numero" aria-hidden="true">#</a>Quem usa cada número</h2>
+<p>Na página do número, escolha os grupos (departamentos, perfis de acesso, grupos do login da empresa) e as pessoas que podem ligar e receber por ele. Sem nenhum grupo ou pessoa marcado, todos que podem ligar usam o número.</p>
+<p>O <strong>número padrão da organização</strong> vem marcado em &quot;Ligar de&quot;. Quem não pode usar o padrão liga pelo primeiro número que pode usar ou, se não houver, pelo número compartilhado da Kanutus.</p>
+<h2 id="cancele"><a class="anchor" href="#cancele" aria-hidden="true">#</a>Cancele</h2>
+<p>Na página do número, <strong>Cancelar número</strong> pede que você digite o número para confirmar. Ele continua funcionando até o fim do mês pago e depois volta para a operadora. Não há estorno, e o número pode não ter volta.</p>
+</article>
+<nav class="pager"><a class="prev" href="/pt/guides/transcripts"><span>Anterior</span><strong>Receber transcrições</strong></a><a class="next" href="/pt/webhooks"><span>Próximo</span><strong>Webhooks</strong></a></nav>
+<footer class="foot"><p>Achou algo errado ou faltando? Escreva para <a href="mailto:contact@kanutus.com">contact@kanutus.com</a> · <a href="/openapi.json">Arquivo OpenAPI 3.1</a> · © 2026 Kanutus</p></footer>
+</main>
+<aside class="toc"><p>Nesta página</p><ul><li><a href="#alugue-no-app">Alugue no app</a></li><li><a href="#situacao-do-numero">Situação do número</a></li><li><a href="#preco-e-cobranca">Preço e cobrança</a></li><li><a href="#quem-usa-cada-numero">Quem usa cada número</a></li><li><a href="#cancele">Cancele</a></li></ul></aside>
+</div>
+</body>
+</html>
