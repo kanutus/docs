@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avatars · Kanutus Docs</title>
+<meta name="description" content="Kanutus API and MCP documentation: rooms with live translation, scheduling, voices, calls and AI agents.">
+<link rel="canonical" href="https://docs.kanutus.com/reference/avatars">
+<link rel="alternate" hreflang="en" href="https://docs.kanutus.com/reference/avatars">
+<link rel="alternate" hreflang="pt-BR" href="https://docs.kanutus.com/pt/reference/avatars">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/SpaceGrotesk-wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/docs.css">
+<script src="/assets/docs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="top">
+<button type="button" class="menu-btn" data-menu aria-expanded="false" aria-controls="sidebar">Menu</button>
+<a class="brand" href="/" aria-label="Kanutus Docs"><img src="/assets/brand/kanutus-logo-dark.svg" alt="Kanutus" width="97" height="28"><span>Docs</span></a>
+<div class="top-right">
+<details class="langsel"><summary aria-label="Language: English"><span class="flag-ic"><svg viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#fff"/><rect y="0" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="2.1538461538461537" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="4.3076923076923075" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="6.461538461538462" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="8.615384615384615" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="10.76923076923077" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="12.923076923076923" width="20" height="1.0769230769230769" fill="#B22234"/><rect width="9" height="7.54" fill="#3C3B6E"/></svg></span><span>EN</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><ul class="langsel-menu" aria-label="Language"><li><a href="/reference/avatars" hreflang="en" lang="en" data-lang="en" aria-current="true"><span class="flag-ic"><svg viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#fff"/><rect y="0" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="2.1538461538461537" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="4.3076923076923075" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="6.461538461538462" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="8.615384615384615" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="10.76923076923077" width="20" height="1.0769230769230769" fill="#B22234"/><rect y="12.923076923076923" width="20" height="1.0769230769230769" fill="#B22234"/><rect width="9" height="7.54" fill="#3C3B6E"/></svg></span><span>English</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></a></li><li><a href="/pt/reference/avatars" hreflang="pt-BR" lang="pt-BR" data-lang="pt"><span class="flag-ic"><svg viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#009C3B"/><path d="M10 1.6 18.2 7 10 12.4 1.8 7z" fill="#FFDF00"/><circle cx="10" cy="7" r="3.1" fill="#002776"/></svg></span><span>Português</span></a></li></ul></details>
+<a class="top-link" href="https://kanutus.com">kanutus.com</a>
+<a class="btn" href="https://app.kanutus.com/developers"><span class="long">Sign in / Create account</span><span class="short">Sign in</span></a>
+</div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="nav-group"><p>Get started</p><ul><li><a href="/">Kanutus for developers</a></li><li><a href="/quickstart">Quickstart</a></li><li><a href="/authentication">Authentication</a></li><li><a href="/test-mode">Test mode</a></li></ul></div><div class="nav-group"><p>Connect AI assistants (MCP)</p><ul><li><a href="/mcp">Kanutus MCP server</a></li><li><a href="/mcp/connect-claude">Connect Claude</a></li><li><a href="/mcp/connect-chatgpt">Connect ChatGPT</a></li><li><a href="/mcp/other-clients">Cursor, VS Code and other clients</a></li><li><a href="/mcp/tools">The 23 MCP tools</a></li></ul></div><div class="nav-group"><p>Guides</p><ul><li><a href="/guides/agent-in-room">AI agent in a room</a></li><li><a href="/guides/schedule-meeting">Schedule a meeting</a></li><li><a href="/guides/translated-call">Translated phone call</a></li><li><a href="/guides/transcripts">Receive transcripts</a></li></ul></div><div class="nav-group"><p>Build</p><ul><li><a href="/webhooks">Webhooks</a></li><li><a href="/errors">Limits and errors</a></li><li><a href="/responsible-use">Responsible use</a></li></ul></div><div class="nav-group"><p>API reference</p><ul><li><a href="/reference">API reference</a></li><li><a href="/reference/account" class="sub">Account and usage</a></li><li><a href="/reference/voices" class="sub">Voices</a></li><li><a href="/reference/avatars" aria-current="page" class="sub">Avatars</a></li><li><a href="/reference/rooms" class="sub">Rooms</a></li><li><a href="/reference/calendar" class="sub">Meetings and booking</a></li><li><a href="/reference/agents" class="sub">AI agent in a room</a></li><li><a href="/reference/transcripts" class="sub">Transcripts</a></li><li><a href="/reference/calls" class="sub">Phone calls</a></li><li><a href="/reference/webhooks" class="sub">Webhooks and events</a></li></ul></div></aside>
+<main id="content" class="content">
+<article class="prose">
+<h1>Avatars</h1>
+<div class="ref-search" data-ref-search data-empty="No endpoint found"><input type="search" placeholder="Search endpoints (rooms, meetings, webhook…)" aria-label="Search endpoints (rooms, meetings, webhook…)" autocomplete="off"><ul hidden></ul><script type="application/json">[{"m":"GET","p":"/v1/me","s":"Who am I: organization, permissions and limits of this credential","g":"Account and usage","u":"/reference/account#get-v1-me"},{"m":"GET","p":"/v1/balance","s":"Minutes left (organization pool/quota or personal plan)","g":"Account and usage","u":"/reference/account#get-v1-balance"},{"m":"GET","p":"/v1/usage","s":"API usage by day or by credential","g":"Account and usage","u":"/reference/account#get-v1-usage"},{"m":"GET","p":"/v1/voices","s":"List voices: consented clones of the organization, your own clones and your chosen generic voices","g":"Voices","u":"/reference/voices#get-v1-voices"},{"m":"POST","p":"/v1/voices","s":"Clone a voice with verifiable consent: returns a link the person opens to read the consent sentence and record live","g":"Voices","u":"/reference/voices#post-v1-voices"},{"m":"GET","p":"/v1/voices/catalog","s":"Generic voices you can choose (no consent needed)","g":"Voices","u":"/reference/voices#get-v1-voices-catalog"},{"m":"POST","p":"/v1/voices/generic","s":"Choose a generic voice from the catalog (adds it to your voices)","g":"Voices","u":"/reference/voices#post-v1-voices-generic"},{"m":"GET","p":"/v1/voices/{id}","s":"Get a voice (and its consent status)","g":"Voices","u":"/reference/voices#get-v1-voices-id"},{"m":"DELETE","p":"/v1/voices/{id}","s":"Delete a voice: revokes a consented clone or removes a chosen generic voice","g":"Voices","u":"/reference/voices#delete-v1-voices-id"},{"m":"GET","p":"/v1/avatars","s":"List the published Kanutus avatars: each person comes in variations (angles and settings) with the behavior clips you can pick","g":"Avatars","u":"/reference/avatars#get-v1-avatars"},{"m":"GET","p":"/v1/rooms","s":"List rooms","g":"Rooms","u":"/reference/rooms#get-v1-rooms"},{"m":"POST","p":"/v1/rooms","s":"Create an instant room","g":"Rooms","u":"/reference/rooms#post-v1-rooms"},{"m":"GET","p":"/v1/rooms/{id}","s":"Get a room","g":"Rooms","u":"/reference/rooms#get-v1-rooms-id"},{"m":"DELETE","p":"/v1/rooms/{id}","s":"End a room for everyone","g":"Rooms","u":"/reference/rooms#delete-v1-rooms-id"},{"m":"POST","p":"/v1/rooms/{id}/join-links","s":"Create a guest join link (name and language prefilled)","g":"Rooms","u":"/reference/rooms#post-v1-rooms-id-join-links"},{"m":"GET","p":"/v1/meetings","s":"List scheduled meetings","g":"Meetings and booking","u":"/reference/calendar#get-v1-meetings"},{"m":"POST","p":"/v1/meetings","s":"Schedule a meeting (room with date, invitees and languages)","g":"Meetings and booking","u":"/reference/calendar#post-v1-meetings"},{"m":"DELETE","p":"/v1/meetings/{id}","s":"Cancel a scheduled meeting","g":"Meetings and booking","u":"/reference/calendar#delete-v1-meetings-id"},{"m":"GET","p":"/v1/event-types","s":"List your booking links (event types)","g":"Meetings and booking","u":"/reference/calendar#get-v1-event-types"},{"m":"GET","p":"/v1/event-types/{id}/slots","s":"Free times of a booking link","g":"Meetings and booking","u":"/reference/calendar#get-v1-event-types-id-slots"},{"m":"POST","p":"/v1/bookings","s":"Book a time on a booking link (yours or someone else's)","g":"Meetings and booking","u":"/reference/calendar#post-v1-bookings"},{"m":"POST","p":"/v1/rooms/{id}/agent-sessions","s":"Join a room as an AI agent (text in, translated voice out)","g":"AI agent in a room","u":"/reference/agents#post-v1-rooms-id-agent-sessions"},{"m":"GET","p":"/v1/sessions/{id}","s":"Get an agent session","g":"AI agent in a room","u":"/reference/agents#get-v1-sessions-id"},{"m":"POST","p":"/v1/sessions/{id}/say","s":"Speak: text is translated for each listener and spoken with the chosen voice","g":"AI agent in a room","u":"/reference/agents#post-v1-sessions-id-say"},{"m":"GET","p":"/v1/sessions/{id}/events","s":"Listen: new phrases since cursor (long-poll up to `wait` seconds)","g":"AI agent in a room","u":"/reference/agents#get-v1-sessions-id-events"},{"m":"POST","p":"/v1/sessions/{id}/leave","s":"Leave the room","g":"AI agent in a room","u":"/reference/agents#post-v1-sessions-id-leave"},{"m":"GET","p":"/v1/transcripts","s":"Transcripts this credential can read","g":"Transcripts","u":"/reference/transcripts#get-v1-transcripts"},{"m":"GET","p":"/v1/transcripts/{id}","s":"Read a transcript","g":"Transcripts","u":"/reference/transcripts#get-v1-transcripts-id"},{"m":"GET","p":"/v1/calls/quote","s":"Quote a destination and check the call purpose for that country","g":"Phone calls","u":"/reference/calls#get-v1-calls-quote"},{"m":"POST","p":"/v1/calls","s":"Place a translated call as an AI agent (always announces it is an AI)","g":"Phone calls","u":"/reference/calls#post-v1-calls"},{"m":"GET","p":"/v1/calls","s":"Calls placed by this credential","g":"Phone calls","u":"/reference/calls#get-v1-calls"},{"m":"GET","p":"/v1/calls/{id}","s":"Get a call","g":"Phone calls","u":"/reference/calls#get-v1-calls-id"},{"m":"POST","p":"/v1/calls/{id}/hangup","s":"Hang up (idempotent: an ended call is returned as is)","g":"Phone calls","u":"/reference/calls#post-v1-calls-id-hangup"},{"m":"POST","p":"/v1/calls/{id}/dtmf","s":"Press phone keys (DTMF) for menus like \"press 2 for sales\": 0-9, * and #, up to 32","g":"Phone calls","u":"/reference/calls#post-v1-calls-id-dtmf"},{"m":"GET","p":"/v1/webhook-endpoints","s":"List webhook endpoints","g":"Webhooks and events","u":"/reference/webhooks#get-v1-webhook-endpoints"},{"m":"POST","p":"/v1/webhook-endpoints","s":"Create a webhook endpoint (the signing secret is returned once)","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints"},{"m":"DELETE","p":"/v1/webhook-endpoints/{id}","s":"Delete a webhook endpoint","g":"Webhooks and events","u":"/reference/webhooks#delete-v1-webhook-endpoints-id"},{"m":"POST","p":"/v1/webhook-endpoints/{id}/rotate-secret","s":"Rotate the signing secret (both secrets sign for 24 h)","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints-id-rotate-secret"},{"m":"POST","p":"/v1/webhook-endpoints/{id}/test","s":"Send a signed test event now","g":"Webhooks and events","u":"/reference/webhooks#post-v1-webhook-endpoints-id-test"},{"m":"GET","p":"/v1/events","s":"Recent events (to reconcile what a webhook missed; 30 days)","g":"Webhooks and events","u":"/reference/webhooks#get-v1-events"}]</script></div>
+<section class="op" id="get-v1-avatars">
+<h2><span class="method method-get">GET</span><code class="path">/v1/avatars</code><a class="anchor" href="#get-v1-avatars" aria-hidden="true">#</a></h2>
+<p class="op-summary">List the published Kanutus avatars: each person comes in variations (angles and settings) with the behavior clips you can pick</p>
+<p class="op-meta">Permission: <code>voices:read</code></p>
+
+
+
+<h3>Response <code>200</code></h3>
+<div class="table"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>data</code> <span class="req">required</span></td><td><code class="type">object[]</code></td><td></td></tr><tr><td><code>data[].id</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].name</code> <span class="req">required</span></td><td><code class="type">string</code></td><td></td></tr><tr><td><code>data[].gender</code> <span class="req">required</span></td><td><code class="type">&quot;female&quot; | &quot;male&quot; | &quot;other&quot; | null</code></td><td></td></tr><tr><td><code>data[].age_band</code> <span class="req">required</span></td><td><code class="type">&quot;25-35&quot; | &quot;36-50&quot; | &quot;51-65&quot; | null</code></td><td></td></tr><tr><td><code>data[].style</code> <span class="req">required</span></td><td><code class="type">&quot;formal&quot; | &quot;casual&quot; | null</code></td><td></td></tr><tr><td><code>data[].poster_url</code> <span class="req">required</span></td><td><code class="type">string | null</code></td><td>Cover image (the first variation's photo when there is no dedicated cover)</td></tr><tr><td><code>data[].variations</code> <span class="req">required</span></td><td><code class="type">object[]</code></td><td></td></tr><tr><td><code>data[].variations[].code</code> <span class="req">required</span></td><td><code class="type">string</code></td><td><code>a1</code>–<code>a3</code>: same setting, different angles · <code>v1</code>–<code>v3</code>: another setting and outfit</td></tr><tr><td><code>data[].variations[].kind</code> <span class="req">required</span></td><td><code class="type">&quot;angle&quot; | &quot;scene&quot;</code></td><td></td></tr><tr><td><code>data[].variations[].photo_url</code> <span class="req">required</span></td><td><code class="type">string | null</code></td><td>Still photo of this variation</td></tr><tr><td><code>data[].variations[].video_types</code> <span class="req">required</span></td><td><code class="type">&quot;talk-neutral&quot; | &quot;talk-agree&quot; | &quot;idle-aside&quot; | &quot;idle-monitor&quot; | &quot;talk-explain&quot; | &quot;talk-question&quot;[]</code></td><td>Behavior clips you can pick for this variation (<code>talk-neutral</code> first)</td></tr><tr><td><code>data[].variations[].preview_urls</code> <span class="req">required</span></td><td><code class="type">object</code></td><td>Short preview clip per video type (<code>null</code> = no preview yet; show the photo)</td></tr><tr><td><code>data[].suggested_voices</code> <span class="req">required</span></td><td><code class="type">object</code></td><td>Suggested voice per language, e.g. <code>{&amp;quot;pt&amp;quot;: &amp;quot;…&amp;quot;, &amp;quot;en&amp;quot;: &amp;quot;…&amp;quot;}</code></td></tr></tbody></table></div>
+<h3>Example</h3>
+<div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="get-v1-avatars-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-avatars-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="get-v1-avatars-p">Python</button></div><div class="tab-panel" data-panel="get-v1-avatars-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl &quot;https://api.kanutus.com/v1/avatars&quot; \
+  -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot;</code></pre></div></div><div class="tab-panel" data-panel="get-v1-avatars-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/avatars&quot;, {
+  method: &quot;GET&quot;,
+  headers: {
+    Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
+  },
+});
+console.log(res.status, await res.json());</code></pre></div></div><div class="tab-panel" data-panel="get-v1-avatars-p" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import os, uuid, requests
+
+r = requests.request(
+    &quot;GET&quot;,
+    &quot;https://api.kanutus.com/v1/avatars&quot;,
+    headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;},
+)
+print(r.status_code, r.json())</code></pre></div></div></div>
+<details class="try" data-try data-method="GET" data-path="/v1/avatars" data-api="https://api.kanutus.com">
+<summary>Try it</summary>
+<div class="try-body">
+<p class="try-note">Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.</p>
+<label><span>API key</span><input data-key type="password" autocomplete="off" placeholder="kt_test_..."></label>
+
+
+<div class="try-actions"><button type="button" class="btn" data-send>Send request</button><code class="try-url">GET /v1/avatars</code></div>
+<div class="try-out" hidden><div class="code"><div class="code-head"><span data-status></span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code data-out></code></pre></div></div>
+</div>
+</details>
+<h3>Responses by status</h3>
+<div class="statuses"><details class="status"><summary><code class="st st-2">200</code> Published avatars</summary><div class="code"><div class="code-head"><span>200</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;string&quot;,
+      &quot;name&quot;: &quot;Avatar 07&quot;,
+      &quot;gender&quot;: &quot;female&quot;,
+      &quot;age_band&quot;: &quot;25-35&quot;,
+      &quot;style&quot;: &quot;formal&quot;,
+      &quot;poster_url&quot;: &quot;https://example.com&quot;,
+      &quot;variations&quot;: [
+        {
+          &quot;code&quot;: &quot;a1&quot;,
+          &quot;kind&quot;: &quot;angle&quot;,
+          &quot;photo_url&quot;: &quot;https://example.com&quot;,
+          &quot;video_types&quot;: [
+            &quot;talk-neutral&quot;
+          ],
+          &quot;preview_urls&quot;: {}
+        }
+      ],
+      &quot;suggested_voices&quot;: {}
+    }
+  ]
+}</code></pre></div></details><details class="status"><summary><code class="st st-4">400</code> Invalid request</summary><div class="code"><div class="code-head"><span>400 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 400,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">401</code> Missing, invalid, expired or revoked credential</summary><div class="code"><div class="code-head"><span>401 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 401,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">403</code> Missing permission, blocked or not allowed</summary><div class="code"><div class="code-head"><span>403 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 403,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details><details class="status"><summary><code class="st st-4">429</code> Rate limit exceeded (see RateLimit-* and Retry-After headers)</summary><div class="code"><div class="code-head"><span>429 application/problem+json</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-json">{
+  &quot;type&quot;: &quot;https://docs.kanutus.com/errors&quot;,
+  &quot;title&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;status&quot;: 429,
+  &quot;code&quot;: &quot;&lt;code&gt;&quot;,
+  &quot;message&quot;: &quot;…&quot;,
+  &quot;request_id&quot;: &quot;req_…&quot;
+}</code></pre></div><p class="op-meta"><a href="/errors">See all error codes</a></p></details></div>
+</section>
+</article>
+<nav class="pager"><a class="prev" href="/reference/voices"><span>Previous</span><strong>Voices</strong></a><a class="next" href="/reference/rooms"><span>Next</span><strong>Rooms</strong></a></nav>
+<footer class="foot"><p>Something wrong or missing? Write to <a href="mailto:contact@kanutus.com">contact@kanutus.com</a> · <a href="/openapi.json">OpenAPI 3.1 file</a> · © 2026 Kanutus</p></footer>
+</main>
+
+</div>
+</body>
+</html>

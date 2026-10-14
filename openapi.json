@@ -3,7 +3,7 @@
   "info": {
     "title": "Kanutus API",
     "version": "2026-10-10",
-    "description": "Rooms with live translation, scheduling, booking links, voices (clone with verifiable consent, generic catalog), usage, AI agents that speak and listen in rooms, and phone calls (hang up, keypad, live status events). Authenticate with an API key (`kt_live_…`/`kt_test_…`) or OAuth 2.1. Every create request needs an `Idempotency-Key` header. Errors are `application/problem+json` with a stable `code`.",
+    "description": "Rooms with live translation, scheduling, booking links, voices (clone with verifiable consent, generic catalog), the published avatar catalog, usage, AI agents that speak and listen in rooms, and phone calls (hang up, keypad, live status events). Authenticate with an API key (`kt_live_…`/`kt_test_…`) or OAuth 2.1. Every create request needs an `Idempotency-Key` header. Errors are `application/problem+json` with a stable `code`.",
     "contact": {
       "name": "Kanutus",
       "url": "https://docs.kanutus.com"
@@ -1628,6 +1628,145 @@
           "delivery_id",
           "error"
         ]
+      },
+      "AvatarVariation": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "a1",
+            "description": "`a1`–`a3`: same setting, different angles · `v1`–`v3`: another setting and outfit"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "angle",
+              "scene"
+            ]
+          },
+          "photo_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri",
+            "description": "Still photo of this variation"
+          },
+          "video_types": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "talk-neutral",
+                "talk-agree",
+                "idle-aside",
+                "idle-monitor",
+                "talk-explain",
+                "talk-question"
+              ],
+              "description": "Behavior clip: `talk-neutral` (talking, looking at the camera; always present), `talk-agree` (nodding along), `idle-monitor` (looking at the screen), `idle-aside` (glancing aside), `talk-explain`, `talk-question`."
+            },
+            "description": "Behavior clips you can pick for this variation (`talk-neutral` first)"
+          },
+          "preview_urls": {
+            "type": "object",
+            "additionalProperties": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "uri"
+            },
+            "description": "Short preview clip per video type (`null` = no preview yet; show the photo)"
+          }
+        },
+        "required": [
+          "code",
+          "kind",
+          "photo_url",
+          "video_types",
+          "preview_urls"
+        ]
+      },
+      "Avatar": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "example": "Avatar 07"
+          },
+          "gender": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "female",
+              "male",
+              "other",
+              null
+            ]
+          },
+          "age_band": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "25-35",
+              "36-50",
+              "51-65",
+              null
+            ]
+          },
+          "style": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "formal",
+              "casual",
+              null
+            ]
+          },
+          "poster_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri",
+            "description": "Cover image (the first variation's photo when there is no dedicated cover)"
+          },
+          "variations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AvatarVariation"
+            }
+          },
+          "suggested_voices": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Suggested voice per language, e.g. `{\"pt\": \"…\", \"en\": \"…\"}`",
+            "example": {}
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "gender",
+          "age_band",
+          "style",
+          "poster_url",
+          "variations",
+          "suggested_voices"
+        ]
       }
     },
     "parameters": {}
@@ -2375,6 +2514,82 @@
           },
           "404": {
             "description": "Not found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded (see RateLimit-* and Retry-After headers)",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/avatars": {
+      "get": {
+        "tags": [
+          "Avatars"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "List the published Kanutus avatars: each person comes in variations (angles and settings) with the behavior clips you can pick",
+        "responses": {
+          "200": {
+            "description": "Published avatars",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Avatar"
+                      }
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing, invalid, expired or revoked credential",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing permission, blocked or not allowed",
             "content": {
               "application/problem+json": {
                 "schema": {

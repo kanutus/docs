@@ -64,7 +64,9 @@ curl -X POST {{API}}/v1/sessions/ses_.../say \
   -d '{"text": "Bom dia! Vou apresentar a proposta."}'
 ```
 
-The answer comes right away (`202`, with `utterance_id` and `charged_seconds`); the speech happens in the room. Cost: seconds spoken × number of listener languages (same price as the app). Above your spending limit: `402 spend_limit_reached`.
+The answer comes right away (`202`, with `utterance_id` and `charged_seconds`); the speech happens in the room. Cost: seconds spoken × number of listener languages, at least 1 (the agent's voice is synthesized even for people who hear the same language; same price as the app). If the voice cannot be delivered in a language, you get `utterance.dropped` and that language's share comes back (`meta.refunded_seconds`). Above your spending limit: `402 spend_limit_reached`.
+
+Events carry ids, numbers and times in `meta`: `start`/`end` (when the phrase was spoken; ISO time when `clock` is `"wall"`), `latency` (`stt_ms`, `mt_ms`, `tts_ms`, when the server reports them) and, on `utterance.translated`, `voice_started_at`.
 
 ## 5. Leave
 

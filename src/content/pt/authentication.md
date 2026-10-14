@@ -43,7 +43,7 @@ Cada chave ou app conectado tem um conjunto de permissões (escopos). A [referê
 | `contacts:read` / `contacts:write` | Contatos de telefonia |
 | `calendar:read` / `calendar:write` | Reuniões, links de agendamento, horários livres e agendamentos |
 | `booking:write` | Criar e editar links de agendamento |
-| `voices:read` / `voices:write` | Listar vozes · renomear e apagar |
+| `voices:read` / `voices:write` | Listar vozes e os avatares publicados · renomear e apagar |
 | `voices:clone` | Pedir a clonagem da voz de alguém, sempre com o consentimento gravado da pessoa {soon} |
 | `transcripts:read` | Transcrições que esta credencial pode ler |
 | `webhooks:write` · `events:read` | Endpoints de webhook · registro de eventos |

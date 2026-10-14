@@ -29,6 +29,7 @@ Use uma chave de API ou um token de acesso OAuth. Veja [Autenticação](/authent
 ::: cards
 - [Conta e uso](/reference/account) — `GET /v1/me`, saldo e uso.
 - [Vozes](/reference/voices) — Listar, catálogo genérico, escolher e apagar; clonagem com consentimento {soon}.
+- [Avatares](/reference/avatars) — Os avatares publicados da Kanutus: variações (ângulos e ambientes), vídeos de comportamento, fotos e prévias.
 - [Salas](/reference/rooms) — Criar, listar, ler, encerrar e gerar links de convidado.
 - [Reuniões e agendamento](/reference/calendar) — Reuniões, links de agendamento, horários livres e agendamentos.
 - [Agente de IA na sala](/reference/agents) — Entrar, falar, ouvir e sair {soon}.

@@ -29,6 +29,7 @@ An API key or an OAuth access token. See [Authentication](/authentication).
 ::: cards
 - [Account and usage](/reference/account) — `GET /v1/me`, balance and usage.
 - [Voices](/reference/voices) — List, generic catalog, choose and delete; cloning with consent {soon}.
+- [Avatars](/reference/avatars) — The published Kanutus avatars: variations (angles and settings), behavior clips, photos and previews.
 - [Rooms](/reference/rooms) — Create, list, read, end, guest links.
 - [Meetings and booking](/reference/calendar) — Meetings, booking links, free times, bookings.
 - [AI agent in a room](/reference/agents) — Join, say, listen, leave {soon}.
