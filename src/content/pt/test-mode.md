@@ -29,6 +29,8 @@ No app, abra **Desenvolvedores** e mude a chave **Produção | Teste** para **Te
 
 Qualquer outro número passa pelas regras reais (país, tipo de número, finalidade da ligação) e depois é simulado.
 
+Números de origem (`from`): `GET /v1/numbers` lista `num_test_main` (o padrão) e `num_test_sales`. `from: "num_test_inactive"` responde `409 number_not_active`, `from: "num_test_not_member"` responde `403 number_not_member` e qualquer outro valor, `404 number_not_found`.
+
 ```bash cotar um destino
 curl "{{API}}/v1/calls/quote?to=%2B15550100&purpose=scheduling" \
   -H "Authorization: Bearer $KANUTUS_TEST_KEY"

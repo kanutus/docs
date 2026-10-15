@@ -25,6 +25,7 @@
   <url><loc>https://docs.kanutus.com/reference/calendar</loc></url>
   <url><loc>https://docs.kanutus.com/reference/agents</loc></url>
   <url><loc>https://docs.kanutus.com/reference/transcripts</loc></url>
+  <url><loc>https://docs.kanutus.com/reference/numbers</loc></url>
   <url><loc>https://docs.kanutus.com/reference/calls</loc></url>
   <url><loc>https://docs.kanutus.com/reference/webhooks</loc></url>
   <url><loc>https://docs.kanutus.com/pt</loc></url>
@@ -52,6 +53,7 @@
   <url><loc>https://docs.kanutus.com/pt/reference/calendar</loc></url>
   <url><loc>https://docs.kanutus.com/pt/reference/agents</loc></url>
   <url><loc>https://docs.kanutus.com/pt/reference/transcripts</loc></url>
+  <url><loc>https://docs.kanutus.com/pt/reference/numbers</loc></url>
   <url><loc>https://docs.kanutus.com/pt/reference/calls</loc></url>
   <url><loc>https://docs.kanutus.com/pt/reference/webhooks</loc></url>
 </urlset>

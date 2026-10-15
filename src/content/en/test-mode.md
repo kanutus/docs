@@ -29,6 +29,8 @@ In the app, open **Developers** and switch **Production | Test** to **Test** (th
 
 Any other number is checked against the real rules (country, number type, purpose of the call) and then simulated.
 
+Caller numbers (`from`): `GET /v1/numbers` lists `num_test_main` (the default) and `num_test_sales`. `from: "num_test_inactive"` answers `409 number_not_active`, `from: "num_test_not_member"` answers `403 number_not_member` and any other value `404 number_not_found`.
+
 ```bash quote a destination
 curl "{{API}}/v1/calls/quote?to=%2B15550100&purpose=scheduling" \
   -H "Authorization: Bearer $KANUTUS_TEST_KEY"

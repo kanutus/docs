@@ -19,7 +19,7 @@ curl "{{API}}/v1/calls/quote?to=%2B16465550142&purpose=scheduling&consent=existi
   -H "Authorization: Bearer $KANUTUS_KEY"
 ```
 
-A resposta traz o país, o tipo de número, o fator do minuto e se a finalidade é permitida ali (`purpose.allowed`, `purpose.requires`, por exemplo `["written_consent"]`).
+A resposta traz o país, o tipo de número, o fator do minuto e se a finalidade é permitida ali (`purpose.allowed`, `purpose.requires`, por exemplo `["written_consent"]`). Com `&from=<id do número>`, a cotação também confere se você pode ligar desse número (mesmos erros da ligação) e devolve o número em `from`.
 
 ## 2. Faça a ligação
 
@@ -36,7 +36,7 @@ curl -X POST {{API}}/v1/calls \
 - `agent_lang`: a língua em que você escreve e lê. `remote_lang`: a língua da pessoa que recebe a ligação.
 - `consent`: que consentimento você tem dessa pessoa, e a sua referência ao registro.
 - `agent_name`: o nome que a sua organização vê no histórico de ligações. A pessoa ouve o aviso de IA com o nome da sua organização.
-- `from` (opcional): um dos números da sua organização. Sem ele, vale o número padrão da organização.
+- `from` (opcional): o `id` de um dos números de [`GET /v1/numbers`](/numbers#ligue-de-um-numero-pela-api) (o E.164 também vale). Sem ele, vale o número padrão (`default: true`). Ele é conferido antes de discar: com erro, nada é discado nem cobrado.
 
 ```json
 {
@@ -96,7 +96,9 @@ Cada organização tem limites diários para ligações de agentes, combinados c
 | 403 | `destination_not_allowed` | País ou tipo de número não permitido (organização, chave ou finalidade). |
 | 403 | `purpose_not_allowed` | A finalidade não é permitida para agentes de IA ou nesse país, ou falta o consentimento exigido. |
 | 403 | `outside_calling_hours` | Fora do horário permitido para essa finalidade, na hora local do destino. |
+| 404 | `number_not_found` | O número `from` não é da sua organização. Veja `GET /v1/numbers`. |
 | 403 | `number_not_member` | A pessoa dona da chave (ou o agente) não pode usar esse número `from`. |
+| 403 | `number_not_allowed` | A chave está limitada a outros números. |
 | 409 | `number_not_active` | O número `from` está em análise, suspenso ou cancelado. |
 | 409 | `number_required` | A sua organização ainda não tem um número de telefone próprio. Alugue um no app (Ligações › Números) e ligue de novo. |
 | 409 | `disclosure_pending` | `say` antes de o aviso de IA terminar. Tente de novo em um segundo. |

@@ -56,8 +56,9 @@ Real calls need **Live calls through the API** turned on for your organization; 
 
 | Tool | What it does | Permission | Example request |
 | --- | --- | --- | --- |
-| `quote_call` | Destination country, minute factor, and whether the purpose is allowed there | `calls:read` | "Can I call +1 555 0100 to confirm an appointment?" |
-| `start_call` | Call as an AI agent with translation; always announces it is an AI · asks first | `calls:dial` | "Call +1 555 0100 to confirm tomorrow's appointment, in English." |
+| `list_numbers` | Numbers you can call from, the default one marked | `numbers:read` | "Which numbers can I call from?" |
+| `quote_call` | Destination country, minute factor, and whether the purpose is allowed there (and, with `from`, whether you can call from that number) | `calls:read` | "Can I call +1 555 0100 to confirm an appointment?" |
+| `start_call` | Call as an AI agent with translation; always announces it is an AI; `from` picks the caller number · asks first | `calls:dial` | "Call +1 555 0100 to confirm tomorrow's appointment, in English." |
 | `get_call` | Call status; at the end, who ended it and the minutes charged | `calls:read` | "Did the call end?" |
 | `send_dtmf` | Press phone keys in menus (0-9, * and #) | `calls:dial` | "Press 2 for sales." |
 | `hangup_call` | Hang up | `calls:dial` | "Hang up." |

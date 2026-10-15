@@ -56,8 +56,9 @@ Ligações reais precisam de **Ligações ao vivo pela API** liberadas para a su
 
 | Ferramenta | O que faz | Permissão | Exemplo de pedido |
 | --- | --- | --- | --- |
-| `quote_call` | País do destino, fator do minuto e se a finalidade é permitida ali | `calls:read` | "Posso ligar para +1 555 0100 para confirmar um horário?" |
-| `start_call` | Liga como agente de IA, com tradução; sempre avisa que é uma IA · pergunta antes | `calls:dial` | "Ligue para +1 555 0100 para confirmar o horário de amanhã, em inglês." |
+| `list_numbers` | Números de onde você pode ligar, com o padrão marcado | `numbers:read` | "De quais números eu posso ligar?" |
+| `quote_call` | País do destino, fator do minuto e se a finalidade é permitida ali (e, com `from`, se você pode ligar desse número) | `calls:read` | "Posso ligar para +1 555 0100 para confirmar um horário?" |
+| `start_call` | Liga como agente de IA, com tradução; sempre avisa que é uma IA; `from` escolhe o número de origem · pergunta antes | `calls:dial` | "Ligue para +1 555 0100 para confirmar o horário de amanhã, em inglês." |
 | `get_call` | Situação da ligação; no fim, quem desligou e os minutos cobrados | `calls:read` | "A ligação terminou?" |
 | `send_dtmf` | Aperta teclas em menus de atendimento (0-9, * e #) | `calls:dial` | "Tecle 2 para vendas." |
 | `hangup_call` | Desliga | `calls:dial` | "Desligue." |

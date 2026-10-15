@@ -3,7 +3,7 @@
   "info": {
     "title": "Kanutus API",
     "version": "2026-10-10",
-    "description": "Rooms with live translation, scheduling, booking links, voices (clone with verifiable consent, generic catalog), the published avatar catalog, usage, AI agents that speak and listen in rooms, and phone calls (hang up, keypad, live status events). Authenticate with an API key (`kt_live_…`/`kt_test_…`) or OAuth 2.1. Every create request needs an `Idempotency-Key` header. Errors are `application/problem+json` with a stable `code`.",
+    "description": "Rooms with live translation, scheduling, booking links, voices (clone with verifiable consent, generic catalog), the published avatar catalog, usage, AI agents that speak and listen in rooms, phone numbers to call from, and phone calls (hang up, keypad, live status events). Authenticate with an API key (`kt_live_…`/`kt_test_…`) or OAuth 2.1. Every create request needs an `Idempotency-Key` header. Errors are `application/problem+json` with a stable `code`.",
     "contact": {
       "name": "Kanutus",
       "url": "https://docs.kanutus.com"
@@ -493,6 +493,145 @@
           "person"
         ]
       },
+      "Avatar": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "example": "Avatar 07"
+          },
+          "gender": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "female",
+              "male",
+              "other",
+              null
+            ]
+          },
+          "age_band": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "25-35",
+              "36-50",
+              "51-65",
+              null
+            ]
+          },
+          "style": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "formal",
+              "casual",
+              null
+            ]
+          },
+          "poster_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri",
+            "description": "Cover image (the first variation's photo when there is no dedicated cover)"
+          },
+          "variations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AvatarVariation"
+            }
+          },
+          "suggested_voices": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Suggested voice per language, e.g. `{\"pt\": \"…\", \"en\": \"…\"}`",
+            "example": {}
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "gender",
+          "age_band",
+          "style",
+          "poster_url",
+          "variations",
+          "suggested_voices"
+        ]
+      },
+      "AvatarVariation": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "a1",
+            "description": "`a1`–`a3`: same setting, different angles · `v1`–`v3`: another setting and outfit"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "angle",
+              "scene"
+            ]
+          },
+          "photo_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri",
+            "description": "Still photo of this variation"
+          },
+          "video_types": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "talk-neutral",
+                "talk-agree",
+                "idle-aside",
+                "idle-monitor",
+                "talk-explain",
+                "talk-question"
+              ],
+              "description": "Behavior clip: `talk-neutral` (talking, looking at the camera; always present), `talk-agree` (nodding along), `idle-monitor` (looking at the screen), `idle-aside` (glancing aside), `talk-explain`, `talk-question`."
+            },
+            "description": "Behavior clips you can pick for this variation (`talk-neutral` first)"
+          },
+          "preview_urls": {
+            "type": "object",
+            "additionalProperties": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "uri"
+            },
+            "description": "Short preview clip per video type (`null` = no preview yet; show the photo)"
+          }
+        },
+        "required": [
+          "code",
+          "kind",
+          "photo_url",
+          "video_types",
+          "preview_urls"
+        ]
+      },
       "Room": {
         "type": "object",
         "properties": {
@@ -885,6 +1024,10 @@
               "null"
             ]
           },
+          "call_id": {
+            "type": "string",
+            "description": "Set when the session is the agent inside a phone call (POST /v1/calls)."
+          },
           "name": {
             "type": "string"
           },
@@ -916,10 +1059,6 @@
           },
           "livemode": {
             "type": "boolean"
-          },
-          "call_id": {
-            "type": "string",
-            "description": "Set when the session is the agent inside a phone call (POST /v1/calls)."
           }
         },
         "required": [
@@ -1105,6 +1244,12 @@
               "null"
             ]
           },
+          "call_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "started_at": {
             "type": "string"
           },
@@ -1119,12 +1264,6 @@
           },
           "livemode": {
             "type": "boolean"
-          },
-          "call_id": {
-            "type": [
-              "string",
-              "null"
-            ]
           }
         },
         "required": [
@@ -1147,6 +1286,9 @@
               "string",
               "null"
             ]
+          },
+          "call_id": {
+            "type": "string"
           },
           "lang": {
             "type": "string"
@@ -1203,9 +1345,6 @@
                 "at"
               ]
             }
-          },
-          "call_id": {
-            "type": "string"
           }
         },
         "required": [
@@ -1214,6 +1353,50 @@
           "lang",
           "notice",
           "segments"
+        ]
+      },
+      "PhoneNumber": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Number id: send it as `from` in POST /v1/calls",
+            "example": "9b2f6c1e-4d0a-4f55-8a43-2f1d6c7e0a11"
+          },
+          "e164": {
+            "type": "string",
+            "example": "+16465551234"
+          },
+          "label": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "example": "Sales"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active"
+            ],
+            "description": "Only numbers that can call right now are listed"
+          },
+          "shared": {
+            "type": "boolean",
+            "description": "true = the Kanutus shared number (not your organization's own)"
+          },
+          "default": {
+            "type": "boolean",
+            "description": "The number used when `from` is not sent"
+          }
+        },
+        "required": [
+          "id",
+          "e164",
+          "label",
+          "status",
+          "shared",
+          "default"
         ]
       },
       "CallQuote": {
@@ -1289,6 +1472,20 @@
               "string",
               "null"
             ]
+          },
+          "from": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PhoneNumber"
+              },
+              {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "description": "The caller number checked (only when you send `from`)"
+              }
+            ]
           }
         },
         "required": [
@@ -1299,7 +1496,8 @@
           "minute_factor",
           "reason",
           "purpose",
-          "simulator"
+          "simulator",
+          "from"
         ]
       },
       "Call": {
@@ -1368,9 +1566,6 @@
             ],
             "description": "agent_hangup, remote_hangup, max_duration, busy, voicemail, no_answer…"
           },
-          "livemode": {
-            "type": "boolean"
-          },
           "ended_by": {
             "type": [
               "string",
@@ -1398,6 +1593,9 @@
               "null"
             ],
             "description": "The call ends by itself after this many seconds of talk."
+          },
+          "livemode": {
+            "type": "boolean"
           }
         },
         "required": [
@@ -1423,8 +1621,10 @@
           },
           "from": {
             "type": "string",
-            "maxLength": 32,
-            "description": "Caller ID (one of the organization's numbers)"
+            "minLength": 1,
+            "maxLength": 64,
+            "description": "Caller number: the `id` of one of GET /v1/numbers (its E.164 is also accepted). Omitted = the default number.",
+            "example": "9b2f6c1e-4d0a-4f55-8a43-2f1d6c7e0a11"
           },
           "purpose": {
             "type": "string",
@@ -1675,145 +1875,6 @@
           "latency_ms",
           "delivery_id",
           "error"
-        ]
-      },
-      "AvatarVariation": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string",
-            "example": "a1",
-            "description": "`a1`–`a3`: same setting, different angles · `v1`–`v3`: another setting and outfit"
-          },
-          "kind": {
-            "type": "string",
-            "enum": [
-              "angle",
-              "scene"
-            ]
-          },
-          "photo_url": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "uri",
-            "description": "Still photo of this variation"
-          },
-          "video_types": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "talk-neutral",
-                "talk-agree",
-                "idle-aside",
-                "idle-monitor",
-                "talk-explain",
-                "talk-question"
-              ],
-              "description": "Behavior clip: `talk-neutral` (talking, looking at the camera; always present), `talk-agree` (nodding along), `idle-monitor` (looking at the screen), `idle-aside` (glancing aside), `talk-explain`, `talk-question`."
-            },
-            "description": "Behavior clips you can pick for this variation (`talk-neutral` first)"
-          },
-          "preview_urls": {
-            "type": "object",
-            "additionalProperties": {
-              "type": [
-                "string",
-                "null"
-              ],
-              "format": "uri"
-            },
-            "description": "Short preview clip per video type (`null` = no preview yet; show the photo)"
-          }
-        },
-        "required": [
-          "code",
-          "kind",
-          "photo_url",
-          "video_types",
-          "preview_urls"
-        ]
-      },
-      "Avatar": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string",
-            "example": "Avatar 07"
-          },
-          "gender": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "enum": [
-              "female",
-              "male",
-              "other",
-              null
-            ]
-          },
-          "age_band": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "enum": [
-              "25-35",
-              "36-50",
-              "51-65",
-              null
-            ]
-          },
-          "style": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "enum": [
-              "formal",
-              "casual",
-              null
-            ]
-          },
-          "poster_url": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "uri",
-            "description": "Cover image (the first variation's photo when there is no dedicated cover)"
-          },
-          "variations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AvatarVariation"
-            }
-          },
-          "suggested_voices": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            },
-            "description": "Suggested voice per language, e.g. `{\"pt\": \"…\", \"en\": \"…\"}`",
-            "example": {}
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "gender",
-          "age_band",
-          "style",
-          "poster_url",
-          "variations",
-          "suggested_voices"
         ]
       }
     },
@@ -4462,6 +4523,96 @@
         }
       }
     },
+    "/v1/numbers": {
+      "get": {
+        "tags": [
+          "Numbers"
+        ],
+        "summary": "Numbers the key owner can call from (\"Call from\")",
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "description": "Active outgoing numbers of the organization that the key owner can use (the number's groups and people), plus the Kanutus shared number when it is allowed. Send a number's `id` as `from` in POST /v1/calls. Requires a verified organization with calls enabled and the key owner in a group allowed to call (403 otherwise). Renting a number is done in the app. Test keys list simulator numbers.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Numbers: the organization's own first, the shared one last",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PhoneNumber"
+                      }
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing, invalid, expired or revoked credential",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing permission, blocked or not allowed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded (see RateLimit-* and Retry-After headers)",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/calls/quote": {
       "get": {
         "tags": [
@@ -4514,9 +4665,13 @@
           {
             "schema": {
               "type": "string",
-              "maxLength": 32
+              "minLength": 1,
+              "maxLength": 64,
+              "description": "Caller number: the `id` of one of GET /v1/numbers (its E.164 is also accepted). Omitted = the default number.",
+              "example": "9b2f6c1e-4d0a-4f55-8a43-2f1d6c7e0a11"
             },
             "required": false,
+            "description": "Caller number: the `id` of one of GET /v1/numbers (its E.164 is also accepted). Omitted = the default number.",
             "name": "from",
             "in": "query"
           }
@@ -4554,6 +4709,16 @@
           },
           "403": {
             "description": "Missing permission, blocked or not allowed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -4654,6 +4819,16 @@
           },
           "403": {
             "description": "Missing permission, blocked or not allowed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
             "content": {
               "application/problem+json": {
                 "schema": {

@@ -19,7 +19,7 @@ curl "{{API}}/v1/calls/quote?to=%2B16465550142&purpose=scheduling&consent=existi
   -H "Authorization: Bearer $KANUTUS_KEY"
 ```
 
-You get the country, the number type, the minute factor and whether the purpose is allowed there (`purpose.allowed`, `purpose.requires`, for example `["written_consent"]`).
+You get the country, the number type, the minute factor and whether the purpose is allowed there (`purpose.allowed`, `purpose.requires`, for example `["written_consent"]`). With `&from=<number id>`, the quote also checks that you can call from that number (same errors as the call) and returns it in `from`.
 
 ## 2. Place the call
 
@@ -36,7 +36,7 @@ curl -X POST {{API}}/v1/calls \
 - `agent_lang`: the language you write and read in. `remote_lang`: the language of the person called.
 - `consent`: what consent you have from that person, and your reference to the record.
 - `agent_name`: the name your organization sees in its call history. The person hears the AI notice with your organization's name.
-- `from` (optional): one of your organization's numbers. Without it, the organization's default number is used.
+- `from` (optional): the `id` of one of the numbers from [`GET /v1/numbers`](/numbers#call-from-a-number-through-the-api) (the E.164 is also accepted). Without it, the default number (`default: true`) is used. It is checked before dialing: on an error nothing is dialed or charged.
 
 ```json
 {
@@ -96,7 +96,9 @@ Each organization has daily limits for agent calls, set with Kanutus: by default
 | 403 | `destination_not_allowed` | Country or number type not allowed (organization, key or purpose). |
 | 403 | `purpose_not_allowed` | That purpose is not allowed for AI agents or for that country, or the required consent is missing. |
 | 403 | `outside_calling_hours` | Outside the hours allowed for that purpose at the destination's local time. |
+| 404 | `number_not_found` | The `from` number is not one of your organization's numbers. See `GET /v1/numbers`. |
 | 403 | `number_not_member` | The key's owner (or the agent) is not allowed to use that `from` number. |
+| 403 | `number_not_allowed` | The key is limited to other numbers. |
 | 409 | `number_not_active` | The `from` number is under review, suspended or cancelled. |
 | 409 | `number_required` | Your organization has no phone number of its own yet. Rent one in the app (Calls › Numbers), then call again. |
 | 409 | `disclosure_pending` | `say` before the AI notice finished. Try again in a second. |

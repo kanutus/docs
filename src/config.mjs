@@ -35,6 +35,7 @@ export const TAGS = [
   { tag: "Calendar", slug: "calendar", en: "Meetings and booking", pt: "Reuniões e agendamento" },
   { tag: "Agents", slug: "agents", en: "AI agent in a room", pt: "Agente de IA na sala" },
   { tag: "Transcripts", slug: "transcripts", en: "Transcripts", pt: "Transcrições" },
+  { tag: "Numbers", slug: "numbers", en: "Phone numbers", pt: "Números" },
   { tag: "Calls", slug: "calls", en: "Phone calls", pt: "Ligações" },
   { tag: "Webhooks", slug: "webhooks", en: "Webhooks and events", pt: "Webhooks e eventos" },
 ];
@@ -72,6 +73,7 @@ export const ROUTES = {
   "POST /v1/sessions/{id}/leave": { scope: "rooms:join", soon: true },
   "GET /v1/transcripts": { scope: "transcripts:read" },
   "GET /v1/transcripts/{id}": { scope: "transcripts:read" },
+  "GET /v1/numbers": { scope: "numbers:read" },
   "GET /v1/calls/quote": { scope: "calls:read" },
   "POST /v1/calls": { scope: "calls:dial" },
   "GET /v1/calls": { scope: "calls:read" },
@@ -116,6 +118,7 @@ export const SUMMARY_PT = {
   "POST /v1/sessions/{id}/leave": "Sair da sala",
   "GET /v1/transcripts": "Transcrições que esta credencial pode ler",
   "GET /v1/transcripts/{id}": "Ler uma transcrição",
+  "GET /v1/numbers": "Números de onde a dona ou o dono da chave pode ligar (\"Ligar de\")",
   "GET /v1/calls/quote": "Cotar um destino e conferir a finalidade da ligação naquele país",
   "POST /v1/calls": "Fazer uma ligação traduzida como agente de IA (sempre se anuncia como IA)",
   "GET /v1/calls": "Ligações feitas por esta credencial",
