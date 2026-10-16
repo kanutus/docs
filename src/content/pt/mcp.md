@@ -1,6 +1,6 @@
 # Servidor MCP do Kanutus
 
-O [Model Context Protocol](https://modelcontextprotocol.io) (MCP) é o padrão aberto que os assistentes de IA usam para acionar ferramentas externas. O servidor MCP do Kanutus dá a assistentes como o Claude e o ChatGPT **23 ferramentas**. Com elas, o assistente cria salas com tradução ao vivo, marca reuniões e agenda horários. Também consulta seus minutos e transcrições e participa de uma sala como agente de IA.
+O [Model Context Protocol](https://modelcontextprotocol.io) (MCP) é o padrão aberto que os assistentes de IA usam para acionar ferramentas externas. O servidor MCP do Kanutus dá a assistentes como o Claude e o ChatGPT **32 ferramentas**. Com elas, o assistente cria salas com tradução ao vivo, marca reuniões e agenda horários. Também consulta seus minutos e transcrições e participa de uma sala como agente de IA.
 
 <div class="logos"><img src="/assets/logos/claude.svg" alt="Claude" width="28" height="28"><img src="/assets/logos/openai.svg" alt="ChatGPT" width="28" height="28"></div>
 
@@ -20,7 +20,7 @@ O [Model Context Protocol](https://modelcontextprotocol.io) (MCP) é o padrão a
 - [Claude](/mcp/connect-claude) — claude.ai, Claude Desktop, Claude no celular e Claude Code.
 - [ChatGPT](/mcp/connect-chatgpt) — chatgpt.com e os apps do ChatGPT (modo desenvolvedor).
 - [Cursor, VS Code e outros](/mcp/other-clients) — Qualquer cliente que fale MCP por HTTP com OAuth.
-- [As 23 ferramentas](/mcp/tools) — O que o assistente consegue fazer, com exemplos.
+- [As 32 ferramentas](/mcp/tools) — O que o assistente consegue fazer, com exemplos.
 :::
 
 ## O que pedir

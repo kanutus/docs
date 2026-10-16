@@ -1,4 +1,4 @@
-# The 23 MCP tools
+# The 32 MCP tools
 
 Each tool calls one endpoint of the [API](/reference) and needs the same permission. "Asks first" = the server asks you to confirm before running it (or the assistant must pass `confirm: true` after asking you).
 

@@ -1,4 +1,4 @@
-# As 23 ferramentas do MCP
+# As 32 ferramentas do MCP
 
 Cada ferramenta chama um endpoint da [API](/reference) e exige a mesma permissão que ele. "Pergunta antes" significa que o servidor pede a sua confirmação antes de executar. Se o assistente não conseguir perguntar, ele precisa mandar `confirm: true`, e só depois de perguntar a você.
 
