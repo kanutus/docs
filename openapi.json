@@ -441,8 +441,8 @@
         "properties": {
           "voice_id": {
             "type": "string",
-            "pattern": "^generic_[0-9A-Za-z]{6,40}$",
-            "example": "generic_EXAVITQu4vr4xnSDxMaL"
+            "pattern": "^generic_[0-9A-Za-z_-]{6,40}$",
+            "example": "generic_kt-pt-f-01"
           }
         },
         "required": [
@@ -2472,7 +2472,7 @@
           {
             "schema": {
               "type": "string",
-              "pattern": "^(vce_[0-9A-Za-z]{20,40}|[0-9a-f-]{36}|generic_[0-9A-Za-z]{6,40}|voice_test_[a-z0-9_]{2,40})$",
+              "pattern": "^(vce_[0-9A-Za-z]{20,40}|[0-9a-f-]{36}|generic_[0-9A-Za-z_-]{6,40}|voice_test_[a-z0-9_]{2,40})$",
               "example": "vce_7Hk2…"
             },
             "required": true,
@@ -2557,7 +2557,7 @@
           {
             "schema": {
               "type": "string",
-              "pattern": "^(vce_[0-9A-Za-z]{20,40}|[0-9a-f-]{36}|generic_[0-9A-Za-z]{6,40}|voice_test_[a-z0-9_]{2,40})$",
+              "pattern": "^(vce_[0-9A-Za-z]{20,40}|[0-9a-f-]{36}|generic_[0-9A-Za-z_-]{6,40}|voice_test_[a-z0-9_]{2,40})$",
               "example": "vce_7Hk2…"
             },
             "required": true,

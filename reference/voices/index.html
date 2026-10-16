@@ -325,13 +325,13 @@ print(r.status_code, r.json())</code></pre></div></div></div>
 <div class="tabs" data-tabs><div class="tab-list" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="post-v1-voices-generic-c">curl</button><button type="button" role="tab" aria-selected="false" data-tab="post-v1-voices-generic-j">Node.js</button><button type="button" role="tab" aria-selected="false" data-tab="post-v1-voices-generic-p">Python</button></div><div class="tab-panel" data-panel="post-v1-voices-generic-c"><div class="code"><div class="code-head"><span>curl</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-bash">curl -X POST &quot;https://api.kanutus.com/v1/voices/generic&quot; \
   -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot; \
   -H &quot;Content-Type: application/json&quot; \
-  -d '{&quot;voice_id&quot;:&quot;generic_EXAVITQu4vr4xnSDxMaL&quot;}'</code></pre></div></div><div class="tab-panel" data-panel="post-v1-voices-generic-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/voices/generic&quot;, {
+  -d '{&quot;voice_id&quot;:&quot;generic_kt-pt-f-01&quot;}'</code></pre></div></div><div class="tab-panel" data-panel="post-v1-voices-generic-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/voices/generic&quot;, {
   method: &quot;POST&quot;,
   headers: {
     Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
     &quot;Content-Type&quot;: &quot;application/json&quot;,
   },
-  body: JSON.stringify({&quot;voice_id&quot;:&quot;generic_EXAVITQu4vr4xnSDxMaL&quot;}),
+  body: JSON.stringify({&quot;voice_id&quot;:&quot;generic_kt-pt-f-01&quot;}),
 });
 console.log(res.status, await res.json());</code></pre></div></div><div class="tab-panel" data-panel="post-v1-voices-generic-p" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import os, uuid, requests
 
@@ -339,7 +339,7 @@ r = requests.request(
     &quot;POST&quot;,
     &quot;https://api.kanutus.com/v1/voices/generic&quot;,
     headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;},
-    json={&quot;voice_id&quot;:&quot;generic_EXAVITQu4vr4xnSDxMaL&quot;},
+    json={&quot;voice_id&quot;:&quot;generic_kt-pt-f-01&quot;},
 )
 print(r.status_code, r.json())</code></pre></div></div></div>
 <details class="try" data-try data-method="POST" data-path="/v1/voices/generic" data-api="https://api.kanutus.com">
@@ -349,7 +349,7 @@ print(r.status_code, r.json())</code></pre></div></div></div>
 <label><span>API key</span><input data-key type="password" autocomplete="off" placeholder="kt_test_..."></label>
 
 <label class="try-json"><span>Request body (JSON)</span><textarea data-body rows="4" spellcheck="false">{
-  &quot;voice_id&quot;: &quot;generic_EXAVITQu4vr4xnSDxMaL&quot;
+  &quot;voice_id&quot;: &quot;generic_kt-pt-f-01&quot;
 }</textarea></label>
 <div class="try-actions"><button type="button" class="btn" data-send>Send request</button><code class="try-url">POST /v1/voices/generic</code></div>
 <div class="try-out" hidden><div class="code"><div class="code-head"><span data-status></span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code data-out></code></pre></div></div>
