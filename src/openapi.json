@@ -408,6 +408,12 @@
               "female"
             ]
           },
+          "language": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "accent": {
             "type": [
               "string",
@@ -461,8 +467,8 @@
           "language": {
             "type": "string",
             "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
-            "example": "pt",
-            "description": "Language the person will read in (consent sentence: pt, en or es; others read in English)."
+            "description": "Language the person will read in (consent sentence: pt, en or es; others read in English).",
+            "example": "pt"
           },
           "person": {
             "type": "object",
@@ -733,6 +739,7 @@
             "items": {
               "type": "string",
               "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
+              "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi.",
               "example": "pt"
             },
             "maxItems": 12,
@@ -769,14 +776,14 @@
           "speak": {
             "type": "string",
             "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
-            "example": "pt",
-            "description": "Language the guest speaks (prefilled)."
+            "description": "Language the guest speaks (prefilled).",
+            "example": "pt"
           },
           "hear": {
             "type": "string",
             "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
-            "example": "pt",
-            "description": "Language the guest wants to hear (prefilled)."
+            "description": "Language the guest wants to hear (prefilled).",
+            "example": "pt"
           }
         }
       },
@@ -814,6 +821,7 @@
             "items": {
               "type": "string",
               "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
+              "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi.",
               "example": "pt"
             },
             "maxItems": 12,
@@ -975,11 +983,13 @@
               "speak": {
                 "type": "string",
                 "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
+                "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi.",
                 "example": "ja"
               },
               "hear": {
                 "type": "string",
-                "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$"
+                "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
+                "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi."
               },
               "tz": {
                 "type": "string",
@@ -1087,11 +1097,13 @@
           "speak_lang": {
             "type": "string",
             "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
+            "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi.",
             "example": "pt"
           },
           "hear_lang": {
             "type": "string",
             "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
+            "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi.",
             "example": "pt"
           },
           "voice_id": {
@@ -1142,7 +1154,8 @@
           },
           "lang": {
             "type": "string",
-            "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$"
+            "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
+            "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi."
           }
         },
         "required": [
@@ -1659,11 +1672,13 @@
           "agent_lang": {
             "type": "string",
             "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
-            "default": "en"
+            "default": "en",
+            "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi."
           },
           "remote_lang": {
             "type": "string",
-            "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$"
+            "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
+            "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi."
           },
           "voice_id": {
             "type": "string",
