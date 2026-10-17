@@ -23,6 +23,7 @@ An API key or an OAuth access token. See [Authentication](/authentication).
 - Objects created with a test key have `"livemode": false`.
 - Lists come in `{ "data": [...] }`.
 - Errors: `application/problem+json` with a stable `code` ([list](/errors)).
+- Languages (`speak_lang`, `hear_lang`, `langs`, `agent_lang`, `remote_lang`…): 2-letter codes, one of `pt`, `en`, `es`, `it`, `fr`, `de`, `nl`, `tr`, `zh`, `ja`, `ko`, `ru`, `pl`, `uk`, `sv`, `vi` (a region like `pt-BR` is accepted). Any other language is refused with `400`.
 
 ## Endpoints
 
