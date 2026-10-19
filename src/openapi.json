@@ -739,7 +739,7 @@
             "items": {
               "type": "string",
               "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
-              "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi.",
+              "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi, da, nb, hi, ar, el, id, cs, fi, ro, hu.",
               "example": "pt"
             },
             "maxItems": 12,
@@ -821,7 +821,7 @@
             "items": {
               "type": "string",
               "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
-              "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi.",
+              "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi, da, nb, hi, ar, el, id, cs, fi, ro, hu.",
               "example": "pt"
             },
             "maxItems": 12,
@@ -983,13 +983,13 @@
               "speak": {
                 "type": "string",
                 "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
-                "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi.",
+                "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi, da, nb, hi, ar, el, id, cs, fi, ro, hu.",
                 "example": "ja"
               },
               "hear": {
                 "type": "string",
                 "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
-                "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi."
+                "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi, da, nb, hi, ar, el, id, cs, fi, ro, hu."
               },
               "tz": {
                 "type": "string",
@@ -1097,13 +1097,13 @@
           "speak_lang": {
             "type": "string",
             "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
-            "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi.",
+            "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi, da, nb, hi, ar, el, id, cs, fi, ro, hu.",
             "example": "pt"
           },
           "hear_lang": {
             "type": "string",
             "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
-            "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi.",
+            "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi, da, nb, hi, ar, el, id, cs, fi, ro, hu.",
             "example": "pt"
           },
           "voice_id": {
@@ -1155,7 +1155,7 @@
           "lang": {
             "type": "string",
             "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
-            "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi."
+            "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi, da, nb, hi, ar, el, id, cs, fi, ro, hu."
           }
         },
         "required": [
@@ -1673,12 +1673,12 @@
             "type": "string",
             "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
             "default": "en",
-            "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi."
+            "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi, da, nb, hi, ar, el, id, cs, fi, ro, hu."
           },
           "remote_lang": {
             "type": "string",
             "pattern": "^[a-z]{2,3}(-[A-Za-z]{2,4})?$",
-            "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi."
+            "description": "Language code. Supported: pt, en, es, it, fr, de, nl, tr, zh, ja, ko, ru, pl, uk, sv, vi, da, nb, hi, ar, el, id, cs, fi, ro, hu."
           },
           "voice_id": {
             "type": "string",
