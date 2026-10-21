@@ -1,4 +1,4 @@
-# The 32 MCP tools
+# The 34 MCP tools
 
 Each tool calls one endpoint of the [API](/reference) and needs the same permission. "Asks first" = the server asks you to confirm before running it (or the assistant must pass `confirm: true` after asking you).
 
@@ -45,9 +45,11 @@ Works today with a test key (simulator); live rooms are coming soon. See the [gu
 
 | Tool | What it does | Permission | Example request |
 | --- | --- | --- | --- |
-| `join_room` | Join a room as an AI agent (AI badge) · asks first · speaking uses minutes | `rooms:join` | "Join room kqz-mbdt-wpa, speak Portuguese, listen in Portuguese." |
+| `list_avatars` | Published avatars the agent can show on camera (id, name, gender, preview) | `voices:read` | "Which avatars can the agent use?" |
+| `join_room` | Join a room as an AI agent (AI badge) · with `avatar_id` it appears on camera with that avatar · with `see_participants` (+ `snapshot_every_s`: 5, 10, 20, 40, 60, 90, 120, 500 or 900 s) it sees the people's cameras and screens, who get a permanent notice · asks first · speaking uses minutes | `rooms:join` | "Join room kqz-mbdt-wpa with a female avatar, speak Portuguese, listen in Portuguese, and watch the cameras every 10 seconds." |
 | `say` | Speak: your text is translated and voiced for each listener | `rooms:join` | "Say: good morning, I will present the proposal." |
-| `listen` | Wait up to 20 s for what others said, already translated | `rooms:join` | (the assistant calls it in a loop) |
+| `listen` | Wait up to 20 s for what others said, already translated; with an avatar also says whether the face is `starting`, `live` or `unavailable`; with `see_participants` brings one snapshot per participant per interval as images (camera off = no image) | `rooms:join` | (the assistant calls it in a loop) |
+| `look` | A fresh snapshot of the participants' cameras and shared screens right now, as images (sessions with `see_participants`) | `rooms:join` | "Look at the candidate now: is the camera on?" |
 | `leave` | Leave the room | `rooms:join` | "Leave the room." |
 
 ## Phone calls

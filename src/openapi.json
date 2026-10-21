@@ -1047,6 +1047,19 @@
           "hear_lang": {
             "type": "string"
           },
+          "avatar_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Avatar of the published catalog (GET /v1/avatars) the agent shows in the room tile, when one was asked for. The agent always carries the \"AI agent\" badge."
+          },
+          "see_participants": {
+            "type": "boolean",
+            "description": "The agent receives snapshots of the participants' cameras and shared screens (everyone in the room sees a permanent notice)."
+          },
+          "snapshot_every_s": {
+            "type": "integer",
+            "description": "Seconds between snapshots of each participant, when `see_participants` is on."
+          },
           "status": {
             "type": "string",
             "enum": [
@@ -1109,6 +1122,33 @@
           "voice_id": {
             "type": "string",
             "maxLength": 100
+          },
+          "avatar_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Show the agent in the room tile with this avatar (an `id` from GET /v1/avatars, the published catalog): its face is animated by the agent's voice. Without it the agent is voice only. The \"AI agent\" badge is always shown. Unknown or unpublished id: 404 `avatar_not_found`. The face needs the Kanutus face machine of the room's region; while it starts the agent speaks without video (`face` in the events response says `starting`, `live` or `unavailable`).",
+            "example": "7c9e6679-7425-40de-944b-e07fc1f90ae7"
+          },
+          "see_participants": {
+            "type": "boolean",
+            "default": false,
+            "description": "The agent SEES the participants: every `snapshot_every_s` seconds the events answer carries one snapshot per participant (camera on/off, screen shared or not, and JPEG prints of what is on). Everyone in the room gets a permanent notice that the AI agent can see their camera and screen. Only the last print of each person is kept, in memory, never stored. No extra charge in this version."
+          },
+          "snapshot_every_s": {
+            "type": "integer",
+            "enum": [
+              5,
+              10,
+              20,
+              40,
+              60,
+              90,
+              120,
+              500,
+              900
+            ],
+            "default": 20,
+            "description": "Seconds between two snapshots of each participant. Allowed: 5, 10, 20, 40, 60, 90, 120, 500, 900. Default 20."
           },
           "announce": {
             "type": "boolean",
@@ -1176,12 +1216,116 @@
           },
           "status": {
             "type": "string"
+          },
+          "face": {
+            "type": "string",
+            "enum": [
+              "starting",
+              "live",
+              "unavailable"
+            ],
+            "description": "Only for a session created with `avatar_id`: `starting` (the face machine is waking up or has not rendered this agent yet; voice only meanwhile), `live` (the avatar is on the room tile) or `unavailable` (no face machine for this room right now; voice only)."
+          },
+          "snapshots": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ParticipantSnapshot"
+            },
+            "description": "Only for a session created with `see_participants`: one snapshot per participant every `snapshot_every_s` (camera on/off, screen shared or not, JPEG prints of what is on). Delivered once, in this answer only; never stored."
           }
         },
         "required": [
           "events",
           "cursor",
           "status"
+        ]
+      },
+      "ParticipantSnapshot": {
+        "type": "object",
+        "properties": {
+          "participant": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ]
+          },
+          "reported": {
+            "type": "boolean",
+            "description": "false = this participant's browser sent nothing in the last 3 intervals (app, phone or old browser): camera/screen state unknown."
+          },
+          "camera_on": {
+            "type": "boolean"
+          },
+          "screen_on": {
+            "type": "boolean"
+          },
+          "at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "prints": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "camera",
+                    "screen"
+                  ]
+                },
+                "image": {
+                  "type": "string",
+                  "description": "`data:image/jpeg;base64,…` (about 640 px wide)"
+                },
+                "at": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "kind",
+                "image",
+                "at"
+              ]
+            }
+          }
+        },
+        "required": [
+          "participant",
+          "reported",
+          "camera_on",
+          "screen_on",
+          "at",
+          "prints"
+        ]
+      },
+      "LookResult": {
+        "type": "object",
+        "properties": {
+          "participants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ParticipantSnapshot"
+            }
+          }
+        },
+        "required": [
+          "participants"
         ]
       },
       "SessionEvent": {
@@ -4246,6 +4390,124 @@
           },
           "503": {
             "description": "Temporarily unavailable; retry after the `Retry-After` header. Codes: `room_starting` (the room's translation server is starting), `room_unavailable` (not reachable), `agents_disabled` (AI agents are not enabled on this room's server right now), `voice_warming` (the server's voice is still warming up; usually a few seconds)",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/sessions/{id}/look": {
+      "get": {
+        "tags": [
+          "Agents"
+        ],
+        "summary": "Look now: a fresh snapshot of the participants' cameras and shared screens (sessions with `see_participants`)",
+        "description": "Asks each participant's browser for a print right now and waits up to about 3 s. Camera off = `camera_on: false` and no image. Only the last print of each person exists, in memory; nothing is stored. Sessions without `see_participants`: 409 `not_seeing`.",
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "pattern": "^ses_[0-9A-Za-z]{20,40}$",
+              "example": "ses_4fQ2…"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "description": "Only this participant (id from the events); default: everyone."
+            },
+            "required": false,
+            "name": "participant_id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Snapshots now",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LookResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing, invalid, expired or revoked credential",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing permission, blocked or not allowed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded (see RateLimit-* and Retry-After headers)",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Temporarily unavailable (see Retry-After)",
             "content": {
               "application/problem+json": {
                 "schema": {

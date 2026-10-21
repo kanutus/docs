@@ -1,4 +1,4 @@
-# As 32 ferramentas do MCP
+# As 34 ferramentas do MCP
 
 Cada ferramenta chama um endpoint da [API](/reference) e exige a mesma permissão que ele. "Pergunta antes" significa que o servidor pede a sua confirmação antes de executar. Se o assistente não conseguir perguntar, ele precisa mandar `confirm: true`, e só depois de perguntar a você.
 
@@ -45,9 +45,11 @@ Já funciona com uma chave de teste (simulador); em salas reais, chega em breve.
 
 | Ferramenta | O que faz | Permissão | Exemplo de pedido |
 | --- | --- | --- | --- |
-| `join_room` | Entra na sala como agente de IA (com o selo IA) · pergunta antes · falar gasta minutos | `rooms:join` | "Entre na sala kqz-mbdt-wpa, fale em português e ouça em português." |
+| `list_avatars` | Avatares publicados que o agente pode mostrar na câmera (id, nome, gênero, prévia) | `voices:read` | "Quais avatares o agente pode usar?" |
+| `join_room` | Entra na sala como agente de IA (com o selo IA) · com `avatar_id` aparece na câmera com esse avatar · com `see_participants` (+ `snapshot_every_s`: 5, 10, 20, 40, 60, 90, 120, 500 ou 900 s) vê a câmera e a tela das pessoas, que recebem um aviso permanente · pergunta antes · falar gasta minutos | `rooms:join` | "Entre na sala kqz-mbdt-wpa com um avatar feminino, fale em português, ouça em português e olhe as câmeras a cada 10 segundos." |
 | `say` | Fala: o seu texto é traduzido e falado para cada ouvinte | `rooms:join` | "Diga: bom dia, vou apresentar a proposta." |
-| `listen` | Espera até 20 s pelo que os outros disseram, já traduzido | `rooms:join` | (o assistente chama em sequência, várias vezes) |
+| `listen` | Espera até 20 s pelo que os outros disseram, já traduzido; com avatar, diz também se o rosto está `starting`, `live` ou `unavailable`; com `see_participants`, traz um quadro por participante por intervalo, como imagens (câmera desligada = sem imagem) | `rooms:join` | (o assistente chama em sequência, várias vezes) |
+| `look` | Um quadro novo, agora, da câmera e da tela compartilhada dos participantes, como imagens (sessões com `see_participants`) | `rooms:join` | "Olhe o candidato agora: a câmera está ligada?" |
 | `leave` | Sai da sala | `rooms:join` | "Saia da sala." |
 
 ## Ligações
