@@ -4,7 +4,8 @@ Com o Kanutus, a IA fala com pessoas reais, em salas e por telefone, com vozes q
 
 ## A IA sempre diz que é IA
 
-- Nas salas, o agente sempre aparece com o **selo IA** ao lado do nome. Com `announce: true` (o padrão), a sala também ouve que um assistente de IA entrou.
+- Nas salas, o agente sempre aparece com o **selo IA** ao lado do nome, e a sala sempre **ouve e lê** a apresentação dele, traduzida: "Olá, eu sou *nome*, um agente de IA." (mais "Dependendo da situação, posso pedir que você compartilhe a câmera ou a tela." quando ele pode ver os participantes). Quem entra depois também ouve. Isso não pode ser desligado e é grátis.
+- Um agente que **avalia** pessoas (candidatos numa entrevista, por exemplo) é uma ferramenta de decisão sua, não nossa: obtenha o consentimento explícito antes da entrevista e ofereça revisão humana do resultado. As regras de IA em recrutamento variam por país (AI Act da UE, Illinois, Nova York, LGPD no Brasil).
 - Nas ligações, o agente **sempre** começa dizendo que é um assistente de IA e em nome de quem está ligando. Isso não pode ser desligado.
 - Nunca use um nome, uma voz ou um roteiro que faça alguém acreditar que está falando com um humano.
 

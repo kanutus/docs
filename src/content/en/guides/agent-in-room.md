@@ -30,7 +30,17 @@ curl -X POST {{API}}/v1/rooms/kqz-mbdt-wpa/agent-sessions \
   -d '{"name": "Vértice assistant", "speak_lang": "pt", "hear_lang": "pt"}'
 ```
 
-The answer is a session: keep its `id` (`ses_…`). With `announce: true` (default) the room hears, in each language, that an AI assistant joined.
+The answer is a session: keep its `id` (`ses_…`).
+
+### The agent always says it is an AI
+
+As soon as the agent joins, the room **hears and reads**, translated into each listener's language, a fixed introduction spoken with the agent's voice:
+
+> "Hello, I am *name*, an AI agent." — or just "Hello, I am an AI agent." when `name` is the default.
+
+If the session was created with `see_participants`, the introduction continues: *"Depending on the situation, I may ask you to share your camera or your screen."* Whoever enters the room **after** the agent hears and reads the same introduction, just for them. It comes before the agent's first `say`, once per person, and it is **free** (no minutes). It cannot be turned off; the old `announce` field is ignored. The `events` answer carries `agent.introduced` (with `meta.to` = `room` or `participant`), so the agent knows it has already introduced itself and does not repeat it.
+
+> [!warn] **If the agent evaluates people** (an interviewer that scores a candidate from the camera or the shared screen, for example), and not only asks them to turn the camera on, the organization running the agent must get their **explicit consent before the interview** and offer a **human review** of the outcome. Rules on AI in recruitment vary by country: EU (AI Act, high-risk use), Illinois and New York (notice and consent), Brazil (LGPD: consent and human review). The introduction and the room notice do not replace that consent.
 
 ### With a face (avatar)
 
@@ -58,7 +68,7 @@ curl -X POST {{API}}/v1/rooms/kqz-mbdt-wpa/agent-sessions \
   -d '{"name": "Interviewer", "speak_lang": "pt", "hear_lang": "pt", "see_participants": true, "snapshot_every_s": 10}'
 ```
 
-How it works: each participant's browser takes a JPEG print (about 640 px wide) of its own camera and shared screen at that pace and sends it to the room's translation server, **only while an agent that sees is in the room**. The server keeps only the last print of each person, in memory, never on disk. Everyone in the room sees a permanent notice: *"The AI agent can see your camera and your screen"*. Snapshots are not charged in this version.
+How it works: each participant's browser takes a JPEG print (about 640 px wide) of its own camera and shared screen at that pace and sends it to the room's translation server, **only while an agent that sees is in the room**. The server keeps only the last print of each person, in memory, never on disk. Everyone in the room sees a permanent notice: *"The AI agent can see your camera and your screen"*, and the agent's spoken introduction adds that it may ask them to share the camera or the screen. Snapshots are not charged in this version. Evaluating people from what the agent sees needs their consent beforehand and a human review (see above).
 
 Then every `listen` answer carries `snapshots`: one per participant, with `camera_on`, `screen_on` and the `prints` (`kind` camera or screen, `image` as a `data:image/jpeg;base64,…`). Camera off = `camera_on: false` and no image, so the agent can ask the person to turn it on. `reported: false` means that participant's app sent nothing (phone, PC app or old browser).
 

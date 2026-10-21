@@ -30,7 +30,17 @@ curl -X POST {{API}}/v1/rooms/kqz-mbdt-wpa/agent-sessions \
   -d '{"name": "Assistente da Vértice", "speak_lang": "pt", "hear_lang": "pt"}'
 ```
 
-A resposta é uma sessão: guarde o `id` dela (`ses_…`). Com `announce: true` (o padrão), a sala ouve, em cada língua, que um assistente de IA entrou.
+A resposta é uma sessão: guarde o `id` dela (`ses_…`).
+
+### O agente sempre diz que é IA
+
+Assim que o agente entra, a sala **ouve e lê**, traduzida para a língua de cada ouvinte, uma apresentação fixa dita com a voz do agente:
+
+> "Olá, eu sou *nome*, um agente de IA." — ou só "Olá, eu sou um agente de IA." quando `name` é o padrão.
+
+Se a sessão foi criada com `see_participants`, a apresentação continua: *"Dependendo da situação, posso pedir que você compartilhe a câmera ou a tela."* Quem entra na sala **depois** do agente ouve e lê a mesma apresentação, só para ele. Ela sai antes do primeiro `say` do agente, uma vez por pessoa, e é **grátis** (não gasta minutos). Não dá para desligar; o campo antigo `announce` é ignorado. A resposta de `events` traz `agent.introduced` (com `meta.to` = `room` ou `participant`), para o agente saber que já se apresentou e não repetir.
+
+> [!warn] **Se o agente avalia pessoas** (uma entrevistadora que pontua o candidato pela câmera ou pela tela compartilhada, por exemplo), e não só pede para ligar a câmera, a organização que opera o agente precisa obter o **consentimento explícito antes da entrevista** e oferecer **revisão humana** do resultado. As regras de IA em recrutamento variam por país: UE (AI Act, uso de alto risco), Illinois e Nova York (aviso e consentimento), Brasil (LGPD: consentimento e revisão humana). A apresentação e o aviso da sala não substituem esse consentimento.
 
 ### Com rosto (avatar)
 
@@ -58,7 +68,7 @@ curl -X POST {{API}}/v1/rooms/kqz-mbdt-wpa/agent-sessions \
   -d '{"name": "Entrevistadora", "speak_lang": "pt", "hear_lang": "pt", "see_participants": true, "snapshot_every_s": 10}'
 ```
 
-Como funciona: o navegador de cada participante tira um quadro JPEG (cerca de 640 px de largura) da própria câmera e da tela compartilhada nesse ritmo e manda ao servidor de tradução da sala, **só enquanto há na sala um agente que vê**. O servidor guarda só o último quadro de cada pessoa, em memória, nunca em disco. Todo mundo na sala vê um aviso permanente: *"O agente de IA pode ver sua câmera e sua tela"*. Os quadros não têm cobrança nesta versão.
+Como funciona: o navegador de cada participante tira um quadro JPEG (cerca de 640 px de largura) da própria câmera e da tela compartilhada nesse ritmo e manda ao servidor de tradução da sala, **só enquanto há na sala um agente que vê**. O servidor guarda só o último quadro de cada pessoa, em memória, nunca em disco. Todo mundo na sala vê um aviso permanente: *"O agente de IA pode ver sua câmera e sua tela"*, e a apresentação falada do agente acrescenta que ele pode pedir para compartilhar a câmera ou a tela. Os quadros não têm cobrança nesta versão. Avaliar pessoas pelo que o agente vê exige consentimento prévio e revisão humana (veja acima).
 
 Daí cada resposta de `listen` traz `snapshots`: um por participante, com `camera_on`, `screen_on` e os `prints` (`kind` camera ou screen, `image` em `data:image/jpeg;base64,…`). Câmera desligada = `camera_on: false` e sem imagem, para o agente poder pedir que a pessoa ligue. `reported: false` quer dizer que o app daquela pessoa não mandou nada (celular, app de PC ou navegador antigo).
 

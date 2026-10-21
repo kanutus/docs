@@ -1132,7 +1132,7 @@
           "see_participants": {
             "type": "boolean",
             "default": false,
-            "description": "The agent SEES the participants: every `snapshot_every_s` seconds the events answer carries one snapshot per participant (camera on/off, screen shared or not, and JPEG prints of what is on). Everyone in the room gets a permanent notice that the AI agent can see their camera and screen. Only the last print of each person is kept, in memory, never stored. No extra charge in this version."
+            "description": "The agent SEES the participants: every `snapshot_every_s` seconds the events answer carries one snapshot per participant (camera on/off, screen shared or not, and JPEG prints of what is on). Everyone in the room gets a permanent notice that the AI agent can see their camera and screen, and the agent's introduction adds that it may ask them to share the camera or the screen. Only the last print of each person is kept, in memory, never stored. No extra charge in this version. Evaluating people from what the agent sees (candidates, for example) needs their explicit consent before the interview and a human review; rules vary by country (EU, Illinois, New York, LGPD)."
           },
           "snapshot_every_s": {
             "type": "integer",
@@ -1152,7 +1152,9 @@
           },
           "announce": {
             "type": "boolean",
-            "default": true
+            "default": true,
+            "deprecated": true,
+            "description": "Ignored since 2026-10-21: the agent always introduces itself (\"Hello, I am {name}, an AI agent.\", translated for everyone, free). There is no opt-out."
           }
         },
         "required": [
@@ -3920,6 +3922,7 @@
           "Agents"
         ],
         "summary": "Join a room as an AI agent (text in, translated voice out)",
+        "description": "The agent ALWAYS introduces itself when it joins and to everyone who joins later: the room hears and reads, translated, \"Hello, I am {name}, an AI agent.\" (plus \"Depending on the situation, I may ask you to share your camera or your screen.\" with `see_participants`). This cannot be turned off and is not charged; the events carry `agent.introduced`. If your agent EVALUATES the people it sees (candidates in an interview, for example), not only asks for the camera, you must get their explicit consent before the interview and offer a human review of the outcome. Rules on AI in recruitment vary by country (EU AI Act, Illinois, New York, Brazil's LGPD).",
         "security": [
           {
             "bearer": []
