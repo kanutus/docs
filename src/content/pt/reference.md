@@ -23,7 +23,7 @@ Use uma chave de API ou um token de acesso OAuth. Veja [Autenticação](/authent
 - Objetos criados com uma chave de teste vêm com `"livemode": false`.
 - Listas vêm no formato `{ "data": [...] }`.
 - Erros: `application/problem+json` com um `code` estável ([lista](/errors)).
-- Línguas (`speak_lang`, `hear_lang`, `langs`, `agent_lang`, `remote_lang`…): códigos de 2 letras, uma destas: `pt`, `en`, `es`, `it`, `fr`, `de`, `nl`, `tr`, `zh`, `ja`, `ko`, `ru`, `pl`, `uk`, `sv`, `vi`, `da`, `nb`, `hi`, `ar`, `el`, `id`, `cs`, `fi`, `ro`, `hu` (aceita região, como `pt-BR`). Qualquer outra língua é recusada com `400`.
+- Línguas (`speak_lang`, `hear_lang`, `langs`, `agent_lang`, `remote_lang`…): códigos, uma destas: `pt` (português do Brasil), `pt-PT` (português de Portugal), `en`, `es`, `it`, `fr`, `de`, `nl`, `tr`, `zh`, `ja`, `ko`, `ru`, `pl`, `uk`, `sv`, `vi`, `da`, `nb`, `hi`, `ar`, `el`, `id`, `cs`, `fi`, `ro`, `hu` (aceita região, como `pt-BR`). Qualquer outra língua é recusada com `400`.
 
 ## Endpoints
 
