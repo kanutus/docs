@@ -1,4 +1,4 @@
-# As 34 ferramentas do MCP
+# As 35 ferramentas do MCP
 
 Cada ferramenta chama um endpoint da [API](/reference) e exige a mesma permissão que ele. "Pergunta antes" significa que o servidor pede a sua confirmação antes de executar. Se o assistente não conseguir perguntar, ele precisa mandar `confirm: true`, e só depois de perguntar a você.
 
@@ -48,7 +48,8 @@ Já funciona com uma chave de teste (simulador); em salas reais, chega em breve.
 | `list_avatars` | Avatares publicados que o agente pode mostrar na câmera (id, nome, gênero, prévia) | `voices:read` | "Quais avatares o agente pode usar?" |
 | `join_room` | Entra na sala como agente de IA (com o selo IA) · a sala sempre ouve a apresentação dele ("Olá, eu sou *nome*, um agente de IA."; com visão, que pode pedir câmera ou tela), também para quem entra depois, grátis · com `avatar_id` aparece na câmera com esse avatar · com `see_participants` (+ `snapshot_every_s`: 5, 10, 20, 40, 60, 90, 120, 500 ou 900 s) vê a câmera e a tela das pessoas, que recebem um aviso permanente; avaliá-las exige consentimento prévio e revisão humana · pergunta antes · falar gasta minutos | `rooms:join` | "Entre na sala kqz-mbdt-wpa com um avatar feminino, fale em português, ouça em português e olhe as câmeras a cada 10 segundos." |
 | `say` | Fala: o seu texto é traduzido e falado para cada ouvinte | `rooms:join` | "Diga: bom dia, vou apresentar a proposta." |
-| `listen` | Espera até 20 s pelo que os outros disseram, já traduzido; com avatar, diz também se o rosto está `starting`, `live` ou `unavailable`; com `see_participants`, traz um quadro por participante por intervalo, como imagens (câmera desligada = sem imagem) | `rooms:join` | (o assistente chama em sequência, várias vezes) |
+| `send_chat` | Escreve no chat da sala como o agente (selo IA; cada pessoa lê na própria língua) · grátis · até 2000 caracteres, 1 por segundo | `rooms:join` | "Mande o link do formulário no chat." |
+| `listen` | Espera até 20 s pelo que os outros disseram, já traduzido, e pelo que escreveram no chat (`chat.message`: o texto e a tradução; o `join_room` traz as últimas 50 em `chat_history`); `engines`/`stage`/`eta_s` dizem se os motores de GPU da sala ainda estão ligando (espere `stage: ready` antes do `say`); com avatar, diz também se o rosto está `starting` (com `face_eta_s`), `live` ou `unavailable`; com `see_participants`, traz um quadro por participante por intervalo, como imagens (câmera desligada = sem imagem) | `rooms:join` | (o assistente chama em sequência, várias vezes) |
 | `look` | Um quadro novo, agora, da câmera e da tela compartilhada dos participantes, como imagens (sessões com `see_participants`) | `rooms:join` | "Olhe o candidato agora: a câmera está ligada?" |
 | `leave` | Sai da sala | `rooms:join` | "Saia da sala." |
 

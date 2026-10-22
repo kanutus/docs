@@ -1,4 +1,4 @@
-# The 34 MCP tools
+# The 35 MCP tools
 
 Each tool calls one endpoint of the [API](/reference) and needs the same permission. "Asks first" = the server asks you to confirm before running it (or the assistant must pass `confirm: true` after asking you).
 
@@ -48,7 +48,8 @@ Works today with a test key (simulator); live rooms are coming soon. See the [gu
 | `list_avatars` | Published avatars the agent can show on camera (id, name, gender, preview) | `voices:read` | "Which avatars can the agent use?" |
 | `join_room` | Join a room as an AI agent (AI badge) · the room always hears its introduction ("Hello, I am *name*, an AI agent."; with vision, that it may ask for the camera or the screen), also for whoever joins later, free · with `avatar_id` it appears on camera with that avatar · with `see_participants` (+ `snapshot_every_s`: 5, 10, 20, 40, 60, 90, 120, 500 or 900 s) it sees the people's cameras and screens, who get a permanent notice; evaluating them needs their prior consent and a human review · asks first · speaking uses minutes | `rooms:join` | "Join room kqz-mbdt-wpa with a female avatar, speak Portuguese, listen in Portuguese, and watch the cameras every 10 seconds." |
 | `say` | Speak: your text is translated and voiced for each listener | `rooms:join` | "Say: good morning, I will present the proposal." |
-| `listen` | Wait up to 20 s for what others said, already translated; with an avatar also says whether the face is `starting`, `live` or `unavailable`; with `see_participants` brings one snapshot per participant per interval as images (camera off = no image) | `rooms:join` | (the assistant calls it in a loop) |
+| `send_chat` | Write in the room chat as the agent (AI badge; each person reads it in their language) · free · up to 2000 characters, 1 per second | `rooms:join` | "Post the link to the form in the chat." |
+| `listen` | Wait up to 20 s for what others said, already translated, and what they wrote in the chat (`chat.message`: the text and its translation; `join_room` brings the last 50 as `chat_history`); `engines`/`stage`/`eta_s` say whether the room's GPU engines are still starting (wait for `stage: ready` before `say`); with an avatar also says whether the face is `starting` (with `face_eta_s`), `live` or `unavailable`; with `see_participants` brings one snapshot per participant per interval as images (camera off = no image) | `rooms:join` | (the assistant calls it in a loop) |
 | `look` | A fresh snapshot of the participants' cameras and shared screens right now, as images (sessions with `see_participants`) | `rooms:join` | "Look at the candidate now: is the camera on?" |
 | `leave` | Leave the room | `rooms:join` | "Leave the room." |
 
