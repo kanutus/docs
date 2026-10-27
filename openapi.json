@@ -3,7 +3,7 @@
   "info": {
     "title": "Kanutus API",
     "version": "2026-10-10",
-    "description": "Rooms with live translation, scheduling, booking links, voices (clone with verifiable consent, generic catalog), the published avatar catalog, usage, AI agents that speak and listen in rooms, phone numbers to call from, and phone calls (hang up, keypad, live status events). Authenticate with an API key (`kt_live_…`/`kt_test_…`) or OAuth 2.1. Every create request needs an `Idempotency-Key` header. Errors are `application/problem+json` with a stable `code`.",
+    "description": "Rooms with live translation, scheduling, booking links, voices (clone with verifiable consent, generic catalog), the published avatar catalog (coming soon), usage, AI agents that speak and listen in rooms, phone numbers to call from, and phone calls (hang up, keypad, live status events). Authenticate with an API key (`kt_live_…`/`kt_test_…`) or OAuth 2.1. Every create request needs an `Idempotency-Key` header. Errors are `application/problem+json` with a stable `code`.",
     "contact": {
       "name": "Kanutus",
       "url": "https://docs.kanutus.com"
@@ -641,6 +641,25 @@
           "preview_urls"
         ]
       },
+      "ComingSoon": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "coming_soon"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "example": "AI avatars are coming soon. For now the list is empty and AI agents join voice only."
+          }
+        },
+        "required": [
+          "status",
+          "message"
+        ]
+      },
       "Room": {
         "type": "object",
         "properties": {
@@ -1087,6 +1106,16 @@
           "livemode": {
             "type": "boolean"
           },
+          "avatar": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ComingSoon"
+              },
+              {
+                "description": "Only in the join answer, when `avatar_id` was sent while AI avatars are coming soon: the id was ignored and the agent joined voice only."
+              }
+            ]
+          },
           "chat_history": {
             "type": "array",
             "items": {
@@ -1208,7 +1237,7 @@
             "type": "string",
             "format": "uuid",
             "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i",
-            "description": "Show the agent in the room tile with this avatar (an `id` from GET /v1/avatars, the published catalog): its face is animated by the agent's voice. Without it the agent is voice only. The \"AI agent\" badge is always shown. Unknown or unpublished id: 404 `avatar_not_found`. The face needs the Kanutus face machine of the room's region; while it starts the agent speaks without video (`face` in the events response says `starting`, `live` or `unavailable`).",
+            "description": "Coming soon. Accepted and ignored for now: the agent joins voice only and the answer carries `avatar: {status: \"coming_soon\"}`.",
             "example": "7c9e6679-7425-40de-944b-e07fc1f90ae7"
           },
           "see_participants": {
@@ -1427,11 +1456,25 @@
               "live",
               "unavailable"
             ],
-            "description": "Only for a session created with `avatar_id`: `starting` (the face machine is being brought up or has not rendered this agent yet; voice only meanwhile; `face_eta_s` estimates the wait), `live` (the avatar is on the room tile) or `unavailable` (no face machine for this room; voice only)."
+            "description": "Coming soon (never present while AI avatars are coming soon). Only for a session created with `avatar_id`: `starting` (the face machine is being brought up or has not rendered this agent yet; voice only meanwhile; `face_eta_s` estimates the wait), `live` (the avatar is on the room tile) or `unavailable` (no face machine for this room; voice only)."
           },
           "face_eta_s": {
             "type": "integer",
-            "description": "Rough seconds until the avatar is expected while `face` is `starting` (0 = overdue, still starting)."
+            "description": "Seconds until the avatar is expected while `face` is `starting` (0 = overdue, still starting). Absent when no honest estimate exists (`face_reason` face_busy or no_viewers)."
+          },
+          "face_reason": {
+            "type": "string",
+            "enum": [
+              "machine_starting",
+              "no_machine",
+              "no_face_link",
+              "avatar_preparing",
+              "avatar_failed",
+              "face_busy",
+              "no_viewers",
+              "opening"
+            ],
+            "description": "Why the avatar is not live yet: `machine_starting` (the face machine is booting), `avatar_preparing` (machine up, this avatar is being prepared once, ~1 min), `opening` (opening now), `face_busy` (no free render slot), `no_viewers` (nobody else in the room watches you yet; the face is drawn for listeners), `avatar_failed` (the avatar could not be prepared: voice only), `no_machine` / `no_face_link` (no face machine: voice only)."
           },
           "engines": {
             "type": "object",
@@ -1521,6 +1564,31 @@
           "screen_on": {
             "type": "boolean"
           },
+          "avatar_on": {
+            "type": "boolean",
+            "description": "true = the camera is off but this participant shows up to the others as an AI avatar; the `avatar` print is that avatar's picture (what the others see on the tile)."
+          },
+          "avatar": {
+            "type": "object",
+            "properties": {
+              "source": {
+                "type": "string",
+                "enum": [
+                  "bank_avatar",
+                  "own_avatar"
+                ]
+              },
+              "avatar_id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "source"
+            ]
+          },
           "at": {
             "type": [
               "string",
@@ -1536,12 +1604,13 @@
                   "type": "string",
                   "enum": [
                     "camera",
-                    "screen"
+                    "screen",
+                    "avatar"
                   ]
                 },
                 "image": {
                   "type": "string",
-                  "description": "`data:image/jpeg;base64,…` (about 640 px wide)"
+                  "description": "`data:image/jpeg;base64,…` (about 640 px wide). `avatar` = the picture of the AI avatar the person uses with the camera off."
                 },
                 "at": {
                   "type": [
@@ -3089,7 +3158,8 @@
             "bearer": []
           }
         ],
-        "summary": "List the published Kanutus avatars: each person comes in variations (angles and settings) with the behavior clips you can pick",
+        "summary": "List the Kanutus avatars",
+        "description": "AI avatars are coming soon. Until then this answers 200 with an empty `data` and `avatars: {status: \"coming_soon\"}`, so existing integrations keep working.",
         "responses": {
           "200": {
             "description": "Published avatars",
@@ -3103,6 +3173,9 @@
                       "items": {
                         "$ref": "#/components/schemas/Avatar"
                       }
+                    },
+                    "avatars": {
+                      "$ref": "#/components/schemas/ComingSoon"
                     }
                   },
                   "required": [

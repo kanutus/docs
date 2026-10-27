@@ -16,7 +16,7 @@ const UI = {
     docs: "Docs", openApp: "Open the app", site: "kanutus.com", menu: "Menu", onThisPage: "On this page", copy: "Copy", copied: "Copied",
     prev: "Previous", next: "Next", soon: "Soon", permission: "Permission", anyCredential: "any valid credential", params: "Parameters",
     body: "Request body", response: "Response", errors: "Errors", example: "Example", name: "Name", in: "In", type: "Type", required: "Required",
-    description: "Description", yes: "yes", soonOp: "Live mode answers 501 coming soon. Try it now with a kt_test_ key (simulator).",
+    description: "Description", yes: "yes", soonOp: "Live mode answers 501 coming soon. Try it now with a kt_test_ key (simulator).", soonAvatar: "AI avatars are coming soon. For now this answers an empty list with avatars.status coming_soon, and agents join voice only.",
     edit: "Something wrong or missing? Write to", notFound: "This page got lost along the way.", notFoundBody: "The link may be old or mistyped, or the page moved.", backHome: "Back to the docs home",
     langLabel: "Language", spec: "OpenAPI 3.1 file", skip: "Skip to content", fields: "Fields", searchPh: "Search endpoints (rooms, meetings, webhook…)", noResults: "No endpoint found", tryIt: "Try it", tryNote: "Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.", tryKey: "API key", trySend: "Send request", responses: "Responses by status", errorCodes: "See all error codes", signIn: "Sign in / Create account", signInShort: "Sign in",
   },
@@ -24,7 +24,7 @@ const UI = {
     docs: "Docs", openApp: "Abrir o app", site: "kanutus.com", menu: "Menu", onThisPage: "Nesta página", copy: "Copiar", copied: "Copiado",
     prev: "Anterior", next: "Próximo", soon: "Em breve", permission: "Permissão", anyCredential: "qualquer credencial válida", params: "Parâmetros",
     body: "Corpo da requisição", response: "Resposta", errors: "Erros", example: "Exemplo", name: "Nome", in: "Onde", type: "Tipo", required: "Obrigatório",
-    description: "Descrição", yes: "sim", soonOp: "Em produção responde 501 (em breve). Já dá para testar com uma chave kt_test_ (simulador).",
+    description: "Descrição", yes: "sim", soonOp: "Em produção responde 501 (em breve). Já dá para testar com uma chave kt_test_ (simulador).", soonAvatar: "Os avatares de IA chegam em breve. Por enquanto a resposta é a lista vazia com avatars.status coming_soon, e o agente entra só com voz.",
     edit: "Achou algo errado ou faltando? Escreva para", notFound: "Essa página se perdeu no caminho.", notFoundBody: "O link pode estar antigo, com erro de digitação, ou a página mudou de lugar.", backHome: "Voltar ao início da documentação",
     langLabel: "Idioma", spec: "Arquivo OpenAPI 3.1", skip: "Pular para o conteúdo", fields: "Campos", searchPh: "Buscar endpoints (salas, reuniões, webhook…)", noResults: "Nenhum endpoint encontrado", tryIt: "Testar agora", tryNote: "Roda no seu navegador contra a API de verdade. Use uma chave kt_test_: nada é cobrado. A chave fica só nesta aba.", tryKey: "Chave de API", trySend: "Enviar requisição", responses: "Respostas por status", errorCodes: "Ver todos os códigos de erro", signIn: "Entrar / Criar conta", signInShort: "Entrar",
   },
@@ -360,7 +360,7 @@ function referencePage(T, L) {
 <h2><span class="method method-${method.toLowerCase()}">${method}</span><code class="path">${esc(path)}</code><a class="anchor" href="#${id}" aria-hidden="true">#</a></h2>
 <p class="op-summary">${inline(summary, L)}${meta.soon ? " " + badge(L) : ""}</p>
 <p class="op-meta">${t.permission}: ${meta.scope ? `<code>${meta.scope}</code>` : esc(t.anyCredential)}</p>
-${meta.soon ? `<div class="callout callout-soon"><p>${esc(t.soonOp)}</p></div>` : ""}
+${meta.soon ? `<div class="callout callout-soon"><p>${esc(typeof meta.soon === "string" ? t[meta.soon] : t.soonOp)}</p></div>` : ""}
 ${params.length ? `<h3>${t.params}</h3>${fieldTable(params, L)}` : ""}
 ${body ? `<h3>${t.body}</h3>${fieldTable(fields(body), L)}` : ""}
 <h3>${t.response} <code>${okCode}</code></h3>
@@ -378,8 +378,8 @@ ${tryIt(method, path, op, L)}
 // ---------------------------------------------------------------- layout
 function navHtml(L, current) {
   return NAV.map((g) => {
-    const items = g.items.flatMap((slug) => (slug === "@reference" ? TAGS.map((T) => ({ slug: `reference/${T.slug}`, title: T[L.code], sub: true })) : [{ slug, title: titles[L.code][slug] }]));
-    return `<div class="nav-group"><p>${esc(g.group[L.code])}</p><ul>${items.map((it) => `<li><a href="${pageUrl(L, it.slug)}"${it.slug === current ? ' aria-current="page"' : ""}${it.sub ? ' class="sub"' : ""}>${inline(it.title, L)}</a></li>`).join("")}</ul></div>`;
+    const items = g.items.flatMap((slug) => (slug === "@reference" ? TAGS.map((T) => ({ slug: `reference/${T.slug}`, title: T[L.code], sub: true, soon: !!T.soon })) : [{ slug, title: titles[L.code][slug] }]));
+    return `<div class="nav-group"><p>${esc(g.group[L.code])}</p><ul>${items.map((it) => `<li><a href="${pageUrl(L, it.slug)}"${it.slug === current ? ' aria-current="page"' : ""}${it.sub ? ' class="sub"' : ""}>${inline(it.title, L)}${it.soon ? " " + badge(L) : ""}</a></li>`).join("")}</ul></div>`;
   }).join("");
 }
 const order = NAV.flatMap((g) => g.items.flatMap((s) => (s === "@reference" ? TAGS.map((T) => `reference/${T.slug}`) : [s])));

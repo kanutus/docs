@@ -43,7 +43,7 @@ Each key or connected app has a set of permissions (scopes). The [reference](/re
 | `contacts:read` / `contacts:write` | Phone contacts |
 | `calendar:read` / `calendar:write` | Meetings, booking links, free times, bookings |
 | `booking:write` | Create and edit booking links |
-| `voices:read` / `voices:write` | List voices and the published avatars · rename and delete |
+| `voices:read` / `voices:write` | List voices and the avatars (coming soon) · rename and delete |
 | `voices:clone` | Ask someone to clone their voice (always with their recorded consent) {soon} |
 | `transcripts:read` | Transcripts this credential can read |
 | `webhooks:write` · `events:read` | Webhook endpoints · event log |

@@ -30,7 +30,7 @@ export const NAV = [
 export const TAGS = [
   { tag: "Account", slug: "account", en: "Account and usage", pt: "Conta e uso" },
   { tag: "Voices", slug: "voices", en: "Voices", pt: "Vozes" },
-  { tag: "Avatars", slug: "avatars", en: "Avatars", pt: "Avatares" },
+  { tag: "Avatars", slug: "avatars", en: "Avatars", pt: "Avatares", soon: true }, // avatar de IA em breve (26/10/2026)
   { tag: "Rooms", slug: "rooms", en: "Rooms", pt: "Salas" },
   { tag: "Calendar", slug: "calendar", en: "Meetings and booking", pt: "Reuniões e agendamento" },
   { tag: "Agents", slug: "agents", en: "AI agent in a room", pt: "Agente de IA na sala" },
@@ -54,7 +54,7 @@ export const ROUTES = {
   "POST /v1/voices": { scope: "voices:clone", soon: true },
   "GET /v1/voices/{id}": { scope: "voices:read" },
   "DELETE /v1/voices/{id}": { scope: "voices:write" },
-  "GET /v1/avatars": { scope: "voices:read" },
+  "GET /v1/avatars": { scope: "voices:read", soon: "soonAvatar" }, // em breve: lista vazia (AI_AVATAR_ENABLED)
   "GET /v1/rooms": { scope: "rooms:read" },
   "POST /v1/rooms": { scope: "rooms:write" },
   "GET /v1/rooms/{id}": { scope: "rooms:read" },
@@ -102,7 +102,7 @@ export const SUMMARY_PT = {
   "POST /v1/voices": "Clonar uma voz com consentimento verificável: devolve um link para a pessoa ler a frase de consentimento e gravar ao vivo",
   "GET /v1/voices/{id}": "Ler uma voz (e o status do consentimento)",
   "DELETE /v1/voices/{id}": "Apagar uma voz: revoga um clone consentido ou remove uma voz genérica escolhida",
-  "GET /v1/avatars": "Listar os avatares publicados da Kanutus: cada pessoa vem em variações (ângulos e ambientes) com os vídeos de comportamento que você pode escolher",
+  "GET /v1/avatars": "Listar os avatares da Kanutus",
   "GET /v1/rooms": "Listar salas",
   "POST /v1/rooms": "Criar uma sala instantânea",
   "GET /v1/rooms/{id}": "Ler uma sala",
@@ -141,5 +141,6 @@ export const SUMMARY_PT = {
 
 /** English summaries that replace the OpenAPI ones (public copy never names suppliers or internal services). */
 export const SUMMARY_EN = {
+  "GET /v1/avatars": "List the Kanutus avatars",
   "DELETE /v1/voices/{id}": "Delete a voice: revokes a consented clone or removes a chosen generic voice",
 };

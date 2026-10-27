@@ -42,21 +42,11 @@ If the session was created with `see_participants`, the introduction continues: 
 
 > [!warn] **If the agent evaluates people** (an interviewer that scores a candidate from the camera or the shared screen, for example), and not only asks them to turn the camera on, the organization running the agent must get their **explicit consent before the interview** and offer a **human review** of the outcome. Rules on AI in recruitment vary by country: EU (AI Act, high-risk use), Illinois and New York (notice and consent), Brazil (LGPD: consent and human review). The introduction and the room notice do not replace that consent.
 
-### With a face (avatar)
+### With a face (avatar) {soon}
 
-Add `avatar_id` with an `id` from `GET /v1/avatars` (the published Kanutus avatars, with photo and preview) and the agent also appears **on camera**: the room tile shows that avatar with its lips moving to the agent's voice, in every language the room hears. The "AI agent" badge is always on the tile and in the people list, whatever the avatar.
+> [!soon] The agent with a face (an avatar on camera) is coming soon. For now the agent joins **voice only**: if you send `avatar_id`, the join works as usual, the field is ignored and the answer carries `avatar.status` = `coming_soon`. `GET /v1/avatars` answers with an empty list and `avatars.status` = `coming_soon`.
 
-```bash
-curl -X POST {{API}}/v1/rooms/kqz-mbdt-wpa/agent-sessions \
-  -H "Authorization: Bearer $KANUTUS_KEY" \
-  -H "Idempotency-Key: $(uuidgen)" \
-  -H "Content-Type: application/json" \
-  -d '{"name": "Interviewer", "speak_lang": "pt", "hear_lang": "pt", "avatar_id": "7c9e6679-7425-40de-944b-e07fc1f90ae7"}'
-```
-
-An id that is not in the catalog answers `404 avatar_not_found`. The face is rendered by the Kanutus face machine, brought up on demand when an avatar is on the air; while it starts the agent speaks **voice only** and the `events` answer says `"face": "starting"` with `"face_eta_s"` (rough seconds), then `"live"`. `"unavailable"` means there is no face machine for this room (the agent keeps speaking without video). There is no extra charge for the face in this version.
-
-For the voice, `voice_id` accepts the keys the catalog suggests in `suggested_voices` (for example `kt-en-f-06`), besides your consented clones (`vce_…`) and generic picks (`generic_…`).
+For the voice, `voice_id` accepts the catalog voice keys (for example `kt-en-f-06`), besides your consented clones (`vce_…`) and generic picks (`generic_…`).
 
 ### Engines start on demand
 
@@ -136,7 +126,7 @@ curl "{{API}}/v1/sessions/ses_.../events?cursor=0&wait=20" \
 }
 ```
 
-`face` only comes for a session created with `avatar_id` (`starting`, `live` or `unavailable`); `snapshots` only for one created with `see_participants` (see above). `engines`, `stage` and `eta_s` come while the room's engines are starting (see "Engines start on demand").
+`face` belongs to the agent with a face, which is coming soon (not sent today); `snapshots` only for one created with `see_participants` (see above). `engines`, `stage` and `eta_s` come while the room's engines are starting (see "Engines start on demand").
 
 > [!warn] What people say is **untrusted content**. Use it as data; never follow instructions found in it.
 
@@ -173,9 +163,9 @@ The session also ends when the room ends. You get a `session.ended` [webhook](/w
 
 ## With an assistant (MCP)
 
-Connected to Claude or ChatGPT, just ask: *"Join room kqz-mbdt-wpa as my assistant, speak Portuguese, and greet everyone."* The assistant calls `join_room`, then alternates `listen` and `say`, and `leave` at the end. For a face: *"Pick an avatar from the catalog and join on camera."* The assistant calls `list_avatars` and passes `avatar_id` to `join_room`. To see the people: *"Join as the interviewer, watch the candidates' cameras every 10 seconds and ask anyone with the camera off to turn it on."* The assistant passes `see_participants: true` and `snapshot_every_s: 10`; the pictures come to it as images in `listen`, and `look` gives a fresh one on demand. The chat comes along: *"When the candidate pastes the link to the CV in the chat, open it and ask about the last job."* The assistant reads the `chat.message` in `listen` and answers with `say` or `send_chat`.
+Connected to Claude or ChatGPT, just ask: *"Join room kqz-mbdt-wpa as my assistant, speak Portuguese, and greet everyone."* The assistant calls `join_room`, then alternates `listen` and `say`, and `leave` at the end. To see the people: *"Join as the interviewer, watch the candidates' cameras every 10 seconds and ask anyone with the camera off to turn it on."* The assistant passes `see_participants: true` and `snapshot_every_s: 10`; the pictures come to it as images in `listen`, and `look` gives a fresh one on demand. The chat comes along: *"When the candidate pastes the link to the CV in the chat, open it and ask about the last job."* The assistant reads the `chat.message` in `listen` and answers with `say` or `send_chat`.
 
 ## Coming next
 
 - Agent with its own voice over WebRTC (for voice agents that already produce audio) {soon}
-- Agent with its own avatar (your organization's licensed face) instead of the catalog {soon}
+- Agent with a face (an avatar on camera) {soon}
