@@ -87,6 +87,8 @@ print(r.json()["url"])
 
 The answer has the room `url`: open it, share it, and each person hears the others in their own language.
 
+**Who pays.** By default (`"bill_mode": "host"`) the room's minutes come from your account, including people with a Kanutus account outside your organization and guests without an account. With `"bill_mode": "each"` every Kanutus account pays its own part; guests without an account still use your minutes. People in your organization use the organization's quota either way.
+
 ## Next steps
 
 ::: cards

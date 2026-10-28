@@ -719,6 +719,15 @@
               "type": "string"
             }
           },
+          "bill_mode": {
+            "type": "string",
+            "enum": [
+              "host",
+              "each"
+            ],
+            "description": "Who pays for the room. `host` (default): the owner's minutes cover everyone, including Kanutus accounts outside the owner's organization and guests without an account (up to the plan's limit of people the host pays for). `each`: every Kanutus account pays for its own speech and time in the room; guests without an account are always covered by the owner.",
+            "example": "host"
+          },
           "livemode": {
             "type": "boolean",
             "description": "false for objects created with a kt_test_ key (simulator)."
@@ -736,6 +745,7 @@
           "duration_min",
           "invitees",
           "langs",
+          "bill_mode",
           "livemode"
         ]
       },
@@ -767,6 +777,16 @@
             "maxItems": 12,
             "default": [],
             "description": "Languages expected in the room (helps warm-up)."
+          },
+          "bill_mode": {
+            "type": "string",
+            "enum": [
+              "host",
+              "each"
+            ],
+            "default": "host",
+            "description": "Who pays for the room. `host` (default): the owner's minutes cover everyone, including Kanutus accounts outside the owner's organization and guests without an account (up to the plan's limit of people the host pays for). `each`: every Kanutus account pays for its own speech and time in the room; guests without an account are always covered by the owner.",
+            "example": "host"
           }
         }
       },
@@ -857,6 +877,16 @@
               "public"
             ],
             "default": "private"
+          },
+          "bill_mode": {
+            "type": "string",
+            "enum": [
+              "host",
+              "each"
+            ],
+            "default": "host",
+            "description": "Who pays for the room. `host` (default): the owner's minutes cover everyone, including Kanutus accounts outside the owner's organization and guests without an account (up to the plan's limit of people the host pays for). `each`: every Kanutus account pays for its own speech and time in the room; guests without an account are always covered by the owner.",
+            "example": "host"
           }
         },
         "required": [

@@ -82,6 +82,7 @@ r = requests.post(
 )
 print(r.json()[&quot;url&quot;])</code></pre></div></div></div>
 <p>A resposta traz a <code>url</code> da sala. Abra ou compartilhe esse link: cada pessoa ouve as outras na própria língua.</p>
+<p><strong>Quem paga.</strong> Por padrão (<code>&amp;quot;bill_mode&amp;quot;: &amp;quot;host&amp;quot;</code>) os minutos da sala saem da sua conta, inclusive os de quem tem conta Kanutus fora da sua organização e os de convidados sem conta. Com <code>&amp;quot;bill_mode&amp;quot;: &amp;quot;each&amp;quot;</code> cada conta Kanutus paga a própria parte; quem não tem conta continua saindo dos seus minutos. Quem é da sua organização usa a cota da organização nos dois casos.</p>
 <h2 id="proximos-passos"><a class="anchor" href="#proximos-passos" aria-hidden="true">#</a>Próximos passos</h2>
 <div class="cards"><a class="card" href="/pt/authentication"><strong>Autenticação</strong><span>Chaves, OAuth, permissões, papéis e limite de gasto.</span></a><a class="card" href="/pt/mcp"><strong>Conectar o Claude ou o ChatGPT</strong><span>Os mesmos recursos dentro do seu assistente de IA.</span></a><a class="card" href="/pt/webhooks"><strong>Webhooks</strong><span>Receba um aviso quando algo acontecer.</span></a><a class="card" href="/pt/reference"><strong>Referência da API</strong><span>Todos os endpoints.</span></a></div>
 </article>

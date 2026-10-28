@@ -15,7 +15,7 @@ Each tool calls one endpoint of the [API](/reference) and needs the same permiss
 | Tool | What it does | Permission | Example request |
 | --- | --- | --- | --- |
 | `list_rooms` | Rooms, newest first | `rooms:read` | "Which rooms are live now?" |
-| `create_room` | Instant room with live translation, returns the link | `rooms:write` | "Create a room for English and Korean." |
+| `create_room` | Instant room with live translation, returns the link (`bill_mode`: `host` = you pay for everyone, `each` = each Kanutus account pays its own) | `rooms:write` | "Create a room for English and Korean." |
 | `get_room` | Details of a room | `rooms:read` | "Who is in room kqz-mbdt-wpa?" |
 | `end_room` | End a room for everyone · asks first | `rooms:write` | "End the room from this morning." |
 | `create_join_link` | Guest link with name and languages prefilled | `rooms:write` | "Make a link for Kenji, he speaks Japanese." |

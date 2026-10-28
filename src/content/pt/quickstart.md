@@ -87,6 +87,8 @@ print(r.json()["url"])
 
 A resposta traz a `url` da sala. Abra ou compartilhe esse link: cada pessoa ouve as outras na própria língua.
 
+**Quem paga.** Por padrão (`"bill_mode": "host"`) os minutos da sala saem da sua conta, inclusive os de quem tem conta Kanutus fora da sua organização e os de convidados sem conta. Com `"bill_mode": "each"` cada conta Kanutus paga a própria parte; quem não tem conta continua saindo dos seus minutos. Quem é da sua organização usa a cota da organização nos dois casos.
+
 ## Próximos passos
 
 ::: cards
