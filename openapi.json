@@ -728,6 +728,11 @@
             "description": "Who pays for the room. `host` (default): the owner's minutes cover everyone, including Kanutus accounts outside the owner's organization and guests without an account (up to the plan's limit of people the host pays for). `each`: every Kanutus account pays for its own speech and time in the room; guests without an account are always covered by the owner.",
             "example": "host"
           },
+          "guest_voice_clone": {
+            "type": "boolean",
+            "description": "Whether guests without an account may allow their voice to be cloned for this meeting (opt-in checkbox; the copy is deleted 3 days after last use). Default true; only effective when the account's guest-voice feature is on.",
+            "example": true
+          },
           "livemode": {
             "type": "boolean",
             "description": "false for objects created with a kt_test_ key (simulator)."
@@ -746,6 +751,7 @@
           "invitees",
           "langs",
           "bill_mode",
+          "guest_voice_clone",
           "livemode"
         ]
       },
@@ -787,6 +793,12 @@
             "default": "host",
             "description": "Who pays for the room. `host` (default): the owner's minutes cover everyone, including Kanutus accounts outside the owner's organization and guests without an account (up to the plan's limit of people the host pays for). `each`: every Kanutus account pays for its own speech and time in the room; guests without an account are always covered by the owner.",
             "example": "host"
+          },
+          "guest_voice_clone": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether guests without an account may allow their voice to be cloned for this meeting (opt-in checkbox; the copy is deleted 3 days after last use). Default true; only effective when the account's guest-voice feature is on.",
+            "example": true
           }
         }
       },
@@ -887,6 +899,12 @@
             "default": "host",
             "description": "Who pays for the room. `host` (default): the owner's minutes cover everyone, including Kanutus accounts outside the owner's organization and guests without an account (up to the plan's limit of people the host pays for). `each`: every Kanutus account pays for its own speech and time in the room; guests without an account are always covered by the owner.",
             "example": "host"
+          },
+          "guest_voice_clone": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether guests without an account may allow their voice to be cloned for this meeting (opt-in checkbox; the copy is deleted 3 days after last use). Default true; only effective when the account's guest-voice feature is on.",
+            "example": true
           }
         },
         "required": [

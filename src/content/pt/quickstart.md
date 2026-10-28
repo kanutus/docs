@@ -89,6 +89,8 @@ A resposta traz a `url` da sala. Abra ou compartilhe esse link: cada pessoa ouve
 
 **Quem paga.** Por padrão (`"bill_mode": "host"`) os minutos da sala saem da sua conta, inclusive os de quem tem conta Kanutus fora da sua organização e os de convidados sem conta. Com `"bill_mode": "each"` cada conta Kanutus paga a própria parte; quem não tem conta continua saindo dos seus minutos. Quem é da sua organização usa a cota da organização nos dois casos.
 
+**Voz do convidado.** Por padrão (`"guest_voice_clone": true`) o convidado sem conta vê uma caixa opcional para ser ouvido na própria voz clonada; a cópia é apagada 3 dias depois do último uso. Mande `"guest_voice_clone": false` para nunca mostrar essa opção na sala. A caixa só aparece quando o recurso de voz do convidado está ligado na sua conta.
+
 ## Próximos passos
 
 ::: cards

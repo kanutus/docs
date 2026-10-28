@@ -89,6 +89,8 @@ The answer has the room `url`: open it, share it, and each person hears the othe
 
 **Who pays.** By default (`"bill_mode": "host"`) the room's minutes come from your account, including people with a Kanutus account outside your organization and guests without an account. With `"bill_mode": "each"` every Kanutus account pays its own part; guests without an account still use your minutes. People in your organization use the organization's quota either way.
 
+**Guest voice.** By default (`"guest_voice_clone": true`) guests without an account see an opt-in checkbox to be heard in their own cloned voice; the copy is deleted 3 days after last use. Send `"guest_voice_clone": false` to never show it in that room. The checkbox only appears when the guest-voice feature is on for your account.
+
 ## Next steps
 
 ::: cards

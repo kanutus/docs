@@ -15,7 +15,7 @@ Cada ferramenta chama um endpoint da [API](/reference) e exige a mesma permissã
 | Ferramenta | O que faz | Permissão | Exemplo de pedido |
 | --- | --- | --- | --- |
 | `list_rooms` | Salas, das mais novas para as mais antigas | `rooms:read` | "Quais salas estão ao vivo agora?" |
-| `create_room` | Sala instantânea com tradução ao vivo; devolve o link (`bill_mode`: `host` = você paga tudo, `each` = cada conta Kanutus paga a sua) | `rooms:write` | "Crie uma sala para português e coreano." |
+| `create_room` | Sala instantânea com tradução ao vivo; devolve o link (`bill_mode`: `host` = você paga tudo, `each` = cada conta Kanutus paga a sua; `guest_voice_clone`: `false` esconde a opção de clonar a voz do convidado) | `rooms:write` | "Crie uma sala para português e coreano." |
 | `get_room` | Detalhes de uma sala | `rooms:read` | "Quem está na sala kqz-mbdt-wpa?" |
 | `end_room` | Encerra a sala para todos · pergunta antes | `rooms:write` | "Encerre a sala de hoje de manhã." |
 | `create_join_link` | Link de convidado com nome e línguas preenchidos | `rooms:write` | "Gere um link para o Kenji, ele fala japonês." |
