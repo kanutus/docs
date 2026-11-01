@@ -31,13 +31,15 @@ An API key or an OAuth access token. See [Authentication](/authentication).
 - [Account and usage](/reference/account) — `GET /v1/me`, balance and usage.
 - [Voices](/reference/voices) — List, generic catalog, choose and delete; cloning with consent {soon}.
 - [Avatars](/reference/avatars) {soon} — Kanutus avatars for the agent to appear on camera. The list is empty for now.
-- [Rooms](/reference/rooms) — Create, list, read, end, guest links.
+- [Meetings](/reference/rooms) — Create, list, read, end, guest links.
 - [Meetings and booking](/reference/calendar) — Meetings, booking links, free times, bookings.
-- [AI agent in a room](/reference/agents) — Join, say, listen, leave {soon}.
+- [AI agent in a meeting](/reference/agents) — Join, say, listen, leave {soon}.
 - [Transcripts](/reference/transcripts) — What this credential can read.
 - [Phone calls](/reference/calls) — Quote and place translated calls.
 - [Webhooks and events](/reference/webhooks) — Endpoints, secrets, tests, event log.
 :::
+
+> In the API the meeting resource keeps the name `rooms`: paths, permissions, webhook events and MCP tools (`/v1/rooms`, `rooms:read`, `room.started`, `create_room`).
 
 ## SDKs
 

@@ -1966,7 +1966,9 @@
             "type": "boolean"
           },
           "minute_factor": {
-            "type": "number"
+            "type": "number",
+            "description": "Plan minutes debited per minute of answered call to this destination (set per country and line type; e.g. 2 = each call minute uses 2 plan minutes). The value quoted here is the one charged when the call is placed.",
+            "example": 2
           },
           "reason": {
             "type": "string"

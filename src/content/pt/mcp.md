@@ -1,6 +1,6 @@
 # Servidor MCP do Kanutus
 
-O [Model Context Protocol](https://modelcontextprotocol.io) (MCP) é o padrão aberto que os assistentes de IA usam para acionar ferramentas externas. O servidor MCP do Kanutus dá a assistentes como o Claude e o ChatGPT **32 ferramentas**. Com elas, o assistente cria salas com tradução ao vivo, marca reuniões e agenda horários. Também consulta seus minutos e transcrições e participa de uma sala como agente de IA.
+O [Model Context Protocol](https://modelcontextprotocol.io) (MCP) é o padrão aberto que os assistentes de IA usam para acionar ferramentas externas. O servidor MCP do Kanutus dá a assistentes como o Claude e o ChatGPT **32 ferramentas**. Com elas, o assistente cria reuniões com tradução ao vivo, marca reuniões e agenda horários. Também consulta seus minutos e transcrições e participa de uma reunião como agente de IA.
 
 <div class="logos"><img src="/assets/logos/claude.svg" alt="Claude" width="28" height="28"><img src="/assets/logos/openai.svg" alt="ChatGPT" width="28" height="28"></div>
 
@@ -27,15 +27,15 @@ O [Model Context Protocol](https://modelcontextprotocol.io) (MCP) é o padrão a
 
 Depois de conectar, é só pedir em linguagem natural. O assistente só faz o que as permissões que você deu permitem.
 
-- "Crie uma sala para uma conversa com o Kenji. Eu falo português e ele fala japonês."
+- "Crie uma reunião para uma conversa com o Kenji. Eu falo português e ele fala japonês."
 - "Marque uma reunião de 30 minutos amanhã às 10h com ana@exemplo.com, em português e espanhol."
 - "Quantos minutos ainda tenho?"
 - "Ache um horário livre na semana que vem no meu link de agendamento e agende para a Lena (francês)."
 
 ## Segurança embutida
 
-- **Pergunta antes de agir.** Antes de qualquer ação que gaste minutos ou envolva outras pessoas, o assistente pede a sua confirmação: encerrar uma sala, entrar como agente, ligar para um telefone. Assistentes que não conseguem perguntar precisam mandar `confirm: true`, e só devem fazer isso depois de perguntar a você.
-- **Conteúdo não confiável.** Tudo o que outras pessoas disseram ou escreveram volta dentro de `untrusted_content`: transcrições, títulos de sala, nomes. É dado, nunca instrução para o assistente.
+- **Pergunta antes de agir.** Antes de qualquer ação que gaste minutos ou envolva outras pessoas, o assistente pede a sua confirmação: encerrar uma reunião, entrar como agente, ligar para um telefone. Assistentes que não conseguem perguntar precisam mandar `confirm: true`, e só devem fazer isso depois de perguntar a você.
+- **Conteúdo não confiável.** Tudo o que outras pessoas disseram ou escreveram volta dentro de `untrusted_content`: transcrições, títulos de reunião, nomes. É dado, nunca instrução para o assistente.
 - **Sem duplicatas.** As requisições de criação levam uma chave de idempotência. Se o assistente repetir uma chamada, nada é criado duas vezes.
 - **Código aberto.** O servidor tem licença MIT e só conversa com a API pública do Kanutus, usando as suas permissões: [github.com/kanutus/mcp](https://github.com/kanutus/mcp).
 

@@ -18,7 +18,7 @@ const UI = {
     body: "Request body", response: "Response", errors: "Errors", example: "Example", name: "Name", in: "In", type: "Type", required: "Required",
     description: "Description", yes: "yes", soonOp: "Live mode answers 501 coming soon. Try it now with a kt_test_ key (simulator).", soonAvatar: "AI avatars are coming soon. For now this answers an empty list with avatars.status coming_soon, and agents join voice only.",
     edit: "Something wrong or missing? Write to", notFound: "This page got lost along the way.", notFoundBody: "The link may be old or mistyped, or the page moved.", backHome: "Back to the docs home",
-    langLabel: "Language", spec: "OpenAPI 3.1 file", skip: "Skip to content", fields: "Fields", searchPh: "Search endpoints (rooms, meetings, webhook…)", noResults: "No endpoint found", tryIt: "Try it", tryNote: "Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.", tryKey: "API key", trySend: "Send request", responses: "Responses by status", errorCodes: "See all error codes", signIn: "Sign in / Create account", signInShort: "Sign in",
+    langLabel: "Language", spec: "OpenAPI 3.1 file", skip: "Skip to content", fields: "Fields", searchPh: "Search endpoints (meetings, calls, webhook…)", noResults: "No endpoint found", tryIt: "Try it", tryNote: "Runs from your browser against the real API. Use a kt_test_ key: nothing is charged. The key stays in this tab only.", tryKey: "API key", trySend: "Send request", responses: "Responses by status", errorCodes: "See all error codes", signIn: "Sign in / Create account", signInShort: "Sign in",
   },
   pt: {
     docs: "Docs", openApp: "Abrir o app", site: "kanutus.com", menu: "Menu", onThisPage: "Nesta página", copy: "Copiar", copied: "Copiado",
@@ -26,7 +26,7 @@ const UI = {
     body: "Corpo da requisição", response: "Resposta", errors: "Erros", example: "Exemplo", name: "Nome", in: "Onde", type: "Tipo", required: "Obrigatório",
     description: "Descrição", yes: "sim", soonOp: "Em produção responde 501 (em breve). Já dá para testar com uma chave kt_test_ (simulador).", soonAvatar: "Os avatares de IA chegam em breve. Por enquanto a resposta é a lista vazia com avatars.status coming_soon, e o agente entra só com voz.",
     edit: "Achou algo errado ou faltando? Escreva para", notFound: "Essa página se perdeu no caminho.", notFoundBody: "O link pode estar antigo, com erro de digitação, ou a página mudou de lugar.", backHome: "Voltar ao início da documentação",
-    langLabel: "Idioma", spec: "Arquivo OpenAPI 3.1", skip: "Pular para o conteúdo", fields: "Campos", searchPh: "Buscar endpoints (salas, reuniões, webhook…)", noResults: "Nenhum endpoint encontrado", tryIt: "Testar agora", tryNote: "Roda no seu navegador contra a API de verdade. Use uma chave kt_test_: nada é cobrado. A chave fica só nesta aba.", tryKey: "Chave de API", trySend: "Enviar requisição", responses: "Respostas por status", errorCodes: "Ver todos os códigos de erro", signIn: "Entrar / Criar conta", signInShort: "Entrar",
+    langLabel: "Idioma", spec: "Arquivo OpenAPI 3.1", skip: "Pular para o conteúdo", fields: "Campos", searchPh: "Buscar endpoints (reuniões, ligações, webhook…)", noResults: "Nenhum endpoint encontrado", tryIt: "Testar agora", tryNote: "Roda no seu navegador contra a API de verdade. Use uma chave kt_test_: nada é cobrado. A chave fica só nesta aba.", tryKey: "Chave de API", trySend: "Enviar requisição", responses: "Respostas por status", errorCodes: "Ver todos os códigos de erro", signIn: "Entrar / Criar conta", signInShort: "Entrar",
   },
 };
 
@@ -408,7 +408,7 @@ function layout(L, slug, page) {
   const plain = (s) => s.replace(/\{soon\}/g, "").replace(/`/g, "").trim();
   const alt = LANGS.map((A) => `<link rel="alternate" hreflang="${A.html}" href="${DOCS_URL}${pageUrl(A, slug) === "/" ? "" : pageUrl(A, slug)}">`).join("\n");
   const docTitle = slug === "index" ? `Kanutus ${t.docs}` : `${plain(page.title)} · Kanutus ${t.docs}`;
-  const desc = page.desc || (L.code === "pt" ? "Documentação da API e do MCP do Kanutus: salas com tradução ao vivo, agenda, vozes, ligações e agentes de IA." : "Kanutus API and MCP documentation: rooms with live translation, scheduling, voices, calls and AI agents.");
+  const desc = page.desc || (L.code === "pt" ? "Documentação da API e do MCP do Kanutus: reuniões com tradução ao vivo, agenda, vozes, ligações e agentes de IA." : "Kanutus API and MCP documentation: meetings with live translation, scheduling, voices, calls and AI agents.");
   return `<!doctype html>
 <html lang="${L.html}">
 <head>

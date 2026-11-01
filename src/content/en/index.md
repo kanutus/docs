@@ -1,6 +1,6 @@
 # Kanutus for developers
 
-Put Kanutus inside your systems and your AI assistants: create rooms with live voice translation, schedule meetings, book times on booking links, read usage and transcripts, and (soon) let an AI agent speak in a room or on a phone call, each listener hearing it in their own language.
+Put Kanutus inside your systems and your AI assistants: create instant meetings with live voice translation, schedule meetings, book times on booking links, read usage and transcripts, and (soon) let an AI agent speak in a meeting or on a phone call, each listener hearing it in their own language.
 
 There are two ways in, both on top of the same product and the same permissions:
 
@@ -14,10 +14,10 @@ There are two ways in, both on top of the same product and the same permissions:
 | Area | Available today | Next |
 | --- | --- | --- |
 | Account | Who am I, minutes left, API usage by day or by key | |
-| Rooms | Create an instant room with live translation, list, read, end it, guest links with name and language prefilled | |
+| Meetings | Create an instant meeting with live translation, list, read, end it, guest links with name and language prefilled | |
 | Meetings and booking | Schedule meetings with invitees and languages, cancel, list booking links, free times, book a time | |
 | Voices | List your voices, browse the generic catalog, choose and delete voices | Clone a voice with recorded consent {soon} |
-| AI agent in a room | Join a room, speak (text in, translated voice out), listen | Live rooms {soon} · works today with a test key |
+| AI agent in a meeting | Join a meeting, speak (text in, translated voice out), listen | Live meetings {soon} · works today with a test key |
 | Phone calls | Check a destination and the rules for the call purpose in that country, call as an AI agent with translation, talk and listen, phone keys, hang up | |
 | Transcripts | Transcripts of the agent sessions your credential created | Transcripts and summaries of every meeting {soon} |
 | Webhooks | Signed events (HMAC), automatic retries, test events | |

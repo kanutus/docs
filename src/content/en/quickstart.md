@@ -47,7 +47,7 @@ curl {{API}}/v1/me -H "Authorization: Bearer $KANUTUS_API_KEY"
 }
 ```
 
-Then create a room. Every request that creates something needs an `Idempotency-Key` (any unique value; repeating it returns the same result instead of creating twice). This needs a key with `rooms:write`, for example the **Meeting assistant** role:
+Then create a meeting. Every request that creates something needs an `Idempotency-Key` (any unique value; repeating it returns the same result instead of creating twice). This needs a key with `rooms:write`, for example the **Meeting assistant** role:
 
 :::tabs
 ```bash curl
@@ -85,11 +85,11 @@ print(r.json()["url"])
 ```
 :::
 
-The answer has the room `url`: open it, share it, and each person hears the others in their own language.
+The answer has the meeting `url`: open it, share it, and each person hears the others in their own language.
 
-**Who pays.** By default (`"bill_mode": "host"`) the room's minutes come from your account, including people with a Kanutus account outside your organization and guests without an account. With `"bill_mode": "each"` every Kanutus account pays its own part; guests without an account still use your minutes. People in your organization use the organization's quota either way.
+**Who pays.** By default (`"bill_mode": "host"`) the meeting's minutes come from your account, including people with a Kanutus account outside your organization and guests without an account. With `"bill_mode": "each"` every Kanutus account pays its own part; guests without an account still use your minutes. People in your organization use the organization's quota either way.
 
-**Guest voice.** By default (`"guest_voice_clone": true`) guests without an account see an opt-in checkbox to be heard in their own cloned voice; the copy is deleted 3 days after last use. Send `"guest_voice_clone": false` to never show it in that room. The checkbox only appears when the guest-voice feature is on for your account.
+**Guest voice.** By default (`"guest_voice_clone": true`) guests without an account see an opt-in checkbox to be heard in their own cloned voice; the copy is deleted 3 days after last use. Send `"guest_voice_clone": false` to never show it in that meeting. The checkbox only appears when the guest-voice feature is on for your account.
 
 ## Next steps
 

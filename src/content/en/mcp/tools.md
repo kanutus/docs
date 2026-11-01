@@ -10,14 +10,14 @@ Each tool calls one endpoint of the [API](/reference) and needs the same permiss
 | `get_balance` | Minutes left | `usage:read` | "How many minutes do I have left?" |
 | `get_usage` | Minutes spent through the API, by day or by key/app | `usage:read` | "How much did the API use this month, by day?" |
 
-## Rooms
+## Meetings
 
 | Tool | What it does | Permission | Example request |
 | --- | --- | --- | --- |
-| `list_rooms` | Rooms, newest first | `rooms:read` | "Which rooms are live now?" |
-| `create_room` | Instant room with live translation, returns the link (`bill_mode`: `host` = you pay for everyone, `each` = each Kanutus account pays its own; `guest_voice_clone`: `false` hides the guest's voice-clone opt-in) | `rooms:write` | "Create a room for English and Korean." |
-| `get_room` | Details of a room | `rooms:read` | "Who is in room kqz-mbdt-wpa?" |
-| `end_room` | End a room for everyone · asks first | `rooms:write` | "End the room from this morning." |
+| `list_rooms` | Meetings, newest first | `rooms:read` | "Which meetings are live now?" |
+| `create_room` | Instant meeting with live translation, returns the link (`bill_mode`: `host` = you pay for everyone, `each` = each Kanutus account pays its own; `guest_voice_clone`: `false` hides the guest's voice-clone opt-in) | `rooms:write` | "Create a meeting for English and Korean." |
+| `get_room` | Details of a meeting | `rooms:read` | "Who is in meeting kqz-mbdt-wpa?" |
+| `end_room` | End a meeting for everyone · asks first | `rooms:write` | "End the meeting from this morning." |
 | `create_join_link` | Guest link with name and languages prefilled | `rooms:write` | "Make a link for Kenji, he speaks Japanese." |
 
 ## Meetings and booking
@@ -39,20 +39,20 @@ Each tool calls one endpoint of the [API](/reference) and needs the same permiss
 | `list_transcripts` | Transcripts this connection can read | `transcripts:read` | "List the transcripts from today." |
 | `get_transcript` | Read a transcript in a language | `transcripts:read` | "Summarize that conversation in Spanish." |
 
-## AI agent in a room {soon}
+## AI agent in a meeting {soon}
 
-Works today with a test key (simulator); live rooms are coming soon. See the [guide](/guides/agent-in-room).
+Works today with a test key (simulator); live meetings are coming soon. See the [guide](/guides/agent-in-room).
 
 | Tool | What it does | Permission | Example request |
 | --- | --- | --- | --- |
 | `list_avatars` {soon} | Avatars the agent will be able to show on camera; the list is empty for now | `voices:read` | "Which avatars can the agent use?" |
-| `join_room` | Join a room as an AI agent (AI badge) · the room always hears its introduction ("Hello, I am *name*, an AI agent."; with vision, that it may ask for the camera or the screen), also for whoever joins later, free · `avatar_id` (appear on camera with an avatar) {soon}: ignored today, the agent joins voice only · with `see_participants` (+ `snapshot_every_s`: 5, 10, 20, 40, 60, 90, 120, 500 or 900 s) it sees the people's cameras and screens, who get a permanent notice; evaluating them needs their prior consent and a human review · asks first · speaking uses minutes | `rooms:join` | "Join room kqz-mbdt-wpa, speak Portuguese, listen in Portuguese, and watch the cameras every 10 seconds." |
+| `join_room` | Join a meeting as an AI agent (AI badge) · the meeting always hears its introduction ("Hello, I am *name*, an AI agent."; with vision, that it may ask for the camera or the screen), also for whoever joins later, free · `avatar_id` (appear on camera with an avatar) {soon}: ignored today, the agent joins voice only · with `see_participants` (+ `snapshot_every_s`: 5, 10, 20, 40, 60, 90, 120, 500 or 900 s) it sees the people's cameras and screens, who get a permanent notice; evaluating them needs their prior consent and a human review · asks first · speaking uses minutes | `rooms:join` | "Join meeting kqz-mbdt-wpa, speak Portuguese, listen in Portuguese, and watch the cameras every 10 seconds." |
 | `say` | Speak: your text is translated and voiced for each listener · waits while a person is talking and never over your previous sentence · a person who talks over you stops your voice (`utterance.interrupted` with what was heard) · pass `cursor` to get back what people said meanwhile | `rooms:join` | "Say: good morning, I will present the proposal." |
 | `stop_speaking` | Stop your voice now (the sentence playing and the queued ones, refunded); says what was already heard | `rooms:join` | "Stop talking, he already answered." |
-| `send_chat` | Write in the room chat as the agent (AI badge; each person reads it in their language) · free · up to 2000 characters, 1 per second | `rooms:join` | "Post the link to the form in the chat." |
-| `listen` | Wait up to 20 s for what others said, already translated (`speaking` = who is talking right now: wait until it is empty before `say`), and what they wrote in the chat (`chat.message`: the text and its translation; `join_room` brings the last 50 as `chat_history`); `engines`/`stage`/`eta_s` say whether the room's GPU engines are still starting (wait for `stage: ready` before `say`); with `see_participants` brings one snapshot per participant per interval as images (camera off = no image) | `rooms:join` | (the assistant calls it in a loop) |
+| `send_chat` | Write in the meeting chat as the agent (AI badge; each person reads it in their language) · free · up to 2000 characters, 1 per second | `rooms:join` | "Post the link to the form in the chat." |
+| `listen` | Wait up to 20 s for what others said, already translated (`speaking` = who is talking right now: wait until it is empty before `say`), and what they wrote in the chat (`chat.message`: the text and its translation; `join_room` brings the last 50 as `chat_history`); `engines`/`stage`/`eta_s` say whether the meeting's GPU engines are still starting (wait for `stage: ready` before `say`); with `see_participants` brings one snapshot per participant per interval as images (camera off = no image) | `rooms:join` | (the assistant calls it in a loop) |
 | `look` | A fresh snapshot of the participants' cameras and shared screens right now, as images (sessions with `see_participants`) | `rooms:join` | "Look at the candidate now: is the camera on?" |
-| `leave` | Leave the room | `rooms:join` | "Leave the room." |
+| `leave` | Leave the meeting | `rooms:join` | "Leave the meeting." |
 
 ## Phone calls
 

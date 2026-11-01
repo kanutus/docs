@@ -49,10 +49,10 @@ Os erros vêm em `application/problem+json` (RFC 9457). O `code` é estável, en
 | 429 | `test_daily_limit` | Chaves de teste aceitam 1.000 requisições por dia |
 | 501 | `not_available_yet` | Ainda não está disponível em produção; funciona com uma chave `kt_test_` |
 | 503 | `api_disabled`, `mcp_disabled`, `booking_unavailable` | Indisponível no momento; tente mais tarde |
-| 503 | `room_starting` | O servidor de tradução ao vivo da sala está ligando; tente de novo depois do `Retry-After` (também em `retry_after_s`) |
-| 503 | `room_unavailable` | O servidor de tradução ao vivo da sala não responde agora; tente de novo depois do `Retry-After` |
-| 503 | `agents_disabled` | Agentes de IA não estão liberados no servidor desta sala agora; tente de novo depois do `Retry-After` |
-| 503 | `voice_warming` | A voz da sala ainda está aquecendo (alguns segundos depois de o servidor ligar); tente de novo depois do `Retry-After`. Nada foi cobrado |
+| 503 | `room_starting` | O servidor de tradução ao vivo da reunião está ligando; tente de novo depois do `Retry-After` (também em `retry_after_s`) |
+| 503 | `room_unavailable` | O servidor de tradução ao vivo da reunião não responde agora; tente de novo depois do `Retry-After` |
+| 503 | `agents_disabled` | Agentes de IA não estão liberados no servidor desta reunião agora; tente de novo depois do `Retry-After` |
+| 503 | `voice_warming` | A voz da reunião ainda está aquecendo (alguns segundos depois de o servidor ligar); tente de novo depois do `Retry-After`. Nada foi cobrado |
 
 ## Limites de requisições
 
@@ -62,7 +62,7 @@ Os erros vêm em `application/problem+json` (RFC 9457). O `code` é estável, en
 
 ## Idempotência
 
-As requisições que criam algo exigem o cabeçalho `Idempotency-Key`: `POST /v1/rooms`, `/meetings`, `/bookings`, `/calls` e `/rooms/{id}/agent-sessions`. Use qualquer valor único de até 255 caracteres, como um UUID. Se a rede falhar, mande a mesma requisição **com a mesma chave**: você recebe a resposta original em vez de uma segunda sala, agendamento ou ligação. As chaves ficam guardadas por 24 horas, por credencial.
+As requisições que criam algo exigem o cabeçalho `Idempotency-Key`: `POST /v1/rooms`, `/meetings`, `/bookings`, `/calls` e `/rooms/{id}/agent-sessions`. Use qualquer valor único de até 255 caracteres, como um UUID. Se a rede falhar, mande a mesma requisição **com a mesma chave**: você recebe a resposta original em vez de uma segunda reunião, agendamento ou ligação. As chaves ficam guardadas por 24 horas, por credencial.
 
 ## Versões
 

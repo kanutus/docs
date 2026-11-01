@@ -40,6 +40,6 @@ Cada trecho traz `speaker`, `src_lang`, o horário e o texto dentro de `untruste
 
 ## Próximos passos
 
-- Transcrições de todas as reuniões numa sala, não só das sessões de agente {soon}
+- Transcrições da reunião inteira, não só das sessões de agente {soon}
 - Resumo com decisões e próximos passos, em qualquer língua {soon}
 - Busca e exportação (TXT, SRT, PDF, DOCX) {soon}

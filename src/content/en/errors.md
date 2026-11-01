@@ -49,10 +49,10 @@ Errors use `application/problem+json` (RFC 9457). `code` is stable and safe to b
 | 429 | `test_daily_limit` | Test keys allow 1,000 requests per day |
 | 501 | `not_available_yet` | Coming soon in live mode; works with a `kt_test_` key |
 | 503 | `api_disabled`, `mcp_disabled`, `booking_unavailable` | Temporarily unavailable; retry later |
-| 503 | `room_starting` | The room's live translation server is starting; retry after `Retry-After` (also in `retry_after_s`) |
-| 503 | `room_unavailable` | The room's live translation server is not reachable right now; retry after `Retry-After` |
-| 503 | `agents_disabled` | AI agents are not enabled on this room's server right now; retry after `Retry-After` |
-| 503 | `voice_warming` | The room's voice is still warming up (a few seconds after the server starts); retry after `Retry-After`. Nothing was charged |
+| 503 | `room_starting` | The meeting's live translation server is starting; retry after `Retry-After` (also in `retry_after_s`) |
+| 503 | `room_unavailable` | The meeting's live translation server is not reachable right now; retry after `Retry-After` |
+| 503 | `agents_disabled` | AI agents are not enabled on this meeting's server right now; retry after `Retry-After` |
+| 503 | `voice_warming` | The meeting's voice is still warming up (a few seconds after the server starts); retry after `Retry-After`. Nothing was charged |
 
 ## Rate limits
 
@@ -62,7 +62,7 @@ Errors use `application/problem+json` (RFC 9457). `code` is stable and safe to b
 
 ## Idempotency
 
-Create requests (`POST /v1/rooms`, `/meetings`, `/bookings`, `/calls`, `/rooms/{id}/agent-sessions`) require an `Idempotency-Key` header: any unique value up to 255 characters, such as a UUID. If the network fails, send the same request **with the same key**: you get the original answer instead of a second room, booking or call. Keys are kept for 24 hours per credential.
+Create requests (`POST /v1/rooms`, `/meetings`, `/bookings`, `/calls`, `/rooms/{id}/agent-sessions`) require an `Idempotency-Key` header: any unique value up to 255 characters, such as a UUID. If the network fails, send the same request **with the same key**: you get the original answer instead of a second meeting, booking or call. Keys are kept for 24 hours per credential.
 
 ## Versions
 

@@ -10,8 +10,8 @@ No app, abra **Desenvolvedores** e mude a chave **Produção | Teste** para **Te
 
 | Recurso | No modo de teste |
 | --- | --- |
-| Salas e reuniões | São criadas de verdade (com `livemode: false`), então você pode abrir os links |
-| Agente de IA na sala | Já funciona. Dois participantes robôs entram na sala: **Kenji** (fala japonês) e **Lena** (fala francês). Eles cumprimentam e respondem com frases fixas, traduzidas para a sua `hear_lang` |
+| Reuniões instantâneas e agendadas | São criadas de verdade (com `livemode: false`), então você pode abrir os links |
+| Agente de IA na reunião | Já funciona. Dois participantes robôs entram na reunião: **Kenji** (fala japonês) e **Lena** (fala francês). Eles cumprimentam e respondem com frases fixas, traduzidas para a sua `hear_lang` |
 | Ligações | Já funcionam com os números mágicos abaixo |
 | Vozes | Uma voz clonada no teste é uma voz padrão; ninguém é contatado |
 | Webhooks | São entregues de verdade aos seus endpoints de teste, com a mesma assinatura |
@@ -47,4 +47,4 @@ curl -X POST {{API}}/v1/webhook-endpoints/<endpoint_id>/test \
 
 ## Indo para produção
 
-Crie uma chave `kt_live_` em **Produção** com as mesmas permissões e use-a no lugar da chave de teste. Agentes em salas reais estão {soon}: hoje, com uma chave de produção, esses endpoints respondem `501 not_available_yet`. Ligações reais precisam de **Ligações ao vivo pela API** liberadas para a sua organização (veja o [guia](/guides/translated-call)).
+Crie uma chave `kt_live_` em **Produção** com as mesmas permissões e use-a no lugar da chave de teste. Agentes em reuniões reais estão {soon}: hoje, com uma chave de produção, esses endpoints respondem `501 not_available_yet`. Ligações reais precisam de **Ligações ao vivo pela API** liberadas para a sua organização (veja o [guia](/guides/translated-call)).

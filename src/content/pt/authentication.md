@@ -35,8 +35,8 @@ Cada chave ou app conectado tem um conjunto de permissões (escopos). A [referê
 | --- | --- |
 | `usage:read` | Minutos restantes e uso da API |
 | `members:read` | Lista de membros da organização |
-| `rooms:read` / `rooms:write` | Ler salas · criar, encerrar e gerar links de convidado |
-| `rooms:join` | Agente de IA na sala: entrar, falar e ouvir |
+| `rooms:read` / `rooms:write` | Ler reuniões · criar, encerrar e gerar links de convidado |
+| `rooms:join` | Agente de IA na reunião: entrar, falar e ouvir |
 | `calls:read` | Histórico de ligações e cotação de destinos |
 | `calls:dial` | Fazer ligações traduzidas como agente de IA |
 | `numbers:read` | Números de telefone da empresa |

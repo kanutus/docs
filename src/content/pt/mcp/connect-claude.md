@@ -37,7 +37,7 @@ claude mcp remove kanutus
 
 ## Experimente
 
-- "Crie uma sala do Kanutus chamada *Sync semanal* para português e japonês e me mande o link."
+- "Crie uma reunião do Kanutus chamada *Sync semanal* para português e japonês e me mande o link."
 - "Marque uma reunião amanhã às 15h, horário de Brasília, com kenji@exemplo.com, em português e japonês."
 - "Liste meus links de agendamento e mostre os horários livres na quinta."
 

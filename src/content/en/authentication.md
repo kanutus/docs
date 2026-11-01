@@ -35,8 +35,8 @@ Each key or connected app has a set of permissions (scopes). The [reference](/re
 | --- | --- |
 | `usage:read` | Minutes left and API usage |
 | `members:read` | List members of the organization |
-| `rooms:read` / `rooms:write` | Read rooms · create, end, guest links |
-| `rooms:join` | AI agent in a room: join, speak, listen |
+| `rooms:read` / `rooms:write` | Read meetings · create, end, guest links |
+| `rooms:join` | AI agent in a meeting: join, speak, listen |
 | `calls:read` | Call history and destination quotes |
 | `calls:dial` | Place translated calls as an AI agent |
 | `numbers:read` | Company phone numbers |

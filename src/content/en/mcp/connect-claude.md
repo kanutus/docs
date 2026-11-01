@@ -37,7 +37,7 @@ claude mcp remove kanutus
 
 ## Try it
 
-- "Create a Kanutus room called *Weekly sync* for English and Japanese and give me the link."
+- "Create a Kanutus meeting called *Weekly sync* for English and Japanese and give me the link."
 - "Schedule a meeting tomorrow at 15:00 São Paulo time with kenji@example.com, Portuguese and Japanese."
 - "List my booking links and show the free times on Thursday."
 

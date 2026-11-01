@@ -10,8 +10,8 @@ In the app, open **Developers** and switch **Production | Test** to **Test** (th
 
 | Feature | In test mode |
 | --- | --- |
-| Rooms and meetings | Created for real (with `livemode: false`), so you can open the links |
-| AI agent in a room | Works now. Two robot participants join: **Kenji** (speaks Japanese) and **Lena** (speaks French). They greet you and answer with fixed phrases, translated to your `hear_lang` |
+| Instant and scheduled meetings | Created for real (with `livemode: false`), so you can open the links |
+| AI agent in a meeting | Works now. Two robot participants join: **Kenji** (speaks Japanese) and **Lena** (speaks French). They greet you and answer with fixed phrases, translated to your `hear_lang` |
 | Phone calls | Works now with the magic numbers below |
 | Voices | A cloned voice in test is a standard voice; nobody is contacted |
 | Webhooks | Real deliveries to your test endpoints, same signature |
@@ -47,4 +47,4 @@ curl -X POST {{API}}/v1/webhook-endpoints/<endpoint_id>/test \
 
 ## Going live
 
-Create a `kt_live_` key in **Production** with the same permissions and swap it in. Agents in live rooms are {soon}: with a live key those endpoints answer `501 not_available_yet` today. Live phone calls need **Live calls through the API** turned on for your organization (see the [guide](/guides/translated-call)).
+Create a `kt_live_` key in **Production** with the same permissions and swap it in. Agents in live meetings are {soon}: with a live key those endpoints answer `501 not_available_yet` today. Live phone calls need **Live calls through the API** turned on for your organization (see the [guide](/guides/translated-call)).

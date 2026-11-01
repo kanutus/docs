@@ -40,6 +40,6 @@ Each segment has `speaker`, `src_lang`, the time, and the text inside `untrusted
 
 ## Coming next
 
-- Transcripts of every meeting in a room, not only agent sessions {soon}
+- Transcripts of the whole meeting, not only agent sessions {soon}
 - Summary with decisions and next steps, in any language {soon}
 - Search and export (TXT, SRT, PDF, DOCX) {soon}

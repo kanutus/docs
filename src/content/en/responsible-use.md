@@ -1,10 +1,10 @@
 # Responsible use
 
-Kanutus lets AI speak with real people, in rooms and on the phone, with voices that sound human. That needs care. By using the API and the connectors you agree to these rules; they are also enforced by the product.
+Kanutus lets AI speak with real people, in meetings and on the phone, with voices that sound human. That needs care. By using the API and the connectors you agree to these rules; they are also enforced by the product.
 
 ## An AI always says it is an AI
 
-- In rooms, an agent always shows the **AI badge** next to its name, and the room always **hears and reads** its introduction, translated: "Hello, I am *name*, an AI agent." (plus "Depending on the situation, I may ask you to share your camera or your screen." when it can see the participants). Whoever joins later hears it too. This cannot be turned off and is free.
+- In meetings, an agent always shows the **AI badge** next to its name, and the meeting always **hears and reads** its introduction, translated: "Hello, I am *name*, an AI agent." (plus "Depending on the situation, I may ask you to share your camera or your screen." when it can see the participants). Whoever joins later hears it too. This cannot be turned off and is free.
 - An agent that **evaluates** people (candidates in an interview, for example) is your decision tool, not ours: get their explicit consent before the interview and offer a human review of the outcome. Rules on AI in recruitment vary by country (EU AI Act, Illinois, New York, Brazil's LGPD).
 - On phone calls, the agent **always** opens by saying it is an AI assistant and on whose behalf it calls. This cannot be turned off.
 - Never use a name, a voice or a script that makes people believe they are talking to a human.

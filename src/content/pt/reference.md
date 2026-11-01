@@ -31,13 +31,15 @@ Use uma chave de API ou um token de acesso OAuth. Veja [Autenticação](/authent
 - [Conta e uso](/reference/account) — `GET /v1/me`, saldo e uso.
 - [Vozes](/reference/voices) — Listar, catálogo genérico, escolher e apagar; clonagem com consentimento {soon}.
 - [Avatares](/reference/avatars) {soon} — Os avatares da Kanutus para o agente aparecer na câmera. Por enquanto a lista vem vazia.
-- [Salas](/reference/rooms) — Criar, listar, ler, encerrar e gerar links de convidado.
+- [Reuniões](/reference/rooms) — Criar, listar, ler, encerrar e gerar links de convidado.
 - [Reuniões e agendamento](/reference/calendar) — Reuniões, links de agendamento, horários livres e agendamentos.
-- [Agente de IA na sala](/reference/agents) — Entrar, falar, ouvir e sair {soon}.
+- [Agente de IA na reunião](/reference/agents) — Entrar, falar, ouvir e sair {soon}.
 - [Transcrições](/reference/transcripts) — O que esta credencial pode ler.
 - [Ligações](/reference/calls) — Cotar destinos e fazer ligações traduzidas.
 - [Webhooks e eventos](/reference/webhooks) — Endpoints, segredos, testes e registro de eventos.
 :::
+
+> Na API o recurso de reunião mantém o nome `rooms`: caminhos, permissões, eventos de webhook e ferramentas MCP (`/v1/rooms`, `rooms:read`, `room.started`, `create_room`).
 
 ## SDKs
 

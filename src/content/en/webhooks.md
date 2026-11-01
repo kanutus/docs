@@ -1,6 +1,6 @@
 # Webhooks
 
-Kanutus sends an HTTPS `POST` to your server when something happens: a room started, a meeting was booked, an agent session ended, a spending limit was reached.
+Kanutus sends an HTTPS `POST` to your server when something happens: a meeting started, a meeting was scheduled, an agent session ended, a spending limit was reached.
 
 ## Create an endpoint
 
@@ -82,9 +82,9 @@ def verify_kanutus(raw_body: bytes, header: str, secret: str, tolerance_s: int =
 
 | Event | When |
 | --- | --- |
-| `room.started` | A room was created through the API |
-| `room.ended`, `room.participant_joined`, `room.participant_left` | Room life cycle {soon} |
-| `session.started`, `session.ended` | An AI agent joined or left a room |
+| `room.started` | A meeting was created through the API |
+| `room.ended`, `room.participant_joined`, `room.participant_left` | Meeting life cycle {soon} |
+| `session.started`, `session.ended` | An AI agent joined or left a meeting |
 | `meeting.created`, `meeting.canceled` | A meeting was scheduled or canceled |
 | `meeting.updated` | A meeting changed {soon} |
 | `booking.created` | A time was booked on a booking link |

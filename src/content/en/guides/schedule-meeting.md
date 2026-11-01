@@ -4,7 +4,7 @@ Two ways: schedule a meeting directly (you set the time and invite people), or b
 
 ## Schedule directly
 
-`POST /v1/meetings` creates a room with a date. Invitees get the invitation by email with the link and a calendar file. Needs `calendar:write`.
+`POST /v1/meetings` creates a meeting with a date. Invitees get the invitation by email with the link and a calendar file. Needs `calendar:write`.
 
 ```bash
 curl -X POST {{API}}/v1/meetings \
@@ -22,7 +22,7 @@ curl -X POST {{API}}/v1/meetings \
 
 - `starts_at` is ISO 8601 **with the time zone offset**.
 - `langs` are the languages of the participants (it helps Kanutus get ready).
-- The answer is a room with `status: "scheduled"` and its `url`.
+- The answer is a meeting with `status: "scheduled"` and its `url`.
 
 List with `GET /v1/meetings?from=…&to=…` and cancel with `DELETE /v1/meetings/{id}` (invitees are told).
 

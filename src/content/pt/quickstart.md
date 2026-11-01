@@ -47,7 +47,7 @@ curl {{API}}/v1/me -H "Authorization: Bearer $KANUTUS_API_KEY"
 }
 ```
 
-Agora crie uma sala. Toda requisição que cria algo precisa do cabeçalho `Idempotency-Key`. Use qualquer valor único: se você repetir a mesma requisição com o mesmo valor, recebe o mesmo resultado em vez de criar a sala duas vezes. Para criar salas, a chave precisa da permissão `rooms:write`, que vem, por exemplo, no papel **Assistente de reuniões**:
+Agora crie uma reunião. Toda requisição que cria algo precisa do cabeçalho `Idempotency-Key`. Use qualquer valor único: se você repetir a mesma requisição com o mesmo valor, recebe o mesmo resultado em vez de criar a reunião duas vezes. Para criar reuniões, a chave precisa da permissão `rooms:write`, que vem, por exemplo, no papel **Assistente de reuniões**:
 
 :::tabs
 ```bash curl
@@ -85,11 +85,11 @@ print(r.json()["url"])
 ```
 :::
 
-A resposta traz a `url` da sala. Abra ou compartilhe esse link: cada pessoa ouve as outras na própria língua.
+A resposta traz a `url` da reunião. Abra ou compartilhe esse link: cada pessoa ouve as outras na própria língua.
 
-**Quem paga.** Por padrão (`"bill_mode": "host"`) os minutos da sala saem da sua conta, inclusive os de quem tem conta Kanutus fora da sua organização e os de convidados sem conta. Com `"bill_mode": "each"` cada conta Kanutus paga a própria parte; quem não tem conta continua saindo dos seus minutos. Quem é da sua organização usa a cota da organização nos dois casos.
+**Quem paga.** Por padrão (`"bill_mode": "host"`) os minutos da reunião saem da sua conta, inclusive os de quem tem conta Kanutus fora da sua organização e os de convidados sem conta. Com `"bill_mode": "each"` cada conta Kanutus paga a própria parte; quem não tem conta continua saindo dos seus minutos. Quem é da sua organização usa a cota da organização nos dois casos.
 
-**Voz do convidado.** Por padrão (`"guest_voice_clone": true`) o convidado sem conta vê uma caixa opcional para ser ouvido na própria voz clonada; a cópia é apagada 3 dias depois do último uso. Mande `"guest_voice_clone": false` para nunca mostrar essa opção na sala. A caixa só aparece quando o recurso de voz do convidado está ligado na sua conta.
+**Voz do convidado.** Por padrão (`"guest_voice_clone": true`) o convidado sem conta vê uma caixa opcional para ser ouvido na própria voz clonada; a cópia é apagada 3 dias depois do último uso. Mande `"guest_voice_clone": false` para nunca mostrar essa opção na reunião. A caixa só aparece quando o recurso de voz do convidado está ligado na sua conta.
 
 ## Próximos passos
 

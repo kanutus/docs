@@ -4,7 +4,7 @@ Há dois caminhos: marcar a reunião direto (você define o horário e convida a
 
 ## Marcar direto
 
-`POST /v1/meetings` cria uma sala com data. Os convidados recebem o convite por e-mail, com o link e um arquivo de calendário. Exige a permissão `calendar:write`.
+`POST /v1/meetings` cria uma reunião com data. Os convidados recebem o convite por e-mail, com o link e um arquivo de calendário. Exige a permissão `calendar:write`.
 
 ```bash
 curl -X POST {{API}}/v1/meetings \
@@ -22,7 +22,7 @@ curl -X POST {{API}}/v1/meetings \
 
 - `starts_at` vai em ISO 8601 **com o fuso horário**.
 - `langs` são as línguas dos participantes; elas ajudam o Kanutus a se preparar.
-- A resposta é uma sala com `status: "scheduled"` e a `url` dela.
+- A resposta é uma reunião com `status: "scheduled"` e a `url` dela.
 
 Para listar, use `GET /v1/meetings?from=…&to=…`. Para cancelar, use `DELETE /v1/meetings/{id}`; os convidados são avisados.
 
