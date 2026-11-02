@@ -48,14 +48,14 @@
   -H &quot;Authorization: Bearer $KANUTUS_API_KEY&quot; \
   -H &quot;Idempotency-Key: $(uuidgen)&quot; \
   -H &quot;Content-Type: application/json&quot; \
-  -d '{&quot;name&quot;:&quot;Assistente da Vértice&quot;,&quot;speak_lang&quot;:&quot;pt&quot;,&quot;hear_lang&quot;:&quot;pt&quot;,&quot;voice_id&quot;:&quot;kt-en-f-06&quot;,&quot;avatar_id&quot;:&quot;7c9e6679-7425-40de-944b-e07fc1f90ae7&quot;,&quot;see_participants&quot;:false,&quot;snapshot_every_s&quot;:5,&quot;announce&quot;:true}'</code></pre></div></div><div class="tab-panel" data-panel="post-v1-rooms-id-agent-sessions-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/rooms/kqz-mbdt-wpa/agent-sessions&quot;, {
+  -d '{&quot;name&quot;:&quot;Assistente da Vértice&quot;,&quot;speak_lang&quot;:&quot;pt&quot;,&quot;hear_lang&quot;:&quot;pt&quot;,&quot;voice_id&quot;:&quot;kt-en-f-51&quot;,&quot;avatar_id&quot;:&quot;7c9e6679-7425-40de-944b-e07fc1f90ae7&quot;,&quot;see_participants&quot;:false,&quot;snapshot_every_s&quot;:5,&quot;announce&quot;:true}'</code></pre></div></div><div class="tab-panel" data-panel="post-v1-rooms-id-agent-sessions-j" hidden><div class="code"><div class="code-head"><span>Node.js</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-js">const res = await fetch(&quot;https://api.kanutus.com/v1/rooms/kqz-mbdt-wpa/agent-sessions&quot;, {
   method: &quot;POST&quot;,
   headers: {
     Authorization: `Bearer ${process.env.KANUTUS_API_KEY}`,
     &quot;Idempotency-Key&quot;: crypto.randomUUID(),
     &quot;Content-Type&quot;: &quot;application/json&quot;,
   },
-  body: JSON.stringify({&quot;name&quot;:&quot;Assistente da Vértice&quot;,&quot;speak_lang&quot;:&quot;pt&quot;,&quot;hear_lang&quot;:&quot;pt&quot;,&quot;voice_id&quot;:&quot;kt-en-f-06&quot;,&quot;avatar_id&quot;:&quot;7c9e6679-7425-40de-944b-e07fc1f90ae7&quot;,&quot;see_participants&quot;:false,&quot;snapshot_every_s&quot;:5,&quot;announce&quot;:true}),
+  body: JSON.stringify({&quot;name&quot;:&quot;Assistente da Vértice&quot;,&quot;speak_lang&quot;:&quot;pt&quot;,&quot;hear_lang&quot;:&quot;pt&quot;,&quot;voice_id&quot;:&quot;kt-en-f-51&quot;,&quot;avatar_id&quot;:&quot;7c9e6679-7425-40de-944b-e07fc1f90ae7&quot;,&quot;see_participants&quot;:false,&quot;snapshot_every_s&quot;:5,&quot;announce&quot;:true}),
 });
 console.log(res.status, await res.json());</code></pre></div></div><div class="tab-panel" data-panel="post-v1-rooms-id-agent-sessions-p" hidden><div class="code"><div class="code-head"><span>Python</span><button type="button" class="copy" data-copy data-copied="Copied">Copy</button></div><pre><code class="lang-python">import os, uuid, requests
 
@@ -63,7 +63,7 @@ r = requests.request(
     &quot;POST&quot;,
     &quot;https://api.kanutus.com/v1/rooms/kqz-mbdt-wpa/agent-sessions&quot;,
     headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ['KANUTUS_API_KEY']}&quot;, &quot;Idempotency-Key&quot;: str(uuid.uuid4())},
-    json={&quot;name&quot;:&quot;Assistente da Vértice&quot;,&quot;speak_lang&quot;:&quot;pt&quot;,&quot;hear_lang&quot;:&quot;pt&quot;,&quot;voice_id&quot;:&quot;kt-en-f-06&quot;,&quot;avatar_id&quot;:&quot;7c9e6679-7425-40de-944b-e07fc1f90ae7&quot;,&quot;see_participants&quot;:False,&quot;snapshot_every_s&quot;:5,&quot;announce&quot;:True},
+    json={&quot;name&quot;:&quot;Assistente da Vértice&quot;,&quot;speak_lang&quot;:&quot;pt&quot;,&quot;hear_lang&quot;:&quot;pt&quot;,&quot;voice_id&quot;:&quot;kt-en-f-51&quot;,&quot;avatar_id&quot;:&quot;7c9e6679-7425-40de-944b-e07fc1f90ae7&quot;,&quot;see_participants&quot;:False,&quot;snapshot_every_s&quot;:5,&quot;announce&quot;:True},
 )
 print(r.status_code, r.json())</code></pre></div></div></div>
 <details class="try" data-try data-method="POST" data-path="/v1/rooms/{id}/agent-sessions" data-api="https://api.kanutus.com" data-idem>
@@ -76,7 +76,7 @@ print(r.status_code, r.json())</code></pre></div></div></div>
   &quot;name&quot;: &quot;Assistente da Vértice&quot;,
   &quot;speak_lang&quot;: &quot;pt&quot;,
   &quot;hear_lang&quot;: &quot;pt&quot;,
-  &quot;voice_id&quot;: &quot;kt-en-f-06&quot;,
+  &quot;voice_id&quot;: &quot;kt-en-f-51&quot;,
   &quot;avatar_id&quot;: &quot;7c9e6679-7425-40de-944b-e07fc1f90ae7&quot;,
   &quot;see_participants&quot;: false,
   &quot;snapshot_every_s&quot;: 5,

@@ -448,7 +448,7 @@
           "voice_id": {
             "type": "string",
             "pattern": "^generic_[0-9A-Za-z_-]{6,40}$",
-            "example": "generic_kt-pt-f-01"
+            "example": "generic_kt-pt-f-51"
           }
         },
         "required": [
@@ -564,10 +564,10 @@
             "additionalProperties": {
               "type": "string"
             },
-            "description": "Suggested voice per language, e.g. `{\"pt\": \"kt-pt-f-03\", \"en\": \"kt-en-f-06\"}`: catalog voice keys you can pass as `voice_id` when joining a room with this avatar.",
+            "description": "Suggested voice per language, e.g. `{\"pt\": \"kt-pt-f-53\", \"en\": \"kt-en-f-51\"}`: catalog voice keys you can pass as `voice_id` when joining a room with this avatar.",
             "example": {
-              "pt": "kt-pt-f-03",
-              "en": "kt-en-f-06"
+              "pt": "kt-pt-f-53",
+              "en": "kt-en-f-51"
             }
           }
         },
@@ -1279,7 +1279,7 @@
             "type": "string",
             "maxLength": 100,
             "description": "Voice the agent speaks with: a consented clone of the organization (`vce_…`), a generic voice you chose (`generic_…`), or a voice of the published catalog by its key (`kt-<lang>-<f|m>-NN`, the same keys `GET /v1/avatars` suggests in `suggested_voices`). Omitted = the default voice of `speak_lang`. Unknown: 404 `not_found`.",
-            "example": "kt-en-f-06"
+            "example": "kt-en-f-51"
           },
           "avatar_id": {
             "type": "string",

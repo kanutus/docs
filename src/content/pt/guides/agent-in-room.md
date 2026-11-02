@@ -46,7 +46,7 @@ Se a sessão foi criada com `see_participants`, a apresentação continua: *"Dep
 
 > [!soon] O agente com rosto (avatar na câmera) chega em breve. Por enquanto o agente entra **só com voz**: se você mandar `avatar_id`, a entrada funciona normalmente, o campo é ignorado e a resposta traz `avatar.status` = `coming_soon`. `GET /v1/avatars` responde com a lista vazia e `avatars.status` = `coming_soon`.
 
-Para a voz, `voice_id` aceita as chaves de voz do catálogo (por exemplo `kt-en-f-06`), além dos clones com consentimento (`vce_…`) e das vozes genéricas escolhidas (`generic_…`).
+Para a voz, `voice_id` aceita as chaves de voz do catálogo (por exemplo `kt-en-f-51`), além dos clones com consentimento (`vce_…`) e das vozes genéricas escolhidas (`generic_…`).
 
 ### Os motores ligam sob demanda
 

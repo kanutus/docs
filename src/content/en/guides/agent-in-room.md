@@ -46,7 +46,7 @@ If the session was created with `see_participants`, the introduction continues: 
 
 > [!soon] The agent with a face (an avatar on camera) is coming soon. For now the agent joins **voice only**: if you send `avatar_id`, the join works as usual, the field is ignored and the answer carries `avatar.status` = `coming_soon`. `GET /v1/avatars` answers with an empty list and `avatars.status` = `coming_soon`.
 
-For the voice, `voice_id` accepts the catalog voice keys (for example `kt-en-f-06`), besides your consented clones (`vce_…`) and generic picks (`generic_…`).
+For the voice, `voice_id` accepts the catalog voice keys (for example `kt-en-f-51`), besides your consented clones (`vce_…`) and generic picks (`generic_…`).
 
 ### Engines start on demand
 
